@@ -19,8 +19,8 @@ from django.urls import path
 from pages.views import about, pricing, faq
 
 urlpatterns = [
-    path('', about),
-    path('pricing', pricing),
-    path('faq', faq),
+    path('', about, name="about_page"),
+    path('pricing', pricing, name="pricing_page"),
+    path('faq', faq, name="faq_page"),
     path('admin/', admin.site.urls),
 ]
