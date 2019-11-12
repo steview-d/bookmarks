@@ -4,12 +4,16 @@
 
 {% include 'accounts/components/back.html' %}
 
-<h1>Log In Page</h1>
+<div class="container">
 
-<form method="POST">
-    {% csrf_token %}
-    {{ login_form }}
-    <button type="submit">Login</button>
-</form>
+    <h1>Log In Page</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+</div>
 
 {% endblock %}

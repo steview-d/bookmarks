@@ -121,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# for use with auth_views.LoginView
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'about_page'
