@@ -129,4 +129,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 # for use with auth_views.LoginView
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'about_page'
+LOGIN_REDIRECT_URL = 'profile'  # eventually needs to be main app page

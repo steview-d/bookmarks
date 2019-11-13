@@ -1,32 +1,33 @@
-<div class="sidebar--settings">
-
+<nav id="sidebar">
     <div>
-        <h1>LOGO Here</h1>
+        <h3 class="text-center">LOGO HERE</h3>
     </div>
-
     <hr>
-
     <div>
-        <h3>Add BM Button</h3>
+        <h3 class="text-center">Add BM Button</h3>
     </div>
-
     <hr>
-
     <div>
-        <h3>BIG ASS AD</h3>
-        <h3>IS HERE</h3>
+        <h3 class="text-center">BIG ASS AD</h3>
+        <h3 class="text-center">IS HERE</h3>
     </div>
-
     <hr>
+    <ul>
+        <h5>Settings</h5>
+        <li>
+            <a class="nav-link" href="{% url 'premium' %}">Premium</a>
+        </li>
 
-    <div>
-        <h4>Settings</h4>
-        <ul>
-            <li>Premium</li>
-            <li>Profile</li>
-            <li>Support</li>
-            <li>About</li>
-        </ul>
-    </div>
+        <li>
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+        </li>
 
-</div>
+        <li>
+            <a class="nav-link" href="{% url 'support' %}">Support</a>
+        </li>
+
+        <li>
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+    </ul>
+</nav>

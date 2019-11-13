@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect, render, reverse
 # from django.contrib import messages
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterAccountForm
 
@@ -12,7 +12,8 @@ from .forms import RegisterAccountForm
 def register(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
-        return redirect(reverse('about_page'))
+        # eventually will be main app page
+        return redirect(reverse('profile'))
 
     # handle posted form data
     if request.method == "POST":
@@ -32,8 +33,33 @@ def register(request):
     return render(request, 'accounts/register.html', context)
 
 
+@login_required
+def premium(request):
+
+    context = {}
+
+    return render(request, 'accounts/premium.html', context)
+
+
+@login_required
 def profile(request):
 
     context = {}
 
     return render(request, 'accounts/profile.html', context)
+
+
+@login_required
+def support(request):
+
+    context = {}
+
+    return render(request, 'accounts/support.html', context)
+
+
+@login_required
+def about(request):
+
+    context = {}
+
+    return render(request, 'accounts/about.html', context)

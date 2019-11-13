@@ -47,7 +47,9 @@
         width: 100%;
     }
     #content.display-switch {
-        width: calc(100% - 300px);
+        /* need to confirm behaviour - overlap or push? */
+        /* width: calc(100% - 300px); */
+        color: black; /* temp rule */
     }
     #sidebarCollapse span {
         display: none;
