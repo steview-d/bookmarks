@@ -1,10 +1,32 @@
+from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect, render, reverse
-from django.contrib import auth, messages
-from django.contrib.auth.decorators import login_required
+# from django.contrib import messages
+# from django.contrib.auth.decorators import login_required
+
+from .forms import RegisterAccountForm
 
 # from django.contrib import auth
 
 
 # Create your views here.
 def register(request):
-    return render(request, 'accounts/register.html')
+    # redirect if a user is already logged in
+    if request.user.is_authenticated:
+        return redirect(reverse('about_page'))
+
+    # handle posted form data
+    if request.method == "POST":
+        form = RegisterAccountForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('about_page')
+    else:
+        form = RegisterAccountForm()
+
+    context = {'form': form}
+
+    return render(request, 'accounts/register.html', context)

@@ -10,11 +10,10 @@
     <p>This is the index / about page.</p>
 
     <hr>
+    {% if user.is_authenticated %}
     <h4>Temporary log out button to help with testing</h4>
     <a href="{% url 'logout' %}" class="btn btn-primary" role="button">Log Out</a>
 
-    {% if user.is_authenticated %}
-    
     <p class="mt-3">Username: {{ user }}</p>
     {% endif %}
 
