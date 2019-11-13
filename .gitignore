@@ -3,5 +3,6 @@
 __pycache__/
 
 db.sqlite3
+html_snips.html
 py_snips.py
 env.py

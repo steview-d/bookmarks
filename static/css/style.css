@@ -1,15 +1,23 @@
-.grid-outer {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+.flex-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+}
+
+#sidebar.toggle {
+    margin-left: -300px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -300px;
     }
-    
-    .sidebar--settings {
-        grid-area: 1 / 1 / 2 / 2;
-        background-color: azure;
+    #sidebar.toggle {
+        margin-left: 0;
     }
-    .main--settings { grid-area: 1 / 2 / 2 / 3;
-        min-height: 100vh;
-    }
+}
