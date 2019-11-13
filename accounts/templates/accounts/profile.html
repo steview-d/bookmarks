@@ -2,16 +2,14 @@
 
 {% block content %}
 
-<div class="parent">
-    <div class="sidebar">
-        <h1>sidebar</h1>
-    </div>
-    <div class="top-nav">
-        <h1>top-nav</h1>
-    </div>
-    <div class="main">
+<div class="grid-outer">
+    {% include 'accounts/components/sidebar.html' %}
+
+    <div class="main--settings">
+        {% include 'accounts/components/top-nav.html' %}
         <h1>main</h1>
     </div>
+
 </div>
 
 {% endblock %}
