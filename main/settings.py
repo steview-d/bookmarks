@@ -130,3 +130,11 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 # for use with auth_views.LoginView
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile'  # eventually needs to be main app page
+
+# SMTP config
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Bookmarks Team <noreply>'
