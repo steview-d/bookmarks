@@ -29,7 +29,7 @@
 
 #content {
     width: calc(100% - 300px);
-    padding: 40px;
+    /* padding: 40px; */
     min-height: 100vh;
     transition: all 0.5s;
     position: absolute;
@@ -58,4 +58,11 @@
 
 #sidebar ul .active {
     background-color: #B0E0E6;
+}
+
+/* topnav */
+@media (max-width: 575px) {
+    #topnav-icons i {
+        font-size: 1.5rem;
+    }
 }

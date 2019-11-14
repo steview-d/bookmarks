@@ -1,24 +1,38 @@
-<nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid grey;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Bookmarks..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go!</button>
+<nav class="navbar navbar-expand navbar-light bg-faded">
+    <ul class="navbar-nav d-flex float-left">
+        <li class="nav-item px-2 d-inline d-md-none sidebarToggle">
+            <a class="nav-link" href="#"><i class="fa fa-bars
+                " aria-hidden="true"></i></a>
+        </li>
+    </ul>
+    <div class="navbar-collapse collapse justify-content-around">
+        <form class="mx-2 my-auto d-none d-sm-inline w-100">
+            <div class="input-group">
+                <input type="text" class="form-control border border-right-0" placeholder="Search Bookmarks...">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary border border-left-0" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
         </form>
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <li class="nav-item">
+        <ul id="topnav-icons" class="navbar-nav">
+            <li class="nav-item px-2 d-inline d-sm-none">
+                <a class="nav-link" href="#"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" href="#"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item px-2">
                 <a class="nav-link" href="#"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item px-2">
                 <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+            <li class="nav-item px-2">
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-2x"
+                        aria-hidden="true"></i></a>
             </li>
-            
         </ul>
     </div>
 </nav>
