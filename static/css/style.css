@@ -55,3 +55,7 @@
         display: none;
     }
 }
+
+#sidebar ul .active {
+    background-color: #B0E0E6;
+}

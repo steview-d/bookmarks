@@ -14,19 +14,19 @@
     <hr>
     <ul>
         <h5>Settings</h5>
-        <li>
+        <li {% if 'premium' in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'premium' %}">Premium</a>
         </li>
 
-        <li>
+        <li {% if 'profile' in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
         </li>
 
-        <li>
+        <li {% if 'support' in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'support' %}">Support</a>
         </li>
 
-        <li>
+        <li {% if 'about' in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
     </ul>
