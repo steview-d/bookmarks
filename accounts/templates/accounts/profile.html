@@ -27,9 +27,27 @@
                     <p>Email Address: {{ user.email }}</p>
                     {{ update_email_form.as_p }}
 
-                    <input type="submit" class="btn btn-info">
+                    <input type="submit" name="email-btn" class="btn btn-info">
                 </fieldset>
             </form>
+
+            <form method="POST" class="border p-2 mt-3">
+                    <fieldset>
+                        <legend>Change Password</legend>
+                        {% csrf_token %}
+    
+                        {% for i in password_change_form %}
+
+                        <p>{{ i.label_tag }} {{ i }}
+                        <small>{{ i.errors }}</small>
+
+                        {% endfor %}
+                        <br>
+    
+                        <input type="submit" name="pw-btn" class="btn btn-info">
+                    </fieldset>
+                </form>
+
         </div>
     </div>
 </div>

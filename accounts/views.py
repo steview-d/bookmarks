@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 # from django.contrib import messages
@@ -48,18 +49,31 @@ def profile(request):
     """ The current users profile page """
     user = User.objects.get(email=request.user.email)
 
+    # if "email-btn" in request.POST:
+    #     return
+
+    # elif "pw-btn" in request.POST:
+    #     return
+
     if request.method == "POST":
+        print(request)
         update_email_form = UpdateUserEmailForm(
             request.POST, instance=request.user)
+        password_change_form = PasswordChangeForm(
+            request.POST)
 
-        if update_email_form.is_valid():
+        if update_email_form.is_valid() or password_change_form.is_valid():
             update_email_form.save()
+            password_change_form.save()
             return redirect(reverse("profile"))
 
     else:
         update_email_form = UpdateUserEmailForm()
+        password_change_form = PasswordChangeForm(request.user)
 
-    context = {"profile": user, "update_email_form": update_email_form}
+    context = {"profile": user,
+               "update_email_form": update_email_form,
+               "password_change_form": password_change_form}
 
     return render(request, 'accounts/profile.html', context)
 

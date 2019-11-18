@@ -13,7 +13,7 @@ class RegisterAccountForm(UserCreationForm):
 
 
 class UpdateUserEmailForm(forms.ModelForm):
-    """ form to allow change their email address """
+    """ form to allow users to change their email address """
     email = forms.CharField(
         widget=forms.EmailInput(),
         max_length=100,
@@ -32,3 +32,7 @@ class UpdateUserEmailForm(forms.ModelForm):
             raise forms.ValidationError(
                 u'This email address already exists, please choose another')
         return email
+
+
+class UpdateUserPasswordForm(forms.ModelForm):
+    """ form to allow users to change their password """
