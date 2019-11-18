@@ -1,0 +1,103 @@
+// ------------------------------------------------------------------ variables
+
+$white: #FFFFFF;
+
+
+// -------------------------------------------------- main display grid wrapper
+
+.flex-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+
+// -------------------------------------------- top navbar for main app display
+
+#topnav {
+    position: fixed;
+    width: 100%;
+    background-color: $white;
+    
+    @media (min-width: 768px) {
+        width: calc(100% - 300px);
+    }
+}
+
+.topnav-spacer {
+    height: 64px;
+}
+
+#topnav-icons i {
+    font-size: 1.5rem;
+
+    @media (min-width: 576px) {
+        font-size: 2rem;
+    }
+}
+
+// style seach box dropdown
+.dropright {
+    .dropdown-menu {
+        transition: all 0.25s;
+        overflow: hidden;
+        transform-origin: left;
+        transform: scale(0, 1);
+        display: block;
+    }
+    &:hover {
+        .dropdown-menu {
+            transform: scale(1);
+        }
+    }
+    .dropdown-menu {
+        width: 200px;
+        padding: 0;
+    }
+}
+
+
+// -------------------------------------------------------------------- sidebar
+
+#sidebar {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
+    background-color: ghostwhite;
+
+    .display-switch {
+        margin-left: -300px;
+    }
+}
+
+#sidebar ul .active {
+    background-color: #b0e0e6;
+}
+
+@media (max-width: 767px) {
+    #sidebar {
+        margin-left: -300px;
+    }
+    #sidebar.display-switch {
+        margin-left: 0;
+    }
+}
+
+
+// ---------------------------------------------------------- main content area
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
+
+    @media (min-width: 768px) {
+        width: calc(100% - 300px);
+    }
+}

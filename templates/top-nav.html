@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand navbar-light bg-faded">
+<nav id="topnav" class="navbar navbar-expand navbar-light bg-faded">
     <!-- topnav sidebar toggle -->
-    <ul class="navbar-nav d-flex float-left">
+    <ul class="navbar-nav">
         <li class="nav-item px-2 d-inline d-md-none sidebarToggle">
             <a class="nav-link" href="#"><i class="fa fa-bars
                 " aria-hidden="true"></i></a>
         </li>
     </ul>
-    <div class="navbar-collapse collapse justify-content-around">
+    <div class="navbar-collapse collapse justify-content-end">
         <!-- topnav search bar -->
         <form class="mx-2 my-auto d-none d-sm-inline w-100">
             <div class="input-group">
@@ -21,12 +21,12 @@
         <!-- topnav icons -->
         <ul id="topnav-icons" class="navbar-nav">
             <!-- search button & dropdown - xs only -->
-            <li class="nav-item px-2 d-inline d-sm-none dropdown">
+            <li class="nav-item px-2 d-inline d-sm-none dropright">
                 <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    <i class="fa fa-search fa-2x"></i>
+                    <i class="fa fa-search"></i>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: 195%; transform: translateX(-50%); width: 85vw; padding: 0">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <form class="">
                         <div class="input-group">
                             <input type="text" class="form-control border border-right-0" placeholder="Search Bookmarks...">
@@ -36,19 +36,20 @@
                 </div>
             </li>
             <!-- add bm, main app, settings, and log out buttons -->
-            <li class="nav-item px-2">
-                <a class="nav-link" href="#"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+            <li class="nav-item px-2 d-inline d-md-none">
+                <a class="nav-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
-                <a class="nav-link" href="#"><i class="fa fa-bookmark fa-2x" aria-hidden="true"></i></a>
+                <a class="nav-link" href="#"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
-                <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+                <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-cog" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
-                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-2x"
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"
                         aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>
 </nav>
+<div class="topnav-spacer"></div>
