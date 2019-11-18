@@ -48,12 +48,16 @@ def profile(request):
     """ The current users profile page """
     user = User.objects.get(email=request.user.email)
 
-    new_email = UpdateUserEmailForm(request.POST, instance=request.user)
-    if new_email.is_valid():
-        new_email.save()
-        return redirect(reverse("profile"))
+    if request.method == "POST":
+        update_email_form = UpdateUserEmailForm(
+            request.POST, instance=request.user)
 
-    update_email_form = UpdateUserEmailForm()
+        if update_email_form.is_valid():
+            update_email_form.save()
+            return redirect(reverse("profile"))
+
+    else:
+        update_email_form = UpdateUserEmailForm()
 
     context = {"profile": user, "update_email_form": update_email_form}
 

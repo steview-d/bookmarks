@@ -14,6 +14,10 @@
         {% include 'top-nav.html' %}
 
         <div class="container-fluid">
+            <div class="my-3">
+                <div class="display-4">Profile for <strong>{{ user }}</strong></div>
+                <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
+            </div>
 
             <form method="POST" class="border p-2 mt-3">
                 <fieldset>
@@ -23,7 +27,7 @@
                     <p>Email Address: {{ user.email }}</p>
                     {{ update_email_form.as_p }}
 
-                    <input type="submit" class="btn btn-info" Name="q">
+                    <input type="submit" class="btn btn-info">
                 </fieldset>
             </form>
         </div>
