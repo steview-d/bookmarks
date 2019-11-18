@@ -1,9 +1,11 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterAccountForm
+from .forms import RegisterAccountForm, UpdateUserEmailForm
+
 
 # from django.contrib import auth
 
@@ -43,8 +45,17 @@ def premium(request):
 
 @login_required
 def profile(request):
+    """ The current users profile page """
+    user = User.objects.get(email=request.user.email)
 
-    context = {}
+    new_email = UpdateUserEmailForm(request.POST, instance=request.user)
+    if new_email.is_valid():
+        new_email.save()
+        return redirect(reverse("profile"))
+
+    update_email_form = UpdateUserEmailForm()
+
+    context = {"profile": user, "update_email_form": update_email_form}
 
     return render(request, 'accounts/profile.html', context)
 

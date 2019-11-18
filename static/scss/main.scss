@@ -3,6 +3,19 @@
 $white: #FFFFFF;
 
 
+// --------------------------------------------------------------------- mixins
+
+@mixin black-border {
+    border: 1px solid black;
+}
+
+// ----------------------------------------------------------------- re-usables
+
+.border {
+    @include black-border;
+}
+
+
 // -------------------------------------------------- main display grid wrapper
 
 .flex-wrapper {

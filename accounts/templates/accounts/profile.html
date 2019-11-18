@@ -13,59 +13,21 @@
     <div id="content">
         {% include 'top-nav.html' %}
 
-        <div style="padding: 30px">
-            <h3>Profile Page</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
+        <div class="container-fluid">
+
+            <form method="POST" class="border p-2 mt-3">
+                <fieldset>
+                    <legend>Update Email Address</legend>
+                    {% csrf_token %}
+
+                    <p>Email Address: {{ user.email }}</p>
+                    {{ update_email_form.as_p }}
+
+                    <input type="submit" class="btn btn-info" Name="q">
+                </fieldset>
+            </form>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
