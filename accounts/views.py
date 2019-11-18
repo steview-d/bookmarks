@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterAccountForm, UpdateUserEmailForm
 
 
-# from django.contrib import auth
+from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
@@ -49,22 +49,23 @@ def profile(request):
     """ The current users profile page """
     user = User.objects.get(email=request.user.email)
 
-    # if "email-btn" in request.POST:
-    #     return
-
-    # elif "pw-btn" in request.POST:
-    #     return
-
-    if request.method == "POST":
-        print(request)
+    if "email-btn" in request.POST:
+        password_change_form = PasswordChangeForm(request.user)
         update_email_form = UpdateUserEmailForm(
             request.POST, instance=request.user)
-        password_change_form = PasswordChangeForm(
-            request.POST)
 
-        if update_email_form.is_valid() or password_change_form.is_valid():
+        if update_email_form.is_valid():
             update_email_form.save()
+            return redirect(reverse("profile"))
+
+    elif "pw-btn" in request.POST:
+        update_email_form = UpdateUserEmailForm()
+        password_change_form = PasswordChangeForm(
+            user=request.user, data=request.POST)
+
+        if password_change_form.is_valid():
             password_change_form.save()
+            update_session_auth_hash(request, password_change_form.user)
             return redirect(reverse("profile"))
 
     else:

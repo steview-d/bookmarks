@@ -32,21 +32,28 @@
             </form>
 
             <form method="POST" class="border p-2 mt-3">
-                    <fieldset>
-                        <legend>Change Password</legend>
-                        {% csrf_token %}
-    
-                        {% for i in password_change_form %}
+                <fieldset>
+                    <legend>Change Password</legend>
+                    {% csrf_token %}
 
-                        <p>{{ i.label_tag }} {{ i }}
-                        <small>{{ i.errors }}</small>
+                    {% for i in password_change_form %}
 
-                        {% endfor %}
-                        <br>
-    
-                        <input type="submit" name="pw-btn" class="btn btn-info">
-                    </fieldset>
-                </form>
+                    <p>{{ i.label_tag }} {{ i }} </p>
+                    <small>{{ i.errors }}</small>
+
+                    {% endfor %}
+
+                    <input type="submit" name="pw-btn" class="btn btn-info">
+                </fieldset>
+            </form>
+
+            <!-- stats -->
+            <div class="border p-2 my-3">
+                <h3>Stats</h3>
+                <p>Insert app related stats here</p>
+                <p>Actual stats still tbc</p>
+                <p>Things like total bookmarks, collections, pages, etc</p>
+            </div>
 
         </div>
     </div>

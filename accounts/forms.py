@@ -32,7 +32,3 @@ class UpdateUserEmailForm(forms.ModelForm):
             raise forms.ValidationError(
                 u'This email address already exists, please choose another')
         return email
-
-
-class UpdateUserPasswordForm(forms.ModelForm):
-    """ form to allow users to change their password """
