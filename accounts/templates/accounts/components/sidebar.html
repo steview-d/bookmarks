@@ -11,7 +11,9 @@
     </div>
     <hr>
     <div>
-            {% include 'ad_small_square.html' %}
+        <!-- display advert -->
+        <!-- ToDo : Add logic to only display if NOT premium -->
+        {% include 'advert.html' with advert_path="img/ads/square.png" %}
     </div>
     <hr>
     <ul>
