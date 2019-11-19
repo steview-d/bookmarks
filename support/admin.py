@@ -5,7 +5,7 @@ from .models import Ticket
 
 
 class TicketAdmin(admin.ModelAdmin):
-    readonly_fields = ('id',)
+    readonly_fields = ('id', 'date_created')
 
     fieldsets = [
         ('Overview', {'fields': ['id', 'date_created', 'user', 'email']}),

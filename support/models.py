@@ -26,7 +26,7 @@ class Ticket(models.Model):
         null=False, blank=False
     )
     date_created = models.DateTimeField(
-        null=True
+        auto_now_add=True
     )
     admin_comments = models.TextField(
         null=True, blank=True

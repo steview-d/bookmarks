@@ -1,11 +1,14 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
-# from django.core.mail import send_mail
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
-# from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
+
+# imports for html email template
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 from .forms import RegisterAccountForm, UpdateUserEmailForm
 from support.forms import SupportRequestForm
@@ -91,15 +94,18 @@ def support(request):
             form = form_data.save(commit=False)
             form.username = request.user
             form.email = request.user.email
-            form.date_created = timezone.now()
             form.save()
 
-            # username = form_data.cleaned_data.get('username')
-            # email = form_data.cleaned_data.get('email')
-            # title = form_data.cleaned_data.get('title')
-            # message = form_data.cleaned_data.get('message')
-            # print(email)
-            # send_mail(title, message, 'Bookmark Team', [email])
+            html_email_content = render_to_string(
+                'support_email_template.html', {'message': form.message})
+            plain_email_content = strip_tags(html_email_content)
+
+            send_mail(form.title,
+                      plain_email_content,
+                      'Bookmark Team',
+                      [form.email],
+                      html_email_content=html_email_content
+                      )
 
         return redirect(reverse("support"))
 
