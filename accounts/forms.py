@@ -34,34 +34,30 @@ class UpdateUserEmailForm(forms.ModelForm):
         return email
 
 
-class SupportRequestForm(forms.Form):
-    """ user fills in this form when requesting support """
-    username = forms.CharField(
-        min_length=4,
-        max_length=50,
-        required=True,
-        label="Username"
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(),
-        max_length=100,
-        required=True,
-        label="Email Address"
-    )
-    title = forms.CharField(
-        max_length=50,
-        required=True,
-        label="Title"
-    )
-    message = forms.CharField(
-        widget=forms.Textarea(),
-        required=True,
-        label="Message"
-    )
+# class SupportRequestForm(forms.Form):
+#     """ user fills in this form when requesting support """
+#     username = forms.CharField(
+#         min_length=4,
+#         max_length=50,
+#         required=True,
+#         label="Username"
+#     )
+#     email = forms.EmailField(
+#         widget=forms.EmailInput(),
+#         max_length=100,
+#         required=True,
+#         label="Email Address"
+#     )
+#     title = forms.CharField(
+#         max_length=50,
+#         required=True,
+#         label="Title"
+#     )
+#     message = forms.CharField(
+#         widget=forms.Textarea(),
+#         required=True,
+#         label="Message"
+#     )
 
-    class Meta:
-        fields = ['username', 'email', 'title', 'message']
-
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username')
-    #     return username
+#     class Meta:
+#         fields = ['username', 'email', 'title', 'message']
