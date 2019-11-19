@@ -10,12 +10,18 @@ class TicketAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Overview', {'fields': ['id', 'date_created', 'user', 'email']}),
         ('Ticket Detail', {'fields': ['title', 'message']}),
-        ('Admin', {'fields': ['admin_comments']}),
+        ('Admin', {'fields': ['admin_comments', 'status']}),
 
     ]
 
-    list_display = ('id', 'user', 'title', 'date_created', 'admin_commented')
-    list_filter = ['date_created']
+    list_display = (
+        'id',
+        'user',
+        'title',
+        'date_created',
+        'admin_commented',
+        'status')
+    list_filter = ['status', 'date_created']
 
 
 admin.site.register(Ticket, TicketAdmin)

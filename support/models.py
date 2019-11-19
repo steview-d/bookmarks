@@ -7,6 +7,12 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Ticket(models.Model):
+
+    STATUS_CHOICE = (
+        ('OPEN', 'OPEN'),
+        ('CLOSED', 'CLOSED'),
+    )
+
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
     )
@@ -24,6 +30,9 @@ class Ticket(models.Model):
     )
     admin_comments = models.TextField(
         null=True, blank=True
+    )
+    status = models.CharField(
+        max_length=6, choices=STATUS_CHOICE, default="OPEN"
     )
 
     def __str__(self):
