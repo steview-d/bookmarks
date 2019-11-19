@@ -96,15 +96,18 @@ def support(request):
             form.email = request.user.email
             form.save()
 
-            html_email_content = render_to_string(
-                'support_email_template.html', {'message': form.message})
-            plain_email_content = strip_tags(html_email_content)
+            html_message = render_to_string(
+                'support/support_email_template.html',
+                {'title': form.title,
+                 'message': form.message,
+                 'username': form.username})
+            plain_message = strip_tags(html_message)
 
             send_mail(form.title,
-                      plain_email_content,
+                      plain_message,
                       'Bookmark Team',
                       [form.email],
-                      html_email_content=html_email_content
+                      html_message=html_message
                       )
 
         return redirect(reverse("support"))

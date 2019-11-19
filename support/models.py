@@ -39,10 +39,7 @@ class Ticket(models.Model):
         return self.title
 
     def admin_commented(self):
-        if self.admin_comments:
-            return True
-        else:
-            return False
+        return True if self.admin_comments else False
 
     admin_commented.boolean = True
     admin_commented.short_description = "Admin Comment(s)?"
