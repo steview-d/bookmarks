@@ -13,57 +13,31 @@
     <div id="content">
         {% include 'top-nav.html' %}
 
-        <div style="padding: 30px">
-            <h3>Support Page</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa optio praesentium fugit, modi
-                dignissimos ipsam minima aperiam quibusdam eum incidunt iste laborum odit beatae, dolore quia
-                reprehenderit ab a excepturi! </p>
-            <hr>
+        <div class="container-fluid text-center">
+            <div>
+                <div class="display-4">Support</div>
+            </div>
+            <div class="my-5">
+                <h4>Premium Members call</h4>
+                <a href="#" class="btn btn-danger my-2">PREMIUM MEMBERS ONLY</a>
+                <h4>for priority telephone support</h4>
+            </div>
+            <div class="my-5">
+                <h4>Not got Premium?</h4>
+                <a href="#" class="btn btn-primary my-2">GET PREMIUM NOW</a>
+                <h6>Or fill in the form below. We usually respond within 3 days</h6>
+            </div>
+
+            <!-- support form -->
+            <form method="POST" class="border p-2 mt-3">
+                {% csrf_token %}
+                {{ support_request_form.as_p}}
+                <input type="submit" name="support-form" class="btn btn-info">
+            </form>
+
+
         </div>
+
         <!-- banner ad -->
         {% include 'advert.html' with advert_path="img/ads/banner.png" %}
     </div>

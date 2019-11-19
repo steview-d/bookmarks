@@ -1,11 +1,12 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterAccountForm, UpdateUserEmailForm
+from .forms import RegisterAccountForm, SupportRequestForm, UpdateUserEmailForm
 
 
 from django.contrib.auth import update_session_auth_hash
@@ -82,7 +83,22 @@ def profile(request):
 @login_required
 def support(request):
 
-    context = {}
+    if request.method == "POST":
+        form_data = SupportRequestForm(request.POST)
+        if form_data.is_valid():
+            username = form_data.cleaned_data.get('username')
+            email = form_data.cleaned_data.get('email')
+            title = form_data.cleaned_data.get('title')
+            message = form_data.cleaned_data.get('message')
+            print(email)
+            send_mail(title, message, 'Bookmark Team', [email])
+
+        return redirect(reverse("support"))
+
+    else:
+        support_request_form = SupportRequestForm()
+
+    context = {"support_request_form": support_request_form}
 
     return render(request, 'accounts/support.html', context)
 

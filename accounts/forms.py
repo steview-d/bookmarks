@@ -9,7 +9,7 @@ class RegisterAccountForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class UpdateUserEmailForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class UpdateUserEmailForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["email"]
+        fields = ['email']
 
     def clean_email(self):
         """ check the email address is unique """
@@ -32,3 +32,36 @@ class UpdateUserEmailForm(forms.ModelForm):
             raise forms.ValidationError(
                 u'This email address already exists, please choose another')
         return email
+
+
+class SupportRequestForm(forms.Form):
+    """ user fills in this form when requesting support """
+    username = forms.CharField(
+        min_length=4,
+        max_length=50,
+        required=True,
+        label="Username"
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(),
+        max_length=100,
+        required=True,
+        label="Email Address"
+    )
+    title = forms.CharField(
+        max_length=50,
+        required=True,
+        label="Title"
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(),
+        required=True,
+        label="Message"
+    )
+
+    class Meta:
+        fields = ['username', 'email', 'title', 'message']
+
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
+    #     return username
