@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .forms import RegisterAccountForm, UpdateUserEmailForm
 from support.forms import SupportRequestForm
@@ -90,6 +91,7 @@ def support(request):
             form = form_data.save(commit=False)
             form.username = request.user
             form.email = request.user.email
+            form.date_created = timezone.now()
             form.save()
 
             # username = form_data.cleaned_data.get('username')

@@ -20,8 +20,20 @@ class Ticket(models.Model):
         null=False, blank=False
     )
     date_created = models.DateTimeField(
-        auto_now_add=True
+        null=True
+    )
+    admin_comments = models.TextField(
+        null=True, blank=True
     )
 
     def __str__(self):
         return self.title
+
+    def admin_commented(self):
+        if self.admin_comments:
+            return True
+        else:
+            return False
+
+    admin_commented.boolean = True
+    admin_commented.short_description = "Admin Comment(s)?"
