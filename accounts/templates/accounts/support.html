@@ -19,20 +19,19 @@
             </div>
             <div class="my-5">
                 <h4>Premium Members call</h4>
-                <a href="#" class="btn btn-danger my-2">PREMIUM MEMBERS ONLY</a>
+                <a href="{% url 'premium' %}" class="btn btn-danger my-2">GET PREMIUM NOW</a>
                 <h4>for priority telephone support</h4>
-            </div>
-            <div class="my-5">
-                <h4>Not got Premium?</h4>
-                <a href="#" class="btn btn-primary my-2">GET PREMIUM NOW</a>
-                <h6>Or fill in the form below. We usually respond within 3 days</h6>
             </div>
 
             <!-- support form -->
             <form method="POST" class="border p-2 mt-3">
+                <h5 class="my-4">Support Request Form</h5>
                 {% csrf_token %}
                 {{ support_request_form.as_p}}
                 <input type="submit" name="support-form" class="btn btn-info">
+                <div class="my-3">
+                    <small>A copy of your support request will be emailed to {{ user.email }}</small>
+                </div>
             </form>
 
 
