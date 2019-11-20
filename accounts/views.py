@@ -32,12 +32,12 @@ def register(request):
     return render(request, 'accounts/register.html', context)
 
 
-@login_required
-def premium(request):
+# @login_required
+# def premium(request):
 
-    context = {}
+#     context = {}
 
-    return render(request, 'accounts/premium.html', context)
+#     return render(request, 'accounts/premium.html', context)
 
 
 @login_required

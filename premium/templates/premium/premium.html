@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Premium{% endblock %}
+
+{% block content %}
+
+<div class="flex-wrapper">
+
+    <!-- Sidebar -->
+    {% include 'accounts/components/sidebar.html' %}
+
+    <!-- Content -->
+    <div id="content">
+        {% include 'top-nav.html' %}
+
+        <div class="container-fluid text-center">
+            <div>
+                <div class="display-4">Go Premium</div>
+            </div>
+            <div class="my-5">
+                <h5>With Premium membership you get</h5>
+                <ul class="list-unstyled">
+                    <li>No Ads. Ever!</li>
+                    <li>Unlimited Bookmarks</li>
+                    <li>Unlimited Categories</li>
+                    <li>Unlimited Pages</li>
+                    <li>Priority Telephone Support</li>
+                    <li>Access to New Features First</li>
+                </ul>
+            </div>
+            <div class="my-5">
+                <h5>Lifetime access for just</h5>
+                <div class="btn btn-primary my-3">£20</div>
+                <div><small>Lifetime access is a limited time only offer for the first 1000 members</small></div>
+                <div><small>After this, a monthly / annual fee will apply</small></div>
+            </div>
+
+            <!-- messages -->
+            {% if messages %}
+            {% for message in messages %}
+            <h4 class="my-3"><kbd>{{ message }}</kbd></h4>
+            {% endfor %}
+            {% endif %}
+
+            <div class="border py-3">
+                <h5 class="my-4">Sign Up Forms</h5>
+                <hr>
+                <h5 class="my-4">User Details Form</h5>
+                <h5 class="my-4">Payment Details Form</h5>
+            </div>
+
+            <!-- premium sign up form -->
+            <!-- <form method="POST" class="border p-2 mt-3">
+                <h5 class="my-4">Support Request Form</h5>
+                {% csrf_token %}
+                {{ support_request_form.as_p}}
+                <input type="submit" name="support-form" class="btn btn-info">
+                <div class="my-3">
+                    <small>A copy of your support request will be emailed to {{ user.email }}</small>
+                </div>
+            </form> -->
+
+        </div>
+
+        <!-- banner ad -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+    </div>
+</div>
+{% endblock %}

@@ -1,8 +1,9 @@
 from django.conf.urls import include
 from django.contrib.auth import views as auth_views
 from django.urls import path
-from .views import register, premium, profile, about
+from .views import register, profile, about
 from support.views import support
+from premium.views import premium
 from accounts import urls_pw_reset
 
 urlpatterns = [
