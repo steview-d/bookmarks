@@ -35,6 +35,16 @@
                 <div><small>After this, a monthly / annual fee will apply</small></div>
             </div>
 
+            <!-- add to premium group test -->
+            <!-- <div class="my-5 border">
+                <form method="POST" class="py-4">
+                    {% csrf_token %}
+                    <h5>Add User To Premium Test</h5>
+                    <p>Click To Add Logged In User</p>
+                    <button class="btn btn-info">Add to Premium</button>
+                </form>
+            </div> -->
+
             <!-- messages -->
             {% if messages %}
             {% for message in messages %}
@@ -42,12 +52,6 @@
             {% endfor %}
             {% endif %}
 
-            {% if is_premium %}
-
-            {{ is_premium }}
-
-            {% endif %}
-            
             <div class="border py-3">
                 <h5 class="my-4">Sign Up Forms</h5>
                 <hr>
