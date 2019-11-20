@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render, reverse
@@ -32,6 +33,9 @@ def support(request):
                       [form.email],
                       html_message=html_message
                       )
+
+            messages.success(
+                request, "Ticket created, we'll be in touch soon!")
 
         return redirect(reverse("support"))
 

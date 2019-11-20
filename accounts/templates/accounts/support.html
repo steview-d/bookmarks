@@ -23,6 +23,13 @@
                 <h4>for priority telephone support</h4>
             </div>
 
+            <!-- messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <h4 class="my-3"><kbd>{{ message }}</kbd></h4>
+                {% endfor %}
+            {% endif %}
+
             <!-- support form -->
             <form method="POST" class="border p-2 mt-3">
                 <h5 class="my-4">Support Request Form</h5>
