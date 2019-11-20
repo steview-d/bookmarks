@@ -1,7 +1,23 @@
 from django.contrib import admin
 
-# Register your models here.
 from .models import Ticket
+
+
+# Register your models here.
+def close_tickets(modeladmin, request, queryset):
+    for ticket in queryset:
+        ticket.status = "CLOSED"
+        ticket.save()
+
+
+def open_tickets(modeladmin, request, queryset):
+    for ticket in queryset:
+        ticket.status = "OPEN"
+        ticket.save()
+
+
+close_tickets.short_description = "Close selected tickets"
+open_tickets.short_description = "Open selected tickets"
 
 
 class TicketAdmin(admin.ModelAdmin):
@@ -22,6 +38,8 @@ class TicketAdmin(admin.ModelAdmin):
         'admin_commented',
         'status')
     list_filter = ['status', 'date_created']
+
+    actions = [close_tickets, open_tickets]
 
 
 admin.site.register(Ticket, TicketAdmin)
