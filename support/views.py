@@ -44,4 +44,4 @@ def support(request):
 
     context = {"support_request_form": support_request_form}
 
-    return render(request, 'accounts/support.html', context)
+    return render(request, 'support/support.html', context)
