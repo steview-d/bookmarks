@@ -3,16 +3,7 @@
 
 {% block page_title %}Premium{% endblock %}
 
-{% block head_js %}
-<!-- stripe js -->
-<script src="https://js.stripe.com/v2"></script>
-<script>
-    //<![CDATA[
-    Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-</script>
-<script src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
+
 
 
 
@@ -97,4 +88,15 @@
         {% include 'advert.html' with advert_path="img/ads/banner.png" %}
     </div>
 </div>
+{% endblock %}
+
+{% block stripe_js %}
+<!-- stripe js -->
+<script src="https://js.stripe.com/v2"></script>
+<script>
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
