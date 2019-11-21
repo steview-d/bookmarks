@@ -16,12 +16,12 @@ class PurchasePremiumForm(forms.ModelForm):
                   'country']
 
 
-class PaymentForm(forms.ModelForm):
+class PaymentForm(forms.Form):
 
-    MONTH_CHOICES = [(i, i) for i in range(1, 12)]
-    YEAR_CHOICES = [(i, i) for i in range(2019, 2038)]
+    MONTH_CHOICES = [(i, i) for i in range(1, 13)]
+    YEAR_CHOICES = [(i, i) for i in range(2019, 2030)]
 
-    credit_card_number = forms.Charfield(
+    credit_card_number = forms.CharField(
         label='Credit Card Number', required=False
     )
     cvv = forms.CharField(

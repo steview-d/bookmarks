@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block page_title %}Premium{% endblock %}
+
+{% block head_js %}
+<!-- stripe js -->
+<script src="https://js.stripe.com/v2"></script>
+<script>
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -52,24 +66,31 @@
             {% endfor %}
             {% endif %}
 
+            <!-- premium sign up form -->
             <div class="border py-3">
                 <h5 class="my-4">Sign Up Forms</h5>
                 <hr>
-                <h5 class="my-4">User Details Form</h5>
-                <h5 class="my-4">Payment Details Form</h5>
+                <form role="form" method="POST" id="payment-form" class="p-2 mt-3">
+                    <legend>Payment Details</legend>
+                    <div id="credit-card-errors" style="display: none">
+                        <div class="alert-message block-message error" id="stripe-error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ purchase_premium_form.as_p }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ payment_form.as_p }}
+                    </div>
+
+                    {% csrf_token %}
+                    <div class="form-group col-md-12">
+                        <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit"
+                            value="Submit Payment">
+                    </div>
+                </form>
             </div>
-
-            <!-- premium sign up form -->
-            <!-- <form method="POST" class="border p-2 mt-3">
-                <h5 class="my-4">Support Request Form</h5>
-                {% csrf_token %}
-                {{ support_request_form.as_p}}
-                <input type="submit" name="support-form" class="btn btn-info">
-                <div class="my-3">
-                    <small>A copy of your support request will be emailed to {{ user.email }}</small>
-                </div>
-            </form> -->
-
         </div>
 
         <!-- banner ad -->
