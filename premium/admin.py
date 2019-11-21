@@ -4,4 +4,30 @@ from .models import PurchasePremium
 
 
 # Register your models here.
-admin.site.register(PurchasePremium)
+class PurchasePremiumAdmin(admin.ModelAdmin):
+    readonly_fields = ('id', 'date')
+
+    fieldsets = [
+        ('Purchase Information',
+            {'fields': ['user',
+                        'full_name',
+                        'date',
+                        'id']}),
+        ('Address Details',
+            {'fields': ['street_address1',
+                        'street_address2',
+                        'town_city',
+                        'county',
+                        'postcode',
+                        'country']}),
+    ]
+
+    list_display = (
+        'id', 'user', 'date'
+    )
+
+    # add country filter so can see at a glance where paying members are from
+    list_filter = ['country']
+
+
+admin.site.register(PurchasePremium, PurchasePremiumAdmin)
