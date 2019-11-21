@@ -34,6 +34,9 @@ class PremiumPurchase(models.Model):
     date = models.DateTimeField(
         auto_now_add=True
     )
+    payment_amount = models.IntegerField(
+        default=0, blank=False, null=True
+    )
 
     def __str__(self):
         return f"{self.id}-{self.user}"

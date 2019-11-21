@@ -17,11 +17,6 @@ premium_cost = 20
 # Create your views here.
 @login_required
 def premium(request):
-    # add user to premium group
-    # premium_group = Group.objects.get(name='Premium')
-    # user = User.objects.get(email=request.user.email)
-    # user.groups.add(premium_group)
-
     if request.method == "POST":
         purchase_premium_form = PremiumPurchaseForm(request.POST)
         payment_form = PaymentForm(request.POST)
@@ -29,15 +24,10 @@ def premium(request):
         # check forms are valid, save if they are
         if purchase_premium_form.is_valid() and payment_form.is_valid():
             purchase_premium = purchase_premium_form.save(commit=False)
-            # tidy this up if nothing else needs adding
-            # date should be auto added, but check
-            # purchase_premium.user = request.user
-            print("ORDER VALID")
+            purchase_premium.payment_amount = premium_cost
             purchase_premium.save()
 
-            # no need to build an order, as a one off payment
-
-            # stripe stuff....
+            # stripe
             try:
                 customer = stripe.Charge.create(
                     amount=premium_cost * 100,
@@ -46,19 +36,27 @@ def premium(request):
                     card=payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                messages.error(request, "Card declined")
+                messages.error(
+                    request, "Sorry, your card has been declined. \
+                        You should contact your card issuer.")
 
             if customer.paid:
-                messages.error(request, "You have paid")
+                messages.success(
+                    request, f"Your payment of £{premium_cost} \
+                        has been recieved. Thank you.")
                 # add user to premium group
                 premium_group = Group.objects.get(name='Premium')
                 user = User.objects.get(email=request.user.email)
                 user.groups.add(premium_group)
                 return redirect(reverse('premium'))
             else:
-                messages.error(request, "Couldn't take payment")
+                messages.error(
+                    request, "Sorry, your payment could not be taken. \
+                        Please try again, or use a different card")
         else:
-            messages.error(request, "Can't take payment with that card")
+            messages.error(
+                request, "Sorry, your payment could not be taken. \
+                    Please use a different card")
     else:
         purchase_premium_form = PremiumPurchaseForm()
         payment_form = PaymentForm()
@@ -69,6 +67,3 @@ def premium(request):
     context = is_premium(request.user, context)
 
     return render(request, 'premium/premium.html', context)
-
-
-# install stripe with pip - what else?

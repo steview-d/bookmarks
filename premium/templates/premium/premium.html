@@ -3,10 +3,6 @@
 
 {% block page_title %}Premium{% endblock %}
 
-
-
-
-
 {% block content %}
 
 <div class="flex-wrapper">
@@ -17,6 +13,9 @@
     <!-- Content -->
     <div id="content">
         {% include 'top-nav.html' %}
+        
+        <!-- messages -->
+        {% include 'messages.html' %}
 
         <div class="container-fluid text-center">
             <div>
@@ -39,23 +38,6 @@
                 <div><small>Lifetime access is a limited time only offer for the first 1000 members</small></div>
                 <div><small>After this, a monthly / annual fee will apply</small></div>
             </div>
-
-            <!-- add to premium group test -->
-            <!-- <div class="my-5 border">
-                <form method="POST" class="py-4">
-                    {% csrf_token %}
-                    <h5>Add User To Premium Test</h5>
-                    <p>Click To Add Logged In User</p>
-                    <button class="btn btn-info">Add to Premium</button>
-                </form>
-            </div> -->
-
-            <!-- messages -->
-            {% if messages %}
-            {% for message in messages %}
-            <h4 class="my-3"><kbd>{{ message }}</kbd></h4>
-            {% endfor %}
-            {% endif %}
 
             <!-- premium sign up form -->
             <div class="border py-3">
@@ -86,6 +68,7 @@
 
         <!-- banner ad -->
         {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
     </div>
 </div>
 {% endblock %}

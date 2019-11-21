@@ -11,6 +11,7 @@ class PremiumPurchaseAdmin(admin.ModelAdmin):
         ('Purchase Information',
             {'fields': ['user',
                         'full_name',
+                        'payment_amount',
                         'date',
                         'id']}),
         ('Address Details',
@@ -23,7 +24,7 @@ class PremiumPurchaseAdmin(admin.ModelAdmin):
     ]
 
     list_display = (
-        'id', 'user', 'date'
+        'id', 'user', "payment_amount", 'date'
     )
 
     # add country filter so can see at a glance where paying members are from
