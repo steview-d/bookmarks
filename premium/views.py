@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect, render, reverse
 import stripe
 
-from .forms import PurchasePremiumForm, PaymentForm
+from .forms import PremiumPurchaseForm, PaymentForm
 from .utils import is_premium
 
 
@@ -23,7 +23,7 @@ def premium(request):
     # user.groups.add(premium_group)
 
     if request.method == "POST":
-        purchase_premium_form = PurchasePremiumForm(request.POST)
+        purchase_premium_form = PremiumPurchaseForm(request.POST)
         payment_form = PaymentForm(request.POST)
 
         # check forms are valid, save if they are
@@ -60,7 +60,7 @@ def premium(request):
         else:
             messages.error(request, "Can't take payment with that card")
     else:
-        purchase_premium_form = PurchasePremiumForm()
+        purchase_premium_form = PremiumPurchaseForm()
         payment_form = PaymentForm()
 
     context = {'purchase_premium_form': purchase_premium_form,

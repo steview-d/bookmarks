@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 
 # Register your models here.
-class UserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
     # get membership status
     def membership_status(self, user):
         groups = []
@@ -17,6 +18,8 @@ class UserAdmin(admin.ModelAdmin):
 
     list_filter = ['groups', 'is_staff', 'is_superuser', 'is_active']
 
+    ordering = ('-id',)
+
 
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CustomUserAdmin)

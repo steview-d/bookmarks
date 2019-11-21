@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import PurchasePremium
+from .models import PremiumPurchase
 
 
-class PurchasePremiumForm(forms.ModelForm):
+class PremiumPurchaseForm(forms.ModelForm):
 
     class Meta:
-        model = PurchasePremium
+        model = PremiumPurchase
         fields = ['full_name',
                   'street_address1',
                   'street_address2',

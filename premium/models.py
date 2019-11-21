@@ -6,7 +6,7 @@ User = settings.AUTH_USER_MODEL
 
 
 # Create your models here.
-class PurchasePremium(models.Model):
+class PremiumPurchase(models.Model):
     user = models.OneToOneField(
         User, default=1, null=False, on_delete=models.CASCADE
     )

@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import PurchasePremium
+from .models import PremiumPurchase
 
 
 # Register your models here.
-class PurchasePremiumAdmin(admin.ModelAdmin):
+class PremiumPurchaseAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'date')
 
     fieldsets = [
@@ -30,4 +30,4 @@ class PurchasePremiumAdmin(admin.ModelAdmin):
     list_filter = ['country']
 
 
-admin.site.register(PurchasePremium, PurchasePremiumAdmin)
+admin.site.register(PremiumPurchase, PremiumPurchaseAdmin)
