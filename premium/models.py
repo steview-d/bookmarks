@@ -13,23 +13,8 @@ class PremiumPurchase(models.Model):
     full_name = models.CharField(
         max_length=50, blank=False
     )
-    street_address1 = models.CharField(
-        max_length=40, blank=False
-    )
-    street_address2 = models.CharField(
-        max_length=40, blank=True
-    )
-    town_city = models.CharField(
-        max_length=40, blank=False
-    )
-    county = models.CharField(
-        max_length=40, blank=False
-    )
     postcode = models.CharField(
         max_length=12, blank=False
-    )
-    country = models.CharField(
-        max_length=40, blank=False
     )
     date = models.DateTimeField(
         auto_now_add=True

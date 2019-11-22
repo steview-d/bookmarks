@@ -24,6 +24,7 @@ def premium(request):
         # check forms are valid, save if they are
         if purchase_premium_form.is_valid() and payment_form.is_valid():
             purchase_premium = purchase_premium_form.save(commit=False)
+            purchase_premium.user = request.user
             purchase_premium.payment_amount = premium_cost
             purchase_premium.save()
 
