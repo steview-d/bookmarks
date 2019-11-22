@@ -80,4 +80,4 @@ def about(request):
     context = {}
     context = is_premium(request.user, context)
 
-    return render(request, 'accounts/about.html', context)
+    return render(request, 'accounts/about_app.html', context)

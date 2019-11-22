@@ -32,32 +32,3 @@ class UpdateUserEmailForm(forms.ModelForm):
             raise forms.ValidationError(
                 u'This email address already exists, please choose another')
         return email
-
-
-# class SupportRequestForm(forms.Form):
-#     """ user fills in this form when requesting support """
-#     username = forms.CharField(
-#         min_length=4,
-#         max_length=50,
-#         required=True,
-#         label="Username"
-#     )
-#     email = forms.EmailField(
-#         widget=forms.EmailInput(),
-#         max_length=100,
-#         required=True,
-#         label="Email Address"
-#     )
-#     title = forms.CharField(
-#         max_length=50,
-#         required=True,
-#         label="Title"
-#     )
-#     message = forms.CharField(
-#         widget=forms.Textarea(),
-#         required=True,
-#         label="Message"
-#     )
-
-#     class Meta:
-#         fields = ['username', 'email', 'title', 'message']
