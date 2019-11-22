@@ -13,6 +13,9 @@
     <div id="content">
         {% include 'top-nav.html' %}
 
+        <!-- messages -->
+        {% include 'messages.html' %}
+
         <div class="container-fluid text-center">
             <div>
                 <div class="display-4">Support</div>
@@ -22,13 +25,6 @@
                 <a href="{% url 'premium' %}" class="btn btn-danger my-2">GET PREMIUM NOW</a>
                 <h4>for priority telephone support</h4>
             </div>
-
-            <!-- messages -->
-            {% if messages %}
-                {% for message in messages %}
-                    <h4 class="my-3"><kbd>{{ message }}</kbd></h4>
-                {% endfor %}
-            {% endif %}
 
             <!-- support form -->
             <form method="POST" class="border p-2 mt-3">

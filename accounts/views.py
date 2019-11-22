@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -5,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 
 from .forms import RegisterAccountForm, UpdateUserEmailForm
+from premium.utils import is_premium
 
 
 # views
@@ -44,6 +46,8 @@ def profile(request):
 
         if update_email_form.is_valid():
             update_email_form.save()
+            messages.success(
+                request, f"Your email address has been updated. Thank you.")
             return redirect(reverse("profile"))
 
     elif "pw-btn" in request.POST:
@@ -54,6 +58,8 @@ def profile(request):
         if password_change_form.is_valid():
             password_change_form.save()
             update_session_auth_hash(request, password_change_form.user)
+            messages.success(
+                request, f"Your password has been updated. Thank you.")
             return redirect(reverse("profile"))
 
     else:
@@ -63,6 +69,7 @@ def profile(request):
     context = {"profile": user,
                "update_email_form": update_email_form,
                "password_change_form": password_change_form}
+    context = is_premium(request.user, context)
 
     return render(request, 'accounts/profile.html', context)
 
@@ -71,5 +78,6 @@ def profile(request):
 def about(request):
 
     context = {}
+    context = is_premium(request.user, context)
 
     return render(request, 'accounts/about.html', context)

@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 from .forms import SupportRequestForm
+from premium.utils import is_premium
 
 
 # Create your views here.
@@ -43,5 +44,6 @@ def support(request):
         support_request_form = SupportRequestForm()
 
     context = {"support_request_form": support_request_form}
+    context = is_premium(request.user, context)
 
     return render(request, 'support/support.html', context)
