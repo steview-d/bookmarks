@@ -1,7 +1,9 @@
 .venv/
 .vscode/
 __pycache__/
+htmlcov/
 
+.coverage*
 db.sqlite3
 html_snips.html
 py_snips.py
