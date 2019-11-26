@@ -1,8 +1,8 @@
+from django.contrib.auth.models import User
 from django.core import mail
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
-from django.contrib.auth.models import User
 
 from .forms import SupportRequestForm
 from .models import Ticket
@@ -23,7 +23,7 @@ class TestSupportModel(TestCase):
         self.assertFalse(ticket.admin_commented())
 
 
-class TestSupportViews(TestCase):
+class TestSupportView(TestCase):
     def setUp(self):
         self.c = Client()
         self.user = User.objects.create_user(
@@ -40,7 +40,11 @@ class TestSupportViews(TestCase):
 
     def test_support_view(self):
         response = self.c.get(reverse('support'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
+
+    def test_correct_template_is_used(self):
+        page = self.c.get(reverse('support'))
+        self.assertTemplateUsed(page, "support/support.html")
 
     def test_form_data_is_valid(self):
         form_data = SupportRequestForm(
