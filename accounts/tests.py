@@ -4,7 +4,6 @@ from django.test.client import Client
 from django.urls import reverse
 
 from .forms import UpdateUserEmailForm
-from .views import register
 
 
 # --------------------- FORMS ---------------------
@@ -78,7 +77,7 @@ class TestRegisterView(TestCase):
         User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
-        response = self.c.get(reverse(register))
+        response = self.c.get(reverse('register'))
         self.assertRedirects(response, reverse('profile'), 302, 200)
 
 
@@ -102,4 +101,58 @@ class TestAboutView(TestCase):
 class TestProfileView(TestCase):
 
     def setUp(self):
-        pass
+        self.c = Client()
+        self.user = User.objects.create_user(
+            'test_user', 'a@b.com', 'test_password')
+        self.c.login(username='test_user', password='test_password')
+
+    def test_update_email_form_updates_email(self):
+        response = self.c.post(
+            reverse('profile'),
+            {'email': 'email@test.com', 'email-btn': 'email-btn'}
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_update_email_form_catches_bad_email(self):
+        response = self.c.post(
+            reverse('profile'),
+            {'email': 'invalid_email_addrerss', 'email-btn': 'email-btn'}
+        )
+        self.assertEqual(
+            response.context['update_email_form'].errors['email'],
+            ["Enter a valid email address."])
+
+    def test_update_password_form_updates_password(self):
+        response = self.c.post(
+            reverse('profile'),
+            {'old_password': 'test_password',
+             'new_password1': 'new_password',
+             'new_password2': 'new_password',
+             'pw-btn': 'pw-btn'}
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_update_password_checks_that_passwords_match(self):
+        response = self.c.post(
+            reverse('profile'),
+            {'old_password': 'test_password',
+             'new_password1': 'new_password',
+             'new_password2': 'different_new_password',
+             'pw-btn': 'pw-btn'}
+        )
+        self.assertEqual(
+            response.context['password_change_form'].errors['new_password2'],
+            ["The two password fields didn't match."])
+
+    def test_update_password_checks_for_passwords_that_are_too_short(self):
+        response = self.c.post(
+            reverse('profile'),
+            {'old_password': 'test_password',
+             'new_password1': 'new_pw',
+             'new_password2': 'new_pw',
+             'pw-btn': 'pw-btn'}
+        )
+        self.assertEqual(
+            response.context['password_change_form'].errors['new_password2'],
+            ["This password is too short." +
+                " It must contain at least 8 characters."])
