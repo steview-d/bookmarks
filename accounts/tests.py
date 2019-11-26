@@ -80,3 +80,26 @@ class TestRegisterView(TestCase):
         self.c.login(username='test_user', password='test_password')
         response = self.c.get(reverse(register))
         self.assertRedirects(response, reverse('profile'), 302, 200)
+
+
+class TestAboutView(TestCase):
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user(
+            'test_user', 'a@b.com', 'test_password')
+        self.c.login(username='test_user', password='test_password')
+
+    def test_login_view(self):
+        response = self.c.get(reverse('about'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_loads_correct_template(self):
+        page = self.c.get(reverse('about'))
+        self.assertTemplateUsed(page, 'accounts/about_app.html')
+
+
+class TestProfileView(TestCase):
+
+    def setUp(self):
+        pass
