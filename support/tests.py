@@ -8,8 +8,9 @@ from .forms import SupportRequestForm
 from .models import Ticket
 
 
-# Create your tests here.
+# --------------------- MODELS ---------------------
 class TestSupportModel(TestCase):
+
     def test_model_returns_correct_str_value(self):
         ticket = Ticket(title="test title")
         self.assertEqual(str(ticket), "test title")
@@ -23,7 +24,9 @@ class TestSupportModel(TestCase):
         self.assertFalse(ticket.admin_commented())
 
 
+# --------------------- VIEWS ---------------------
 class TestSupportView(TestCase):
+
     def setUp(self):
         self.c = Client()
         self.user = User.objects.create_user(
