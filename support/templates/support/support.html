@@ -20,14 +20,26 @@
             <div>
                 <div class="display-4">Support</div>
             </div>
-            <div class="my-5">
-                <h4>Premium Members call</h4>
-                <a href="{% url 'premium' %}" class="btn btn-danger my-2">GET PREMIUM NOW</a>
-                <h4>for priority telephone support</h4>
+
+            <div class="mt-5">
+                {% if is_premium %}
+                <!-- premium support -->
+                <h2>Priority Telephone Support</h2>
+                <h3><span class="badge badge-info m-2 p-2">01632 442442</span></h3>
+                <h5>Available for <span class="badge badge-success">PREMIUM</span> members only</h5>
+                <p>Please have your username and email address ready</p>
+                <p class="my-3">
+                    Not in a rush? Use the form below and we'll get back to you as quick as we can.
+                </p>
+                {% else %}
+                <!-- non premium message -->
+                <h2>Need help? No problem!</h2>
+                <h4>Please fill out the form below and we'll get back to you as quick as we can.</h4>
+                {% endif %}
             </div>
 
             <!-- support form -->
-            <form method="POST" class="border p-2 mt-3">
+            <form method="POST" class="p-2">
                 <h5 class="my-4">Support Request Form</h5>
                 {% csrf_token %}
                 {{ support_request_form.as_p}}
@@ -36,6 +48,15 @@
                     <small>A copy of your support request will be emailed to {{ user.email }}</small>
                 </div>
             </form>
+
+            <!-- premium support pitch -->
+            {% if not is_premium %}
+            <div class="my-3">
+                <h5>In a rush? Prefer to talk to a person?</h5>
+                <h5>Sign up for <a href="{% url 'premium' %}" class="btn btn-success" role="button">PREMIUM</a> now and
+                    get priority telephone support.</h5>
+            </div>
+            {% endif %}
 
 
         </div>
