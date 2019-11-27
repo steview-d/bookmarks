@@ -11,7 +11,7 @@ from .models import Ticket
 # --------------------- MODELS ---------------------
 class TestSupportModel(TestCase):
 
-    def test_model_returns_correct_str_value(self):
+    def test_support_model_returns_correct_str_value(self):
         ticket = Ticket(title="test title")
         self.assertEqual(str(ticket), "test title")
 

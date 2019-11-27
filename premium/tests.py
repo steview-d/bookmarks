@@ -3,10 +3,13 @@ from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
 
+from django.conf import settings
+
+# from .forms import PaymentForm, PremiumPurchaseForm
 from .models import PremiumPurchase
 
 
-# --------------------- FORMS ---------------------
+# --------------------- MODELS ---------------------
 class TestPremiumModel(TestCase):
 
     def test_premium_model_returns_correct_str_value(self):
@@ -32,3 +35,4 @@ class TestPremiumView(TestCase):
     def test_premium_loads_correct_template(self):
         page = self.c.get(reverse('premium'))
         self.assertTemplateUsed(page, 'premium/premium.html')
+
