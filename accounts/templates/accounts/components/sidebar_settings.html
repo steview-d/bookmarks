@@ -12,7 +12,6 @@
     <hr>
     <div>
         <!-- display advert -->
-        <!-- ToDo : Add logic to only display if NOT premium -->
         {% include 'advert.html' with advert_path="img/ads/square.png" %}
     </div>
     <hr>
@@ -34,4 +33,8 @@
             <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
     </ul>
+    <div>
+        <!-- display premium badge -->
+        {% include 'components/premium_badge.html' %}
+    </div>
 </nav>
