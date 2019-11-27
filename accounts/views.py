@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -77,7 +78,7 @@ def profile(request):
 @login_required
 def about(request):
 
-    context = {}
+    context = {'app_version': settings.APP_VERSION}
     context = is_premium(request.user, context)
 
     return render(request, 'accounts/about_app.html', context)

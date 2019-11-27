@@ -18,7 +18,7 @@
 
         <div class="row align-self-center mx-auto text-center">
             <div class="col-12 display-2"> LOGO HERE</div>
-            <div class="col-12 mb-3"> App Name (tbc) | v0.1</div>
+            <div class="col-12 mb-3"> App Name (tbc) | v{{ app_version }}</div>
 
             <div class="col-12 my-4">
                 <h4>©2019 Dave Laffan</h4>
@@ -32,6 +32,14 @@
 
             <h6 class="col-12">Something not right? Get <span>
                     <a href="{% url 'support' %}">support</a></span></h6>
+
+            <!-- premium member acknowledgement -->
+            {% if is_premium %}
+            <div class="col-12 my-3">
+                <h3>Thank you for being a <span class="badge badge-success">PREMIUM</span> member!</h3>
+                <p>Your support allows us to add more features, keep fixing bugs, and carry on making your experience better!</p>
+            </div>
+            {% endif %}
 
         </div>
         <!-- banner ad -->
