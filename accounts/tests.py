@@ -118,7 +118,6 @@ class TestProfileView(TestCase):
             reverse('profile'),
             {'email': 'email@test.com', 'email-btn': 'email-btn'}
         )
-        print("HJHJHJHJHJHJH: ", self.c.email)
         self.assertEqual(response.status_code, 302)
 
     def test_update_email_form_catches_bad_email(self):

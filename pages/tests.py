@@ -10,7 +10,7 @@ class TestAboutView(TestCase):
     def setUp(self):
         self.c = Client()
 
-    def test_aboutr_view(self):
+    def test_about_view(self):
         response = self.c.get(reverse('about_page'))
         self.assertEqual(response.status_code, 200)
 
