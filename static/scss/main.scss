@@ -116,4 +116,9 @@ $white: #FFFFFF;
 }
 
 
-// ------------------------------------------------------------------------ ads
+// ------------------------------------------------------ premium thanks center
+ .premium-thanks-center {
+     display: flex;
+     min-height: 100vh;
+     transform: translate(0 ,-10%);
+ }
