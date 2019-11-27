@@ -23,17 +23,14 @@ def premium(request):
 
         # check forms are valid, save if they are
         if purchase_premium_form.is_valid() and payment_form.is_valid():
-            purchase_premium = purchase_premium_form.save(commit=False)
-            purchase_premium.user = request.user
-            purchase_premium.payment_amount = premium_cost
-            purchase_premium.save()
-
             # stripe
             try:
                 customer = stripe.Charge.create(
                     amount=premium_cost * 100,
                     currency="GBP",
-                    description=request.user.email,
+                    description=(request.user.email + " | " +
+                                 purchase_premium_form.cleaned_data
+                                 ['postcode']),
                     card=payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
@@ -45,6 +42,11 @@ def premium(request):
                 messages.success(
                     request, f"Your payment of £{premium_cost} \
                         has been recieved. Thank you.")
+                # update and save form
+                purchase_premium = purchase_premium_form.save(commit=False)
+                purchase_premium.user = request.user
+                purchase_premium.payment_amount = premium_cost
+                purchase_premium.save()
                 # add user to premium group
                 premium_group = Group.objects.get(name='Premium')
                 user = User.objects.get(email=request.user.email)
