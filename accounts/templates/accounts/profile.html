@@ -19,6 +19,9 @@
         <div class="container-fluid">
             <div class="my-3">
                 <div class="display-4">Profile for <strong>{{ user }}</strong></div>
+                {% if is_premium %}
+                <h4><span class="badge badge-success">PREMIUM MEMBER</span></h4>
+                {% endif %}
                 <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
             </div>
 
