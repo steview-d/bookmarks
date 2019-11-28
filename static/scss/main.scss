@@ -118,9 +118,24 @@ $topnav-spacer-height: 64px;
 
 
 // ------------------------------------------------------ premium thanks center
+
  .premium-thanks-center {
      display: flex;
      min-height: calc(100vh - #{$topnav-spacer-height});
      z-index: -100;
      transform: translate(0 ,-10%);
  }
+
+// ------------------------------------------------------------- main links app
+
+.link-title {
+    font-size: 1rem;
+}
+
+.link-desc {
+    font-size: 0.8rem;
+}
+
+.link-url {
+    font-size: 0.6rem;
+}

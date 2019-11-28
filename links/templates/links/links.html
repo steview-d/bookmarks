@@ -20,6 +20,23 @@
             <div class="my-3">
                 <div class="display-4">Main Links Page!</div>
             </div>
+            <h3>Collections!</h3>
+            {% for k, v in collections.items %}
+            <h5>Collection: {{ k }}</h5>
+            <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
+                {% for item in v %}
+                <li id="{{item.position}}_." style="margin: 0.5rem">
+                    <a href="{{ item }}" target="_blank">
+                        <div class="link-title">{{ item.title }}</div>
+                        <div class="link-desc">{{ item.description }}</div>
+                        <div class="link-url">{{ item }}</div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+
+            {% endfor %}
         </div>
 
         <!-- banner ad -->

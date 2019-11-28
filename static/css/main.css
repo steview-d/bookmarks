@@ -110,4 +110,16 @@
   -webkit-transform: translate(0, -10%);
           transform: translate(0, -10%);
 }
+
+.link-title {
+  font-size: 1rem;
+}
+
+.link-desc {
+  font-size: 0.8rem;
+}
+
+.link-url {
+  font-size: 0.6rem;
+}
 /*# sourceMappingURL=main.css.map */
