@@ -16,6 +16,11 @@ class Collection(models.Model):
     def __str__(self):
         return self.name
 
+    def collection_name(self):
+        return self.name
+
+    collection_name.short_description = "Collection Name"
+
 
 class Bookmark(models.Model):
     user = models.ForeignKey(
@@ -26,7 +31,7 @@ class Bookmark(models.Model):
         default=1, null=False, blank=False,
         on_delete=models.CASCADE, related_name='bookmarks'
     )
-    url = models.TextField(
+    url = models.URLField(
         null=False, blank=False
     )
     title = models.CharField(
