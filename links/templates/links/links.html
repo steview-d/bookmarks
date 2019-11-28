@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block page_title %}About{% endblock %}
+
+{% block content %}
+
+<div class="flex-wrapper">
+
+    <!-- Sidebar -->
+    {% include 'accounts/components/sidebar_settings.html' %}
+
+    <!-- Content -->
+    <div id="content">
+        {% include 'top-nav.html' %}
+
+        <!-- messages -->
+        {% include 'messages.html' %}
+
+        <div class="container-fluid">
+            <div class="my-3">
+                <div class="display-4">Main Links Page!</div>
+            </div>
+        </div>
+
+        <!-- banner ad -->
+        <!-- tbc whether to inc banner ad here. Does it need it? -->
+    </div>
+    {% endblock %}

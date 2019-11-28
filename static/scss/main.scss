@@ -1,6 +1,7 @@
 // ------------------------------------------------------------------ variables
 
 $white: #FFFFFF;
+$topnav-spacer-height: 64px;
 
 
 // --------------------------------------------------------------------- mixins
@@ -37,7 +38,7 @@ $white: #FFFFFF;
 }
 
 .topnav-spacer {
-    height: 64px;
+    height: $topnav-spacer-height;
 }
 
 #topnav-icons i {
@@ -119,6 +120,7 @@ $white: #FFFFFF;
 // ------------------------------------------------------ premium thanks center
  .premium-thanks-center {
      display: flex;
-     min-height: 100vh;
+     min-height: calc(100vh - #{$topnav-spacer-height});
+     z-index: -100;
      transform: translate(0 ,-10%);
  }

@@ -23,6 +23,8 @@ urlpatterns = [
     path('', about, name="about_page"),
     path('pricing', pricing, name="pricing_page"),
     path('faq', faq, name="faq_page"),
+    # path for links app
+    path('app/', include('links.urls')),
     # paths for accounts
     path('accounts/', include('accounts.urls')),
     # paths for admin
