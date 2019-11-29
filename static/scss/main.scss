@@ -126,7 +126,12 @@ $topnav-spacer-height: 64px;
      transform: translate(0 ,-10%);
  }
 
+ 
 // ------------------------------------------------------------- main links app
+
+.column {
+    width: 25%;
+}
 
 .link-title {
     font-size: 1rem;
@@ -138,4 +143,17 @@ $topnav-spacer-height: 64px;
 
 .link-url {
     font-size: 0.6rem;
+}
+
+.desc-trunc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bm-link {
+    color: #616161;
+    &:hover {
+        color: #616161;
+    }
 }

@@ -111,6 +111,10 @@
           transform: translate(0, -10%);
 }
 
+.column {
+  width: 25%;
+}
+
 .link-title {
   font-size: 1rem;
 }
@@ -121,5 +125,19 @@
 
 .link-url {
   font-size: 0.6rem;
+}
+
+.desc-trunc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bm-link {
+  color: #616161;
+}
+
+.bm-link:hover {
+  color: #616161;
 }
 /*# sourceMappingURL=main.css.map */

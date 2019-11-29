@@ -6,12 +6,34 @@ User = settings.AUTH_USER_MODEL
 
 
 class Collection(models.Model):
+    """
+    column & position defaults to 1000 so on creation, they are placed
+    at end of list. - removed, for now
+
+    *** Later on need to add code that on saving, sorts columns & positions
+    to create a nice 1, 2, 3, 4 order, and so on.
+    look into default save() method added to model I've seen used elsewhere?
+
+    """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
     )
     name = models.CharField(
         max_length=30, null=False, blank=False
     )
+    column = models.PositiveIntegerField(
+        null=False, blank=False
+    )
+    position = models.PositiveIntegerField(
+        null=False, blank=False
+    )
+    position_temp = models.PositiveIntegerField(
+        null=True, blank=True
+    )
+
+    class Meta:
+        unique_together = ['name', 'user']
+        unique_together = ['position', 'column', 'user']
 
     def __str__(self):
         return self.name
@@ -47,11 +69,14 @@ class Bookmark(models.Model):
         auto_now=True
     )
     position = models.PositiveIntegerField(
-        unique=True, null=False, blank=False
+        null=False, blank=False
     )
     position_temp = models.PositiveIntegerField(
         null=True, blank=True
     )
+
+    class Meta:
+        unique_together = ['collection', 'position']
 
     def __str__(self):
         return self.url
