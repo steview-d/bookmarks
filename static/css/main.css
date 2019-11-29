@@ -112,7 +112,25 @@
 }
 
 .column {
-  width: 25%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .column {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .column {
+    width: 33%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .column {
+    width: 25%;
+  }
 }
 
 .link-title {

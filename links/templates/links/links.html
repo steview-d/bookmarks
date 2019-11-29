@@ -18,8 +18,9 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div id="column-1" class="column col-3">
-                    {% for k, v in collections.items %}
+                {% for i in all_collections %}
+                <div class="column">
+                    {% for k, v in i.items %}
 
                     <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
                         <h5>{{ k }}</h5>
@@ -35,28 +36,14 @@
                     </ul>
                     {% endfor %}
                 </div>
+                {% endfor %}
 
-                <!-- test only for 2nd column - delete later -->
-                <div id="column-2" class="column col-3">
-                    {% for k, v in coll_2.items %}
-
-                    <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
-                        <h5>{{ k }}</h5>
-                        {% for item in v %}
-                        <li id="{{item.position}}_." style="margin: 0.5rem">
-                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="link-title">{{ item.title }}</div>
-                                <div class="link-desc desc-trunc">{{ item.description }}</div>
-                                <div class="link-url">{{ item }}</div>
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    {% endfor %}
-                </div>
             </div>
         </div>
         <!-- banner ad -->
-        <!-- tbc whether to inc banner ad here. Does it need it? -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}
