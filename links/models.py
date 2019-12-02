@@ -5,6 +5,30 @@ from django.db import models
 User = settings.AUTH_USER_MODEL
 
 
+class Page(models.Model):
+    """
+    A page is a single view for the user than contains a number of collections.
+    Initially, only 1 page per user, and can be used to store settings for
+    collections.
+    Eventually will expand app to allow multiple pages.
+    """
+    user = models.ForeignKey(
+        User, default=1, null=False, on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        max_length=30, null=False, blank=False
+    )
+    public = models.BooleanField(
+        default=False
+    )
+    position = models.PositiveIntegerField(
+        null=False, blank=False
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Collection(models.Model):
     """
     column & position defaults to 1000 so on creation, they are placed
@@ -17,6 +41,9 @@ class Collection(models.Model):
     """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
+    )
+    page = models.ForeignKey(
+        Page, default=1, null=False, on_delete=models.CASCADE
     )
     name = models.CharField(
         max_length=30, null=False, blank=False

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Bookmark, Collection
+from .models import Bookmark, Collection, Page
 
 
 # Register your models here.
@@ -9,6 +9,7 @@ class CollectionAdmin(admin.ModelAdmin):
 
     list_display = (
         'collection_name',
+        'page',
         'user',
     )
 
@@ -41,5 +42,6 @@ class BookmarkAdmin(admin.ModelAdmin):
     ordering = ['-added']
 
 
+admin.site.register(Page)
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Bookmark, BookmarkAdmin)
