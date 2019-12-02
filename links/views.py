@@ -10,7 +10,8 @@ from .models import Bookmark, Collection
 def links(request):
 
     bookmarks = Bookmark.objects.filter(user__username=request.user)
-    num_of_columns = 4  # noqa
+    collections = Collection.objects.filter(user__username=request.user)
+    num_of_columns = 2  # noqa
     # eventually store this in relevant page object / model
     # just a 2d array in list form
     column_order_2 = [[1, 2, 3], [4, 5]]  # noqa
@@ -18,20 +19,36 @@ def links(request):
     # using this one for now
     column_order_4 = [[1], [2], [3], [4, 5]]  # noqa
 
-    # arg below eventually needs to be dynamically chosen based on user pref
-    new_column_output = copy.deepcopy(column_order_4)
-
-    # put collection names into array in column order...
-    for col in range(num_of_columns):
-        for pos in range(len(column_order_4[col])):
+    # add if statement for single column display
+    if num_of_columns != 1:
+        # create list structure to store column names
+        # arg below eventually to be dynamically chosen based on user pref
+        new_column_output = copy.deepcopy(column_order_2)
+        # put collection names into array in column order...
+        count = 0
+        for col in range(num_of_columns):
+            for pos in range(len(column_order_2[col])):
+                count += 1
+                collection_name = get_object_or_404(
+                    Collection,
+                    user=request.user,
+                    position=count
+                )
+                new_column_output[col][pos] = str(collection_name)
+    else:
+        # single columm collection display
+        new_column_output = [[]]
+        for i in range(collections.count()):
             collection_name = get_object_or_404(
                 Collection,
                 user=request.user,
-                column=col+1,
-                position=pos+1
+                position=i+1
             )
-            new_column_output[col][pos] = str(collection_name)
+            new_column_output[0].append(str(collection_name))
 
+    print(new_column_output)
+
+    # iterate through collection names and create a qs of bookmarks for each
     bm_data = []
     for x in range(num_of_columns):
         column = {}
