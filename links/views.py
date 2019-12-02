@@ -11,7 +11,7 @@ def links(request):
 
     bookmarks = Bookmark.objects.filter(user__username=request.user)
     collections = Collection.objects.filter(user__username=request.user)
-    num_of_columns = 2  # noqa
+    num_of_columns = 3  # noqa
     # eventually store this in relevant page object / model
     # just a 2d array in list form
     column_order_2 = [[1, 2, 3], [4, 5]]  # noqa
@@ -19,15 +19,14 @@ def links(request):
     # using this one for now
     column_order_4 = [[1], [2], [3], [4, 5]]  # noqa
 
-    # add if statement for single column display
     if num_of_columns != 1:
         # create list structure to store column names
         # arg below eventually to be dynamically chosen based on user pref
-        new_column_output = copy.deepcopy(column_order_2)
+        new_column_output = copy.deepcopy(column_order_3)
         # put collection names into array in column order...
         count = 0
         for col in range(num_of_columns):
-            for pos in range(len(column_order_2[col])):
+            for pos in range(len(column_order_3[col])):
                 count += 1
                 collection_name = get_object_or_404(
                     Collection,
@@ -45,8 +44,6 @@ def links(request):
                 position=i+1
             )
             new_column_output[0].append(str(collection_name))
-
-    print(new_column_output)
 
     # iterate through collection names and create a qs of bookmarks for each
     bm_data = []

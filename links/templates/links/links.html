@@ -18,6 +18,19 @@
 
         <div class="container-fluid">
             <div class="row">
+                <!-- section to choose number of columns - temp -->
+                <div class="d-inline-block mx-2">
+                    <span>
+                        Columns:
+                        {% with ''|center:5 as range %}
+                        {% for _ in range %}
+                        <a class="btn btn-sm btn-primary" href="#" role="button">{{ forloop.counter }}</a>
+                        {% endfor %}
+                        {% endwith %}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
                 {% for column in bm_data %}
                 <div class="column">
                     {% for k, v in column.items %}
