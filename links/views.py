@@ -3,14 +3,24 @@ from django.shortcuts import render, get_object_or_404
 import copy
 
 from premium.utils import is_premium
-from .models import Bookmark, Collection
+from .models import Bookmark, Collection, Page
 
 
 # Create your views here.
 def links(request):
+    page_name = "Home"  # temp for now, until built into path
 
-    bookmarks = Bookmark.objects.filter(user__username=request.user)
-    collections = Collection.objects.filter(user__username=request.user)
+    bookmarks = Bookmark.objects.filter(
+        user__username=request.user
+        )
+    collections = Collection.objects.filter(
+        user__username=request.user).filter(
+        page__name=page_name
+        )
+    page = get_object_or_404(
+        Page, user=request.user, name=page_name
+    )
+    print(page.public)
     num_of_columns = 3  # noqa
     # eventually store this in relevant page object / model
     # just a 2d array in list form

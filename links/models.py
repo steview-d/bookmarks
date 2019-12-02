@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -23,6 +24,9 @@ class Page(models.Model):
     )
     position = models.PositiveIntegerField(
         null=False, blank=False
+    )
+    num_of_columns = models.PositiveIntegerField(
+        default=4, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
 
     def __str__(self):
