@@ -27,7 +27,7 @@ def links(request):
     new_column_output = copy.deepcopy(column_order_4)
 
     # put collection names into array in column order...
-    for col in range(len(column_order_4)):
+    for col in range(num_of_columns):
         for pos in range(len(column_order_4[col])):
             collection_name = get_object_or_404(
                 Collection,
@@ -37,20 +37,18 @@ def links(request):
             )
             new_column_output[col][pos] = str(collection_name)
 
-    column_1 = {}
+    column_list = []
 
-    for i in (new_column_output[0]):
-        qs = bookmarks.filter(collection__name=i).order_by('position')
-        column_1[i] = qs
-
-    print(column_1)
-
-    # trying to end up with 2d list of collection names
-    # list order will be mapped to html and rendered front-end
+    for x in range(num_of_columns):
+        column = {}
+        for j in (new_column_output[x]):
+            qs = bookmarks.filter(collection__name=j).order_by('position')
+            column[j] = qs
+        column_list.append(column)
 
     context = {"num_columns": num_of_columns,
                "column_names": column_names,
-               "column_1": column_1}
+               "column_list": column_list}
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
