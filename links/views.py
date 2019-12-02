@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+import copy
 
 from premium.utils import is_premium
 from .models import Bookmark, Collection
@@ -7,60 +9,48 @@ from .models import Bookmark, Collection
 # Create your views here.
 def links(request):
 
-    bookmarks = Bookmark.objects.filter(user__username=request.user)
-    collections = Collection.objects.filter(user__username=request.user)
-    num_of_columns = 4
-    print(num_of_columns)
+    bookmarks = Bookmark.objects.filter(user__username=request.user)  # noqa
+    collections = Collection.objects.filter(user__username=request.user).order_by('position')  # noqa
+    num_of_columns = 4  # noqa
+    collections_per_column = [] # needed?  # noqa
+    column_names = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5']
 
-    # build a dictionary of collection names, with column numbers as the key
-    collection_dict = {}
-    for column_num in range(1, 5):
-        for collection in collections:
-            if collection.column == column_num:
-                try:
-                    collection_dict[column_num] += [collection.name]
-                except KeyError:
-                    collection_dict[column_num] = [collection.name]
-    for k, v in collection_dict.items():
-        print(k, v)
+    # eventually store this in relevant page object / model
+    # just a 2d array in list form
+    column_order_2 = [[1, 2, 3], [4, 5]]  # noqa
+    column_order_3 = [[1, 2], [3, 4], [5]]  # noqa
 
-    # alt version - build a dict of collection names
-    # 1 key per column, and num keys / columns to be
-    # based on value of 'num_of_columns'
+    # using this one for now
+    column_order_4 = [[1], [2], [3], [4, 5]]  # noqa
 
-    # instead of column and position, maybe just position?
-    # if position stays constant, and so do columns, would overall order?
-    # how would define breakpoint? how keep it consistent?
-    # on column no' swap - auto define breakpoints?
+    # arg below eventually needs to be dynamically chosen based on user pref
+    new_column_output = copy.deepcopy(column_order_4)
 
-    #
+    # put collection names into array in column order...
+    for col in range(len(column_order_4)):
+        for pos in range(len(column_order_4[col])):
+            collection_name = get_object_or_404(
+                Collection,
+                user=request.user,
+                column=col+1,
+                position=pos+1
+            )
+            new_column_output[col][pos] = str(collection_name)
 
-    # column_list = ['column_1', 'column_2', 'column_3', 'column_4']
     column_1 = {}
-    column_2 = {}
-    column_3 = {}
-    column_4 = {}
 
-    # this to be tidied...
-    for i in (collection_dict[1]):
+    for i in (new_column_output[0]):
         qs = bookmarks.filter(collection__name=i).order_by('position')
         column_1[i] = qs
 
-    for i in (collection_dict[2]):
-        qs = bookmarks.filter(collection__name=i).order_by('position')
-        column_2[i] = qs
+    print(column_1)
 
-    for i in (collection_dict[3]):
-        qs = bookmarks.filter(collection__name=i).order_by('position')
-        column_3[i] = qs
+    # trying to end up with 2d list of collection names
+    # list order will be mapped to html and rendered front-end
 
-    for i in (collection_dict[4]):
-        qs = bookmarks.filter(collection__name=i).order_by('position')
-        column_4[i] = qs
-
-    all_collections = [column_1, column_2, column_3, column_4]
-
-    context = {'all_collections': all_collections}
+    context = {"num_columns": num_of_columns,
+               "column_names": column_names,
+               "column_1": column_1}
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)

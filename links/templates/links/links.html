@@ -18,9 +18,8 @@
 
         <div class="container-fluid">
             <div class="row">
-                {% for i in all_collections %}
                 <div class="column">
-                    {% for k, v in i.items %}
+                    {% for k, v in column_1.items %}
 
                     <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
                         <h5>{{ k }}</h5>
@@ -36,8 +35,6 @@
                     </ul>
                     {% endfor %}
                 </div>
-                {% endfor %}
-
             </div>
         </div>
         <!-- banner ad -->
