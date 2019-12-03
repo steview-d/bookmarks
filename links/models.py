@@ -41,6 +41,10 @@ class Page(models.Model):
         null=True, blank=True
     )
 
+    class Meta:
+        unique_together = ['position', 'user']
+        unique_together = ['name', 'user']
+
     def __str__(self):
         return self.name
 
