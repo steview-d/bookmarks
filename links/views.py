@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 import copy
+import json
 
 from premium.utils import is_premium
 from .models import Bookmark, Collection, Page
@@ -20,46 +21,43 @@ def links(request):
     page = get_object_or_404(
         Page, user=request.user, name=page_name
     )
-    print(page.public)
-    num_of_columns = 3  # noqa
-    # eventually store this in relevant page object / model
-    # just a 2d array in list form
-    column_order_2 = [[1, 2, 3], [4, 5]]  # noqa
-    column_order_3 = [[1, 2], [3, 4], [5]]  # noqa
-    # using this one for now
-    column_order_4 = [[1], [2], [3], [4, 5]]  # noqa
+
+    num_of_columns = page.num_of_columns
 
     if num_of_columns != 1:
-        # create list structure to store column names
-        # arg below eventually to be dynamically chosen based on user pref
-        new_column_output = copy.deepcopy(column_order_3)
-        # put collection names into array in column order...
+        # get the display order for the collections from the db
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(page.num_of_columns)))
+        collection_list = copy.deepcopy(collection_order)
+        # put collection names into an array. add them in order based on
+        # the value of collection.position and map this to the structure
+        # of collection_list
         count = 0
         for col in range(num_of_columns):
-            for pos in range(len(column_order_3[col])):
+            for pos in range(len(collection_order[col])):
                 count += 1
                 collection_name = get_object_or_404(
                     Collection,
                     user=request.user,
                     position=count
                 )
-                new_column_output[col][pos] = str(collection_name)
+                collection_list[col][pos] = str(collection_name)
     else:
         # single columm collection display
-        new_column_output = [[]]
+        collection_list = [[]]
         for i in range(collections.count()):
             collection_name = get_object_or_404(
                 Collection,
                 user=request.user,
                 position=i+1
             )
-            new_column_output[0].append(str(collection_name))
+            collection_list[0].append(str(collection_name))
 
     # iterate through collection names and create a qs of bookmarks for each
     bm_data = []
     for x in range(num_of_columns):
         column = {}
-        for j in (new_column_output[x]):
+        for j in (collection_list[x]):
             qs = bookmarks.filter(collection__name=j).order_by('position')
             column[j] = qs
         bm_data.append(column)

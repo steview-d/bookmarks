@@ -28,6 +28,18 @@ class Page(models.Model):
     num_of_columns = models.PositiveIntegerField(
         default=4, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+    collection_order_2 = models.TextField(
+        null=True, blank=True
+    )
+    collection_order_3 = models.TextField(
+        null=True, blank=True
+    )
+    collection_order_4 = models.TextField(
+        null=True, blank=True
+    )
+    collection_order_5 = models.TextField(
+        null=True, blank=True
+    )
 
     def __str__(self):
         return self.name
