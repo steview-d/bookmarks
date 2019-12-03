@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import redirect, render, get_object_or_404
 
 import copy
 import json
@@ -9,19 +10,20 @@ from .models import Bookmark, Collection, Page
 
 
 # Create your views here.
-def links(request):
-    page_name = "home"  # temp for now, until built into path
+def links(request, page):
+    # check page exists, redirect if not
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='home')
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
         )
     collections = Collection.objects.filter(
         user__username=request.user).filter(
-        page__name=page_name
+        page__name=page.name
         )
-    page = get_object_or_404(
-        Page, user=request.user, name=page_name
-    )
 
     num_of_columns = page.num_of_columns
 
@@ -65,7 +67,7 @@ def links(request):
 
     context = {"column_width": 100 / num_of_columns,
                "bm_data": bm_data,
-               "page": page_name}
+               "page": page.name}
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
