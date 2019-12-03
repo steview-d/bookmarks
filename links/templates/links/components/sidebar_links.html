@@ -17,18 +17,11 @@
     <hr>
     <ul>
         <h5>Pages</h5>
+        {% for name in all_page_names %}
         <li>
-            <a class="nav-link" href="#">Dummy Page One</a>
+            <a class="nav-link" href="{% url 'links' page=name %}">{{name|title}}</a>
         </li>
-        <li>
-            <a class="nav-link" href="#">Dummy Page Two</a>
-        </li>
-        <li>
-            <a class="nav-link" href="#">Dummy Page Three</a>
-        </li>
-        <li>
-            <a class="nav-link" href="#">Dummy Page Four</a>
-        </li>
+        {% endfor %}
 
     </ul>
     <!-- display premium badge -->

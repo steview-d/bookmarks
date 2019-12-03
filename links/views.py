@@ -25,8 +25,14 @@ def links(request, page):
         page__name=page.name
         )
 
-    num_of_columns = page.num_of_columns
+    # create list of page names for sidebar
+    all_page_names = []
+    all_pages = Page.objects.filter(user=request.user)
+    for name in all_pages:
+        all_page_names.append(name.name)
 
+    # generate collection names & order
+    num_of_columns = page.num_of_columns
     if num_of_columns != 1:
         # get the display order for the collections from the db
         collection_order = json.loads(
@@ -67,7 +73,8 @@ def links(request, page):
 
     context = {"column_width": 100 / num_of_columns,
                "bm_data": bm_data,
-               "page": page.name}
+               "page": page.name,
+               "all_page_names": all_page_names, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
