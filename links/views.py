@@ -12,10 +12,11 @@ from .models import Bookmark, Collection, Page
 # Create your views here.
 def links(request, page):
     # check page exists, redirect if not
+    # print(Page.objects.get(user=request.user, name=page))
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='home')
+        return redirect('links', page='qhome')
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
@@ -70,6 +71,9 @@ def links(request, page):
             qs = bookmarks.filter(collection__name=j).order_by('position')
             column[j] = qs
         bm_data.append(column)
+
+    # set this page as the last page visited
+    request.session['last_page'] = page.name
 
     context = {"column_width": 100 / num_of_columns,
                "bm_data": bm_data,

@@ -17,7 +17,7 @@ def start_app(request):
         last_page = Page.objects.get(user=request.user, position=1)
         request.session['last_page'] = last_page.name
 
-    return redirect('links', page='last_page')
+    return redirect('links', page=last_page)
 
 
 def change_num_columns(request, page, num):
@@ -27,4 +27,14 @@ def change_num_columns(request, page, num):
         )
         page.num_of_columns = num
         page.save()
-    return redirect('links', page='home')
+    return redirect('links', page=page.name)
+
+
+def add_new_page(request):
+    """
+    Use this to build a new page.
+    Needs to not only create a new page object, but also
+    configure it so it has al required default info so it
+    can display ok, for instance
+    - Name, position, column order lists, etc
+    """

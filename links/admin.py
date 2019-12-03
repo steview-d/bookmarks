@@ -8,6 +8,7 @@ from .models import Bookmark, Collection, Page
 class PageAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'num_of_columns',
         'user',
         'position'
     )
