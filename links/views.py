@@ -5,11 +5,12 @@ import json
 
 from premium.utils import is_premium
 from .models import Bookmark, Collection, Page
+# from .utils import change_num_columns
 
 
 # Create your views here.
 def links(request):
-    page_name = "Home"  # temp for now, until built into path
+    page_name = "home"  # temp for now, until built into path
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
@@ -29,7 +30,7 @@ def links(request):
         collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         collection_list = copy.deepcopy(collection_order)
-        # put collection names into an array. add them in order based on
+        # put collection names into a list. add them in order based on
         # the value of collection.position and map this to the structure
         # of collection_list
         count = 0
@@ -62,8 +63,9 @@ def links(request):
             column[j] = qs
         bm_data.append(column)
 
-    context = {"num_columns": num_of_columns,
-               "bm_data": bm_data}
+    context = {"column_width": 100 / num_of_columns,
+               "bm_data": bm_data,
+               "page": page_name}
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)

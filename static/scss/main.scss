@@ -130,20 +130,9 @@ $topnav-spacer-height: 64px;
 // ------------------------------------------------------------- main links app
 
 .column {
-    width: 100%;
-
-    @media (min-width: 768px) {
-        width: 50%;
-    }
-
-    @media (min-width: 992px) {
-        width: 33%;
-    }
-
-    @media (min-width: 1200px) {
-        width: 25%;
-    }
+    color: black;  // temp placeholder
 }
+
 
 .link-title {
     font-size: 1rem;

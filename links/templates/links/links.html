@@ -24,7 +24,7 @@
                         Columns:
                         {% with ''|center:5 as range %}
                         {% for _ in range %}
-                        <a class="btn btn-sm btn-primary" href="#" role="button">{{ forloop.counter }}</a>
+                        <a class="btn btn-sm btn-primary" href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">{{ forloop.counter }}</a>
                         {% endfor %}
                         {% endwith %}
                     </span>
@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 {% for column in bm_data %}
-                <div class="column">
+                <div class="column" style="width: {{ column_width }}%">
                     {% for k, v in column.items %}
                     <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
                         <h5>{{ k }}</h5>
