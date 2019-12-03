@@ -76,6 +76,7 @@ def links(request, page):
     request.session['last_page'] = page.name
 
     context = {"column_width": 100 / num_of_columns,
+               "num_of_columns": num_of_columns,
                "bm_data": bm_data,
                "page": page.name,
                "all_page_names": all_page_names, }

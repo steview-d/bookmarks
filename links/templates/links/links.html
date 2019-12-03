@@ -24,7 +24,8 @@
                         Columns:
                         {% with ''|center:5 as range %}
                         {% for _ in range %}
-                        <a class="btn btn-sm btn-primary" href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">{{ forloop.counter }}</a>
+                        <a class="btn btn-sm btn-primary {% if forloop.counter == num_of_columns %}active{% endif %}"
+                            href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">{{ forloop.counter }}</a>
                         {% endfor %}
                         {% endwith %}
                     </span>

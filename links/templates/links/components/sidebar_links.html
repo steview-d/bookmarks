@@ -18,7 +18,7 @@
     <ul>
         <h5>Pages</h5>
         {% for name in all_page_names %}
-        <li>
+        <li {% if name in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'links' page=name %}">{{name|title}}</a>
         </li>
         {% endfor %}
