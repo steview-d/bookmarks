@@ -5,6 +5,14 @@ from .models import Bookmark, Collection, Page
 
 
 # Register your models here.
+class PageAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'user',
+        'position'
+    )
+
+
 class CollectionAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -42,6 +50,6 @@ class BookmarkAdmin(admin.ModelAdmin):
     ordering = ['-added']
 
 
-admin.site.register(Page)
+admin.site.register(Page, PageAdmin)
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Bookmark, BookmarkAdmin)

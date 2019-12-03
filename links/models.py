@@ -42,8 +42,7 @@ class Page(models.Model):
     )
 
     class Meta:
-        unique_together = ['position', 'user']
-        unique_together = ['name', 'user']
+        unique_together = [['position', 'user'], ['name', 'user']]
 
     def __str__(self):
         return self.name
@@ -79,8 +78,7 @@ class Collection(models.Model):
     )
 
     class Meta:
-        unique_together = ['name', 'user']
-        unique_together = ['position', 'column', 'user']
+        unique_together = [['name', 'user'], ['position', 'column', 'user']]
 
     def __str__(self):
         return self.name
