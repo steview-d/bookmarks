@@ -34,7 +34,7 @@ def add_new_page(request):
     """
     Use this to build a new page.
     Needs to not only create a new page object, but also
-    configure it so it has al required default info so it
+    configure it so it has all required default info so it
     can display ok, for instance
     - Name, position, column order lists, etc
     """

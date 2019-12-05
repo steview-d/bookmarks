@@ -5,6 +5,7 @@ import copy
 import json
 
 from premium.utils import is_premium
+from .forms import AddNewPageForm
 from .models import Bookmark, Collection, Page
 # from .utils import change_num_columns
 
@@ -77,6 +78,9 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
+    # forms
+    add_new_page_form = AddNewPageForm()
+
     # set this page as the last page visited
     request.session['last_page'] = page.name
 
@@ -84,7 +88,8 @@ def links(request, page):
                "num_of_columns": num_of_columns,
                "bm_data": bm_data,
                "page": page.name,
-               "all_page_names": all_page_names, }
+               "all_page_names": all_page_names,
+               "add_new_page_form": add_new_page_form, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)

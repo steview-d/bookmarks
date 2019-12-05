@@ -15,15 +15,20 @@
         {% include 'advert.html' with advert_path="img/ads/square.png" %}
     </div>
     <hr>
-    <ul>
+    <ul class="list-unstyled mx-4">
         <h5>Pages</h5>
         {% for name in all_page_names %}
         <li {% if name in request.path %} class="active" {% endif %}>
             <a class="nav-link" href="{% url 'links' page=name %}">{{name|title}}</a>
         </li>
         {% endfor %}
-        <a href="#" class="btn btn-sm btn-info my-3" role="button">ADD NEW PAGE</a>
-
+        <li class="mx-3 my-2"><a href="#" id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</a>
+            <form method="POST" class="p-2" id="add-page-form">
+                {% csrf_token %}
+                {{ add_new_page_form.as_p}}
+                <input type="submit" name="support-form" class="btn btn-info">
+            </form>
+        </li>
     </ul>
     <!-- display premium badge -->
     {% if is_premium %}

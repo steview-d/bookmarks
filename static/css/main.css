@@ -140,4 +140,8 @@
 .bm-link:hover {
   color: #616161;
 }
+
+#add-page-form {
+  display: none;
+}
 /*# sourceMappingURL=main.css.map */
