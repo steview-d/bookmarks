@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.shortcuts import get_object_or_404, redirect
 
 from .models import Page
@@ -30,7 +31,7 @@ def change_num_columns(request, page, num):
     return redirect('links', page=page.name)
 
 
-def add_new_page(request):
+def add_page(request, form_data):
     """
     Use this to build a new page.
     Needs to not only create a new page object, but also
@@ -38,3 +39,38 @@ def add_new_page(request):
     can display ok, for instance
     - Name, position, column order lists, etc
     """
+    print(form_data)
+    if form_data.is_valid():
+        print("ALL VALID")
+        form = form_data.save(commit=False)
+        form.name = form.name.lower()
+
+        # set position to next highest value, so last on list
+        max_pos_value = Page.objects.filter(
+            user__username=request.user).aggregate(
+                Max('position')
+        )
+        form.position = max_pos_value['position__max'] + 1
+
+        # set empty collection order values
+        form.collection_order_2 = build_empty_collection_order(2)
+        form.collection_order_3 = build_empty_collection_order(3)
+        form.collection_order_4 = build_empty_collection_order(4)
+        form.collection_order_5 = build_empty_collection_order(5)
+
+        form.save()
+        return
+    else:
+        print("ERRORS!")
+    return
+
+
+def build_empty_collection_order(num):
+    """
+    Build a 2d list of empty lists, ready to hold collection
+    position values
+    """
+    empty_order = []
+    for i in range(num):
+        empty_order.append([])
+    return empty_order

@@ -5,6 +5,7 @@ import copy
 import json
 
 from premium.utils import is_premium
+from .utils import add_page
 from .forms import AddNewPageForm
 from .models import Bookmark, Collection, Page
 # from .utils import change_num_columns
@@ -17,7 +18,12 @@ def links(request, page):
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')
+        return redirect('links', page='qhome')  # qhome currently, to see errs
+
+    if 'add-page-form' in request.POST:
+        form_data = AddNewPageForm(request.POST)
+        add_page(request, form_data)
+        return redirect('links', page='home')
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
@@ -83,6 +89,8 @@ def links(request, page):
 
     # set this page as the last page visited
     request.session['last_page'] = page.name
+
+    # testing....
 
     context = {"column_width": 100 / num_of_columns,
                "num_of_columns": num_of_columns,

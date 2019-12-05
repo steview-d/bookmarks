@@ -8,5 +8,4 @@ urlpatterns = [
     path('change_num_columns/<page>/<num>', change_num_columns,
          name="change_num_columns"),
     path('<page>', links, name="links")
-
 ]

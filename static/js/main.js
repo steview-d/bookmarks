@@ -5,7 +5,7 @@ $(document).ready(function () {
         $('#sidebar, #content').toggleClass('display-switch');
     });
 
-    // add new page form toggle
+    // 'add new page' form toggle
     $('#add-page-btn').on('click', function() {
         $(this).next().slideToggle(200);
     });
