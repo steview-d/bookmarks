@@ -39,31 +39,27 @@ def add_page(request, form_data):
     can display ok, for instance
     - Name, position, column order lists, etc
     """
-    print(form_data)
-    if form_data.is_valid():
-        print("ALL VALID")
-        form = form_data.save(commit=False)
-        form.name = form.name.lower()
 
-        # set position to next highest value, so last on list
-        max_pos_value = Page.objects.filter(
-            user__username=request.user).aggregate(
-                Max('position')
-        )
-        form.position = max_pos_value['position__max'] + 1
+    print("ALL VALID")
+    form = form_data.save(commit=False)
+    form.name = form.name.lower()
 
-        # set empty collection order values
-        form.collection_order_2 = build_empty_collection_order(2)
-        form.collection_order_3 = build_empty_collection_order(3)
-        form.collection_order_4 = build_empty_collection_order(4)
-        form.collection_order_5 = build_empty_collection_order(5)
+    # set position to next highest value, so last on list
+    max_pos_value = Page.objects.filter(
+        user__username=request.user).aggregate(
+            Max('position')
+    )
+    form.position = max_pos_value['position__max'] + 1
 
-        form.save()
-        new_page = form.name
-        return new_page
-    else:
-        print("ERRORS!")
-    return
+    # set empty collection order values
+    form.collection_order_2 = build_empty_collection_order(2)
+    form.collection_order_3 = build_empty_collection_order(3)
+    form.collection_order_4 = build_empty_collection_order(4)
+    form.collection_order_5 = build_empty_collection_order(5)
+
+    form.save()
+    new_page = form.name
+    return new_page
 
 
 def build_empty_collection_order(num):

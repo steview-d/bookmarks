@@ -14,17 +14,24 @@ from .models import Bookmark, Collection, Page
 # Create your views here.
 def links(request, page):
     # check page exists, redirect if not
-    # print(Page.objects.get(user=request.user, name=page))
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
+    # forms
+    add_new_page_form = AddNewPageForm()
+
     # add new page form
     if 'add-page-form' in request.POST:
         form_data = AddNewPageForm(request.POST)
-        new_page = add_page(request, form_data)
-        return redirect('links', page=new_page)
+        if form_data.is_valid():
+            new_page = add_page(request, form_data)
+            return redirect('links', page=new_page)
+
+        else:
+            print(form_data.errors)
+            add_new_page_form = form_data
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
@@ -85,8 +92,8 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
-    # forms
-    add_new_page_form = AddNewPageForm()
+    # # forms
+    # add_new_page_form = AddNewPageForm()
 
     # set this page as the last page visited
     request.session['last_page'] = page.name
