@@ -25,7 +25,8 @@
                         {% with ''|center:5 as range %}
                         {% for _ in range %}
                         <a class="btn btn-sm btn-primary {% if forloop.counter == num_of_columns %}active{% endif %}"
-                            href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">{{ forloop.counter }}</a>
+                            href="{% url 'change_num_columns' page=page num=forloop.counter %}"
+                            role="button">{{ forloop.counter }}</a>
                         {% endfor %}
                         {% endwith %}
                     </span>
@@ -34,6 +35,7 @@
             <div class="row">
                 {% for column in bm_data %}
                 <div class="column" style="width: {{ column_width }}%">
+                    {% if column %}
                     {% for k, v in column.items %}
                     <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
                         <h5>{{ k }}</h5>
@@ -48,6 +50,13 @@
                         {% endfor %}
                     </ul>
                     {% endfor %}
+                    {% else %}
+                    <!-- put an 'add collection to this column' button here -->
+                    <a class="btn btn-sm btn-warning my-3"
+                        href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">
+                        Add collection
+                    </a>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>

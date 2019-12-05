@@ -26,9 +26,6 @@ def links(request, page):
         page__name=page.name
         )
 
-    for i in collections:
-        print("UIUIUI: ", i)
-
     # create list of page names for sidebar
     all_page_names = []
     all_pages = Page.objects.filter(user=request.user)
@@ -42,27 +39,30 @@ def links(request, page):
         collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         collection_list = copy.deepcopy(collection_order)
+
         # put collection names into a list. add them in order based on
         # the value of collection.position and map this to the structure
         # of collection_list
+
         count = 0
         for col in range(num_of_columns):
-            for pos in range(len(collection_order[col])):
-                count += 1
-                collection_name = get_object_or_404(
-                    Collection,
-                    # page=page.name,
-                    user=request.user,
-                    position=count
-                )
-                collection_list[col][pos] = str(collection_name)
+            if collection_list[col] != []:
+                for pos in range(len(collection_list[col])):
+                    count += 1
+                    collection_name = get_object_or_404(
+                        Collection,
+                        page__name=page.name,
+                        user=request.user,
+                        position=count
+                    )
+                    collection_list[col][pos] = str(collection_name)
     else:
         # single columm collection display
         collection_list = [[]]
         for i in range(collections.count()):
             collection_name = get_object_or_404(
                 Collection,
-                # page=page.name,
+                page__name=page.name,
                 user=request.user,
                 position=i+1
             )
