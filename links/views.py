@@ -26,6 +26,9 @@ def links(request, page):
         page__name=page.name
         )
 
+    for i in collections:
+        print("UIUIUI: ", i)
+
     # create list of page names for sidebar
     all_page_names = []
     all_pages = Page.objects.filter(user=request.user)
@@ -48,6 +51,7 @@ def links(request, page):
                 count += 1
                 collection_name = get_object_or_404(
                     Collection,
+                    # page=page.name,
                     user=request.user,
                     position=count
                 )
@@ -58,6 +62,7 @@ def links(request, page):
         for i in range(collections.count()):
             collection_name = get_object_or_404(
                 Collection,
+                # page=page.name,
                 user=request.user,
                 position=i+1
             )

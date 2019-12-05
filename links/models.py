@@ -67,9 +67,6 @@ class Collection(models.Model):
     name = models.CharField(
         max_length=30, null=False, blank=False
     )
-    column = models.PositiveIntegerField(
-        null=False, blank=False
-    )
     position = models.PositiveIntegerField(
         null=False, blank=False
     )
@@ -78,7 +75,7 @@ class Collection(models.Model):
     )
 
     class Meta:
-        unique_together = [['name', 'user'], ['position', 'column', 'user']]
+        unique_together = [['name', 'user'], ['position', 'name', 'user']]
 
     def __str__(self):
         return self.name
