@@ -20,10 +20,11 @@ def links(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
+    # add new page form
     if 'add-page-form' in request.POST:
         form_data = AddNewPageForm(request.POST)
-        add_page(request, form_data)
-        return redirect('links', page='home')
+        new_page = add_page(request, form_data)
+        return redirect('links', page=new_page)
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user

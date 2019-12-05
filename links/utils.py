@@ -59,7 +59,8 @@ def add_page(request, form_data):
         form.collection_order_5 = build_empty_collection_order(5)
 
         form.save()
-        return
+        new_page = form.name
+        return new_page
     else:
         print("ERRORS!")
     return
