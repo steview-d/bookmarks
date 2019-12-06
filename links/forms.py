@@ -7,9 +7,6 @@ class AddNewPageForm(forms.ModelForm):
     num_of_columns = forms.IntegerField(
         initial=4, label="Columns"
     )
-    # user = forms.CharField(
-    #     # widget=forms.HiddenInput
-    # )
 
     class Meta:
         model = Page
