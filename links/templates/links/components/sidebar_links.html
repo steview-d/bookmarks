@@ -1,3 +1,5 @@
+{% load crispy_forms_tags %}
+
 <nav id="sidebar">
     <div class="sidebarToggle d-inline d-md-none">
         <i class="fa fa-bars ml-2 mt-1 pl-4 pt-3"></i>
@@ -22,11 +24,18 @@
             <a class="nav-link" href="{% url 'links' page=name %}">{{name|title}}</a>
         </li>
         {% endfor %}
-        <li class="mx-3 my-2"><a href="#" id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</a>
+        <li class="mx-3 my-2">
+            <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
             <form method="POST" class="p-2" id="add-page-form">
                 {% csrf_token %}
-                {{ add_new_page_form.as_p}}
-                <input type="submit" name="add-page-form" class="btn btn-info">
+                {% for i in add_new_page_form.visible_fields %}
+
+                <p>{{ i.label_tag }}
+                    {{ i }}</p>
+                <small>{{ i.errors }}</small>
+
+                {% endfor %}
+                <input type="submit" name="add-page-form" class="btn btn-info btn-sm mt-3">
             </form>
         </li>
     </ul>

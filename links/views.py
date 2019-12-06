@@ -20,17 +20,18 @@ def links(request, page):
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
     # forms
-    add_new_page_form = AddNewPageForm()
+    add_new_page_form = AddNewPageForm(
+        current_user=request.user
+    )
 
     # add new page form
     if 'add-page-form' in request.POST:
-        form_data = AddNewPageForm(request.POST)
+        form_data = AddNewPageForm(request.POST, current_user=request.user)
         if form_data.is_valid():
             new_page = add_page(request, form_data)
             return redirect('links', page=new_page)
 
         else:
-            print(form_data.errors)
             add_new_page_form = form_data
 
     bookmarks = Bookmark.objects.filter(

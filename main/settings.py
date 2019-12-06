@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party apps
+    'crispy_forms',
     # my apps
     'accounts',
     'links',
@@ -148,3 +150,5 @@ STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 # App version
 APP_VERSION = '0.2'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
