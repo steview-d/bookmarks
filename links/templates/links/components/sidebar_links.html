@@ -18,15 +18,22 @@
     </div>
     <hr>
     <ul class="list-unstyled mx-4">
+        <!-- list all user pages -->
         <h5>Pages</h5>
         {% for name in all_page_names %}
-        <li {% if name == page %} class="active" {% endif %}>
-            <a class="nav-link" href="{% url 'links' page=name %}">{{name|title}}</a>
+        <!-- <li {% if name == page %} class="active" {% endif %}> -->
+        <li class="{% if name == page %}active{% endif %} clearfix">
+            <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
+                {% if name == page %}<a href="sdsdsdsd" class="float-right my-2 mr-3"><i class="fa fa-cog"
+                        aria-hidden="true"></i></a>{% endif %}
+            </a>
         </li>
         {% endfor %}
         <li class="mx-3 my-2">
+            <!-- add page form -->
             <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
-            <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"{% endif %}>
+            <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
+                {% endif %}>
                 {% csrf_token %}
                 {% for i in add_new_page_form %}
                 <p>{{ i.label_tag }}
@@ -37,6 +44,7 @@
             </form>
         </li>
     </ul>
+
     <!-- display premium badge -->
     {% if is_premium %}
     <div class=" my-5 text-center">
