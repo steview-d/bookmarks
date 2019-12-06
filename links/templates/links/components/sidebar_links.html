@@ -22,15 +22,30 @@
         <h5>Pages</h5>
         {% for name in all_page_names %}
         <!-- <li {% if name == page %} class="active" {% endif %}> -->
-        <li class="{% if name == page %}active{% endif %} clearfix">
-            <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
-                {% if name == page %}<a href="sdsdsdsd" class="float-right my-2 mr-3"><i class="fa fa-cog"
-                        aria-hidden="true"></i></a>{% endif %}
-            </a>
+        <li class="{% if name == page %}active{% endif %}">
+            <div class="clearfix">
+                <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
+                    {% if name == page %}<a class="float-right my-2 mr-3"><i class="fa fa-cog edit-page-btn"
+                            aria-hidden="true"></i></a>{% endif %}
+                </a>
+            </div>
+
+            <!-- edit page form -->
+            <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
+                {% endif %}>
+                {% csrf_token %}
+                {% for i in edit_page_form %}
+                <p>{{ i.label_tag }} <br />
+                    {{ i }}</p>
+                <small>{{ i.errors }}</small>
+                {% endfor %}
+                <input type="submit" name="edit-page-form" class="btn btn-info btn-sm mt-n3">
+            </form>
         </li>
         {% endfor %}
+
+        <!-- add page form -->
         <li class="mx-3 my-2">
-            <!-- add page form -->
             <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
             <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
                 {% endif %}>

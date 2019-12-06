@@ -5,8 +5,8 @@ import copy
 import json
 
 from premium.utils import is_premium
-from .utils import add_page
-from .forms import AddNewPageForm
+from .utils import add_page, edit_page_name
+from .forms import AddNewPageForm, EditPageForm
 from .models import Bookmark, Collection, Page
 # from .utils import change_num_columns
 
@@ -19,8 +19,12 @@ def links(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
-    # forms
+    # page forms
     add_new_page_form = AddNewPageForm(
+        current_user=request.user
+    )
+
+    edit_page_form = EditPageForm(
         current_user=request.user
     )
 
@@ -33,6 +37,16 @@ def links(request, page):
 
         else:
             add_new_page_form = form_data
+
+    # edit page form
+    if 'edit-page-form' in request.POST:
+        form_data = EditPageForm(request.POST, current_user=request.user)
+        if form_data.is_valid():
+            name = edit_page_name(request, form_data, page)
+            return redirect('links', page=name)
+
+        else:
+            edit_page_form = form_data
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
@@ -93,9 +107,6 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
-    # # forms
-    # add_new_page_form = AddNewPageForm()
-
     # set this page as the last page visited
     request.session['last_page'] = page.name
 
@@ -106,7 +117,8 @@ def links(request, page):
                "bm_data": bm_data,
                "page": page.name,
                "all_page_names": all_page_names,
-               "add_new_page_form": add_new_page_form, }
+               "add_new_page_form": add_new_page_form,
+               "edit_page_form": edit_page_form, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)

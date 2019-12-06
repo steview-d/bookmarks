@@ -160,8 +160,12 @@ $topnav-spacer-height: 64px;
 }
 
 
-// -------------------------------------------------------------- add page form
+// ------------------------------------------------------- add /edit page forms
 
 #add-page-form{
+    display: none;
+}
+
+.edit-page-form{
     display: none;
 }

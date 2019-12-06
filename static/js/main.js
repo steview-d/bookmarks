@@ -9,4 +9,9 @@ $(document).ready(function () {
     $('#add-page-btn').on('click', function() {
         $(this).next().slideToggle(200);
     });
+
+    // 'edit page' form toggle
+    $('.edit-page-btn').on('click', function() {
+        $(this).parent().parent().next().slideToggle(200);
+    });
 });

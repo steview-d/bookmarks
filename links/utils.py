@@ -66,6 +66,17 @@ def add_page(request, form_data):
     return new_page
 
 
+def edit_page_name(request, form_data, old_name):
+    form = form_data.save(commit=False)
+    name = form.name
+    page = get_object_or_404(
+        Page, user=request.user, name=old_name
+    )
+    page.name = name
+    page.save()
+    return name
+
+
 def build_empty_collection_order(num):
     """
     Build a 2d list of empty lists, ready to hold collection
