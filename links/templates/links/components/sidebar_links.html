@@ -31,6 +31,7 @@
             </div>
 
             <!-- edit page form -->
+            {% if name == page %}
             <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
                 {% endif %}>
                 {% csrf_token %}
@@ -41,6 +42,7 @@
                 {% endfor %}
                 <input type="submit" name="edit-page-form" class="btn btn-info btn-sm mt-n3">
             </form>
+            {% endif %}
         </li>
         {% endfor %}
 
