@@ -66,15 +66,15 @@ def add_page(request, form_data):
     return new_page
 
 
-def edit_page_name(request, form_data, old_name):
-    form = form_data.save(commit=False)
-    name = form.name
+def edit_page_name(request, new_page_name, old_page_name):
+    # form = form_data.save(commit=False)
+    # name = form.name
     page = get_object_or_404(
-        Page, user=request.user, name=old_name
+        Page, user=request.user, name=old_page_name
     )
-    page.name = name
+    page.name = new_page_name
     page.save()
-    return name
+    return new_page_name
 
 
 def build_empty_collection_order(num):
