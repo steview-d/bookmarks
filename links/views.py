@@ -109,14 +109,15 @@ def links(request, page):
     else:
         # single columm collection display
         collection_list = [[]]
-        for i in range(collections.count()):
-            collection_name = get_object_or_404(
-                Collection,
-                page__name=page.name,
-                user=request.user,
-                position=i+1
-            )
-            collection_list[0].append(str(collection_name))
+        if collections.count() > 0:
+            for i in range(collections.count()):
+                collection_name = get_object_or_404(
+                    Collection,
+                    page__name=page.name,
+                    user=request.user,
+                    position=i+1
+                )
+                collection_list[0].append(str(collection_name))
 
     # iterate through collection names and create a qs of bookmarks for each
     bm_data = []

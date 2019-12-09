@@ -1,6 +1,7 @@
 from django.db.models import Max
 from django.shortcuts import get_object_or_404, redirect
 
+import itertools
 import json
 
 from links.models import Page, Collection
@@ -30,32 +31,31 @@ def add_collection(request, current_page):
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
 
-    # no good for empty columns but ok for now....
+    # determine what position within page the
+    # new collection should be inserted at
     if page.num_of_columns == 1:
         # get highest 'position' value and +1
-        max_pos_value = all_collections.aggregate(
-                Max('position')
-        )
-        insert_at_position = (max_pos_value['position__max'] + 1)
+        if all_collections.count() > 0:
+            max_pos_value = all_collections.aggregate(
+                    Max('position')
+            )
+            insert_at_position = (max_pos_value['position__max'] + 1)
+        else:
+            insert_at_position = 1
     else:
         # get collection positions for current layout
-        collection_order_array = json.loads(
+        collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         # keep only positions below user specified entry point
-        print(collection_order_array)
         column = request.POST.get('column')
-        sliced_list = collection_order_array[:int(column)]
-        print(sliced_list)
+        collection_order_up_to_column = collection_order[:int(column)]
         # get highest value. num of values, last value, and add 1
-        insert_at_position = max(sliced_list[-1]) + 1
+        flatten_order = list(itertools.chain(*collection_order_up_to_column))
+        insert_at_position = flatten_order[-1] + 1 if flatten_order else 1
 
-    print(insert_at_position)
+    print("INSERT AT: ", insert_at_position)
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
-    print(all_collections)
-    for i in all_collections:
-        # print(i.position)
-        continue
 
     # update all position nums for each collection
 
