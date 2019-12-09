@@ -5,7 +5,7 @@ import copy
 import json
 
 from premium.utils import is_premium
-from .utils import add_page, edit_page_name
+from .utils import pages
 from .forms import AddNewPageForm, EditPageForm
 from .models import Bookmark, Collection, Page
 # from .utils import change_num_columns
@@ -32,7 +32,7 @@ def links(request, page):
     if 'add-page-form' in request.POST:
         form_data = AddNewPageForm(request.POST, current_user=request.user)
         if form_data.is_valid():
-            new_page = add_page(request, form_data)
+            new_page = pages.add_page(request, form_data)
             return redirect('links', page=new_page)
 
         else:
@@ -43,7 +43,7 @@ def links(request, page):
         form_data = EditPageForm(request.POST, current_user=request.user)
         if form_data.is_valid():
             new_page_name = form_data.cleaned_data.get('name')
-            name = edit_page_name(request, new_page_name, page)
+            name = pages.edit_page_name(request, new_page_name, page)
             return redirect('links', page='home')
 
         else:
