@@ -35,11 +35,7 @@ def change_num_columns(request, page, num):
 
 def add_page(request, form_data):
     """
-    Use this to build a new page.
-    Needs to not only create a new page object, but also
-    configure it so it has all required default info so it
-    can display ok, for instance
-    - Name, position, column order lists, etc
+    Build a new page record.
     """
 
     print("ALL VALID")
@@ -67,8 +63,6 @@ def add_page(request, form_data):
 
 
 def edit_page_name(request, new_page_name, old_page_name):
-    # form = form_data.save(commit=False)
-    # name = form.name
     page = get_object_or_404(
         Page, user=request.user, name=old_page_name
     )

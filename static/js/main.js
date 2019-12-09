@@ -14,4 +14,11 @@ $(document).ready(function () {
     $('.edit-page-btn').on('click', function() {
         $(this).parent().parent().next().slideToggle(200);
     });
+
+    // submit 'delete page form' from modal
+    $('#delete-page-form').on('click', function() {
+        $(this).submit();
+    });
 });
+
+// --------------------------------

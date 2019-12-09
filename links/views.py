@@ -44,10 +44,19 @@ def links(request, page):
         if form_data.is_valid():
             new_page_name = form_data.cleaned_data.get('name')
             name = edit_page_name(request, new_page_name, page)
-            return redirect('links', page=name)
+            return redirect('links', page='home')
 
         else:
             edit_page_form = form_data
+
+    # delete page form
+    if 'delete-page-form' in request.POST:
+        get_object_or_404(
+            Page,
+            name=page,
+            user=request.user,
+        ).delete()
+        return redirect('links', page='home')
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
