@@ -75,7 +75,8 @@ class Collection(models.Model):
     )
 
     class Meta:
-        unique_together = [['name', 'user'], ['position', 'name', 'user']]
+        unique_together = [['name', 'user', 'page'],
+                           ['position', 'name', 'page', 'user']]
 
     def __str__(self):
         return self.name
