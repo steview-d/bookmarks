@@ -44,7 +44,7 @@ def links(request, page):
         if form_data.is_valid():
             new_page_name = form_data.cleaned_data.get('name')
             name = pages.edit_page_name(request, new_page_name, page)
-            return redirect('links', page='home')
+            return redirect('links', page=name)
 
         else:
             edit_page_form = form_data
