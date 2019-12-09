@@ -10,8 +10,6 @@ def add_page(request, form_data):
     """
     Build a new page record.
     """
-
-    print("ALL VALID")
     form = form_data.save(commit=False)
     form.name = form.name.lower()
     form.user = User.objects.get(username=request.user)

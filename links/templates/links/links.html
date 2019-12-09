@@ -50,10 +50,10 @@
                         {% endfor %}
                     </ul>
                     {% endfor %}
-                    {% include 'links/components/add_new_collection.html' %}
+                    {% include 'links/components/add_new_collection.html' with column=forloop.counter position=0 %}
                     {% else %}
                     <!-- put an 'add collection to this column' button here -->
-                    {% include 'links/components/add_new_collection.html' %}
+                    {% include 'links/components/add_new_collection.html' with column=forloop.counter position=0 %}
                     {% endif %}
                 </div>
                 {% endfor %}

@@ -64,9 +64,9 @@ def links(request, page):
     # add new collection
     # code here for adding a new collection
     if 'add-collection' in request.POST:
-        collection_utils.add_collection(request)
+        collection_utils.add_collection(request, page)
         print("ADD COLLECTION")
-        return redirect('links', page='home')
+        return redirect('links', page='p2')
 
     bookmarks = Bookmark.objects.filter(
         user__username=request.user
