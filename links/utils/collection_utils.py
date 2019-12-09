@@ -54,12 +54,45 @@ def add_collection(request, current_page):
         insert_at_position = flatten_order[-1] + 1 if flatten_order else 1
 
     print("INSERT AT: ", insert_at_position)
+
+    # bump positions +1 for any position after 'insert_at_position'
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
 
-    # update all position nums for each collection
+    # comment out while work on updating collection_order_x lists
+    # below updates the all_collections qs, and *seems* to work fine
+    #
+    # for collection in all_collections:
+    #     if collection.position >= insert_at_position:
+    #         collection.position += 1
+    #         collection.position.save()
 
     # update collection_order_x list values
+    for i in range(2, 6):
+        print(" ")
+        print("NUM COLUMNS: ", i)
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(i)))
+        print("BEFORE: ", collection_order)
+        for col in range(len(collection_order)):
+            for pos in range(len(collection_order[col])):
+                if collection_order[col][pos] == insert_at_position - 1:
+                    # collection_order[col].insert(pos, insert_at_position)
+                    collection_order[col].append(insert_at_position)
+                if collection_order[col][pos] >= insert_at_position:
+                    collection_order[col][pos] += 1
+        print("AFTER:  ", collection_order)
+
+    # not convinced right way......
+    # if page.num_of_columns > 1:
+    #     print()
+    #     collection_order_after_insert = collection_order[int(column):]
+    #     print("BEFORE: ", collection_order_after_insert)
+
+    #     for col in range(len(collection_order_after_insert)):
+    #         for pos in range(len(collection_order_after_insert[col])):
+    #             collection_order_after_insert[col][pos] += 1
+    #     print("AFTER: ", collection_order_after_insert)
 
     # insert new collection into collection order_x lists
 
