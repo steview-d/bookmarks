@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 
@@ -5,7 +6,7 @@ import copy
 import json
 
 from premium.utils import is_premium
-from .utils import pages
+from .utils import page_utils, collection_utils
 from .forms import AddNewPageForm, EditPageForm
 from .models import Bookmark, Collection, Page
 # from .utils import change_num_columns
@@ -32,7 +33,7 @@ def links(request, page):
     if 'add-page-form' in request.POST:
         form_data = AddNewPageForm(request.POST, current_user=request.user)
         if form_data.is_valid():
-            new_page = pages.add_page(request, form_data)
+            new_page = page_utils.add_page(request, form_data)
             return redirect('links', page=new_page)
 
         else:
@@ -43,7 +44,7 @@ def links(request, page):
         form_data = EditPageForm(request.POST, current_user=request.user)
         if form_data.is_valid():
             new_page_name = form_data.cleaned_data.get('name')
-            name = pages.edit_page_name(request, new_page_name, page)
+            name = page_utils.edit_page_name(request, new_page_name, page)
             return redirect('links', page=name)
 
         else:
@@ -56,6 +57,15 @@ def links(request, page):
             name=page,
             user=request.user,
         ).delete()
+        messages.success(
+                    request, f"Page Deletion Successful")
+        return redirect('links', page='home')
+
+    # add new collection
+    # code here for adding a new collection
+    if 'add-collection' in request.POST:
+        collection_utils.add_collection(request)
+        print("ADD COLLECTION")
         return redirect('links', page='home')
 
     bookmarks = Bookmark.objects.filter(

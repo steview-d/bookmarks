@@ -11,3 +11,8 @@ def change_num_columns(request, page, num):
         page.num_of_columns = num
         page.save()
     return redirect('links', page=page.name)
+
+
+def add_collection(request):
+    # this should be fun...
+    return

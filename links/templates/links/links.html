@@ -50,12 +50,10 @@
                         {% endfor %}
                     </ul>
                     {% endfor %}
+                    {% include 'links/components/add_new_collection.html' %}
                     {% else %}
                     <!-- put an 'add collection to this column' button here -->
-                    <a class="btn btn-sm btn-warning my-3"
-                        href="{% url 'change_num_columns' page=page num=forloop.counter %}" role="button">
-                        Add collection
-                    </a>
+                    {% include 'links/components/add_new_collection.html' %}
                     {% endif %}
                 </div>
                 {% endfor %}
