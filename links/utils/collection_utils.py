@@ -18,12 +18,7 @@ def change_num_columns(request, page, num):
 
 
 def add_collection(request, current_page):
-    # this should be fun...
-
-    # iterate in reverse, each num do num+1 until
-    # you reach new pos num, then append a new entry
-    # to end of specified column
-    # do for each set of colums, 2 through 5
+    # this should be fun... (I was wrong)
 
     page = get_object_or_404(
             Page, user=request.user, name=current_page
@@ -59,18 +54,17 @@ def add_collection(request, current_page):
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
 
-    # comment out while work on updating collection_order_x lists
     # below updates the all_collections qs, and *seems* to work fine
-    #
-    # for collection in all_collections:
-    #     if collection.position >= insert_at_position:
-    #         collection.position += 1
-    #         collection.position.save()
+    for collection in all_collections:
+        if collection.position >= insert_at_position:
+            collection.position += 1
+            collection.save()
 
     # check if adding to an empty column
     is_empty = request.POST.get('is_empty')
     print("IS EMPTY: ", is_empty)
 
+    new_collection_orders = []
     # update collection_order_x list values
     for i in range(2, 6):
         print("NUM COLUMNS: ", i)
@@ -109,30 +103,30 @@ def add_collection(request, current_page):
         for col in range(len(collection_order)):
             collection_order[col].sort()
 
+        # store new collection orders inside a list ready to put back into db
+        new_collection_orders.append(collection_order)
+
+        # exec('page.collection_order_'+str(i)) = json.dumps(collection_order)
+
         print("----------------------------")
         print("AFTER:  ", collection_order)
         print("----------------------------")
 
-    # not convinced right way......
-    # if page.num_of_columns > 1:
-    #     print()
-    #     collection_order_after_insert = collection_order[int(column):]
-    #     print("BEFORE: ", collection_order_after_insert)
-
-    #     for col in range(len(collection_order_after_insert)):
-    #         for pos in range(len(collection_order_after_insert[col])):
-    #             collection_order_after_insert[col][pos] += 1
-    #     print("AFTER: ", collection_order_after_insert)
+    page.collection_order_2 = new_collection_orders[0]
+    page.collection_order_3 = new_collection_orders[1]
+    page.collection_order_4 = new_collection_orders[2]
+    page.collection_order_5 = new_collection_orders[3]
+    page.save()
 
     # insert new collection into collection order_x lists
 
     # comment out below temp only whilst testing....
-    # new_collection = Collection()
-    # new_collection.user = request.user
-    # new_collection.page = Page.objects.get(name=current_page)
-    # new_collection.name = "qwerty"
-    # new_collection.position = 100  # need to shufle rest along first
-    # new_collection.save()
+    new_collection = Collection()
+    new_collection.user = request.user
+    new_collection.page = Page.objects.get(name=current_page)
+    new_collection.name = "qwerty"
+    new_collection.position = insert_at_position
+    new_collection.save()
 
     # print("PAGE: ", page)
     # print("COLUMN: ", request.POST.get('column'))

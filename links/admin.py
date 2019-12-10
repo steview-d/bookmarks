@@ -18,6 +18,7 @@ class CollectionAdmin(admin.ModelAdmin):
 
     list_display = (
         'collection_name',
+        'position',
         'page',
         'user',
     )
