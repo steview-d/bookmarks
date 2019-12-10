@@ -67,21 +67,51 @@ def add_collection(request, current_page):
     #         collection.position += 1
     #         collection.position.save()
 
+    # check if adding to an empty column
+    is_empty = request.POST.get('is_empty')
+    print("IS EMPTY: ", is_empty)
+
     # update collection_order_x list values
     for i in range(2, 6):
-        print(" ")
         print("NUM COLUMNS: ", i)
         collection_order = json.loads(
             eval('page.collection_order_'+str(i)))
+        print("----------------------------")
         print("BEFORE: ", collection_order)
+        # print("----------------------------")
+        # print("COLUMN CLICKED ", column)
+
         for col in range(len(collection_order)):
             for pos in range(len(collection_order[col])):
-                if collection_order[col][pos] == insert_at_position - 1:
-                    # collection_order[col].insert(pos, insert_at_position)
-                    collection_order[col].append(insert_at_position)
+                # insert new collection in correct place
+
+                # +1 to all collections at or after insert position
                 if collection_order[col][pos] >= insert_at_position:
                     collection_order[col][pos] += 1
+
+                if collection_order[col][pos] == insert_at_position - 1:
+                    # print("PUT HERE: ", collection_order[col][pos])
+                    # print("COL: ", col, "  |  ", "POS: ", pos)
+                    if not is_empty:
+                        collection_order[col].append(insert_at_position)
+
+        if is_empty and i == page.num_of_columns:
+            collection_order[int(column)-1] = [insert_at_position]
+
+        if is_empty and i != page.num_of_columns:
+            for col in range(len(collection_order)):
+                if insert_at_position - 1 in collection_order[col]:
+                    collection_order[col].append(insert_at_position)
+
+        # inserting into columns of different layouts to the one the user
+        # is inserting into can cause new collections to be added to the end,
+        # and not in the correct place. This fixes that.
+        for col in range(len(collection_order)):
+            collection_order[col].sort()
+
+        print("----------------------------")
         print("AFTER:  ", collection_order)
+        print("----------------------------")
 
     # not convinced right way......
     # if page.num_of_columns > 1:
