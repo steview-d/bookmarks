@@ -20,6 +20,14 @@ def links(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
+    bookmarks = Bookmark.objects.filter(
+        user__username=request.user
+        )
+    collections = Collection.objects.filter(
+        user__username=request.user).filter(
+        page__name=page.name
+        )
+
     # page forms
     add_new_page_form = AddNewPageForm(
         current_user=request.user
@@ -63,17 +71,15 @@ def links(request, page):
 
     # add a new collection
     if 'add-collection' in request.POST:
-        collection_utils.add_collection(request, page)
-        print("ADD COLLECTION")
-        return redirect('links', page=page)
-
-    bookmarks = Bookmark.objects.filter(
-        user__username=request.user
-        )
-    collections = Collection.objects.filter(
-        user__username=request.user).filter(
-        page__name=page.name
-        )
+        # check if collection name is unique to page / user
+        if collections.filter(
+                name=request.POST.get('collection_name')).exists():
+            messages.error(
+                request, f"Collection name is use, please choose another")
+            return redirect('links', page=page)
+        else:
+            collection_utils.add_collection(request, page)
+            return redirect('links', page=page)
 
     # create list of page names for sidebar
     all_page_names = []
