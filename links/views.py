@@ -75,7 +75,7 @@ def links(request, page):
         if collections.filter(
                 name=request.POST.get('collection_name')).exists():
             messages.error(
-                request, f"Collection name is use, please choose another")
+                request, f"Collection name is in use, please choose another")
             return redirect('links', page=page)
         else:
             collection_utils.add_collection(request, page)
