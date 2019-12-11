@@ -25,6 +25,7 @@ def add_collection(request, current_page):
         )
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
+    column = int(request.POST.get('column'))
 
     # determine what position within page the
     # new collection should be inserted at
@@ -42,9 +43,8 @@ def add_collection(request, current_page):
         collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         # keep only positions below user specified entry point
-        column = request.POST.get('column')
-        collection_order_up_to_column = collection_order[:int(column)]
-        # get highest value. num of values, last value, and add 1
+        collection_order_up_to_column = collection_order[:column]
+        # get highest last value, and add 1
         flatten_order = list(itertools.chain(*collection_order_up_to_column))
         insert_at_position = flatten_order[-1] + 1 if flatten_order else 1
 
@@ -73,7 +73,7 @@ def add_collection(request, current_page):
         print("----------------------------")
         print("BEFORE: ", collection_order)
         # print("----------------------------")
-        # print("COLUMN CLICKED ", column)
+        print("COLUMN CLICKED ", column)
 
         for col in range(len(collection_order)):
             for pos in range(len(collection_order[col])):
@@ -90,12 +90,33 @@ def add_collection(request, current_page):
                         collection_order[col].append(insert_at_position)
 
         if is_empty and i == page.num_of_columns:
-            collection_order[int(column)-1] = [insert_at_position]
+            collection_order[column-1] = [insert_at_position]
 
+        # if any([] in sl for sl in collection_order):
+        #     print(i, "EMPTY")
+
+        # if adding to an empty column this will add collection to columns on
+        # other column layouts, providing they have something to add to
         if is_empty and i != page.num_of_columns:
-            for col in range(len(collection_order)):
-                if insert_at_position - 1 in collection_order[col]:
-                    collection_order[col].append(insert_at_position)
+            # code here to check if collection order has anything inside?
+            # if not, add '1' to first place, else do code below
+
+            added = False
+            # for col in range(len(collection_order)):
+            #     if insert_at_position - 1 in collection_order[col]:
+            #         collection_order[col].append(insert_at_position)
+            #         added = True
+            if not added:
+                insert_column = 0
+                if column > i:
+                    insert_column = i
+                else:
+                    insert_column = column
+                print("UIUI: ", insert_column)
+                collection_order[insert_column-1].append(insert_at_position)
+                print(column)
+        #         # but what to do if insert pos is NOT in coll order....?
+        #         # do that here....
 
         # inserting into columns of different layouts to the one the user
         # is inserting into can cause new collections to be added to the end,
@@ -124,7 +145,7 @@ def add_collection(request, current_page):
     new_collection = Collection()
     new_collection.user = request.user
     new_collection.page = Page.objects.get(name=current_page)
-    new_collection.name = "qwerty"
+    new_collection.name = request.POST.get('collection_name')
     new_collection.position = insert_at_position
     new_collection.save()
 
