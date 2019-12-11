@@ -61,8 +61,7 @@ def links(request, page):
                     request, f"Page Deletion Successful")
         return redirect('links', page='home')
 
-    # add new collection
-    # code here for adding a new collection
+    # add a new collection
     if 'add-collection' in request.POST:
         collection_utils.add_collection(request, page)
         print("ADD COLLECTION")
