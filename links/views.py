@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 
@@ -25,7 +26,7 @@ def links(request, page):
     collections = Collection.objects.filter(
         user__username=request.user).filter(
         page__name=page.name
-        )
+        ).order_by('position')
 
     # page forms
     add_new_page_form = AddNewPageForm(
@@ -73,9 +74,52 @@ def links(request, page):
 
     # delete collection
     if 'delete-collection-form' in request.POST:
-        print("FOUND DELETE FORM")
-        for i in request.POST.items():
-            print(i)
+
+        collection_to_delete = get_object_or_404(
+            Collection,
+            page__name=page.name,
+            user=request.user,
+            name=request.POST.get('collection')
+        )
+        position_to_delete = collection_to_delete.position
+        collection_to_delete.delete()
+        messages.success(
+                request, f"Collection Deletion Successful")
+
+        # reset collection.position for each
+        for count, collection in enumerate((collections), 1):
+            # print(collection, " ", count)
+            collection.position = count
+            collection.save()
+
+        # reset column ordering numbers for each 2 through 5
+        new_collection_orders = []
+        for i in range(2, 6):
+            collection_order = json.loads(
+                eval('page.collection_order_'+str(i)))
+
+            # find deleted position and remove from list
+            for x in collection_order:
+                if position_to_delete in x:
+                    x.remove(position_to_delete)
+
+            # rename remaining positions starting from 1
+            count = 1
+            for col in range(len(collection_order)):
+                for pos in range(len(collection_order[col])):
+                    # if collection_order[col][pos]:
+                    collection_order[col][pos] = count
+                    # print(collection_order[col][pos])
+                    count += 1
+
+            new_collection_orders.append(collection_order)
+
+        page.collection_order_2 = new_collection_orders[0]
+        page.collection_order_3 = new_collection_orders[1]
+        page.collection_order_4 = new_collection_orders[2]
+        page.collection_order_5 = new_collection_orders[3]
+        page.save()
+
         return redirect('links', page=page)
 
     # create list of page names for sidebar

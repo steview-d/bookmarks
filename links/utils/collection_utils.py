@@ -189,3 +189,13 @@ def add_collection(request, current_page):
     new_collection.save()
 
     return
+
+
+def delete_collection(request):
+    """
+    Function to remove a collection from the db, and re-order
+    position values to reflect the changes due to the deleted
+    collection.
+    """
+
+    return

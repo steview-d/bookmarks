@@ -40,7 +40,7 @@
                     {% if column %}
                     {% for k, v in column.items %}
                         <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
-                            <h5>{{ k|title }}</h5>
+                            <h5>{{ k|title }} | {{ v.position }}</h5>
                             <a href="#" class=""><i class="fa fa-trash-o text-danger" aria-hidden="true"
                                 data-toggle="modal" data-target="#modal-{{ k|replace_space }}"></i></a>
                             
