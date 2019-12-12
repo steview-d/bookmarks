@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% load replace_space %}
+
 <div class="flex-wrapper">
 
     <!-- Sidebar -->
@@ -40,7 +42,7 @@
                         <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
                             <h5>{{ k|title }}</h5>
                             <a href="#" class=""><i class="fa fa-trash-o text-danger" aria-hidden="true"
-                                data-toggle="modal" data-target="#modal-{{ k|cut:' ' }}"></i></a>
+                                data-toggle="modal" data-target="#modal-{{ k|replace_space }}"></i></a>
                             
                             <!-- settings / rename collection button -->
                             <!-- <a href="#" class=""><i class="fa fa-cog text-dark edit-page-btn"
