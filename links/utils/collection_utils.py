@@ -191,11 +191,55 @@ def add_collection(request, current_page):
     return
 
 
-def delete_collection(request):
+def delete_collection(request, page, collections):
     """
     Function to remove a collection from the db, and re-order
     position values to reflect the changes due to the deleted
     collection.
     """
+    collection_to_delete = get_object_or_404(
+        Collection,
+        page__name=page.name,
+        user=request.user,
+        name=request.POST.get('collection')
+    )
+    position_to_delete = collection_to_delete.position
+    collection_to_delete.delete()
+    messages.success(
+            request, f"Collection Deletion Successful")
+
+    # reset collection.position for each
+    for count, collection in enumerate((collections), 1):
+        # print(collection, " ", count)
+        collection.position = count
+        collection.save()
+
+    # reset column ordering numbers for each 2 through 5
+    new_collection_orders = []
+    for i in range(2, 6):
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(i)))
+
+        # find deleted position and remove from list
+        for x in collection_order:
+            if position_to_delete in x:
+                x.remove(position_to_delete)
+
+        # rename remaining positions starting from 1
+        count = 1
+        for col in range(len(collection_order)):
+            for pos in range(len(collection_order[col])):
+                # if collection_order[col][pos]:
+                collection_order[col][pos] = count
+                # print(collection_order[col][pos])
+                count += 1
+
+        new_collection_orders.append(collection_order)
+
+    page.collection_order_2 = new_collection_orders[0]
+    page.collection_order_3 = new_collection_orders[1]
+    page.collection_order_4 = new_collection_orders[2]
+    page.collection_order_5 = new_collection_orders[3]
+    page.save()
 
     return
