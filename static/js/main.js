@@ -19,6 +19,11 @@ $(document).ready(function () {
     $('#delete-page-form').on('click', function() {
         $(this).submit();
     });
+
+    // submit 'delete collection form' from modal
+    $('#delete-collection-form').on('click', function() {
+        $(this).submit();
+    });
 });
 
 // --------------------------------

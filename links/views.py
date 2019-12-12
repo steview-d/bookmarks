@@ -65,6 +65,20 @@ def links(request, page):
 
     # add a new collection
     if 'add-collection' in request.POST:
+        # instead look to check against collection names with spaces stripped
+        # out to avoid confusion with ids etc
+        #
+        proposed_name = request.POST.get('collection_name')
+        stripped_name = proposed_name.replace(' ', '')
+        stripped_collections = []
+        for collection in collections:
+            stripped_collections.append(collection.name.replace(' ', ''))
+        if stripped_name in stripped_collections:
+            messages.error(
+                request, f"Collection name too similar")
+            return redirect('links', page=page)
+
+        #
         # check if collection name is unique to page / user
         if collections.filter(
                 name=request.POST.get('collection_name')).exists():
@@ -74,6 +88,13 @@ def links(request, page):
         else:
             collection_utils.add_collection(request, page)
             return redirect('links', page=page)
+
+    # delete collection
+    if 'delete-collection-form' in request.POST:
+        print("FOUND DELETE FORM")
+        for i in request.POST.items():
+            print(i)
+        return redirect('links', page=page)
 
     # create list of page names for sidebar
     all_page_names = []
