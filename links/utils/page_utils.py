@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.db.models import Max
 from django.shortcuts import get_object_or_404
 
@@ -51,3 +52,26 @@ def build_empty_collection_order(num):
     for i in range(num):
         empty_order.append([])
     return empty_order
+
+
+def delete_page(request, page):
+    """
+    Delete the requested page and re-allocate page.position values
+    to be 1 through [no' pages], in order.
+    """
+    # delete page
+    get_object_or_404(
+        Page,
+        name=page,
+        user=request.user,
+    ).delete()
+    messages.success(
+            request, f"Page Deletion Successful")
+
+    # re-allocate .position values
+    pages = Page.objects.filter(user=request.user)
+    for count, page in enumerate((pages), 1):
+        page.position = count
+        page.save()
+
+    return

@@ -60,13 +60,7 @@ def links(request, page):
 
     # delete page form
     if 'delete-page-form' in request.POST:
-        get_object_or_404(
-            Page,
-            name=page,
-            user=request.user,
-        ).delete()
-        messages.success(
-                    request, f"Page Deletion Successful")
+        page_utils.delete_page(request, page)
         return redirect('links', page='home')
 
     # add a new collection
