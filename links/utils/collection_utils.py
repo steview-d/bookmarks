@@ -1,8 +1,10 @@
+from django.contrib import messages
 from django.db.models import Max
 from django.shortcuts import get_object_or_404, redirect
 
 import itertools
 import json
+import re
 
 from links.models import Page, Collection
 
@@ -25,6 +27,34 @@ def change_num_columns(request, page, num):
         page.num_of_columns = num
         page.save()
     return redirect('links', page=page.name)
+
+
+def validate_name(request, collections, page):
+    """
+    Check the requested name contains no unallowed chars and that the
+    name is unique to the current page and user.
+    """
+    proposed_name = request.POST.get('collection_name')
+
+    # check name contains only allowed chars
+    allowed_chars = re.compile(r'[^-: a-zA-Z0-9.]')
+    char_check = allowed_chars.search(proposed_name)
+    if char_check:
+        messages.error(
+            request, f"Name can only contain letters, numbers, \
+                        spaces, hyphens '-', and colons ':'")
+        # return redirect('links', page=page)
+        return False
+
+    # check collection name is unique to page / user
+    elif collections.filter(
+            name=request.POST.get('collection_name')).exists():
+        messages.error(
+            request, f"Collection name is in use, please choose another")
+        # return redirect('links', page=page)
+        return False
+    else:
+        return True
 
 
 def add_collection(request, current_page):

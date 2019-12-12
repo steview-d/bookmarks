@@ -1,10 +1,8 @@
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 
 import copy
 import json
-import re
 
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils
@@ -66,28 +64,12 @@ def links(request, page):
 
     # add a new collection
     if 'add-collection' in request.POST:
-        proposed_name = request.POST.get('collection_name')
-
-        # check name contains only allowed chars
-        allowed_chars = re.compile(r'[^-: a-zA-Z0-9.]')
-        char_check = allowed_chars.search(proposed_name)
-        if char_check:
-            messages.error(
-                request, f"Name can only contain letters, numbers, \
-                           spaces, hyphens '-', and colons ':'")
-            return redirect('links', page=page)
-
-        # check collection name is unique to page / user
-        elif collections.filter(
-                name=request.POST.get('collection_name')).exists():
-            messages.error(
-                request, f"Collection name is in use, please choose another")
-            return redirect('links', page=page)
-
-        # add collection name to db
-        else:
+        # check name is allowed
+        if collection_utils.validate_name(request, collections, page):
+            # add collection name to db
             collection_utils.add_collection(request, page)
-            return redirect('links', page=page)
+
+        return redirect('links', page=page)
 
     # delete collection
     if 'delete-collection-form' in request.POST:
