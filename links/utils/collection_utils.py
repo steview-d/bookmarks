@@ -31,8 +31,13 @@ def change_num_columns(request, page, num):
 
 def validate_name(request, collections, page):
     """
-    Check the requested name contains no unallowed chars and that the
+    Check the requested name contains no disallowed chars and that the
     name is unique to the current page and user.
+
+    Args:
+        request (obj): The request object
+        collections (queryset): Collections for current page and user
+        page (obj): The current page
     """
     proposed_name = request.POST.get('collection_name')
 
@@ -43,7 +48,6 @@ def validate_name(request, collections, page):
         messages.error(
             request, f"Name can only contain letters, numbers, \
                         spaces, hyphens '-', and colons ':'")
-        # return redirect('links', page=page)
         return False
 
     # check collection name is unique to page / user
@@ -51,7 +55,6 @@ def validate_name(request, collections, page):
             name=request.POST.get('collection_name')).exists():
         messages.error(
             request, f"Collection name is in use, please choose another")
-        # return redirect('links', page=page)
         return False
     else:
         return True
@@ -106,7 +109,7 @@ def add_collection(request, current_page):
 
     # determine position within page the new collection should be inserted at
     if page.num_of_columns == 1:
-        # get highest 'position' value and +1
+        # get highest 'position' value and +1 for insert_at_position
         if all_collections.count() > 0:
             max_pos_value = all_collections.aggregate(
                     Max('position')
@@ -196,6 +199,11 @@ def delete_collection(request, page, collections):
     Function to remove a collection from the db, and re-order
     position values to reflect the changes due to the deleted
     collection.
+
+    Args:
+        request (obj): The request object
+        page (obj): The current page
+        collections (queryset): Collections for current page and user
     """
     collection_to_delete = get_object_or_404(
         Collection,

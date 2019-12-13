@@ -9,8 +9,12 @@ def start_app(request):
     logging in. It will either point to page the last page visited,
     stored in session, or if no session value, it will load the page at
     position 1.
+
+    Args:
+        request (obj): The request object
     """
 
+    # ## TO DO ###
     # needs to check if any pages exist for current user, eg if a users
     # first visit.
     # if so, need to create a new page and set up collection orders etc.

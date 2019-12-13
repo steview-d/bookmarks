@@ -63,9 +63,8 @@ def links(request, page):
 
     # add a new collection
     if 'add-collection' in request.POST:
-        # check name is allowed
+        # check name is allowed and if so, add to db
         if collection_utils.validate_name(request, collections, page):
-            # add collection name to db
             collection_utils.add_collection(request, page)
 
         return redirect('links', page=page)
@@ -92,7 +91,6 @@ def links(request, page):
         # put collection names into a list. add them in order based on
         # the value of collection.position and map this to the structure
         # of collection_list
-
         count = 0
         for col in range(num_of_columns):
             if collection_list[col] != []:
