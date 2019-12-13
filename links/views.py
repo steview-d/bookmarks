@@ -1,3 +1,4 @@
+from .conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
@@ -158,6 +159,8 @@ def page_sort(request):
         page.position = page.position_temp
         page.position_temp = None
         page.save()
+
+    print(settings.LINKS_PRIZE)
 
     data = {'success': True}
     return JsonResponse(data)

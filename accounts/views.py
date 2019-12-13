@@ -78,7 +78,7 @@ def profile(request):
 @login_required
 def about(request):
 
-    context = {'app_version': settings.APP_VERSION}
+    context = {'app_version': settings.LINKS_APP_VERSION}
     context = is_premium(request.user, context)
 
     return render(request, 'accounts/about_app.html', context)

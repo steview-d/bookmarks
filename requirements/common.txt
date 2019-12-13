@@ -2,10 +2,12 @@
 certifi==2019.9.11
 chardet==3.0.4
 Django==2.2.7
+django-appconf==1.0.3
 django-crispy-forms==1.8.1
 idna==2.8
 pytz==2019.3
 requests==2.22.0
+six==1.13.0
 sqlparse==0.3.0
 stripe==2.40.0
 urllib3==1.25.7
