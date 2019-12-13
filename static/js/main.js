@@ -13,11 +13,8 @@ $(document).ready(function() {
 
     // 'edit page' form toggle
     $(".edit-page-btn").on("click", function() {
-        $(this)
-            .parent()
-            .parent()
-            .next()
-            .slideToggle(200);
+        // $('.qqq')
+        $('.edit-page-form').slideToggle(200);
     });
 
     // submit 'delete page form' from modal
@@ -34,11 +31,11 @@ $(document).ready(function() {
     // Page Sorting
     // --------------------------------
     $("#page-titles").sortable({
-        containment: "parent", // Need to make bigger
+        containment: "#page-sort-container", // Need to make bigger
         // containment: ui.item.parent().attr('id'),
         cursor: "grabbing",
         axis: "y",
-        stop: function(event, ui) {
+        stop: function() {
             var data = $(this).sortable("serialize");
             data = data.split("[]=.");
             data.pop();
@@ -54,7 +51,6 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 data: {
-                    // collection_name: ui.item.parent().attr("id"),
                     new_page_order: postData
                 },
                 url: "page_sort",

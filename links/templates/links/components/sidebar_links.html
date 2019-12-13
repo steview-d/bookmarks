@@ -15,14 +15,14 @@
         {% include 'advert.html' with advert_path="img/ads/square.png" %}
     </div>
     <hr>
-    <ul class="list-unstyled mx-4">
-        <!-- list all user pages -->
-        <h5>Pages</h5>
-        <div id="page-titles">
+    <!-- list all user pages -->
+    <h5 class="mx-4">Pages</h5>
+    <ul id="page-sort-container" class="list-unstyled mx-4 py-2">
+        <div id="page-titles" class="my-2">
             {% for name in all_page_names %}
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
                 <div class="clearfix">
-                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}} {{name.position}}
+                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
                         {% if name.name == page %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
                                 aria-hidden="true"></i></a>
@@ -31,9 +31,9 @@
                         {% endif %}
                     </a>
                 </div>
-
+                
                 <!-- edit page form -->
-                {% if name == page %}
+                {% if name.name == page %}
                 <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
                     {% endif %}>
                     {% csrf_token %}
@@ -41,7 +41,7 @@
                     <p>{{ i.label_tag }} <br />
                         {{ i }}</p>
                     <small>{{ i.errors }}</small>
-                    {% endfor %}
+                    {% endfor %} 
                     <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
                 </form>
 
@@ -49,7 +49,8 @@
             </li>
             {% endfor %}
         </div>
-
+    </ul>
+    <ul class="list-unstyled mx-4">
         <!-- add page form -->
         <li class="mx-3 my-2">
             <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>

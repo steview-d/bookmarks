@@ -90,7 +90,7 @@ def delete_page(request, page):
             request, f"Page Deletion Successful")
 
     # re-allocate .position values
-    pages = Page.objects.filter(user=request.user)
+    pages = Page.objects.filter(user=request.user).order_by('position')
     for count, page in enumerate((pages), 1):
         page.position = count
         page.save()
