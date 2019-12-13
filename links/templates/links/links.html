@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block page_title %}Links{% endblock %}
 
@@ -78,4 +79,8 @@
 
 {% include 'links/components/collection_delete_modal.html' with collection=k %}
 
+{% endblock %}
+
+{% block csrf_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
 {% endblock %}
