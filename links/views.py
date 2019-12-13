@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 import copy
@@ -74,11 +75,8 @@ def links(request, page):
         collection_utils.delete_collection(request, page, collections)
         return redirect('links', page=page)
 
-    # create list of page names for sidebar
-    all_page_names = []
-    all_pages = Page.objects.filter(user=request.user)
-    for name in all_pages:
-        all_page_names.append(name.name)
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     # generate collection names & order
     num_of_columns = page.num_of_columns
@@ -132,9 +130,34 @@ def links(request, page):
                "num_of_columns": num_of_columns,
                "bm_data": bm_data,
                "page": page.name,
-               "all_page_names": all_page_names,
+               "all_page_names": all_pages,
                "add_new_page_form": add_new_page_form,
                "edit_page_form": edit_page_form, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
+
+
+def page_sort(request):
+    # get and format new page order
+    data = request.POST.get('new_page_order', None)
+    new_order = list(map(int, data.split(',')))
+
+    old_page_order = Page.objects.filter(
+        user=request.user).order_by('position')
+
+    # re-order pages based on user sort
+    for idx, page in enumerate((old_page_order), 1):
+        page.position_temp = new_order.index(page.position) + 1
+        # 1000 is an arbitrary value. Can be any number that is higher
+        # than the maximum amount of bm's that will be stored
+        page.position = idx + 1000
+        page.save()
+
+    for page in old_page_order:
+        page.position = page.position_temp
+        page.position_temp = None
+        page.save()
+
+    data = {'success': True}
+    return JsonResponse(data)

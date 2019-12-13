@@ -18,36 +18,37 @@
     <ul class="list-unstyled mx-4">
         <!-- list all user pages -->
         <h5>Pages</h5>
-        {% for name in all_page_names %}
-        <!-- <li {% if name == page %} class="active" {% endif %}> -->
-        <li class="{% if name == page %}active{% endif %}">
-            <div class="clearfix">
-                <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
-                    {% if name == page %}
-                    <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
-                            aria-hidden="true"></i></a>
-                    <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
-                            aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a>
-                    {% endif %}
-                </a>
-            </div>
+        <div id="page-titles">
+            {% for name in all_page_names %}
+            <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
+                <div class="clearfix">
+                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}} {{name.position}}
+                        {% if name.name == page %}
+                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
+                                aria-hidden="true"></i></a>
+                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
+                                aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a>
+                        {% endif %}
+                    </a>
+                </div>
 
-            <!-- edit page form -->
-            {% if name == page %}
-            <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
-                {% endif %}>
-                {% csrf_token %}
-                {% for i in edit_page_form %}
-                <p>{{ i.label_tag }} <br />
-                    {{ i }}</p>
-                <small>{{ i.errors }}</small>
-                {% endfor %}
-                <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
-            </form>
+                <!-- edit page form -->
+                {% if name == page %}
+                <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
+                    {% endif %}>
+                    {% csrf_token %}
+                    {% for i in edit_page_form %}
+                    <p>{{ i.label_tag }} <br />
+                        {{ i }}</p>
+                    <small>{{ i.errors }}</small>
+                    {% endfor %}
+                    <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
+                </form>
 
-            {% endif %}
-        </li>
-        {% endfor %}
+                {% endif %}
+            </li>
+            {% endfor %}
+        </div>
 
         <!-- add page form -->
         <li class="mx-3 my-2">

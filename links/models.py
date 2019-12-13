@@ -25,6 +25,9 @@ class Page(models.Model):
     position = models.PositiveIntegerField(
         null=False, blank=False
     )
+    position_temp = models.PositiveIntegerField(
+        null=True, blank=True
+    )
     num_of_columns = models.PositiveIntegerField(
         default=4, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
