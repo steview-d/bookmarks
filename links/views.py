@@ -147,20 +147,20 @@ def page_sort(request):
     old_page_order = Page.objects.filter(
         user=request.user).order_by('position')
 
+    page_limit = settings.LINKS_PREM_MAX_PAGES
+
     # re-order pages based on user sort
     for idx, page in enumerate((old_page_order), 1):
         page.position_temp = new_order.index(page.position) + 1
         # 1000 is an arbitrary value. Can be any number that is higher
         # than the maximum amount of bm's that will be stored
-        page.position = idx + 1000
+        page.position = idx + page_limit
         page.save()
 
     for page in old_page_order:
         page.position = page.position_temp
         page.position_temp = None
         page.save()
-
-    print(settings.LINKS_PRIZE)
 
     data = {'success': True}
     return JsonResponse(data)
