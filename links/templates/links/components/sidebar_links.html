@@ -17,8 +17,8 @@
     <hr>
     <!-- list all user pages -->
     <h5 class="mx-4">Pages</h5>
-    <ul id="page-sort-container" class="list-unstyled mx-4 py-2">
-        <div id="page-titles" class="my-2">
+    <div id="page-sort-container" class="mx-4 py-2">
+        <ul id="page-titles" class="list-unstyled my-2">
             {% for name in all_page_names %}
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
                 <div class="clearfix">
@@ -48,8 +48,8 @@
                 {% endif %}
             </li>
             {% endfor %}
-        </div>
-    </ul>
+        </ul>
+    </div>
     <ul class="list-unstyled mx-4">
         <!-- add page form -->
         <li class="mx-3 my-2">

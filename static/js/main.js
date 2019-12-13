@@ -27,12 +27,12 @@ $(document).ready(function() {
         $(this).submit();
     });
 
-    // --------------------------------
     // Page Sorting
-    // --------------------------------
+    // Use jQueryUI to sort page names then send new order
+    // for processing using ajax
     $("#page-titles").sortable({
-        containment: "#page-sort-container", // Need to make bigger
-        // containment: ui.item.parent().attr('id'),
+        containment: "#page-sort-container", 
+        delay: 200,
         cursor: "grabbing",
         axis: "y",
         stop: function() {
@@ -47,7 +47,6 @@ $(document).ready(function() {
             postData = newOrder.join(",");
 
             $.ajax({
-                // data: postData,
                 type: "POST",
                 dataType: "json",
                 data: {
