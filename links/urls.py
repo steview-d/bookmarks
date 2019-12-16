@@ -11,7 +11,7 @@ urlpatterns = [
          name="change_num_columns"),
     path('page_sort', page_sort, name="page_sort"),
     path('<page>', links, name="links"),
-    path('<page>/<num_of_columns>/arrange',
+    path('<page>/arrange',
          arrange_collections,
          name="arrange_collections"),
 ]

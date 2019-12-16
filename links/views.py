@@ -82,7 +82,7 @@ def links(request, page):
     # generate collection names & order
     num_of_columns = page.num_of_columns
     if num_of_columns != 1:
-        # get the display order for the collections from the db
+        # get the collection order for the collections from the db
         collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         collection_list = copy.deepcopy(collection_order)
@@ -166,7 +166,7 @@ def page_sort(request):
     return JsonResponse(data)
 
 
-def arrange_collections(request, page, num_of_columns):
+def arrange_collections(request, page):
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
@@ -176,15 +176,61 @@ def arrange_collections(request, page, num_of_columns):
         user__username=request.user).filter(
         page__name=page.name
         ).order_by('position')
-    print(collections)
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     # stuff
 
+    # generate collection names & order
+    num_of_columns = page.num_of_columns
+    if num_of_columns != 1:
+        # get the collection order for the collections from the db
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(page.num_of_columns)))
+        collection_list = copy.deepcopy(collection_order)
+
+        # put collection names into a list. add them in order based on
+        # the value of collection.position and map this to the structure
+        # of collection_list
+        count = 0
+        for col in range(num_of_columns):
+            if collection_list[col] != []:
+                for pos in range(len(collection_list[col])):
+                    count += 1
+                    collection_name = get_object_or_404(
+                        Collection,
+                        page__name=page.name,
+                        user=request.user,
+                        position=count
+                    )
+                    collection_list[col][pos] = str(collection_name)
+    else:
+        # single columm collection display
+        collection_list = [[]]
+        if collections.count() > 0:
+            for i in range(collections.count()):
+                collection_name = get_object_or_404(
+                    Collection,
+                    page__name=page.name,
+                    user=request.user,
+                    position=i+1
+                )
+                collection_list[0].append(str(collection_name))
+
+    #
+    #
+    print(type(page))
+    print(type(num_of_columns))
+    print(collection_list)
+    #
+    #
+
     context = {"page": page.name,
-               "all_page_names": all_pages, }
+               "num_of_columns": num_of_columns,
+               "column_width": 100 / num_of_columns,
+               "all_page_names": all_pages,
+               "collection_data": collection_list, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/arrange_collections.html', context)

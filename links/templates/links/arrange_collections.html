@@ -24,7 +24,8 @@
             <div class="row">
                 <!-- section to choose number of columns - temp -->
                 <div class="d-inline-block mx-2">
-                    <span><a href="{% url 'links' page=page %}" class="btn btn-sm btn-info" role="button">Back</a></span>
+                    <span><a href="{% url 'links' page=page %}" class="btn btn-sm btn-info"
+                            role="button">Back</a></span>
                     <p>Here you can arrange the collections on the page in a way that suits you. You can</p>
                     <ul>
                         <li>Change the order collections are displayed within their columns</li>
@@ -34,6 +35,19 @@
                 </div>
             </div>
             <h5>Collections</h5>
+            <div class="row">
+                {% for column in collection_data %}
+                <div class=" column" style="width: {{ column_width }}%">
+                    {% if column %}
+                    {% for collection in column %}
+                    <ul class="list-unstyled">
+                        <li class="badge badge-primary m-2 p-2" style="font-size: 1rem;">{{ collection }}</li>
+                    </ul>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
 
 
         </div>
