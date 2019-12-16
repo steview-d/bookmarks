@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import links, page_sort, arrange_collections
+from .views import links, page_sort, arrange_collections, collection_sort
 # from .utils import start_app, change_num_columns
 from .utils import general_utils, collection_utils
 
@@ -10,6 +10,7 @@ urlpatterns = [
          collection_utils.change_num_columns,
          name="change_num_columns"),
     path('page_sort', page_sort, name="page_sort"),
+    path('arrange/collection_sort', collection_sort, name="collection_sort"),
     path('<page>', links, name="links"),
     path('<page>/arrange',
          arrange_collections,

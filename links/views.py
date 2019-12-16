@@ -162,4 +162,11 @@ def arrange_collections(request, page):
     return render(request, 'links/arrange_collections.html', context)
 
 
-# def collection_sort_in_
+def collection_sort(request):
+    qdata = request.POST.get('new_collection_order', None)
+    print("DATA: ", qdata)
+
+    # do magic
+
+    data = {'success': True}
+    return JsonResponse(data)
