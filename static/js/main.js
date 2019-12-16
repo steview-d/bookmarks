@@ -47,7 +47,6 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "POST",
-                dataType: "json",
                 data: {
                     new_page_order: postData,
                     csrfmiddlewaretoken: csrftoken
@@ -62,14 +61,30 @@ $(document).ready(function() {
         }
     });
 
-    var qqq = [[], [], [], [], []];
+
+    // Collection Sorting
+    // Use jQueryUI to sort collections into preferred columns and positions
+    // and then send new order for processing using ajax
+    var new_collection_order = [[], [], [], [], []];
     function buildList(columnNum, columnData) {
-        qqq[columnNum-1] = columnData;
+        new_collection_order[columnNum-1] = columnData;
         return;
     }
 
-    function collection_order_ajax_call() {
-        // tbc....
+    function collection_order_ajax_call(postData) {
+        $.ajax({
+            type: "POST",
+            data: {
+                new_collection_order: postData,
+                csrfmiddlewaretoken: csrftoken
+            },
+            url: "collection_sort",
+            success: function(data) {
+                if (data.success) {
+                    location.reload();
+                }
+            }
+        });
     }
 
     // Collection Sorting
@@ -89,24 +104,9 @@ $(document).ready(function() {
             buildList(1, columnData);
         },
         stop: function() {
-            postData = JSON.stringify(qqq);
-            console.log("HERE!!!!: ", postData);
-            console.log(typeof(postData));
-
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                data: {
-                    new_collection_order: postData,
-                    csrfmiddlewaretoken: csrftoken
-                },
-                url: "collection_sort",
-                success: function(data) {
-                    if (data.success) {
-                        location.reload();
-                    }
-                }
-            });
+            let postData = JSON.stringify(new_collection_order);
+            // send the new collection orders to the server
+            collection_order_ajax_call(postData);
         }
 
     });
@@ -125,7 +125,9 @@ $(document).ready(function() {
             buildList(2, columnData);
         },
         stop: function() {
-            console.log(qqq);
+            postData = JSON.stringify(qqq);
+            // send the new collection orders to the server
+            collection_order_ajax_call();
         }
 
     });
@@ -144,7 +146,9 @@ $(document).ready(function() {
             buildList(3, columnData);
         },
         stop: function() {
-            console.log(qqq);
+            postData = JSON.stringify(qqq);
+            // send the new collection orders to the server
+            collection_order_ajax_call();
         }
 
     });
@@ -163,7 +167,9 @@ $(document).ready(function() {
             buildList(4, columnData);
         },
         stop: function() {
-            console.log(qqq);
+            postData = JSON.stringify(qqq);
+            // send the new collection orders to the server
+            collection_order_ajax_call();
         }
 
     });
@@ -182,7 +188,9 @@ $(document).ready(function() {
             buildList(5, columnData);
         },
         stop: function() {
-            console.log(qqq);
+            postData = JSON.stringify(qqq);
+            // send the new collection orders to the server
+            collection_order_ajax_call();
         }
 
     });
