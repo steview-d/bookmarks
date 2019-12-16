@@ -33,40 +33,43 @@
                         {% endfor %}
                         {% endwith %}
                     </span>
+                    <span class="ml-5">
+                        <a href="{% url 'arrange_collections' page=page num_of_columns=num_of_columns %}" class="btn btn-sm btn-info" role="button">Arrange Collections</a>
+                    </span>
                 </div>
             </div>
             <div class="row">
                 {% for column in bm_data %}
-                <div class="column" style="width: {{ column_width }}%">
-                    {% if column %}
-                    {% for k, v in column.items %}
-                        <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
-                            <h5>{{ k|title }} | {{ v.position }}</h5>
-                            <a href="#" class=""><i class="fa fa-trash-o text-danger" aria-hidden="true"
-                                data-toggle="modal" data-target="#modal-{{ k|replace_space }}"></i></a>
-                            
-                            <!-- settings / rename collection button -->
-                            <!-- <a href="#" class=""><i class="fa fa-cog text-dark edit-page-btn"
+                <div class=" column" style="width: {{ column_width }}%">
+                            {% if column %}
+                            {% for k, v in column.items %}
+                            <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
+                                <h5>{{ k|title }} | {{ v.position }}</h5>
+                                <a href="#" class=""><i class="fa fa-trash-o text-danger" aria-hidden="true"
+                                        data-toggle="modal" data-target="#modal-{{ k|replace_space }}"></i></a>
+
+                                <!-- settings / rename collection button -->
+                                <!-- <a href="#" class=""><i class="fa fa-cog text-dark edit-page-btn"
                                             aria-hidden="true"></i></a> -->
 
-                            {% for item in v %}
-                            <li id="{{item.position}}_." style="margin: 0.5rem">
-                                <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                    <div class="link-title">{{ item.title }}</div>
-                                    <div class="link-desc desc-trunc">{{ item.description }}</div>
-                                    <div class="link-url">{{ item }}</div>
-                                </a>
-                            </li>
+                                {% for item in v %}
+                                <li id="{{item.position}}_." style="margin: 0.5rem">
+                                    <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                        <div class="link-title">{{ item.title }}</div>
+                                        <div class="link-desc desc-trunc">{{ item.description }}</div>
+                                        <div class="link-url">{{ item }}</div>
+                                    </a>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                            {% include 'links/components/collection_delete_modal.html' with collection=k %}
                             {% endfor %}
-                            
-                        </ul>
-                        {% include 'links/components/collection_delete_modal.html' with collection=k %}
-                    {% endfor %}
-                    {% include 'links/components/add_new_collection.html' with column=forloop.counter %}
-                    {% else %}
-                    <!-- put an 'add collection to this column' button here -->
-                    {% include 'links/components/add_new_collection.html' with column=forloop.counter is_empty='yes' %}
-                    {% endif %}
+                            {% include 'links/components/add_new_collection.html' with column=forloop.counter %}
+                            {% else %}
+                            <!-- put an 'add collection to this column' button here -->
+                            {% include 'links/components/add_new_collection.html' with column=forloop.counter is_empty='yes' %}
+                            {% endif %}
                 </div>
                 {% endfor %}
             </div>

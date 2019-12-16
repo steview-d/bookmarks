@@ -164,3 +164,27 @@ def page_sort(request):
 
     data = {'success': True}
     return JsonResponse(data)
+
+
+def arrange_collections(request, page, num_of_columns):
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='qhome')  # qhome currently, to see errs
+
+    collections = Collection.objects.filter(
+        user__username=request.user).filter(
+        page__name=page.name
+        ).order_by('position')
+    print(collections)
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    # stuff
+
+    context = {"page": page.name,
+               "all_page_names": all_pages, }
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/arrange_collections.html', context)

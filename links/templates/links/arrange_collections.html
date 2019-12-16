@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}Arrange{% endblock %}
+
+{% block content %}
+
+<!-- check if needed? -->
+{% load replace_space %}
+
+<div class="flex-wrapper">
+
+    <!-- Sidebar -->
+    {% include 'links/components/sidebar_links.html' %}
+
+    <!-- Content -->
+    <div id="content">
+        {% include 'top-nav.html' %}
+
+        <!-- messages -->
+        {% include 'messages.html' %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- section to choose number of columns - temp -->
+                <div class="d-inline-block mx-2">
+                    <span><a href="{% url 'links' page=page %}" class="btn btn-sm btn-info" role="button">Back</a></span>
+                    <p>Here you can arrange the collections on the page in a way that suits you. You can</p>
+                    <ul>
+                        <li>Change the order collections are displayed within their columns</li>
+                        <li>Change the order the columns are displayed on the page</li>
+                        <li>Move a collection to a different column on this page, or any other</li>
+                    </ul>
+                </div>
+            </div>
+            <h5>Collections</h5>
+
+
+        </div>
+        <!-- banner ad -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block csrf_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
+{% endblock %}
