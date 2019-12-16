@@ -146,16 +146,11 @@ def arrange_collections(request, page):
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
-    # stuff
-
     num_of_columns = page.num_of_columns
 
     # generate collection names & order
     collection_list = collection_utils.make_collection_list(
         request, page, num_of_columns, collections)
-
-    #
-    #
 
     context = {"page": page.name,
                "num_of_columns": num_of_columns,
@@ -165,3 +160,6 @@ def arrange_collections(request, page):
     context = is_premium(request.user, context)
 
     return render(request, 'links/arrange_collections.html', context)
+
+
+# def collection_sort_in_
