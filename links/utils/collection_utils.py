@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.db.models import Max
 from django.shortcuts import get_object_or_404, redirect
 
+import copy
 import itertools
 import json
 import re
@@ -58,6 +59,44 @@ def validate_name(request, collections, page):
         return False
     else:
         return True
+
+
+def make_collection_list(request, page, num_of_columns, collections):
+    if num_of_columns != 1:
+        # get the collection order for the collections from the db
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(page.num_of_columns)))
+        collection_list = copy.deepcopy(collection_order)
+
+        # put collection names into a list. add them in order based on
+        # the value of collection.position and map this to the structure
+        # of collection_list
+        count = 0
+        for col in range(num_of_columns):
+            if collection_list[col] != []:
+                for pos in range(len(collection_list[col])):
+                    count += 1
+                    collection_name = get_object_or_404(
+                        Collection,
+                        page__name=page.name,
+                        user=request.user,
+                        position=count
+                    )
+                    collection_list[col][pos] = str(collection_name)
+    else:
+        # single columm collection display
+        collection_list = [[]]
+        if collections.count() > 0:
+            for i in range(collections.count()):
+                collection_name = get_object_or_404(
+                    Collection,
+                    page__name=page.name,
+                    user=request.user,
+                    position=i+1
+                )
+                collection_list[0].append(str(collection_name))
+
+    return collection_list
 
 
 def add_collection(request, current_page):

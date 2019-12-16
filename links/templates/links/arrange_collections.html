@@ -38,6 +38,7 @@
             <div class="row">
                 {% for column in collection_data %}
                 <div class=" column" style="width: {{ column_width }}%">
+                    <h5 class="badge badge-warning px-2 mx-2 my-3">Column {{forloop.counter}}</h5>
                     {% if column %}
                     {% for collection in column %}
                     <ul class="list-unstyled">
