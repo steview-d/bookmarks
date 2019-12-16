@@ -82,7 +82,7 @@ def make_collection_list(request, page, num_of_columns, collections):
                         user=request.user,
                         position=count
                     )
-                    collection_list[col][pos] = str(collection_name)
+                    collection_list[col][pos] = (collection_name)
     else:
         # single columm collection display
         collection_list = [[]]
@@ -94,7 +94,7 @@ def make_collection_list(request, page, num_of_columns, collections):
                     user=request.user,
                     position=i+1
                 )
-                collection_list[0].append(str(collection_name))
+                collection_list[0].append((collection_name))
 
     return collection_list
 
