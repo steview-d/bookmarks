@@ -112,6 +112,7 @@ $(document).ready(function() {
     });
     $("#column-2").sortable({
         containment: "#collections-container",
+        cursor: "grabbing",
         connectWith: ['#column-1, #column-2', '#column-3', '#column-4', '#column-5'],
         deactivate: function() {
             let data = $(this).sortable("serialize");
@@ -125,7 +126,7 @@ $(document).ready(function() {
             buildList(2, columnData);
         },
         stop: function() {
-            postData = JSON.stringify(qqq);
+            let postData = JSON.stringify(new_collection_order);
             // send the new collection orders to the server
             collection_order_ajax_call();
         }
@@ -133,6 +134,7 @@ $(document).ready(function() {
     });
     $("#column-3").sortable({
         containment: "#collections-container",
+        cursor: "grabbing",
         connectWith: ['#column-1, #column-2', '#column-3', '#column-4', '#column-5'],
         deactivate: function() {
             let data = $(this).sortable("serialize");
@@ -146,7 +148,7 @@ $(document).ready(function() {
             buildList(3, columnData);
         },
         stop: function() {
-            postData = JSON.stringify(qqq);
+            let postData = JSON.stringify(new_collection_order);
             // send the new collection orders to the server
             collection_order_ajax_call();
         }
@@ -154,6 +156,7 @@ $(document).ready(function() {
     });
     $("#column-4").sortable({
         containment: "#collections-container",
+        cursor: "grabbing",
         connectWith: ['#column-1, #column-2', '#column-3', '#column-4', '#column-5'],
         deactivate: function() {
             let data = $(this).sortable("serialize");
@@ -167,7 +170,7 @@ $(document).ready(function() {
             buildList(4, columnData);
         },
         stop: function() {
-            postData = JSON.stringify(qqq);
+            let postData = JSON.stringify(new_collection_order);
             // send the new collection orders to the server
             collection_order_ajax_call();
         }
@@ -175,6 +178,7 @@ $(document).ready(function() {
     });
     $("#column-5").sortable({
         containment: "#collections-container",
+        cursor: "grabbing",
         connectWith: ['#column-1, #column-2', '#column-3', '#column-4', '#column-5'],
         deactivate: function() {
             let data = $(this).sortable("serialize");
@@ -188,7 +192,7 @@ $(document).ready(function() {
             buildList(5, columnData);
         },
         stop: function() {
-            postData = JSON.stringify(qqq);
+            let postData = JSON.stringify(new_collection_order);
             // send the new collection orders to the server
             collection_order_ajax_call();
         }
