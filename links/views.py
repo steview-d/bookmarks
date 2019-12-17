@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
+import copy
 import json
 
 from premium.utils import is_premium
@@ -165,24 +166,52 @@ def arrange_collections(request, page):
 
 
 def collection_sort(request, page):
-    qdata = request.POST.get('new_collection_order', None)
+    post_data = request.POST.get('new_collection_order', None)
+    jdata = json.loads(post_data)
+    raw_collection_order = []
 
-    jdata = json.loads(qdata)
-    print(jdata)
-    print(type(jdata))
-    sort_data = []
-
+    # convert posted data to a list in same format as collection_order_[x]
     for x in range(len(jdata)):
-        sort_data.append(jdata[x].split(','))
-        for y in range(len(sort_data[x])):
-            if sort_data[x][y] != '':
-                sort_data[x][y] = int(sort_data[x][y])
+        raw_collection_order.append(jdata[x].split(','))
+        for y in range(len(raw_collection_order[x])):
+            if raw_collection_order[x][y] != '':
+                raw_collection_order[x][y] = int(raw_collection_order[x][y])
             else:
-                sort_data[x].pop(y)
-
-    print(sort_data)
+                raw_collection_order[x].pop(y)
 
     # do magic
+
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='qhome')
+
+    # get collections
+    collections = Collection.objects.filter(
+        user__username=request.user).filter(
+        page__name=page.name
+        ).order_by('position')
+
+    # get current collection order
+    current_collection_order = json.loads(
+        eval('page.collection_order_'+str(page.num_of_columns)))
+    collection_list = copy.deepcopy(current_collection_order)
+
+    print("-------------------------------------------------")
+    print("Original Order:")
+    print(collection_list)
+    print("-------------------------------------------------")
+    print("New Order:")
+    print(raw_collection_order)
+    print("-------------------------------------------------")
+    print(collections)
+
+    # update current collection order
+    print("Coll Name  |  Coll Pos")
+    for i in range(collections.count()):
+        print(collections[i].name, "           ", collections[i].position)
+
+    # update non current collection orders
 
     data = {'success': True}
     return JsonResponse(data)
