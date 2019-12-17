@@ -164,7 +164,7 @@ def arrange_collections(request, page):
     return render(request, 'links/arrange_collections.html', context)
 
 
-def collection_sort(request):
+def collection_sort(request, page):
     qdata = request.POST.get('new_collection_order', None)
 
     jdata = json.loads(qdata)
@@ -175,7 +175,11 @@ def collection_sort(request):
     for x in range(len(jdata)):
         sort_data.append(jdata[x].split(','))
         for y in range(len(sort_data[x])):
-            sort_data[x][y] = int(sort_data[x][y])
+            if sort_data[x][y] != '':
+                sort_data[x][y] = int(sort_data[x][y])
+            else:
+                sort_data[x].pop(y)
+
     print(sort_data)
 
     # do magic

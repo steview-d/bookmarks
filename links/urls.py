@@ -10,9 +10,9 @@ urlpatterns = [
          collection_utils.change_num_columns,
          name="change_num_columns"),
     path('page_sort', page_sort, name="page_sort"),
-    path('arrange/collection_sort', collection_sort, name="collection_sort"),
     path('<page>', links, name="links"),
     path('<page>/arrange',
          arrange_collections,
          name="arrange_collections"),
+    path('<page>/collection_sort', collection_sort, name="collection_sort"),
 ]
