@@ -3,6 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
+import json
+
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils
 from .forms import AddNewPageForm, EditPageForm
@@ -164,7 +166,17 @@ def arrange_collections(request, page):
 
 def collection_sort(request):
     qdata = request.POST.get('new_collection_order', None)
-    print("DATA: ", qdata)
+
+    jdata = json.loads(qdata)
+    print(jdata)
+    print(type(jdata))
+    sort_data = []
+
+    for x in range(len(jdata)):
+        sort_data.append(jdata[x].split(','))
+        for y in range(len(sort_data[x])):
+            sort_data[x][y] = int(sort_data[x][y])
+    print(sort_data)
 
     # do magic
 

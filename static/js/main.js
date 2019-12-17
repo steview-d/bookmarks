@@ -70,7 +70,6 @@ $(document).ready(function() {
     function buildList(columnNum, columnData) {
         // new_collection_order[columnNum-1] = columnData;
         new_collection_order[columnNum] = columnData;
-        console.log(new_collection_order);
         return;
     }
 
@@ -87,7 +86,8 @@ $(document).ready(function() {
             containment: "#collections-container",
             cursor: "grabbing",
             connectWith: [
-                "#column-1, #column-2",
+                "#column-1",
+                "#column-2",
                 "#column-3",
                 "#column-4",
                 "#column-5"
@@ -97,8 +97,8 @@ $(document).ready(function() {
                 data = data.split("[]=.");
                 data.pop();
 
-                let newOrder = data.map(x => {
-                    return x.replace("&", "");
+                let newOrder = data.map(i => {
+                    return i.replace("&", "");
                 });
                 columnData = newOrder.join(",");
                 buildList(idx, columnData);
