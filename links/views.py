@@ -180,6 +180,7 @@ def collection_sort(request, page):
         page__name=page.name
         ).order_by('position')
 
+    # can remove once done testing
     # get current collection order
     current_collection_order = json.loads(
         eval('page.collection_order_'+str(page.num_of_columns)))
@@ -196,12 +197,13 @@ def collection_sort(request, page):
 
     # flatten raw collection order
     flattened_raw = list(itertools.chain(*raw_collection_order))
+
     print("-------------------------------------------------")
     print("-------------------------------------------------")
     print("Original Order:")
     print(collection_list)
     print("-------------------------------------------------")
-    print(f"New Order: {page.num_of_columns} Column View")
+    print(f"Raw Order: {page.num_of_columns} Column View")
     print(raw_collection_order)
     print("-------------------------------------------------")
     print("-------------------------------------------------")
@@ -210,27 +212,85 @@ def collection_sort(request, page):
     for idx, i in enumerate((collections), 1):
         i.position = flattened_raw.index(idx) + 1
         # print(i, flattened_raw.index(idx)+1)
-        # i.save()
+        i.save()
 
     # update - current page column order / structure
-    count = 1
-    for col in range(len(raw_collection_order)):
-        for pos in range(len(raw_collection_order[col])):
-            raw_collection_order[col][pos] = count
-            count += 1
-    # print("Final Order:")
-    # print(raw_collection_order)
-    # print("-------------------------------------------------")
-    # print("-------------------------------------------------")
+    # count = 1
+    # for col in range(len(raw_collection_order)):
+    #     for pos in range(len(raw_collection_order[col])):
+    #         raw_collection_order[col][pos] = count
+    #         count += 1
 
-    # update non current collection orders
+    # get element num that is being moved
+    collection_to_move = int((
+        request.POST.get('collection_id', None)).replace('_.', ''))
+
+    # after move, get moved elements next position
+    # so if moving to pos 9, get pos 10
+    #
+
+    try:
+        next_position = flattened_raw[
+            flattened_raw.index(collection_to_move) + 1]
+    except IndexError:
+        next_position = 0
+
+    print("COLL2MOVE: ", collection_to_move)
+    print("NEXT POSITION: ", next_position)
+
+    # update collection orders
+    print()
+    new_collection_orders = []
     for i in range(2, 6):
         collection_order = json.loads(
             eval('page.collection_order_'+str(i)))
 
         print(f"collection_order_{i}")
         print(collection_order)
-        print()
+
+        # pop 'collection_to_move' from current position
+        for col in range(len(collection_order)):
+            if collection_to_move in collection_order[col]:
+                collection_order[col].remove(collection_to_move)
+
+        # print(f"collection_order_{i}")
+        # print(collection_order)
+        # print("next position: ", next_position)
+        # print()
+
+        # insert collection before 'next_position'
+        if next_position:
+            for col in range(len(collection_order)):
+                if next_position == collection_order[col][0]:
+                    print("COL POS ZERO: ", collection_order[col][0])
+
+                if next_position in collection_order[col]:
+                    # something here to check if next position is at
+                    # start of list, which means item should go in
+                    # prev list and if so, appened to prev column
+
+                    # if next_position == collection_order[col][0]:
+
+                    collection_order[col].append(collection_to_move)
+        else:
+            print()
+            collection_order[i-1].append(collection_to_move)
+
+        # sort all collection_order_[x] lists into 1-n order
+        count = 1
+        for col in range(len(collection_order)):
+            for pos in range(len(collection_order[col])):
+                collection_order[col][pos] = count
+                count += 1
+
+        new_collection_orders.append(collection_order)
+
+        # print(f"revised_collection_order_{i}")
+        # print(collection_order)
+        # print()
+
+    # if new .position value is known, for each collection_order_[x]
+    # just chuck it in either before or after the following (or prev) position
 
     print("-------------------------------------------------")
 
@@ -239,11 +299,11 @@ def collection_sort(request, page):
     # page.save()
 
     # # save new page collection orders to db
-    # page.collection_order_2 = raw_collection_orders[0]
-    # page.collection_order_3 = raw_collection_orders[1]
-    # page.collection_order_4 = raw_collection_orders[2]
-    # page.collection_order_5 = raw_collection_orders[3]
-    # page.save()
+    page.collection_order_2 = new_collection_orders[0]
+    page.collection_order_3 = new_collection_orders[1]
+    page.collection_order_4 = new_collection_orders[2]
+    page.collection_order_5 = new_collection_orders[3]
+    page.save()
 
     data = {'success': True}
     return JsonResponse(data)

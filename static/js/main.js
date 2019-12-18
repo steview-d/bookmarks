@@ -103,13 +103,15 @@ $(document).ready(function() {
                 columnData = newOrder.join(",");
                 buildList(idx, columnData);
             },
-            stop: function() {
+            stop: function(event, ui) {
                 let postData = JSON.stringify(new_collection_order);
                 // send the new collection orders to the server
+                // console.log(ui.item[0].id);
                 $.ajax({
                     type: "POST",
                     data: {
                         new_collection_order: postData,
+                        collection_id: ui.item[0].id,
                         csrfmiddlewaretoken: csrftoken
                     },
                     url: "collection_sort",
