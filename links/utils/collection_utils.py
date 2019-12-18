@@ -276,9 +276,7 @@ def delete_collection(request, page, collections):
         count = 1
         for col in range(len(collection_order)):
             for pos in range(len(collection_order[col])):
-                # if collection_order[col][pos]:
                 collection_order[col][pos] = count
-                # print(collection_order[col][pos])
                 count += 1
 
         new_collection_orders.append(collection_order)

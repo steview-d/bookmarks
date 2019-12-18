@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
 import copy
+import itertools
 import json
 
 from premium.utils import is_premium
@@ -121,8 +122,6 @@ def page_sort(request):
     # re-order pages based on user sort
     for idx, page in enumerate((old_page_order), 1):
         page.position_temp = new_order.index(page.position) + 1
-        # 1000 is an arbitrary value. Can be any number that is higher
-        # than the maximum amount of bm's that will be stored
         page.position = idx + page_limit
         page.save()
 
@@ -170,17 +169,6 @@ def collection_sort(request, page):
     jdata = json.loads(post_data)
     raw_collection_order = []
 
-    # convert posted data to a list in same format as collection_order_[x]
-    for x in range(len(jdata)):
-        raw_collection_order.append(jdata[x].split(','))
-        for y in range(len(raw_collection_order[x])):
-            if raw_collection_order[x][y] != '':
-                raw_collection_order[x][y] = int(raw_collection_order[x][y])
-            else:
-                raw_collection_order[x].pop(y)
-
-    # do magic
-
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
@@ -197,21 +185,65 @@ def collection_sort(request, page):
         eval('page.collection_order_'+str(page.num_of_columns)))
     collection_list = copy.deepcopy(current_collection_order)
 
+    # convert posted data to a list in same format as collection_order_[x]
+    for x in range(len(jdata)):
+        raw_collection_order.append(jdata[x].split(','))
+        for y in range(len(raw_collection_order[x])):
+            if raw_collection_order[x][y] != '':
+                raw_collection_order[x][y] = int(raw_collection_order[x][y])
+            else:
+                raw_collection_order[x].pop(y)
+
+    # flatten raw collection order
+    flattened_raw = list(itertools.chain(*raw_collection_order))
+    print("-------------------------------------------------")
     print("-------------------------------------------------")
     print("Original Order:")
     print(collection_list)
     print("-------------------------------------------------")
-    print("New Order:")
+    print(f"New Order: {page.num_of_columns} Column View")
     print(raw_collection_order)
     print("-------------------------------------------------")
-    print(collections)
+    print("-------------------------------------------------")
 
-    # update current collection order
-    print("Coll Name  |  Coll Pos")
-    for i in range(collections.count()):
-        print(collections[i].name, "           ", collections[i].position)
+    # update page position of collection
+    for idx, i in enumerate((collections), 1):
+        i.position = flattened_raw.index(idx) + 1
+        # print(i, flattened_raw.index(idx)+1)
+        # i.save()
+
+    # update - current page column order / structure
+    count = 1
+    for col in range(len(raw_collection_order)):
+        for pos in range(len(raw_collection_order[col])):
+            raw_collection_order[col][pos] = count
+            count += 1
+    # print("Final Order:")
+    # print(raw_collection_order)
+    # print("-------------------------------------------------")
+    # print("-------------------------------------------------")
 
     # update non current collection orders
+    for i in range(2, 6):
+        collection_order = json.loads(
+            eval('page.collection_order_'+str(i)))
+
+        print(f"collection_order_{i}")
+        print(collection_order)
+        print()
+
+    print("-------------------------------------------------")
+
+    # this bit temp
+    # page.collection_order_4 = raw_collection_order
+    # page.save()
+
+    # # save new page collection orders to db
+    # page.collection_order_2 = raw_collection_orders[0]
+    # page.collection_order_3 = raw_collection_orders[1]
+    # page.collection_order_4 = raw_collection_orders[2]
+    # page.collection_order_5 = raw_collection_orders[3]
+    # page.save()
 
     data = {'success': True}
     return JsonResponse(data)
