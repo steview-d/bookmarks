@@ -167,7 +167,6 @@ def arrange_collections(request, page):
 def collection_sort(request, page):
     post_data = request.POST.get('new_collection_order', None)
     jdata = json.loads(post_data)
-    raw_collection_order = []
 
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -182,11 +181,12 @@ def collection_sort(request, page):
 
     # can remove once done testing
     # get current collection order
-    current_collection_order = json.loads(
-        eval('page.collection_order_'+str(page.num_of_columns)))
-    collection_list = copy.deepcopy(current_collection_order)
+    # current_collection_order = json.loads(
+    #     eval('page.collection_order_'+str(page.num_of_columns)))
+    # collection_list = copy.deepcopy(current_collection_order)
 
     # convert posted data to a list in same format as collection_order_[x]
+    raw_collection_order = []
     for x in range(len(jdata)):
         raw_collection_order.append(jdata[x].split(','))
         for y in range(len(raw_collection_order[x])):
@@ -198,36 +198,24 @@ def collection_sort(request, page):
     # flatten raw collection order
     flattened_raw = list(itertools.chain(*raw_collection_order))
 
-    print("-------------------------------------------------")
-    print("-------------------------------------------------")
-    print("Original Order:")
-    print(collection_list)
-    print("-------------------------------------------------")
-    print(f"Raw Order: {page.num_of_columns} Column View")
-    print(raw_collection_order)
-    print("-------------------------------------------------")
-    print("-------------------------------------------------")
-
     # update page position of collection
     for idx, i in enumerate((collections), 1):
         i.position = flattened_raw.index(idx) + 1
-        # print(i, flattened_raw.index(idx)+1)
         i.save()
 
-    # update - current page column order / structure
-    # count = 1
-    # for col in range(len(raw_collection_order)):
-    #     for pos in range(len(raw_collection_order[col])):
-    #         raw_collection_order[col][pos] = count
-    #         count += 1
+    # print("-------------------------------------------------")
+    # print("-------------------------------------------------")
+    # print(f"Original Order: {page.num_of_columns} Column View")
+    # print(collection_list)
+    # print("-------------------------------------------------")
+    # print(f"Raw Order: {page.num_of_columns} Column View")
+    # print(raw_collection_order)
+    # print("-------------------------------------------------")
+    # print("-------------------------------------------------")
 
     # get element num that is being moved
     collection_to_move = int((
         request.POST.get('collection_id', None)).replace('_.', ''))
-
-    # after move, get moved elements next position
-    # so if moving to pos 9, get pos 10
-    #
 
     try:
         next_position = flattened_raw[
@@ -235,16 +223,37 @@ def collection_sort(request, page):
     except IndexError:
         next_position = 0
 
-    print("COLL2MOVE: ", collection_to_move)
+    print("COLLECTION2MOVE: ", collection_to_move)
     print("NEXT POSITION: ", next_position)
 
+    # to help identify where to move collection to in other columns
+    # use a 'dest_contain' var to match collection being moved to,
+    # and move it to that column, across all column views
+    # dest_contains =
+    for col in range(len(raw_collection_order)):
+        if collection_to_move in raw_collection_order[col]:
+            dest_contains_list = raw_collection_order[col]
+            # if destination column is empty (the 1 is the item being move in)
+            if len(dest_contains_list) == 1:
+                dest_contains = 0
+            # store a collection number from the column where the collection
+            # being moved, is being moved to. This allows us to iterate through
+            # columns, looking for this collection, and when found, put
+            # the collection being moved into the same column.
+            else:
+                if dest_contains_list[0] != collection_to_move:
+                    dest_contains = dest_contains_list[0]
+                else:
+                    dest_contains = dest_contains_list[1]
+            print("DEST CONTAINS: ", dest_contains)
+
     # update collection orders
-    print()
     new_collection_orders = []
     for i in range(2, 6):
         collection_order = json.loads(
             eval('page.collection_order_'+str(i)))
 
+        print()
         print(f"collection_order_{i}")
         print(collection_order)
 
@@ -253,28 +262,24 @@ def collection_sort(request, page):
             if collection_to_move in collection_order[col]:
                 collection_order[col].remove(collection_to_move)
 
-        # print(f"collection_order_{i}")
-        # print(collection_order)
-        # print("next position: ", next_position)
-        # print()
-
-        # insert collection before 'next_position'
-        if next_position:
+        if dest_contains:
+            print()
             for col in range(len(collection_order)):
-                if next_position == collection_order[col][0]:
-                    print("COL POS ZERO: ", collection_order[col][0])
-
-                if next_position in collection_order[col]:
-                    # something here to check if next position is at
-                    # start of list, which means item should go in
-                    # prev list and if so, appened to prev column
-
-                    # if next_position == collection_order[col][0]:
-
+                if dest_contains in collection_order[col]:
                     collection_order[col].append(collection_to_move)
         else:
-            print()
-            collection_order[i-1].append(collection_to_move)
+            # insert collection at next postition
+            if next_position:
+                for col in range(len(collection_order)):
+                    if next_position in collection_order[col]:
+                        # something here to check if next position is at
+                        # start of list, which means item should go in
+                        # prev list and if so, appened to prev column
+
+                        collection_order[col-1].append(collection_to_move)
+            else:
+                print()
+                collection_order[i-1].append(collection_to_move)
 
         # sort all collection_order_[x] lists into 1-n order
         count = 1
@@ -285,18 +290,7 @@ def collection_sort(request, page):
 
         new_collection_orders.append(collection_order)
 
-        # print(f"revised_collection_order_{i}")
-        # print(collection_order)
-        # print()
-
-    # if new .position value is known, for each collection_order_[x]
-    # just chuck it in either before or after the following (or prev) position
-
     print("-------------------------------------------------")
-
-    # this bit temp
-    # page.collection_order_4 = raw_collection_order
-    # page.save()
 
     # # save new page collection orders to db
     page.collection_order_2 = new_collection_orders[0]
