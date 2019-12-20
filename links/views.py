@@ -197,30 +197,23 @@ def collection_sort(request, page):
         i.position = flattened_raw.index(idx) + 1
         i.save()
 
-    # get element num that is being moved
+    # get collection / element number that is being moved
     collection_to_move = int((
         request.POST.get('collection_id', None)).replace('_.', ''))
-
-    # for moving collections into empty columns,
-    # get value of next position in list, after insertion
-    try:
-        next_position = flattened_raw[
-            flattened_raw.index(collection_to_move) + 1]
-    except IndexError:
-        # if inserting at the end of the list, set to 0
-        next_position = 0
 
     # to identify which column a collection should move to, use 'dest_contains'
     # this picks a collection in the destination column, so when moving a
     # collection, it's target will be the column containing this collection.
+    empty_column_num = 0
     for col in range(len(raw_collection_order)):
         if collection_to_move in raw_collection_order[col]:
             dest_contains_list = raw_collection_order[col]
             # if destination column is empty (the 1 is the item being moved in)
             if len(dest_contains_list) == 1:
                 dest_contains = 0
-            # store a collection number from the column where the collection
-            # being moved, is being moved to. This allows us to iterate through
+                empty_column_num = col + 1
+            # store a collection number from destination column for the
+            # collection being moved. This allows us to iterate through
             # columns, looking for this collection, and when found, put
             # the collection being moved into the same column.
             elif dest_contains_list[0] != collection_to_move:
@@ -244,18 +237,10 @@ def collection_sort(request, page):
             for col in range(len(collection_order)):
                 if dest_contains in collection_order[col]:
                     collection_order[col].append(collection_to_move)
-        # if column is empty
-        elif next_position:
-            # insert collection at next postition
-            for col in range(len(collection_order)):
-                if next_position in collection_order[col]:
-                    # something here to check if next position is at
-                    # start of list, which means item should go in
-                    # prev list and if so, appened to prev column
-                    collection_order[col-1].append(collection_to_move)
-        # if collection is being added at the very end
         else:
-            collection_order[i-1].append(collection_to_move)
+            # insert collection into blank column
+            insert_position = i if empty_column_num > i else empty_column_num
+            collection_order[insert_position - 1].append(collection_to_move)
 
         # sort all collection_order_[i] lists into 1-n order
         count = 1
@@ -275,3 +260,24 @@ def collection_sort(request, page):
 
     data = {'success': True}
     return JsonResponse(data)
+
+    # TODO
+    # Move most of code into collection utils, then see if can refactor
+    # and DRY with other functions
+
+    # TODO
+    # Add ability to rename collections
+
+    # TODO
+    # Currently, collections seem to bunch to the right, will be something
+    # to do with bit of code where I work from right to left if adding to
+    # a colum which doesn't exist (add collections code / view).
+    # To fix, maybe split it so it adds some to left if a certain condition
+    # is met?
+
+    # NOTE
+    # To fix empty column bug, if moving to an empty column, identify the
+    # empty column number. Then, for each collection_order_[i] move the
+    # collection to the empty column, UNLESS that column does not exist, in
+    # which case, add it to the end of the next available column, working
+    # over from the right.
