@@ -2,13 +2,13 @@ from django.shortcuts import redirect
 
 from links.models import Page
 
-from .page_utils import build_empty_collection_order
+from .page_utils import create_default_page
 
 
 def start_app(request):
     """
-    This function loads the app when coming from bm icon logo or after
-    logging in.
+    This function runs when coming to the main app from the bm icon logo
+    or after logging in.
     It first checks the user has at least 1 page. If no pages are found,
     the app will create a default 'home' page for the user.
     If pages already exists,  the app will either point to last page
@@ -19,19 +19,9 @@ def start_app(request):
         request (obj): The request object
     """
 
-    # check if any user data exists, and if not, create a page
+    # check if user has at least 1 page and if not, create one & redirect to it
     if not Page.objects.filter(user=request.user).exists():
-        page = Page(user=request.user,
-                    name="home",
-                    position=1,
-                    collection_order_2=build_empty_collection_order(2),
-                    collection_order_3=build_empty_collection_order(3),
-                    collection_order_4=build_empty_collection_order(4),
-                    collection_order_5=build_empty_collection_order(5),
-                    )
-
-        page.save()
-        return redirect('links', page="home")
+        create_default_page(request)
 
     # get last page data and redirect if applicable, otherwise load first page
     try:

@@ -61,7 +61,14 @@ def links(request, page):
     # delete page form
     if 'delete-page-form' in request.POST:
         page_utils.delete_page(request, page)
-        return redirect('links', page='home')
+
+        # if no pages left, create a default page & redirect to it
+        if not Page.objects.filter(user=request.user).exists():
+            page_utils.create_default_page(request)
+
+        # redirect to first page
+        page = Page.objects.get(user=request.user, position=1)
+        return redirect('links', page=page)
 
     # add a new collection
     if 'add-collection' in request.POST:
