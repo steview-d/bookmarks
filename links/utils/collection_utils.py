@@ -225,7 +225,8 @@ def add_collection(request, current_page):
     # add new collection to db
     new_collection = Collection()
     new_collection.user = request.user
-    new_collection.page = Page.objects.get(name=current_page)
+    new_collection.page = Page.objects.get(
+        user=request.user, name=current_page)
     new_collection.name = request.POST.get('collection_name')
     new_collection.position = insert_at_position
     new_collection.save()
