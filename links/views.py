@@ -278,20 +278,3 @@ def collection_sort(request, page):
 
     data = {'success': True}
     return JsonResponse(data)
-
-    # TODO
-    # Add ability to rename collections
-
-    # TODO
-    # Currently, collections seem to bunch to the right, will be something
-    # to do with bit of code where I work from right to left if adding to
-    # a colum which doesn't exist (add collections code / view).
-    # To fix, maybe split it so it adds some to left if a certain condition
-    # is met?
-
-    # NOTE
-    # To fix empty column bug, if moving to an empty column, identify the
-    # empty column number. Then, for each collection_order_[i] move the
-    # collection to the empty column, UNLESS that column does not exist, in
-    # which case, add it to the end of the next available column, working
-    # over from the right.
