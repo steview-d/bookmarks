@@ -1,7 +1,7 @@
 from .conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 import itertools
 import json
@@ -66,20 +66,27 @@ def links(request, page):
     # add a new collection
     if 'add-collection' in request.POST:
         # check name is allowed and if so, add to db
-        if collection_utils.validate_name(request, collections, page):
+        proposed_name = request.POST.get('collection_name')
+        if collection_utils.validate_name(
+                request, proposed_name, collections, page):
             collection_utils.add_collection(request, page)
 
         return redirect('links', page=page)
 
-    #
-    # TESTING
-    #
     # rename collection form
     if 'rename-collection-form' in request.POST:
         collection_position = request.POST.get('collection-position')
-        new_collection_name = request.POST.get('new-collection-name')
+        proposed_name = request.POST.get('new-collection-name')
 
-        print(collection_position, " | ", new_collection_name)
+        if collection_utils.validate_name(
+                request, proposed_name, collections, page):
+            collection_to_rename = get_object_or_404(
+                Collection, user=request.user,
+                page=page,
+                position=int(collection_position)
+            )
+            collection_to_rename.name = proposed_name
+            collection_to_rename.save()
         return redirect('links', page=page)
 
     # delete collection
