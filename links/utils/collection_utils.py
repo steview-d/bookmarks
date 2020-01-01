@@ -177,7 +177,7 @@ def add_collection(request, current_page):
             collection.position += 1
             collection.save()
 
-    # update collection_order_x list values
+    # update collection_order_[i] list values
     for i in range(2, 6):
         collection_order = json.loads(
             eval('page.collection_order_'+str(i)))

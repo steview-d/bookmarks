@@ -161,12 +161,18 @@ $topnav-spacer-height: 64px;
 }
 
 
-// ------------------------------------------------------- add /edit page forms
+// ------------------------------------------------------- add / edit page forms
 
 #add-page-form{
     display: none;
 }
 
 .edit-page-form{
+    display: none;
+}
+
+// ------------------------------------------------------- rename collection forms
+
+.rename-collection-form{
     display: none;
 }

@@ -26,6 +26,12 @@ $(document).ready(function() {
         $(this).submit();
     });
 
+    // rename collection toggle
+    $( ".rename-collection" ).on("click", function() {
+        $(this).next().slideToggle(200);
+    });
+
+
     // Page Sorting ---------------------------------------------------------//
     // Use jQueryUI to sort page names then send new order
     // for processing using ajax

@@ -71,6 +71,17 @@ def links(request, page):
 
         return redirect('links', page=page)
 
+    #
+    # TESTING
+    #
+    # rename collection form
+    if 'rename-collection-form' in request.POST:
+        collection_position = request.POST.get('collection-position')
+        new_collection_name = request.POST.get('new-collection-name')
+
+        print(collection_position, " | ", new_collection_name)
+        return redirect('links', page=page)
+
     # delete collection
     if 'delete-collection-form' in request.POST:
         collection_utils.delete_collection(request, page, collections)
@@ -260,10 +271,6 @@ def collection_sort(request, page):
 
     data = {'success': True}
     return JsonResponse(data)
-
-    # TODO
-    # Move most of code into collection utils, then see if can refactor
-    # and DRY with other functions
 
     # TODO
     # Add ability to rename collections
