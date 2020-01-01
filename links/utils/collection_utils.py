@@ -30,7 +30,7 @@ def change_num_columns(request, page, num):
     return redirect('links', page=page.name)
 
 
-def validate_name(request, collections, page):
+def validate_name(request, proposed_name, collections, page):
     """
     Check the requested name contains no disallowed chars and that the
     name is unique to the current page and user.
@@ -40,7 +40,7 @@ def validate_name(request, collections, page):
         collections (queryset): Collections for current page and user
         page (obj): The current page
     """
-    proposed_name = request.POST.get('collection_name')
+    # proposed_name = request.POST.get('collection_name')
 
     # check name contains only allowed chars
     allowed_chars = re.compile(r'[^-: a-zA-Z0-9.]')
@@ -53,7 +53,7 @@ def validate_name(request, collections, page):
 
     # check collection name is unique to page / user
     elif collections.filter(
-            name=request.POST.get('collection_name')).exists():
+            name=proposed_name).exists():
         messages.error(
             request, f"Collection name is in use, please choose another")
         return False
