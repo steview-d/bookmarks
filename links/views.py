@@ -8,7 +8,7 @@ import json
 
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils
-from .forms import AddNewPageForm, EditPageForm
+from .forms import AddNewPageForm, EditPageForm, AddBookmarkForm
 from .models import Bookmark, Collection, Page
 
 
@@ -289,11 +289,24 @@ def collection_sort(request, page):
 
 def add_bookmark(request, page):
 
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='qhome')  # qhome currently, to see errs
+
+    if 'add-bm-form' in request.POST:
+        print("Form Received!")
+
+        return redirect('links', page=page)
+
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
-    context = {"page": page,
-               "all_page_names": all_pages, }
+    add_bookmark_form = AddBookmarkForm(request.user, page)
+
+    context = {"page": page.name,
+               "all_page_names": all_pages,
+               "add_bookmark_form": add_bookmark_form}
     context = is_premium(request.user, context)
 
     return render(request, 'links/add_bookmark.html', context)

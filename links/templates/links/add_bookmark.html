@@ -21,11 +21,23 @@
             <div class="row">
                 <!-- section to choose number of columns - temp -->
                 <div class="d-inline-block mx-2">
-                    
                     <p>Here you can add a new bookmark</p>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-12">
+                    <form method="POST" class="border p-2 mt-3">
+                        <fieldset>
+                            <legend>Add Bookmark</legend>
+                            {% csrf_token %}
+    
+                            {{ add_bookmark_form.as_p }}
+        
+                            <input type="submit" name="add-bm-form" class="btn btn-info">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- banner ad -->
         {% include 'advert.html' with advert_path="img/ads/banner.png" %}

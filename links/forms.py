@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Page
+from .models import Page, Collection, Bookmark
 
 
 class PageForm(forms.ModelForm):
@@ -36,3 +36,17 @@ class EditPageForm(PageForm):
     class Meta:
         model = Page
         fields = ['name']
+
+
+class AddBookmarkForm(forms.ModelForm):
+
+    url = forms.URLField()
+
+    class Meta:
+        model = Bookmark
+        fields = ['url', 'title', 'description', 'collection']
+
+    def __init__(self, user, page, *args, **kwargs):
+        super(AddBookmarkForm, self).__init__(*args, **kwargs)
+        self.fields['collection'].queryset = Collection.objects.filter(
+            user=user, page=page)
