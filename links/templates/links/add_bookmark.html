@@ -32,7 +32,16 @@
                             <legend>Add Bookmark</legend>
                             {% csrf_token %}
     
-                            {{ add_bookmark_form.as_p }}
+                            {% for field in add_bookmark_form.visible_fields %}
+                            <div>{{ field.label }}</div>
+                            <div>{{ field.errors }}</div>
+                            {% if field.label == 'Url' %}
+                            <small id="url-validation-result">Url status: URL field is empty</small>
+                            {% endif %}
+                            <div>{{ field }}</div>
+                            <div>{{ field.help_text }}</div>
+
+                            {% endfor %}
 
                             <input type="submit" name="add-bm-form" class="btn btn-info">
                         </fieldset>

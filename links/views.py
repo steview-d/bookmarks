@@ -316,9 +316,9 @@ def add_bookmark(request, page):
 def check_valid_url(request):
 
     url = request.POST.get('urlToCheck', None)
+    data = {}
 
     if not url:
-        data = {'result': 'empty'}
         return JsonResponse(data)
 
     try:
@@ -326,9 +326,9 @@ def check_valid_url(request):
         response.raise_for_status()
 
     except req.exceptions.RequestException:
-        data = {'result': 'invalid'}
+        data['result'] = 'invalid'
 
     else:
-        data = {'result': 'valid'}
+        data['result'] = 'valid'
 
     return JsonResponse(data)

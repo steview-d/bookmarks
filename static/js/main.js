@@ -27,10 +27,11 @@ $(document).ready(function() {
     });
 
     // rename collection toggle
-    $( ".rename-collection" ).on("click", function() {
-        $(this).next().slideToggle(200);
+    $(".rename-collection").on("click", function() {
+        $(this)
+            .next()
+            .slideToggle(200);
     });
-
 
     // Page Sorting ---------------------------------------------------------//
     // Use jQueryUI to sort page names then send new order
@@ -131,9 +132,17 @@ $(document).ready(function() {
         });
     });
 
-    // url validation test
-    $("#test-btn").click(function(){
-        let urlToCheck = $('#id_url').val();
+    // Check URL in 'AddBookmarkForm' is valid
+    let urlTimer;
+    let timerLength = 1000;
+
+    $("#id_url").keyup(function() {
+        clearTimeout(urlTimer);
+        urlTimer = setTimeout(checkURL, timerLength);
+    });
+
+    function checkURL() {
+        let urlToCheck = $("#id_url").val();
 
         $.ajax({
             type: "POST",
@@ -143,17 +152,17 @@ $(document).ready(function() {
             },
             url: "/app/check_valid_url",
             success: function(data) {
-                if (data.result == 'empty') {
-                    console.log("No URL found");
-                } else if (data.result == 'valid') {
-                    console.log("Yes, URL is valid");
-                } else if (data.result == 'invalid') {
-                    console.log("No, URL is NOT valid");
-                } else {
-                    console.log("Blank!!");
+                switch (data.result) {
+                    case "valid":
+                        $("#url-validation-result").text("Url status: Valid");
+                        break;
+                    case "invalid":
+                        $("#url-validation-result").text("Url status: Invalid");
+                        break;
+                    default:
+                        $("#url-validation-result").text("Url status: URL field is empty");
                 }
             }
         });
-      });
-
+    }
 });
