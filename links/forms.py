@@ -40,7 +40,7 @@ class EditPageForm(PageForm):
 
 class AddBookmarkForm(forms.ModelForm):
 
-    url = forms.URLField()
+    # url = forms.URLField()
 
     class Meta:
         model = Bookmark

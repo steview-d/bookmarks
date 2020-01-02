@@ -130,4 +130,30 @@ $(document).ready(function() {
             }
         });
     });
+
+    // url validation test
+    $("#test-btn").click(function(){
+        let urlToCheck = $('#id_url').val();
+
+        $.ajax({
+            type: "POST",
+            data: {
+                urlToCheck: urlToCheck,
+                csrfmiddlewaretoken: csrftoken
+            },
+            url: "/app/check_valid_url",
+            success: function(data) {
+                if (data.result == 'empty') {
+                    console.log("No URL found");
+                } else if (data.result == 'valid') {
+                    console.log("Yes, URL is valid");
+                } else if (data.result == 'invalid') {
+                    console.log("No, URL is NOT valid");
+                } else {
+                    console.log("Blank!!");
+                }
+            }
+        });
+      });
+
 });

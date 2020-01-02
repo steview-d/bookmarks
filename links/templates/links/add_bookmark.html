@@ -26,13 +26,14 @@
             </div>
             <div class="row">
                 <div class="col-12">
+                    <button id="test-btn">Test</button>
                     <form method="POST" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Add Bookmark</legend>
                             {% csrf_token %}
     
                             {{ add_bookmark_form.as_p }}
-        
+
                             <input type="submit" name="add-bm-form" class="btn btn-info">
                         </fieldset>
                     </form>

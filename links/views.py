@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 import itertools
 import json
+import requests as req
 
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils
@@ -310,3 +311,24 @@ def add_bookmark(request, page):
     context = is_premium(request.user, context)
 
     return render(request, 'links/add_bookmark.html', context)
+
+
+def check_valid_url(request):
+
+    url = request.POST.get('urlToCheck', None)
+
+    if not url:
+        data = {'result': 'empty'}
+        return JsonResponse(data)
+
+    try:
+        response = req.head(url)
+        response.raise_for_status()
+
+    except req.exceptions.RequestException:
+        data = {'result': 'invalid'}
+
+    else:
+        data = {'result': 'valid'}
+
+    return JsonResponse(data)
