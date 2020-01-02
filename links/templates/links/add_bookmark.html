@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}Arrange{% endblock %}
+
+{% block content %}
+
+<div class="flex-wrapper">
+
+    <!-- Sidebar -->
+    {% include 'links/components/sidebar_links.html' %}
+
+    <!-- Content -->
+    <div id="content">
+        {% include 'top-nav.html' %}
+
+        <!-- messages -->
+        {% include 'messages.html' %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- section to choose number of columns - temp -->
+                <div class="d-inline-block mx-2">
+                    
+                    <p>Here you can add a new bookmark</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- banner ad -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block csrf_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
+{% endblock %}

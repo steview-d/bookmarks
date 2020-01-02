@@ -57,7 +57,7 @@ $(document).ready(function() {
                     new_page_order: postData,
                     csrfmiddlewaretoken: csrftoken
                 },
-                url: "page_sort",
+                url: "page-sort",
                 success: function(data) {
                     if (data.success) {
                         location.reload();
@@ -120,7 +120,7 @@ $(document).ready(function() {
                         collection_id: ui.item[0].id,
                         csrfmiddlewaretoken: csrftoken
                     },
-                    url: "collection_sort",
+                    url: "collection-sort",
                     success: function(data) {
                         if (data.success) {
                             location.reload();

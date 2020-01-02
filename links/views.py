@@ -285,3 +285,15 @@ def collection_sort(request, page):
 
     data = {'success': True}
     return JsonResponse(data)
+
+
+def add_bookmark(request, page):
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    context = {"page": page,
+               "all_page_names": all_pages, }
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/add_bookmark.html', context)
