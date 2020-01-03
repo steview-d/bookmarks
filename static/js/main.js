@@ -165,4 +165,12 @@ $(document).ready(function() {
             }
         });
     }
+
+    // bookmark options menu
+    $(".bm-options").on("click", function() {
+        // $("#sidebar, #content").toggleClass("display-switch"); // old code as example
+        event.preventDefault();
+        console.log("Oi");
+
+    });
 });
