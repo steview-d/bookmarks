@@ -1,8 +1,7 @@
 // ------------------------------------------------------------------ variables
 
-$white: #FFFFFF;
+$white: #ffffff;
 $topnav-spacer-height: 64px;
-
 
 // --------------------------------------------------------------------- mixins
 
@@ -16,14 +15,12 @@ $topnav-spacer-height: 64px;
     @include black-border;
 }
 
-
 // -------------------------------------------------- main display grid wrapper
 
 .flex-wrapper {
     display: flex;
     width: 100%;
 }
-
 
 // -------------------------------------------- top navbar for main app display
 
@@ -32,7 +29,7 @@ $topnav-spacer-height: 64px;
     z-index: 100;
     width: 100%;
     background-color: $white;
-    
+
     @media (min-width: 768px) {
         width: calc(100% - 300px);
     }
@@ -70,7 +67,6 @@ $topnav-spacer-height: 64px;
     }
 }
 
-
 // -------------------------------------------------------------------- sidebar
 
 #sidebar {
@@ -101,7 +97,6 @@ $topnav-spacer-height: 64px;
     }
 }
 
-
 // ---------------------------------------------------------- main content area
 
 #content {
@@ -117,27 +112,24 @@ $topnav-spacer-height: 64px;
     }
 }
 
-
 // ------------------------------------------------------ premium thanks center
 
- .premium-thanks-center {
-     display: flex;
-     min-height: calc(100vh - #{$topnav-spacer-height});
-     z-index: -100;
-     transform: translate(0 ,-10%);
- }
+.premium-thanks-center {
+    display: flex;
+    min-height: calc(100vh - #{$topnav-spacer-height});
+    z-index: -100;
+    transform: translate(0, -10%);
+}
 
- 
 // ------------------------------------------------------------- main links app
 
 .column {
-    color: black;  // temp placeholder
+    color: black; // temp placeholder
 }
 
-
-.link-title {
-    font-size: 1rem;
-}
+// .link-title {
+//     font-size: 1rem;
+// }
 
 .link-desc {
     font-size: 0.8rem;
@@ -160,19 +152,49 @@ $topnav-spacer-height: 64px;
     }
 }
 
+// ------------------------------------------------------ add / edit page forms
 
-// ------------------------------------------------------- add / edit page forms
-
-#add-page-form{
+#add-page-form {
     display: none;
 }
 
-.edit-page-form{
+.edit-page-form {
     display: none;
 }
 
-// ------------------------------------------------------- rename collection forms
+// ---------------------------------------------------- rename collection forms
 
-.rename-collection-form{
+.rename-collection-form {
+    display: none;
+}
+
+// ----------------------------------------------------------- bookmark options
+
+.bm-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bm-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.bm-title-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+}
+.bm-options-icon {
+    flex: 0 0 auto;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+.bm-icon-hide {
     display: none;
 }

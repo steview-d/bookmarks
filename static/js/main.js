@@ -167,10 +167,8 @@ $(document).ready(function() {
     }
 
     // bookmark options menu
-    $(".bm-options").on("click", function() {
-        // $("#sidebar, #content").toggleClass("display-switch"); // old code as example
-        event.preventDefault();
-        console.log("Oi");
-
+    $(".bm-icon-toggle").on("click", function() {
+        $(this).toggleClass('fa-caret-right fa-caret-left');
+        $(this).parent().next().toggle("slide", {direction: 'left'}, 300);
     });
 });

@@ -63,13 +63,30 @@
 
                         {% for item in v %}
                         <li id="{{item.position}}_." style="margin: 0.5rem">
-                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="link-title text-trunc">{{ item.title }}
-                                    <span class="bm-options float-right" style="display: inline-block;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+
+                            <div class="bm-container">
+                                <div class="bm-title">
+                                    <a href="{{ item }}" target="_blank"
+                                        class="bm-link bm-title-text text-decoration-none">
+                                        <span class="">{{ item.title }}</span>
+                                    </a>
+                                    <span class="bm-options-icon"><i class="fa fa-caret-right bm-icon-toggle"
+                                            aria-hidden="true"></i></span>
+                                    <span class="bm-icon-hide">
+                                        <span class="bm-options-icon qbm-icon-hide"><i class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i></span>
+                                        <span class="bm-options-icon qbm-icon-hide"><i class="fa fa-arrows-alt"
+                                                aria-hidden="true"></i></span>
+                                        <span class="bm-options-icon qbm-icon-hide"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></span>
+                                    </span>
                                 </div>
+                            </div>
+                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                 <div class="link-desc text-trunc">{{ item.description }}</div>
                                 <div class="link-url">{{ item }}</div>
                             </a>
+
                         </li>
                         {% endfor %}
 
