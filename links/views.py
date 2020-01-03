@@ -320,7 +320,9 @@ def add_bookmark(request, page):
                 collection__id=request.POST['collection']).aggregate(
                     Max('position')
             )
-            form.position = max_pos_value['position__max'] + 1
+
+            form.position = 1 if not max_pos_value['position__max'] else \
+                max_pos_value['position__max'] + 1
 
             if not form.description:
                 form.description = "No description found"
