@@ -160,7 +160,9 @@ $(document).ready(function() {
                         $("#url-validation-result").text("Url status: Invalid");
                         break;
                     default:
-                        $("#url-validation-result").text("Url status: URL field is empty");
+                        $("#url-validation-result").text(
+                            "Url status: URL field is empty"
+                        );
                 }
             }
         });
@@ -168,7 +170,12 @@ $(document).ready(function() {
 
     // bookmark options menu
     $(".bm-icon-toggle").on("click", function() {
-        $(this).toggleClass('fa-caret-right fa-caret-left');
-        $(this).parent().next().toggle("slide", {direction: 'left'}, 300);
+        $(this).toggleClass("fa-caret-down fa-caret-up");
+        $(this)
+            .parent()
+            .parent()
+            .parent()
+            .next()
+            .slideToggle("bm-icon-hide");
     });
 });
