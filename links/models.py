@@ -115,7 +115,7 @@ class Bookmark(models.Model):
         auto_now=True
     )
     position = models.PositiveIntegerField(
-        null=False, blank=False
+        null=False, blank=True
     )
     position_temp = models.PositiveIntegerField(
         null=True, blank=True
