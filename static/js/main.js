@@ -169,13 +169,19 @@ $(document).ready(function() {
     }
 
     // bookmark options menu
-    $(".bm-icon-toggle").on("click", function() {
+    $(".bm-icon-toggle").on("click", function(e) {
+        e.preventDefault();
         $(this).toggleClass("fa-caret-down fa-caret-up");
         $(this)
             .parent()
             .parent()
             .parent()
             .next()
-            .slideToggle("bm-icon-hide");
+            .slideToggle("bm-icons");
+    });
+
+    // Stop browser following links when clicking options
+    $(".bm-icons-container").on("click", function(e) {
+        e.preventDefault();
     });
 });
