@@ -128,7 +128,7 @@
   font-size: 0.6rem;
 }
 
-.desc-trunc {
+.text-trunc {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

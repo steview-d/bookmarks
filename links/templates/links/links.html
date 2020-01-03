@@ -64,8 +64,8 @@
                         {% for item in v %}
                         <li id="{{item.position}}_." style="margin: 0.5rem">
                             <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="link-title">{{ item.title }}</div>
-                                <div class="link-desc desc-trunc">{{ item.description }}</div>
+                                <div class="link-title text-trunc">{{ item.title }}</div>
+                                <div class="link-desc text-trunc">{{ item.description }}</div>
                                 <div class="link-url">{{ item }}</div>
                             </a>
                         </li>

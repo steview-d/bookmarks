@@ -1,5 +1,7 @@
 from .conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Max
+
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -21,13 +23,22 @@ def links(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
-    bookmarks = Bookmark.objects.filter(
-        user__username=request.user
-        )
     collections = Collection.objects.filter(
-        user__username=request.user).filter(
+        user__username=request.user,
         page__name=page.name
         ).order_by('position')
+
+    bookmarks = Bookmark.objects.filter(
+        user__username=request.user,
+        collection__in=collections
+        )
+
+    # below moved up, before bookmarks - test this is ok
+    # ------------------------------
+    # collections = Collection.objects.filter(
+    #     user__username=request.user,
+    #     page__name=page.name
+    #     ).order_by('position')
 
     # page forms
     add_new_page_form = AddNewPageForm(
@@ -295,15 +306,34 @@ def add_bookmark(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
-    if 'add-bm-form' in request.POST:
-        print("Form Received!")
+    add_bookmark_form = AddBookmarkForm(request.user, page)
 
-        return redirect('links', page=page)
+    if 'add-bm-form' in request.POST:
+        add_bookmark_form = AddBookmarkForm(request.user, page, request.POST)
+
+        if add_bookmark_form.is_valid():
+            form = add_bookmark_form.save(commit=False)
+
+            # set position value to next highest value. ie, last on list
+            max_pos_value = Bookmark.objects.filter(
+                user__username=request.user,
+                collection__id=request.POST['collection']).aggregate(
+                    Max('position')
+            )
+            form.position = max_pos_value['position__max'] + 1
+
+            if not form.description:
+                form.description = "No description found"
+
+            add_bookmark_form.save()
+
+            return redirect('links', page=page)
+
+    else:
+        add_bookmark_form = AddBookmarkForm(request.user, page)
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
-
-    add_bookmark_form = AddBookmarkForm(request.user, page)
 
     context = {"page": page.name,
                "all_page_names": all_pages,
@@ -326,6 +356,7 @@ def check_valid_url(request):
         response.raise_for_status()
 
     except req.exceptions.RequestException:
+        # print(response)
         data['result'] = 'invalid'
 
     else:
