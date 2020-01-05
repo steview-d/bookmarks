@@ -11,7 +11,8 @@ import requests as req
 
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils, bookmark_utils
-from .forms import AddNewPageForm, EditPageForm, AddBookmarkForm, EditBookmarkForm
+from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
+                    EditBookmarkForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -352,7 +353,7 @@ def add_bookmark(request, page):
     return render(request, 'links/add_bookmark.html', context)
 
 
-def edit_bookmark(request, page, collection, bookmark):
+def edit_bookmark(request, page, bookmark):
 
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -369,7 +370,6 @@ def edit_bookmark(request, page, collection, bookmark):
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     context = {"page": page.name,
-               "collection": collection,
                "bookmark": bookmark_to_edit,
                "edit_bookmark_form": edit_bookmark_form,
                "all_page_names": all_pages,

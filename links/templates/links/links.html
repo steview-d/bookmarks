@@ -47,6 +47,9 @@
 
                     <!-- Render Collection Title & Options -->
                     <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
+                        <!-- ... -->
+                        <!-- ... -->
+                        <!-- ... -->
                         <div class="collection-container">
                             <div class="collection-title">
                                 <span class="collection-title-text">{{ k|title }}</span>
@@ -73,6 +76,9 @@
                         {% for item in v %}
                         <li id="{{item.position}}_." style="margin: 0.5rem">
                             <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                <!-- ... -->
+                                <!-- ... -->
+                                <!-- ... -->
                                 <div class="bm-container">
                                     <div class="bm-title">
                                         <span class="bm-title-text">{{ item.title }}</span>
@@ -83,7 +89,7 @@
                             </a>
                             <div class="bm-icons-show-hide">
                                 <div class="bm-icons-container">
-                                    <a href="{% url 'edit_bookmark' page=page collection=k bookmark=item.pk %}"
+                                    <a href="{% url 'edit_bookmark' page=page bookmark=item.pk %}"
                                         class="btn btn-secondary bm-icon" role="button">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         <small class="ml-1">Edit</small>
