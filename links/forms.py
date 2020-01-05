@@ -39,6 +39,11 @@ class EditPageForm(PageForm):
 
 
 class AddBookmarkForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.Textarea()
+    )
+
+    # collection = forms.ChoiceField()
 
     class Meta:
         model = Bookmark
@@ -47,10 +52,13 @@ class AddBookmarkForm(forms.ModelForm):
     def __init__(self, user, page, *args, **kwargs):
         super(AddBookmarkForm, self).__init__(*args, **kwargs)
         self.fields['collection'].queryset = Collection.objects.filter(
-            user=user, page=page)
+            user=user, page=page).order_by('position')
 
 
 class EditBookmarkForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.Textarea()
+    )
 
     class Meta:
         model = Bookmark
