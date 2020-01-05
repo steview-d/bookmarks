@@ -2,10 +2,6 @@
   border: 1px solid black;
 }
 
-.add-pointer {
-  cursor: pointer;
-}
-
 .flex-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -248,7 +244,6 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  cursor: default;
 }
 
 .bm-icons-show-hide .bm-icons-container .bm-icon {

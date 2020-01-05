@@ -352,6 +352,27 @@ def add_bookmark(request, page):
     return render(request, 'links/add_bookmark.html', context)
 
 
+def edit_bookmark(request, page, collection, bookmark):
+
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='qhome')
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    context = {"page": page.name,
+               "collection": collection,
+               "bookmark": bookmark,
+               "all_page_names": all_pages,
+               # "add_bookmark_form": add_bookmark_form
+               }
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/add_bookmark.html', context)
+
+
 def check_valid_url(request):
 
     url = request.POST.get('urlToCheck', None)

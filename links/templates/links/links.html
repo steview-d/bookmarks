@@ -80,21 +80,22 @@
                                                 aria-hidden="true"></i></span>
                                     </div>
                                 </div>
-
-                                <div class="bm-icons-show-hide">
-                                    <div class="bm-icons-container">
-                                        <button class="btn btn-secondary bm-icon"><i class="fa fa-pencil-square-o"
-                                                aria-hidden="true"></i><small class="ml-1">Edit</small></button>
-                                        <button class="btn btn-secondary bm-icon"><i class="fa fa-arrows-alt"
-                                                aria-hidden="true"></i><small class="ml-1">Move</small
-                                                class="ml-1"></button>
-                                        <button class="btn btn-secondary bm-icon" data-toggle="modal"
-                                                data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
-                                                aria-hidden="true"></i><small class="ml-1">Delete</small
-                                                class="ml-1"></button>
-                                    </div>
+                            </a>
+                            <div class="bm-icons-show-hide">
+                                <div class="bm-icons-container">
+                                    <a href="{% url 'edit_bookmark' page=page collection=k bookmark=item.pk %}"
+                                        class="btn btn-secondary bm-icon" role="button">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <small class="ml-1">Edit</small>
+                                    </a>
+                                    <button class="btn btn-secondary bm-icon"><i class="fa fa-arrows-alt"
+                                            aria-hidden="true"></i><small class="ml-1">Move</small></button>
+                                    <button class="btn btn-secondary bm-icon" data-toggle="modal"
+                                        data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
+                                            aria-hidden="true"></i><small class="ml-1">Delete</small></button>
                                 </div>
-
+                            </div>
+                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                 <div class="link-desc text-trunc">{{ item.description }}</div>
                                 <div class="link-url text-trunc">{{ item }}</div>
                             </a>

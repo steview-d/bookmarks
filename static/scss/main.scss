@@ -15,9 +15,6 @@ $topnav-spacer-height: 64px;
     @include black-border;
 }
 
-.add-pointer {
-    cursor: pointer;
-}
 
 // -------------------------------------------------- main display grid wrapper
 
@@ -239,7 +236,6 @@ $topnav-spacer-height: 64px;
     .bm-icons-container {
         display: flex;
         flex-wrap: wrap;
-        cursor: default;
 
         .bm-icon {
             display: flex;

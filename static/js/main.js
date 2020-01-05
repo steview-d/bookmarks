@@ -175,15 +175,15 @@ $(document).ready(function() {
         e.preventDefault();
         $(this).toggleClass("fa-caret-down fa-caret-up");
         $(this)
-            .parent()
+            .parent().parent()
             .parent()
             .parent()
             .next()
-            .slideToggle("bm-icons");
+            .slideToggle();
     });
 
     // Stop browser following links when clicking options
-    $(".bm-icons-container").on("click", function(e) {
-        e.preventDefault();
-    });
+    // $(".bm-icons-container").on("click", function(e) {
+    //     e.preventDefault();
+    // });
 });
