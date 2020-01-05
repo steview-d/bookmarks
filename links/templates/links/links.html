@@ -55,7 +55,7 @@
                                 <span class="ml-2 add-pointer"><i class="fa fa-trash-o text-danger" aria-hidden="true"
                                         data-toggle="modal" data-target="#modal-{{ k|replace_space }}"></i></span>
                                 <span class="rename-collection ml-2 add-pointer"><i class="fa fa-cog text-dark"
-                                    aria-hidden="true"></i></span>
+                                        aria-hidden="true"></i></span>
                             </div>
                         </div>
 
@@ -88,7 +88,8 @@
                                         <button class="btn btn-secondary bm-icon"><i class="fa fa-arrows-alt"
                                                 aria-hidden="true"></i><small class="ml-1">Move</small
                                                 class="ml-1"></button>
-                                        <button class="btn btn-secondary bm-icon"><i class="fa fa-trash"
+                                        <button class="btn btn-secondary bm-icon" data-toggle="modal"
+                                                data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
                                                 aria-hidden="true"></i><small class="ml-1">Delete</small
                                                 class="ml-1"></button>
                                     </div>
@@ -98,10 +99,14 @@
                                 <div class="link-url text-trunc">{{ item }}</div>
                             </a>
                         </li>
+                        <!-- Bookmark Delete Modal -->
+                        {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
                         {% endfor %}
 
                     </ul>
+                    <!-- Collection Delete Modal -->
                     {% include 'links/components/collection_delete_modal.html' with collection=k %}
+
                     {% endfor %}
                     {% include 'links/components/add_new_collection.html' with column=forloop.counter %}
                     {% else %}

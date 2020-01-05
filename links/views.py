@@ -10,7 +10,7 @@ import json
 import requests as req
 
 from premium.utils import is_premium
-from .utils import page_utils, collection_utils
+from .utils import page_utils, collection_utils, bookmark_utils
 from .forms import AddNewPageForm, EditPageForm, AddBookmarkForm
 from .models import Bookmark, Collection, Page
 
@@ -111,6 +111,11 @@ def links(request, page):
     # delete collection
     if 'delete-collection-form' in request.POST:
         collection_utils.delete_collection(request, page, collections)
+        return redirect('links', page=page)
+
+    # delete bookmark
+    if 'delete-bookmark-form' in request.POST:
+        bookmark_utils.delete_bookmark(request)
         return redirect('links', page=page)
 
     # get page names for sidebar
@@ -313,6 +318,8 @@ def add_bookmark(request, page):
 
         if add_bookmark_form.is_valid():
             form = add_bookmark_form.save(commit=False)
+
+            form.user = request.user
 
             # set position value to next highest value. ie, last on list
             max_pos_value = Bookmark.objects.filter(

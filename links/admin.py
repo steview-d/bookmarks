@@ -45,6 +45,7 @@ class BookmarkAdmin(admin.ModelAdmin):
         'url',
         'title',
         'collection',
+        'position',
         'user',
         'added',
     )
