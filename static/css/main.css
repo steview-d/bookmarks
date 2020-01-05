@@ -2,6 +2,10 @@
   border: 1px solid black;
 }
 
+.add-pointer {
+  cursor: pointer;
+}
+
 .flex-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -150,6 +154,50 @@
   display: none;
 }
 
+.collection-container {
+  width: 100%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  padding: 0.4rem 0.7rem;
+}
+
+.collection-container .collection-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.collection-container .collection-title .collection-title-text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.4rem;
+}
+
+.collection-container .collection-icons {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
 .bm-container {
   width: 100%;
   margin: auto;
@@ -200,6 +248,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  cursor: default;
 }
 
 .bm-icons-show-hide .bm-icons-container .bm-icon {

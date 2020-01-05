@@ -15,6 +15,10 @@ $topnav-spacer-height: 64px;
     @include black-border;
 }
 
+.add-pointer {
+    cursor: pointer;
+}
+
 // -------------------------------------------------- main display grid wrapper
 
 .flex-wrapper {
@@ -168,6 +172,38 @@ $topnav-spacer-height: 64px;
     display: none;
 }
 
+// ------------------------------------------------------- collection title bar
+
+.collection-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eeeeee;
+    border-radius:3px;
+    padding: 0.4rem 0.7rem;
+
+    .collection-title {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+
+        .collection-title-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.4rem;
+        }
+    }
+
+    .collection-icons {
+        flex: 0 0 auto;
+    }
+}
+
 // ----------------------------------------------------------- bookmark options
 
 .bm-container {
@@ -203,6 +239,7 @@ $topnav-spacer-height: 64px;
     .bm-icons-container {
         display: flex;
         flex-wrap: wrap;
+        cursor: default;
 
         .bm-icon {
             display: flex;
