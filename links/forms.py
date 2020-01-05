@@ -40,8 +40,6 @@ class EditPageForm(PageForm):
 
 class AddBookmarkForm(forms.ModelForm):
 
-    # url = forms.URLField()
-
     class Meta:
         model = Bookmark
         fields = ['url', 'title', 'description', 'collection']
@@ -50,3 +48,10 @@ class AddBookmarkForm(forms.ModelForm):
         super(AddBookmarkForm, self).__init__(*args, **kwargs)
         self.fields['collection'].queryset = Collection.objects.filter(
             user=user, page=page)
+
+
+class EditBookmarkForm(forms.ModelForm):
+
+    class Meta:
+        model = Bookmark
+        fields = ['url', 'title', 'description']

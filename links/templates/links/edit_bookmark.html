@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}Arrange{% endblock %}
+
+{% block content %}
+
+<div class="flex-wrapper">
+
+    <!-- Sidebar -->
+    {% include 'links/components/sidebar_links.html' %}
+
+    <!-- Content -->
+    <div id="content">
+        {% include 'top-nav.html' %}
+
+        <!-- messages -->
+        {% include 'messages.html' %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- section to choose number of columns - temp -->
+                <div class="d-inline-block mx-2">
+                    <p>Here you can edit a bookmark</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form method="POST" class="border p-2 mt-3">
+                        <fieldset>
+                            <legend>Edit Bookmark</legend>
+                            {% csrf_token %}
+    
+                            {% for field in edit_bookmark_form.visible_fields %}
+                            <div>{{ field.label }}</div>
+                            <div>{{ field.errors }}</div>
+                            {% if field.label == 'Url' %}
+                            <small id="url-validation-result">Url status: Valid</small>
+                            {% endif %}
+                            <div>{{ field }}</div>
+                            <div>{{ field.help_text }}</div>
+
+                            {% endfor %}
+
+                            <input type="submit" value="Submit Changes" name="add-bm-form" class="btn btn-info">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- banner ad -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block csrf_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
+{% endblock %}

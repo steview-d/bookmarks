@@ -11,7 +11,7 @@ import requests as req
 
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils, bookmark_utils
-from .forms import AddNewPageForm, EditPageForm, AddBookmarkForm
+from .forms import AddNewPageForm, EditPageForm, AddBookmarkForm, EditBookmarkForm
 from .models import Bookmark, Collection, Page
 
 
@@ -359,18 +359,25 @@ def edit_bookmark(request, page, collection, bookmark):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')
 
+    bookmark_to_edit = get_object_or_404(
+        Bookmark, pk=bookmark
+    )
+
+    edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
+
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     context = {"page": page.name,
                "collection": collection,
-               "bookmark": bookmark,
+               "bookmark": bookmark_to_edit,
+               "edit_bookmark_form": edit_bookmark_form,
                "all_page_names": all_pages,
                # "add_bookmark_form": add_bookmark_form
                }
     context = is_premium(request.user, context)
 
-    return render(request, 'links/add_bookmark.html', context)
+    return render(request, 'links/edit_bookmark.html', context)
 
 
 def check_valid_url(request):
