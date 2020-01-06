@@ -19,19 +19,21 @@
 
         <div class="container-fluid">
             <div class="row">
-                <!-- section to choose number of columns - temp -->
                 <div class="d-inline-block mx-2">
                     <p>Here you can move a bookmark</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
+                    <p>Moving the following bookmark</p>
+                    <p>{{ bookmark.title}}</p>
+                    <p>{{ bookmark }}</p>
+                </div>
+                <div class="col-12">
                     <form method="POST" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Move Bookmark</legend>
                             {% csrf_token %}
-
-
 
                         </fieldset>
                     </form>

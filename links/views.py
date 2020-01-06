@@ -424,4 +424,4 @@ def move_bookmark(request, page, bookmark):
                }
     context = is_premium(request.user, context)
 
-    return render(request, 'links/edit_bookmark.html', context)
+    return render(request, 'links/move_bookmark.html', context)
