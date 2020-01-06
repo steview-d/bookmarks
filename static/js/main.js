@@ -184,8 +184,22 @@ $(document).ready(function() {
             .slideToggle();
     });
 
-    // Stop browser following links when clicking options
-    // $(".bm-icons-container").on("click", function(e) {
-    //     e.preventDefault();
-    // });
+    // MoveBookmarkForm ajax control
+    $("#id_dest_page").change(function() {
+        newPagePk = $(this).val();
+        console.log(newPagePk);
+        $.ajax({
+            type: "POST",
+            data: {
+                newPagePk: newPagePk,
+                csrfmiddlewaretoken: csrftoken
+            },
+            url: "/app/update_collection_list",
+            success: function(data) {
+                console.log(data.html);
+                $('#id_dest_collection').html(data.html);
+            }
+        });
+    });
+
 });

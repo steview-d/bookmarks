@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (links, page_sort, arrange_collections, collection_sort,
                     add_bookmark, edit_bookmark, move_bookmark,
-                    check_valid_url)
+                    check_valid_url, update_collection_list)
 # from .utils import start_app, change_num_columns
 from .utils import general_utils, collection_utils
 
@@ -13,6 +13,8 @@ urlpatterns = [
          edit_bookmark, name="edit_bookmark"),
     path('<page>/<bookmark>/move-bookmark',
          move_bookmark, name="move_bookmark"),
+    path('update_collection_list', update_collection_list,
+         name="update_collection_list"),
     path('change-num-columns/<page>/<num>',
          collection_utils.change_num_columns,
          name="change_num_columns"),

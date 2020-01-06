@@ -434,3 +434,25 @@ def move_bookmark(request, page, bookmark):
     context = is_premium(request.user, context)
 
     return render(request, 'links/move_bookmark.html', context)
+
+
+def update_collection_list(request):
+
+    new_page = get_object_or_404(
+        Page, user=request.user, id=request.POST.get('newPagePk')
+    )
+
+    new_collections = Collection.objects.filter(
+        user=request.user, page=new_page
+    ).order_by('position')
+
+    new_collections_dict = {}
+    for collection in new_collections:
+        new_collections_dict[collection.pk] = collection
+
+    html = ''
+    for k, v in new_collections_dict.items():
+        html += f'<option value="{k}">{v}</option>'
+
+    data = {'success': True, 'html': html}
+    return JsonResponse(data)

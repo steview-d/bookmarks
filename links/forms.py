@@ -77,6 +77,6 @@ class MoveBookmarkForm(forms.ModelForm):
         # self.initial['dest_page'] = {'position'}
         self.fields['dest_page'].queryset = Page.objects.filter(
             user=user).order_by('position')
-        self.initial['dest-page'] = page
+        # self.initial['dest-page'] = page
         self.fields['dest_collection'].queryset = Collection.objects.filter(
             user=user, page=page).order_by('position')
