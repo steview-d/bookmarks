@@ -173,9 +173,11 @@ $(document).ready(function() {
     // bookmark options menu
     $(".bm-icon-toggle").on("click", function(e) {
         e.preventDefault();
-        $(this).toggleClass("fa-caret-down fa-caret-up");
         $(this)
-            .parent().parent()
+            .children(":first")
+            .toggleClass("fa-caret-down fa-caret-up");
+        $(this)
+            .parent()
             .parent()
             .parent()
             .next()

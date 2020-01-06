@@ -243,7 +243,8 @@
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   margin-left: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  padding: 0 0.25rem;
 }
 
 .bm-icons-show-hide {
