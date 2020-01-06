@@ -366,6 +366,14 @@ def edit_bookmark(request, page, bookmark):
 
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
+    if 'edit-bm-form' in request.POST:
+        edit_bookmark_form = EditBookmarkForm(
+            request.POST, instance=bookmark_to_edit)
+
+        if edit_bookmark_form.is_valid():
+            edit_bookmark_form.save()
+            return redirect('links', page=page)
+
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
