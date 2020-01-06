@@ -40,7 +40,7 @@
                     <div id="column-{{forloop.counter}}" class="column my-2" style="width: {{ column_width }}%">
                         {% if column %}
                         {% for collection in column %}
-                                <p id="{{collection.position}}_." class="badge badge-primary m-3 p-3 d-block" style="font-size: 1rem;">{{ collection }}</p>
+                                <p id="{{collection.position}}_." class="badge badge-primary m-3 p-3 d-block cursor-pointer" style="font-size: 1rem;">{{ collection }}</p>
                         {% endfor %}
                         {% endif %}
                     </div>

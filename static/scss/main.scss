@@ -9,10 +9,44 @@ $topnav-spacer-height: 64px;
     border: 1px solid black;
 }
 
+@mixin container-text-icon {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin container-text-icon-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin container-title-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin flex-none {
+    flex: 0 0 auto;
+}
+
 // ----------------------------------------------------------------- re-usables
 
 .border {
     @include black-border;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
 }
 
 
@@ -128,10 +162,6 @@ $topnav-spacer-height: 64px;
     color: black; // temp placeholder
 }
 
-// .link-title {
-//     font-size: 1rem;
-// }
-
 .link-desc {
     font-size: 0.8rem;
 }
@@ -172,58 +202,42 @@ $topnav-spacer-height: 64px;
 // ------------------------------------------------------- collection title bar
 
 .collection-container {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include container-text-icon;
+    cursor: default;
     background-color: #eeeeee;
     border-radius:3px;
     padding: 0.4rem 0.7rem;
+    
+
 
     .collection-title {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        overflow: hidden;
+        @include container-text-icon-title;
 
         .collection-title-text {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            @include container-title-text;
             font-size: 1.4rem;
         }
     }
 
     .collection-icons {
-        flex: 0 0 auto;
+        @include flex-none;
+        font-size: 1.2rem;
     }
 }
 
 // ----------------------------------------------------------- bookmark options
 
 .bm-container {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
+    @include container-text-icon;
 
     .bm-title {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        overflow: hidden;
+        @include container-text-icon-title;
 
         .bm-title-text {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 1rem;
+            @include container-title-text;
         }
         .bm-options-icon {
-            flex: 0 0 auto;
+            @include flex-none;
             margin-left: 0.5rem;
             font-size: 0.8rem;
         }

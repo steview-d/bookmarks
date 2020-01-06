@@ -2,6 +2,14 @@
   border: 1px solid black;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
 .flex-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -162,6 +170,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: default;
   background-color: #eeeeee;
   border-radius: 3px;
   padding: 0.4rem 0.7rem;
@@ -192,6 +201,7 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
+  font-size: 1.2rem;
 }
 
 .bm-container {
@@ -200,6 +210,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -223,7 +236,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1rem;
 }
 
 .bm-container .bm-title .bm-options-icon {
