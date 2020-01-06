@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Page, Collection, Bookmark
+from .models import Page, Collection, Bookmark, MoveBookmark
 
 
 class PageForm(forms.ModelForm):
@@ -64,3 +64,19 @@ class EditBookmarkForm(forms.ModelForm):
     class Meta:
         model = Bookmark
         fields = ['url', 'title', 'description']
+
+
+class MoveBookmarkForm(forms.ModelForm):
+
+    class Meta:
+        model = MoveBookmark
+        fields = ['dest_page', 'dest_collection']
+
+    def __init__(self, user, page, *args, **kwargs):
+        super(MoveBookmarkForm, self).__init__(*args, **kwargs)
+        # self.initial['dest_page'] = {'position'}
+        self.fields['dest_page'].queryset = Page.objects.filter(
+            user=user).order_by('position')
+        self.initial['dest-page'] = page
+        self.fields['dest_collection'].queryset = Collection.objects.filter(
+            user=user, page=page).order_by('position')

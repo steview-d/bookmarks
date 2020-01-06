@@ -12,7 +12,7 @@ import requests as req
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils, bookmark_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
-                    EditBookmarkForm)
+                    EditBookmarkForm, MoveBookmarkForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -420,14 +420,15 @@ def move_bookmark(request, page, bookmark):
         Bookmark, pk=bookmark
     )
 
-    # edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
+    move_bookmark_form = MoveBookmarkForm(
+        request.user, page, initial={'dest_page': page})
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     context = {"page": page.name,
                "bookmark": bookmark_to_move,
-               #    "edit_bookmark_form": edit_bookmark_form,
+               "move_bookmark_form": move_bookmark_form,
                "all_page_names": all_pages,
                }
     context = is_premium(request.user, context)

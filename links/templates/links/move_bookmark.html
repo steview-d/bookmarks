@@ -25,16 +25,12 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p>Moving the following bookmark</p>
-                    <p>{{ bookmark.title}}</p>
-                    <p>{{ bookmark }}</p>
-                </div>
-                <div class="col-12">
                     <form method="POST" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Move Bookmark</legend>
                             {% csrf_token %}
-
+                            {{ move_bookmark_form.as_p }}
+                            <input type="submit" value="Move Bookmark" name="move-bm-form" class="btn btn-info">
                         </fieldset>
                     </form>
                 </div>
