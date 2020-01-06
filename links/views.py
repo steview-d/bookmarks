@@ -373,7 +373,6 @@ def edit_bookmark(request, page, bookmark):
                "bookmark": bookmark_to_edit,
                "edit_bookmark_form": edit_bookmark_form,
                "all_page_names": all_pages,
-               # "add_bookmark_form": add_bookmark_form
                }
     context = is_premium(request.user, context)
 
@@ -400,3 +399,29 @@ def check_valid_url(request):
         data['result'] = 'valid'
 
     return JsonResponse(data)
+
+
+def move_bookmark(request, page, bookmark):
+
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        return redirect('links', page='qhome')
+
+    bookmark_to_move = get_object_or_404(
+        Bookmark, pk=bookmark
+    )
+
+    # edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    context = {"page": page.name,
+               "bookmark": bookmark_to_move,
+               #    "edit_bookmark_form": edit_bookmark_form,
+               "all_page_names": all_pages,
+               }
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/edit_bookmark.html', context)
