@@ -126,3 +126,13 @@ class Bookmark(models.Model):
 
     def __str__(self):
         return self.url
+
+
+class MoveBookmark(models.Model):
+    dest_page = models.ForeignKey(
+        Page, default=1, null=False, on_delete=models.CASCADE
+    )
+    dest_collection = models.ForeignKey(
+        Collection,
+        default=1, null=False, blank=False, on_delete=models.CASCADE
+    )
