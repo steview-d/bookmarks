@@ -420,6 +420,7 @@ def move_bookmark(request, page, bookmark):
     try:
         bookmark_to_move = Bookmark.objects.get(user=request.user, pk=bookmark)
     except ObjectDoesNotExist:
+        # stop users trying to move bookmarks that aren't theirs
         messages.error(
             request, f"That is not your bookmark to move!")
         return redirect('links', page=page)
@@ -443,15 +444,12 @@ def move_bookmark(request, page, bookmark):
         bookmark_to_move.position = dest_position
         bookmark_to_move.save()
 
-        # also need to know collection moving FROM, so can adjust the position
-        # values of the remaining bookmarks
+        # Reapply position values to bookmarks in the original collection
+        # to account for the gap made when moving the bookmark out
         orig_collection_to_reorder = Bookmark.objects.filter(
             user=request.user, collection=orig_collection
         ).order_by('position')
-        print(orig_collection_to_reorder)
-        for count, bm in enumerate((orig_collection_to_reorder), 1):
-            bm.position = count
-            bm.save()
+        bookmark_utils.reorder_bookmarks(orig_collection_to_reorder)
 
         return redirect('links', page=page)
 

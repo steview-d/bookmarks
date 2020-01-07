@@ -26,7 +26,20 @@ def delete_bookmark(request):
     ).order_by('position')
 
     # reset position order to remove gap created by deleting bookmark
-    for count, bm in enumerate((all_bookmarks_in_collection), 1):
+    # for count, bm in enumerate((all_bookmarks_in_collection), 1):
+    #     bm.position = count
+    #     bm.save()
+    reorder_bookmarks(all_bookmarks_in_collection)
+
+    return
+
+
+def reorder_bookmarks(bookmark_qs):
+    """
+    Iterate through a queryset of bookmarks and apply
+    the .position value, in order.
+    """
+    for count, bm in enumerate((bookmark_qs), 1):
         bm.position = count
         bm.save()
 

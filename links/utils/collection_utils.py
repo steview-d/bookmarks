@@ -258,7 +258,6 @@ def delete_collection(request, page, collections):
 
     # reset collection.position for each
     for count, collection in enumerate((collections), 1):
-        # print(collection, " ", count)
         collection.position = count
         collection.save()
 
