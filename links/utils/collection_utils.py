@@ -51,6 +51,17 @@ def validate_name(request, proposed_name, collections, page):
                         spaces, hyphens '-', and colons ':'")
         return False
 
+    # check collection name not blank or just spaces
+    if proposed_name == '':
+        messages.error(
+            request, f"You must choose a name")
+        return False
+
+    if proposed_name.isspace():
+        messages.error(
+            request, f"The name cannot be just blank spaces")
+        return False
+
     # check collection name is unique to page / user
     elif collections.filter(
             name=proposed_name).exists():
