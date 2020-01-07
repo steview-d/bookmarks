@@ -1,4 +1,5 @@
 from .conf import settings
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Max
 
@@ -416,12 +417,43 @@ def move_bookmark(request, page, bookmark):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')
 
-    bookmark_to_move = get_object_or_404(
-        Bookmark, pk=bookmark
-    )
+    try:
+        bookmark_to_move = Bookmark.objects.get(user=request.user, pk=bookmark)
+    except ObjectDoesNotExist:
+        messages.error(
+            request, f"That is not your bookmark to move!")
+        return redirect('links', page=page)
 
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
+
+    if 'move-bm-form' in request.POST:
+        orig_collection = bookmark_to_move.collection
+
+        dest_collection = Collection.objects.get(
+            id=request.POST.get('dest_collection'))
+
+        # get new position value for bookmark
+        dest_position = Bookmark.objects.filter(
+            user=request.user, collection=dest_collection
+        ).count() + 1
+
+        # update bookmark object with new collection & position
+        bookmark_to_move.collection = dest_collection
+        bookmark_to_move.position = dest_position
+        bookmark_to_move.save()
+
+        # also need to know collection moving FROM, so can adjust the position
+        # values of the remaining bookmarks
+        orig_collection_to_reorder = Bookmark.objects.filter(
+            user=request.user, collection=orig_collection
+        ).order_by('position')
+        print(orig_collection_to_reorder)
+        for count, bm in enumerate((orig_collection_to_reorder), 1):
+            bm.position = count
+            bm.save()
+
+        return redirect('links', page=page)
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
@@ -437,6 +469,10 @@ def move_bookmark(request, page, bookmark):
 
 
 def update_collection_list(request):
+    """
+    Get a page.id from POST and use it to generate html of collection
+    names and values for the 'dest_collection' dropdown list.
+    """
 
     new_page = get_object_or_404(
         Page, user=request.user, id=request.POST.get('newPagePk')
@@ -446,10 +482,12 @@ def update_collection_list(request):
         user=request.user, page=new_page
     ).order_by('position')
 
+    # build a dict of collection pk's and names
     new_collections_dict = {}
     for collection in new_collections:
         new_collections_dict[collection.pk] = collection
 
+    # add the new collection data to an html string
     html = ''
     for k, v in new_collections_dict.items():
         html += f'<option value="{k}">{v}</option>'
