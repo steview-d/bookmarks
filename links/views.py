@@ -44,7 +44,7 @@ def links(request, page):
 
     # page forms
     add_new_page_form = AddNewPageForm(
-        current_user=request.user
+        current_user=request.user, prefix='new_page', auto_id=False
     )
 
     edit_page_form = EditPageForm(
