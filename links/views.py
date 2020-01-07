@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from .conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -352,6 +353,29 @@ def add_bookmark(request, page):
     context = is_premium(request.user, context)
 
     return render(request, 'links/add_bookmark.html', context)
+
+
+def scrape_url(request):
+
+    url = request.POST.get('urlToScrape', None)
+    r = req.get(url)
+
+    soup = BeautifulSoup(r.text, 'html.parser')
+    # scraped_title = soup.title.get_text()
+
+    metas = soup.find_all('meta')
+    # print(meta.attrs['content'] for meta in metas if 'name' in meta.attrs and
+    # meta.attrs['name'] == 'description')
+    for i in metas:
+        if 'name' in i.attrs and i.attrs['name'] == 'description':
+            print(i.attrs['content'])
+    # scraped_description = soup.meta.attrs['content'].get_text()
+
+    # print(scraped_description)
+
+    data = {'success': True}
+
+    return JsonResponse(data)
 
 
 def edit_bookmark(request, page, bookmark):

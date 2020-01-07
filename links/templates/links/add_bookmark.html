@@ -29,6 +29,7 @@
                     <form method="POST" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Add Bookmark</legend>
+                            <button type="button" id="scrape-url" class="btn btn-warning my-2">Scrape URL</button>
                             {% csrf_token %}
     
                             {% for field in add_bookmark_form.visible_fields %}

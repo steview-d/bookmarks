@@ -170,6 +170,25 @@ $(document).ready(function() {
         });
     }
 
+    // Url Scraping
+    $("#scrape-url").on("click", function() {
+        let urlToScrape = $("#id_url").val();
+        $.ajax({
+            type: "POST",
+            data: {
+                urlToScrape: urlToScrape,
+                csrfmiddlewaretoken: csrftoken
+            },
+            url: "/app/scrape_url",
+            success: function(data) {
+                // insert scraped data
+                console.log(data);
+            }
+        });
+    });
+
+
+
     // bookmark options menu
     $(".bm-icon-toggle").on("click", function(e) {
         e.preventDefault();
@@ -200,6 +219,6 @@ $(document).ready(function() {
                 $('#id_dest_collection').html(data.html);
             }
         });
-    });
+    });  
 
 });
