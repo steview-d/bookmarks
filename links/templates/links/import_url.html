@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}Import URL{% endblock %}
+
+{% block content %}
+
+<div class="flex-wrapper">
+
+    <!-- Content -->
+    <div id="content">
+        <!-- messages -->
+        {% include 'messages.html' %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-inline-block mx-2">
+                    <p>Import URL from Chrome extension</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form method="POST" class="border p-2 mt-3">
+                        <fieldset>
+                            <legend>Import Bookmark</legend>
+                            {% csrf_token %}
+
+                            <input type="submit" value="Import & Close" name="move-bm-form" class="btn btn-info">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- banner ad -->
+        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block csrf_js %}
+<script src="{% static 'js/csrf.js' %}"></script>
+{% endblock %}

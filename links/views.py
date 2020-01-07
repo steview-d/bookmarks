@@ -492,3 +492,17 @@ def update_collection_list(request):
 
     data = {'success': True, 'html': html}
     return JsonResponse(data)
+
+
+def import_url(request):
+    # check user is logged in
+    print(request.user)
+    if not request.user.is_authenticated:
+        messages.error(
+            request, f"You need to be logged in to add a bookmark")
+        return redirect('about_page')
+
+    context = {}
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/import_url.html', context)
