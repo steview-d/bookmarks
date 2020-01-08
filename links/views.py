@@ -14,7 +14,7 @@ import requests as req
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils, bookmark_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
-                    EditBookmarkForm, MoveBookmarkForm)
+                    EditBookmarkForm, MoveBookmarkForm, ImportBookmarkForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -545,13 +545,28 @@ def update_collection_list(request):
 
 def import_url(request):
     # check user is logged in
-    print(request.user)
     if not request.user.is_authenticated:
         messages.error(
             request, f"You need to be logged in to add a bookmark")
         return redirect('about_page')
 
-    context = {}
+    url_to_save = request.GET.get('url')
+    print(url_to_save)
+
+    # scrape data first time
+
+    # get page position 1 to set as default in dest_page choice field
+    page = Page.objects.get(
+        user=request.user, position=1
+    )
+
+    import_bookmark_form = ImportBookmarkForm()
+    move_bookmark_form = MoveBookmarkForm(
+        request.user, page)
+
+    context = {'import_bookmark_form': import_bookmark_form,
+               'move_bookmark_form': move_bookmark_form,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'links/import_url.html', context)

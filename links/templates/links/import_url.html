@@ -23,7 +23,11 @@
                     <form method="POST" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Import Bookmark</legend>
+                            <button type="button" id="scrape-url" class="btn btn-warning mt-2">Scrape URL</button>
+                            <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                             {% csrf_token %}
+                            {{ import_bookmark_form.as_p }}
+                            {{ move_bookmark_form.as_p }}
 
                             <input type="submit" value="Import & Close" name="move-bm-form" class="btn btn-info">
                         </fieldset>

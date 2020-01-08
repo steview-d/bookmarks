@@ -43,8 +43,6 @@ class AddBookmarkForm(forms.ModelForm):
         widget=forms.Textarea()
     )
 
-    # collection = forms.ChoiceField()
-
     class Meta:
         model = Bookmark
         fields = ['url', 'title', 'description', 'collection']
@@ -74,9 +72,17 @@ class MoveBookmarkForm(forms.ModelForm):
 
     def __init__(self, user, page, *args, **kwargs):
         super(MoveBookmarkForm, self).__init__(*args, **kwargs)
-        # self.initial['dest_page'] = {'position'}
         self.fields['dest_page'].queryset = Page.objects.filter(
             user=user).order_by('position')
-        # self.initial['dest-page'] = page
         self.fields['dest_collection'].queryset = Collection.objects.filter(
             user=user, page=page).order_by('position')
+
+
+class ImportBookmarkForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.Textarea()
+    )
+
+    class Meta:
+        model = Bookmark
+        fields = ['url', 'title', 'description']
