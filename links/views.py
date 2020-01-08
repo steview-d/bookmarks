@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from .conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -362,44 +361,10 @@ def add_bookmark(request, page):
     return render(request, 'links/add_bookmark.html', context)
 
 
-def scrape_url(request):
+def manual_url_scrape(request):
 
-    url = request.POST.get('urlToScrape', None)
-    data = {'message': 'The URL is empty',
-            'title': '',
-            'description': ''}
-
-    if not url:
-        return JsonResponse(data)
-
-    try:
-        r = req.get(url)
-        r.raise_for_status()
-
-    except req.exceptions.RequestException:
-        data['message'] = 'Could not load this URL'
-
-    else:
-        soup = BeautifulSoup(r.text, 'html.parser')
-        # get the page title
-        scraped_title = soup.title.get_text() if soup.title.get_text() else \
-            "Could not retrieve a title"
-
-        # get the page description from metadata content
-        metas = soup.find_all('meta')
-        for m in metas:
-            if 'name' in m.attrs and m.attrs['name'] == 'description':
-                scraped_description = m.attrs['content']
-
-        # provide default response for when no metadata available
-        try:
-            scraped_description
-        except UnboundLocalError:
-            scraped_description = "Sorry, no metadata available for this URL"
-
-        data = {'message': 'Success',
-                'title': scraped_title,
-                'description': scraped_description}
+    data = bookmark_utils.scrape_url(
+        request, request.POST.get('urlToScrape', None))
 
     return JsonResponse(data)
 
@@ -552,6 +517,10 @@ def import_url(request):
 
     url_to_save = request.GET.get('url')
     print(url_to_save)
+    qqq = bookmark_utils.scrape_url(
+        request, url_to_save)
+
+    print(qqq)
 
     # scrape data first time
 

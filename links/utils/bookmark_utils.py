@@ -1,5 +1,8 @@
+from bs4 import BeautifulSoup
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+import requests as req
 from links.models import Collection, Bookmark
 
 
@@ -44,3 +47,47 @@ def reorder_bookmarks(bookmark_qs):
         bm.save()
 
     return
+
+
+def scrape_url(request, url):
+    """
+    Scrape data from a URL using BS4
+    """
+
+    data = {'message': 'The URL is empty',
+            'title': '',
+            'description': ''}
+
+    if not url:
+        return JsonResponse(data)
+
+    try:
+        r = req.get(url)
+        r.raise_for_status()
+
+    except req.exceptions.RequestException:
+        data['message'] = 'Could not load this URL'
+
+    else:
+        soup = BeautifulSoup(r.text, 'html.parser')
+        # get the page title
+        scraped_title = soup.title.get_text() if soup.title.get_text() else \
+            "Could not retrieve a title"
+
+        # get the page description from metadata content
+        metas = soup.find_all('meta')
+        for m in metas:
+            if 'name' in m.attrs and m.attrs['name'] == 'description':
+                scraped_description = m.attrs['content']
+
+        # provide default response for when no metadata available
+        try:
+            scraped_description
+        except UnboundLocalError:
+            scraped_description = "Sorry, no metadata available for this URL"
+
+        data = {'message': 'Success',
+                'title': scraped_title,
+                'description': scraped_description}
+
+    return data

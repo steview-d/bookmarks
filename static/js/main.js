@@ -188,7 +188,7 @@ $(document).ready(function() {
                 urlToScrape: urlToScrape,
                 csrfmiddlewaretoken: csrftoken
             },
-            url: "/app/scrape_url",
+            url: "/app/manual_url_scrape",
             success: function(data) {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);

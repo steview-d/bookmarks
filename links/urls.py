@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (links, page_sort, arrange_collections, collection_sort,
                     add_bookmark, edit_bookmark, move_bookmark,
                     check_valid_url, update_collection_list, import_url,
-                    scrape_url)
+                    manual_url_scrape)
 # from .utils import start_app, change_num_columns
 from .utils import general_utils, collection_utils
 
@@ -22,7 +22,7 @@ urlpatterns = [
          name="change_num_columns"),
     path('page-sort', page_sort, name="page_sort"),
     path('check_valid_url', check_valid_url, name="check_valid_url"),
-    path('scrape_url', scrape_url, name="scrape_url"),
+    path('manual_url_scrape', manual_url_scrape, name="manual_url_scrape"),
     path('<page>', links, name="links"),
     path('<page>/arrange',
          arrange_collections,
