@@ -78,7 +78,7 @@ class MoveBookmarkForm(forms.ModelForm):
             user=user, page=page).order_by('position')
 
 
-class ImportBookmarkForm(forms.ModelForm):
+class ImportUrlForm(forms.ModelForm):
     description = forms.CharField(
         widget=forms.Textarea()
     )

@@ -13,7 +13,7 @@ import requests as req
 from premium.utils import is_premium
 from .utils import page_utils, collection_utils, bookmark_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
-                    EditBookmarkForm, MoveBookmarkForm, ImportBookmarkForm)
+                    EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -516,20 +516,47 @@ def import_url(request):
         return redirect('about_page')
 
     url_to_save = request.GET.get('url')
-    print(url_to_save)
-    qqq = bookmark_utils.scrape_url(
-        request, url_to_save)
 
-    print(qqq)
+    # on form post
+    if 'import-url-form' in request.POST:
+        import_url_form = ImportUrlForm(request.POST)
 
-    # scrape data first time
+        if import_url_form.is_valid():
+
+            form = import_url_form.save(commit=False)
+            form.user = request.user
+
+            dest_collection = Collection.objects.get(
+                id=request.POST.get('dest_collection'))
+
+            form.collection = dest_collection
+
+            # get new position value for bookmark
+            dest_position = Bookmark.objects.filter(
+                user=request.user, collection=dest_collection
+            ).count() + 1
+
+            form.position = dest_position
+            form.save()
+
+            page = Page.objects.get(
+                id=request.POST.get('dest_page')
+            )
+
+            return redirect('links', page=page)
+
+    scrape_data = bookmark_utils.scrape_url(request, url_to_save)
 
     # get page position 1 to set as default in dest_page choice field
     page = Page.objects.get(
         user=request.user, position=1
     )
 
-    import_bookmark_form = ImportBookmarkForm()
+    import_bookmark_form = ImportUrlForm(initial={
+        'url': url_to_save,
+        'title': scrape_data['title'],
+        'description': scrape_data['description']
+    })
     move_bookmark_form = MoveBookmarkForm(
         request.user, page)
 

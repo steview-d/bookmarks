@@ -54,6 +54,10 @@ def scrape_url(request, url):
     Scrape data from a URL using BS4
     """
 
+    # some sites refuse to play nicely unless we're sneaky and throw some
+    # browser headers over too
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
     data = {'message': 'The URL is empty',
             'title': '',
             'description': ''}
@@ -62,7 +66,7 @@ def scrape_url(request, url):
         return JsonResponse(data)
 
     try:
-        r = req.get(url)
+        r = req.get(url, headers=headers)
         r.raise_for_status()
 
     except req.exceptions.RequestException:
@@ -84,6 +88,10 @@ def scrape_url(request, url):
         try:
             scraped_description
         except UnboundLocalError:
+            scraped_description = "Sorry, no metadata available for this URL"
+
+        # handle empty description metadata
+        if scraped_description == '':
             scraped_description = "Sorry, no metadata available for this URL"
 
         data = {'message': 'Success',
