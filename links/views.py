@@ -358,7 +358,9 @@ def add_bookmark(request, page):
 def scrape_url(request):
 
     url = request.POST.get('urlToScrape', None)
-    data = {}
+    data = {'message': 'The URL is empty',
+            'title': '',
+            'description': ''}
 
     if not url:
         return JsonResponse(data)
@@ -368,9 +370,7 @@ def scrape_url(request):
         r.raise_for_status()
 
     except req.exceptions.RequestException:
-        data = {'result': False,
-                'title': '',
-                'description': ''}
+        data['message'] = 'Could not load this URL'
 
     else:
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -386,7 +386,7 @@ def scrape_url(request):
         except UnboundLocalError:
             scraped_description = "Sorry, no metadata available for this URL"
 
-        data = {'result': True,
+        data = {'message': 'Success',
                 'title': scraped_title,
                 'description': scraped_description}
 

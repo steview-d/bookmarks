@@ -180,31 +180,10 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: csrftoken
             },
             url: "/app/scrape_url",
-            // success: function(data) {
-            //     if (data.result == false) {
-            //         $("#scrape-error-msg").text("jkhjhj");
-            //     } else {
-            //         // insert scraped data
-            //         $("#id_title").val(data.title);
-            //         $("#id_description").val(data.description);
-            //     }
-            // }
             success: function(data) {
-                switch (data.result) {
-                    case true:
-                        $("#id_title").val(data.title);
-                        $("#id_description").val(data.description);
-                        break;
-                    case false:
-                        $("#scrape-error-msg").text(
-                            "Could not load this URL"
-                        );
-                        break;
-                    default:
-                        $("#scrape-error-msg").text("The URL is empty");
-                }
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
+                $("#scrape-error-msg").text(data.message);
             }
         });
     });
