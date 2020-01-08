@@ -170,8 +170,17 @@ $(document).ready(function() {
         });
     }
 
+    // Auto Scrape URL on page load for 'import url'
+    // $(function() {
+    //     if($('form').hasClass('[add class name here]')) {
+    //         console.log("ADD BM PAGE!!!");
+    //     }
+    // });
+
     // Url Scraping
-    $("#scrape-url").on("click", function() {
+    $("#scrape-url").on("click", scrapeUrl);
+
+    function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
         $.ajax({
             type: "POST",
@@ -183,10 +192,10 @@ $(document).ready(function() {
             success: function(data) {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
-                $("#scrape-error-msg").text(data.message);
+                $("#scrape-msg").text(data.message);
             }
         });
-    });
+    }
 
     // bookmark options menu
     $(".bm-icon-toggle").on("click", function(e) {
