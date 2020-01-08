@@ -374,13 +374,17 @@ def scrape_url(request):
 
     else:
         soup = BeautifulSoup(r.text, 'html.parser')
-        scraped_title = soup.title.get_text()
+        # get the page title
+        scraped_title = soup.title.get_text() if soup.title.get_text() else \
+            "Could not retrieve a title"
 
+        # get the page description from metadata content
         metas = soup.find_all('meta')
         for m in metas:
             if 'name' in m.attrs and m.attrs['name'] == 'description':
                 scraped_description = m.attrs['content']
 
+        # provide default response for when no metadata available
         try:
             scraped_description
         except UnboundLocalError:
