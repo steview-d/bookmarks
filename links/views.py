@@ -314,6 +314,13 @@ def add_bookmark(request, page):
     except ObjectDoesNotExist:
         return redirect('links', page='qhome')  # qhome currently, to see errs
 
+    num_collections = Collection.objects.filter(
+        user=request.user, page=page).count()
+    if num_collections == 0:
+        messages.error(
+            request, f"Create a collection for your bookmark first")
+        return redirect('links', page=page)
+
     add_bookmark_form = AddBookmarkForm(request.user, page)
 
     if 'add-bm-form' in request.POST:
