@@ -182,7 +182,8 @@ $(document).ready(function() {
             url: "/app/scrape_url",
             success: function(data) {
                 // insert scraped data
-                console.log(data);
+                $('#id_title').val(data.title);
+                $('#id_description').val(data.description);
             }
         });
     });

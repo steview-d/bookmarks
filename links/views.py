@@ -361,19 +361,20 @@ def scrape_url(request):
     r = req.get(url)
 
     soup = BeautifulSoup(r.text, 'html.parser')
-    # scraped_title = soup.title.get_text()
+    scraped_title = soup.title.get_text()
 
     metas = soup.find_all('meta')
-    # print(meta.attrs['content'] for meta in metas if 'name' in meta.attrs and
-    # meta.attrs['name'] == 'description')
-    for i in metas:
-        if 'name' in i.attrs and i.attrs['name'] == 'description':
-            print(i.attrs['content'])
-    # scraped_description = soup.meta.attrs['content'].get_text()
+    for m in metas:
+        if 'name' in m.attrs and m.attrs['name'] == 'description':
+            scraped_description = m.attrs['content']
 
-    # print(scraped_description)
+    #
+    # Fails on invalid bookmarks
+    #
 
-    data = {'success': True}
+    data = {'success': True,
+            'title': scraped_title,
+            'description': scraped_description}
 
     return JsonResponse(data)
 
