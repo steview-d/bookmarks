@@ -358,23 +358,37 @@ def add_bookmark(request, page):
 def scrape_url(request):
 
     url = request.POST.get('urlToScrape', None)
-    r = req.get(url)
+    data = {}
 
-    soup = BeautifulSoup(r.text, 'html.parser')
-    scraped_title = soup.title.get_text()
+    if not url:
+        return JsonResponse(data)
 
-    metas = soup.find_all('meta')
-    for m in metas:
-        if 'name' in m.attrs and m.attrs['name'] == 'description':
-            scraped_description = m.attrs['content']
+    try:
+        r = req.get(url)
+        r.raise_for_status()
 
-    #
-    # Fails on invalid bookmarks
-    #
+    except req.exceptions.RequestException:
+        data = {'result': False,
+                'title': '',
+                'description': ''}
 
-    data = {'success': True,
-            'title': scraped_title,
-            'description': scraped_description}
+    else:
+        soup = BeautifulSoup(r.text, 'html.parser')
+        scraped_title = soup.title.get_text()
+
+        metas = soup.find_all('meta')
+        for m in metas:
+            if 'name' in m.attrs and m.attrs['name'] == 'description':
+                scraped_description = m.attrs['content']
+
+        try:
+            scraped_description
+        except UnboundLocalError:
+            scraped_description = "Sorry, no metadata available for this URL"
+
+        data = {'result': True,
+                'title': scraped_title,
+                'description': scraped_description}
 
     return JsonResponse(data)
 
@@ -426,11 +440,10 @@ def check_valid_url(request):
         response.raise_for_status()
 
     except req.exceptions.RequestException:
-        # print(response)
-        data['result'] = 'invalid'
+        data['result'] = False
 
     else:
-        data['result'] = 'valid'
+        data['result'] = True
 
     return JsonResponse(data)
 

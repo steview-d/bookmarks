@@ -155,10 +155,10 @@ $(document).ready(function() {
             url: "/app/check_valid_url",
             success: function(data) {
                 switch (data.result) {
-                    case "valid":
+                    case true:
                         $("#url-validation-result").text("Url status: Valid");
                         break;
-                    case "invalid":
+                    case false:
                         $("#url-validation-result").text("Url status: Invalid");
                         break;
                     default:
@@ -180,15 +180,34 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: csrftoken
             },
             url: "/app/scrape_url",
+            // success: function(data) {
+            //     if (data.result == false) {
+            //         $("#scrape-error-msg").text("jkhjhj");
+            //     } else {
+            //         // insert scraped data
+            //         $("#id_title").val(data.title);
+            //         $("#id_description").val(data.description);
+            //     }
+            // }
             success: function(data) {
-                // insert scraped data
-                $('#id_title').val(data.title);
-                $('#id_description').val(data.description);
+                switch (data.result) {
+                    case true:
+                        $("#id_title").val(data.title);
+                        $("#id_description").val(data.description);
+                        break;
+                    case false:
+                        $("#scrape-error-msg").text(
+                            "Could not load this URL"
+                        );
+                        break;
+                    default:
+                        $("#scrape-error-msg").text("The URL is empty");
+                }
+                $("#id_title").val(data.title);
+                $("#id_description").val(data.description);
             }
         });
     });
-
-
 
     // bookmark options menu
     $(".bm-icon-toggle").on("click", function(e) {
@@ -217,9 +236,8 @@ $(document).ready(function() {
             url: "/app/update_collection_list",
             success: function(data) {
                 console.log(data.html);
-                $('#id_dest_collection').html(data.html);
+                $("#id_dest_collection").html(data.html);
             }
         });
-    });  
-
+    });
 });
