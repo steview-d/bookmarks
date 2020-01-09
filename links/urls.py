@@ -3,13 +3,14 @@ from django.urls import path
 from .views import (links, page_sort, arrange_collections, collection_sort,
                     add_bookmark, edit_bookmark, move_bookmark,
                     check_valid_url, update_collection_list, import_url,
-                    manual_url_scrape)
+                    manual_url_scrape, import_url_success)
 # from .utils import start_app, change_num_columns
 from .utils import general_utils, collection_utils
 
 urlpatterns = [
     path('start-app', general_utils.start_app, name="start_app"),
     path('import-url/', import_url, name="import_url"),
+    path('import-url-success/', import_url_success, name="import_url_success"),
     path('<page>/add-bookmark', add_bookmark, name="add_bookmark"),
     path('<page>/<bookmark>/edit-bookmark',
          edit_bookmark, name="edit_bookmark"),
