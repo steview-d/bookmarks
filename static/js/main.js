@@ -212,9 +212,15 @@ $(document).ready(function() {
     });
 
     // MoveBookmarkForm ajax control
-    $("#id_dest_page").change(function() {
-        newPagePk = $(this).val();
-        console.log(newPagePk);
+    $("#id_dest_page").change(updateCollectionChoices);
+    $(function() {
+        if($('form').hasClass('page-import-url')) {
+            updateCollectionChoices();
+        }
+    });
+
+    function updateCollectionChoices() {
+        newPagePk = $("#id_dest_page").val();
         $.ajax({
             type: "POST",
             data: {
@@ -223,9 +229,8 @@ $(document).ready(function() {
             },
             url: "/app/update_collection_list",
             success: function(data) {
-                console.log(data.html);
                 $("#id_dest_collection").html(data.html);
             }
         });
-    });
+    }
 });
