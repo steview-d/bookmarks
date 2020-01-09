@@ -165,7 +165,9 @@ def start_app(request):
 def page_sort(request):
     # get and format new page order
     data = request.POST.get('new_page_order', None)
+    print("PAGE DATA BEFORE: ", data)
     new_order = list(map(int, data.split(',')))
+    print("PAGE DATA AFTER: ", new_order)
 
     old_page_order = Page.objects.filter(
         user=request.user).order_by('position')
@@ -188,8 +190,41 @@ def page_sort(request):
 
 
 def bookmark_sort_manual(request):
-    data = request.POST.get('collection_data', None)
+    data = request.POST.get('new_bookmark_order', None)
+    collection_name = request.POST.get('collection_name', None)
+    page_name = request.POST.get('page_name', None)
+    print("BM DATA: ", data)
+    new_order = list(map(int, data.split(',')))
+    print("BM DATA AFTER: ", new_order)
 
+    # get collection bookmarks, in original order
+    collections = Collection.objects.filter(
+        user__username=request.user,
+        page__name=page_name
+        ).order_by('position')
+    original_bookmark_order = Bookmark.objects.filter(
+        user__username=request.user,
+        collection__in=collections,
+        collection__name=collection_name
+        ).order_by('position')
+
+    bookmark_limit = settings.LINKS_PREM_MAX_BOOKMARKS
+
+    print("COLLECTION NAME: ", collection_name)
+    print("PAGE NAME: ", page_name)
+    print(collections)
+
+    for idx, bookmark in enumerate((original_bookmark_order), 1):
+        bookmark.position_temp = new_order.index(bookmark.position) + 1
+        bookmark.position = idx + bookmark_limit
+        bookmark.save()
+
+    for bookmark in original_bookmark_order:
+        bookmark.position = bookmark.position_temp
+        bookmark.position_temp = None
+        bookmark.save()
+
+    data = {'success': True}
     return JsonResponse(data)
 
 

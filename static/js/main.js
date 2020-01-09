@@ -60,7 +60,7 @@ $(document).ready(function() {
                     new_page_order: postData,
                     csrfmiddlewaretoken: csrftoken
                 },
-                url: "page-sort",
+                url: "page_sort",
                 success: function(data) {
                     if (data.success) {
                         location.reload();
@@ -78,30 +78,32 @@ $(document).ready(function() {
         delay: 200,
         cursor: "grabbing",
         axis: "y",
-        stop: function() {
-            // let data = $(this).sortable("serialize");
-            // data = data.split("[]=.");
-            // data.pop();
+        stop: function(event, ui) {
+            let data = $(this).sortable("serialize");
+            data = data.split("[]=.");
+            data.pop();
 
-            // let newOrder = data.map(i => {
-            //     return i.replace("&", "");
-            // });
+            let newOrder = data.map(i => {
+                return i.replace("&", "");
+            });
 
-            // postData = newOrder.join(",");
+            postData = newOrder.join(",");
 
-            // $.ajax({
-            //     type: "POST",
-            //     data: {
-            //         new_page_order: postData,
-            //         csrfmiddlewaretoken: csrftoken
-            //     },
-            //     url: "page-sort",
-            //     success: function(data) {
-            //         if (data.success) {
-            //             location.reload();
-            //         }
-            //     }
-            // });
+            $.ajax({
+                type: "POST",
+                data: {
+                    new_bookmark_order: postData,
+                    collection_name: ui.item.parent().attr('id'),
+                    page_name: ui.item.parent().parent().parent().attr('id'),
+                    csrfmiddlewaretoken: csrftoken
+                },
+                url: "bookmark_sort_manual",
+                success: function(data) {
+                    if (data.success) {
+                        location.reload();
+                    }
+                }
+            });
         }
     });
 

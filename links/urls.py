@@ -21,7 +21,7 @@ urlpatterns = [
          update_collection_list, name="update_collection_list"),
     path('change-num-columns/<page>/<num>',
          collection_utils.change_num_columns, name="change_num_columns"),
-    path('page-sort', page_sort, name="page_sort"),
+    path('page_sort', page_sort, name="page_sort"),
     path('bookmark_sort_manual',
          bookmark_sort_manual, name="bookmark_sort_manual"),
     path('check_valid_url', check_valid_url, name="check_valid_url"),
