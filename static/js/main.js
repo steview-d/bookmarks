@@ -213,11 +213,12 @@ $(document).ready(function() {
 
     // MoveBookmarkForm ajax control
     $("#id_dest_page").change(updateCollectionChoices);
-    $(function() {
-        if($('form').hasClass('page-import-url')) {
-            updateCollectionChoices();
-        }
-    });
+    // tbc if needed now.....
+    // $(function() {
+    //     if($('form').hasClass('page-import-url')) {
+    //         updateCollectionChoices();
+    //     }
+    // });
 
     function updateCollectionChoices() {
         newPagePk = $("#id_dest_page").val();

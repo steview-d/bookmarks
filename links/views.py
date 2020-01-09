@@ -516,7 +516,7 @@ def import_url(request):
 
     # get page position 1 to set as default in dest_page choice field
     page = Page.objects.get(
-        user=request.user, position=5
+        user=request.user, position=1
     )
 
     # on form post
