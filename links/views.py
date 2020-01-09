@@ -36,13 +36,6 @@ def links(request, page):
         collection__in=collections
         )
 
-    # below moved up, before bookmarks - test this is ok
-    # ------------------------------
-    # collections = Collection.objects.filter(
-    #     user__username=request.user,
-    #     page__name=page.name
-    #     ).order_by('position')
-
     # page forms
     add_new_page_form = AddNewPageForm(
         current_user=request.user, prefix='new_page', auto_id=False
@@ -151,6 +144,22 @@ def links(request, page):
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
+
+
+def start_app(request):
+    # check if user has at least 1 page and if not, create one & redirect to it
+    if not Page.objects.filter(user=request.user).exists():
+        page_utils.create_default_page(request)
+
+    # get last page data and redirect if applicable, otherwise load first page
+    try:
+        last_page = request.session['last_page']
+
+    except KeyError:
+        last_page = Page.objects.get(user=request.user, position=1)
+        request.session['last_page'] = last_page.name
+
+    return redirect('links', page=last_page)
 
 
 def page_sort(request):
