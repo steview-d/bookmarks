@@ -77,7 +77,7 @@ class MoveBookmarkForm(forms.ModelForm):
         self.fields['dest_collection'].queryset = Collection.objects.filter(
             user=user, page=page).order_by('position')
         self.fields['dest_collection'].error_messages = {
-            'required': "Collection cannot be empty, \
+            'required': "Bookmarks cannot be in a page with no collections, \
                 please choose a page with at least one collecion"
             }
 

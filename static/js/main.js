@@ -212,16 +212,8 @@ $(document).ready(function() {
     });
 
     // MoveBookmarkForm ajax control
-    $("#id_dest_page").change(updateCollectionChoices);
-    // tbc if needed now.....
-    // $(function() {
-    //     if($('form').hasClass('page-import-url')) {
-    //         updateCollectionChoices();
-    //     }
-    // });
-
-    function updateCollectionChoices() {
-        newPagePk = $("#id_dest_page").val();
+    $("#id_dest_page").change(function() {
+        newPagePk = $(this).val();
         $.ajax({
             type: "POST",
             data: {
@@ -233,5 +225,5 @@ $(document).ready(function() {
                 $("#id_dest_collection").html(data.html);
             }
         });
-    }
+    });
 });

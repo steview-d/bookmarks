@@ -440,36 +440,54 @@ def move_bookmark(request, page, bookmark):
             request, f"That is not your bookmark to move!")
         return redirect('links', page=page)
 
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
 
     if 'move-bm-form' in request.POST:
-        orig_collection = bookmark_to_move.collection
+        page = Page.objects.get(
+            user=request.user, pk=request.POST.get('dest_page')
+        )
 
-        dest_collection = Collection.objects.get(
-            id=request.POST.get('dest_collection'))
+        move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
-        # get new position value for bookmark
-        dest_position = Bookmark.objects.filter(
-            user=request.user, collection=dest_collection
-        ).count() + 1
+        if move_bookmark_form.is_valid():
 
-        # update bookmark object with new collection & position
-        bookmark_to_move.collection = dest_collection
-        bookmark_to_move.position = dest_position
-        bookmark_to_move.save()
+            orig_collection = bookmark_to_move.collection
 
-        # Reapply position values to bookmarks in the original collection
-        # to account for the gap made when moving the bookmark out
-        orig_collection_to_reorder = Bookmark.objects.filter(
-            user=request.user, collection=orig_collection
-        ).order_by('position')
-        bookmark_utils.reorder_bookmarks(orig_collection_to_reorder)
+            dest_collection = Collection.objects.get(
+                id=request.POST.get('dest_collection'))
 
-        return redirect('links', page=page)
+            # get new position value for bookmark
+            dest_position = Bookmark.objects.filter(
+                user=request.user, collection=dest_collection
+            ).count() + 1
 
-    # get page names for sidebar
-    all_pages = Page.objects.filter(user=request.user).order_by('position')
+            # update bookmark object with new collection & position
+            bookmark_to_move.collection = dest_collection
+            bookmark_to_move.position = dest_position
+            bookmark_to_move.save()
+
+            # Reapply position values to bookmarks in the original collection
+            # to account for the gap made when moving the bookmark out
+            orig_collection_to_reorder = Bookmark.objects.filter(
+                user=request.user, collection=orig_collection
+            ).order_by('position')
+            bookmark_utils.reorder_bookmarks(orig_collection_to_reorder)
+
+            return redirect('links', page=page)
+
+        else:
+            context = {"page": page.name,
+                       "bookmark": bookmark_to_move,
+                       "move_bookmark_form": move_bookmark_form,
+                       "all_page_names": all_pages,
+                       }
+            context = is_premium(request.user, context)
+
+            return render(request, 'links/move_bookmark.html', context)
 
     context = {"page": page.name,
                "bookmark": bookmark_to_move,
@@ -556,8 +574,8 @@ def import_url(request):
             return redirect('import_url_success')
 
         else:
-            import_url_form = import_url_form
-            move_bookmark_form = move_bookmark_form
+            # import_url_form = import_url_form
+            # move_bookmark_form = move_bookmark_form
 
             context = {'import_url_form': import_url_form,
                        'move_bookmark_form': move_bookmark_form,
