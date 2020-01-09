@@ -1,5 +1,6 @@
 from .conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Max
 
@@ -508,20 +509,25 @@ def update_collection_list(request):
     return JsonResponse(data)
 
 
+@login_required
 def import_url(request):
-    # check user is logged in
-    if not request.user.is_authenticated:
-        messages.error(
-            request, f"You need to be logged in to add a bookmark")
-        return redirect('about_page')
 
     url_to_save = request.GET.get('url')
 
+    # get page position 1 to set as default in dest_page choice field
+    page = Page.objects.get(
+        user=request.user, position=5
+    )
+
     # on form post
     if 'import-url-form' in request.POST:
+        page = Page.objects.get(
+            user=request.user, pk=request.POST.get('dest_page')
+        )
         import_url_form = ImportUrlForm(request.POST)
+        move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
-        if import_url_form.is_valid():
+        if import_url_form.is_valid() and move_bookmark_form.is_valid():
 
             form = import_url_form.save(commit=False)
             form.user = request.user
@@ -545,14 +551,20 @@ def import_url(request):
 
             return redirect('links', page=page)
 
+        else:
+            import_url_form = import_url_form
+            move_bookmark_form = move_bookmark_form
+
+            context = {'import_url_form': import_url_form,
+                       'move_bookmark_form': move_bookmark_form,
+                       }
+            context = is_premium(request.user, context)
+
+            return render(request, 'links/import_url.html', context)
+
     scrape_data = bookmark_utils.scrape_url(request, url_to_save)
 
-    # get page position 1 to set as default in dest_page choice field
-    page = Page.objects.get(
-        user=request.user, position=1
-    )
-
-    import_bookmark_form = ImportUrlForm(initial={
+    import_url_form = ImportUrlForm(initial={
         'url': url_to_save,
         'title': scrape_data['title'],
         'description': scrape_data['description']
@@ -560,7 +572,7 @@ def import_url(request):
     move_bookmark_form = MoveBookmarkForm(
         request.user, page)
 
-    context = {'import_bookmark_form': import_bookmark_form,
+    context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
                }
     context = is_premium(request.user, context)

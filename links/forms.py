@@ -76,6 +76,10 @@ class MoveBookmarkForm(forms.ModelForm):
             user=user).order_by('position')
         self.fields['dest_collection'].queryset = Collection.objects.filter(
             user=user, page=page).order_by('position')
+        self.fields['dest_collection'].error_messages = {
+            'required': "Collection cannot be empty, \
+                please choose a page with at least one collecion"
+            }
 
 
 class ImportUrlForm(forms.ModelForm):

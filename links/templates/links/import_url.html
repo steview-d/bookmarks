@@ -20,13 +20,13 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form method="POST" class="border p-2 mt-3">
+                    <form method="POST" class="border p-2 mt-3 page-import-url">
                         <fieldset>
                             <legend>Import Bookmark</legend>
                             <button type="button" id="scrape-url" class="btn btn-warning mt-2">Scrape URL</button>
                             <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                             {% csrf_token %}
-                            {{ import_bookmark_form.as_p }}
+                            {{ import_url_form.as_p }}
                             {{ move_bookmark_form.as_p }}
 
                             <input type="submit" value="Import & Close" name="import-url-form" class="btn btn-info">
