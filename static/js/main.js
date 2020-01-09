@@ -70,6 +70,42 @@ $(document).ready(function() {
         }
     });
 
+    // Bookmark Sorting
+    // Manual Sort
+    $(".bookmark-sort").sortable({
+        items: 'li',
+        containment: "#bookmark-sort-container",
+        delay: 200,
+        cursor: "grabbing",
+        axis: "y",
+        stop: function() {
+            // let data = $(this).sortable("serialize");
+            // data = data.split("[]=.");
+            // data.pop();
+
+            // let newOrder = data.map(i => {
+            //     return i.replace("&", "");
+            // });
+
+            // postData = newOrder.join(",");
+
+            // $.ajax({
+            //     type: "POST",
+            //     data: {
+            //         new_page_order: postData,
+            //         csrfmiddlewaretoken: csrftoken
+            //     },
+            //     url: "page-sort",
+            //     success: function(data) {
+            //         if (data.success) {
+            //             location.reload();
+            //         }
+            //     }
+            // });
+        }
+    });
+
+
     // Collection Sorting ---------------------------------------------------//
     // Use jQueryUI to sort collections into preferred columns and positions
     // and then send new order for processing using ajax
@@ -169,13 +205,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    // Auto Scrape URL on page load for 'import url'
-    // $(function() {
-    //     if($('form').hasClass('[add class name here]')) {
-    //         console.log("ADD BM PAGE!!!");
-    //     }
-    // });
 
     // Url Scraping
     $("#scrape-url").on("click", scrapeUrl);

@@ -41,12 +41,12 @@
             </div>
             <div class="row">
                 {% for column in bm_data %}
-                <div class=" column" style="width: {{ column_width }}%">
+                <div id="bookmark-sort-container" class="column" style="width: {{ column_width }}%">
                     {% if column %}
                     {% for k, v in column.items %}
 
                     <!-- Render Collection Title & Options -->
-                    <ul id="{{ k }}" class="list-unstyled" style="padding: 1rem">
+                    <ul id="{{ k }}" class="list-unstyled bookmark-sort" style="padding: 1rem">
                         <div class="collection-container">
                             <div class="collection-title">
                                 <span class="collection-title-text">{{ k }}</span>

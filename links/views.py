@@ -187,6 +187,12 @@ def page_sort(request):
     return JsonResponse(data)
 
 
+def bookmark_sort_manual(request):
+    data = request.POST.get('collection_data', None)
+
+    return JsonResponse(data)
+
+
 def arrange_collections(request, page):
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -316,6 +322,7 @@ def collection_sort(request, page):
     return JsonResponse(data)
 
 
+@login_required
 def add_bookmark(request, page):
 
     try:

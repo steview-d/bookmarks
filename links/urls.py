@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (links, start_app, page_sort, arrange_collections,
                     collection_sort, add_bookmark, edit_bookmark,
                     move_bookmark, check_valid_url, update_collection_list,
-                    import_url, manual_url_scrape, import_url_success)
+                    import_url, manual_url_scrape, import_url_success,
+                    bookmark_sort_manual)
 # from .utils import start_app, change_num_columns
 from .utils import collection_utils
 
@@ -16,17 +17,17 @@ urlpatterns = [
          edit_bookmark, name="edit_bookmark"),
     path('<page>/<bookmark>/move-bookmark',
          move_bookmark, name="move_bookmark"),
-    path('update_collection_list', update_collection_list,
-         name="update_collection_list"),
+    path('update_collection_list',
+         update_collection_list, name="update_collection_list"),
     path('change-num-columns/<page>/<num>',
-         collection_utils.change_num_columns,
-         name="change_num_columns"),
+         collection_utils.change_num_columns, name="change_num_columns"),
     path('page-sort', page_sort, name="page_sort"),
+    path('bookmark_sort_manual',
+         bookmark_sort_manual, name="bookmark_sort_manual"),
     path('check_valid_url', check_valid_url, name="check_valid_url"),
     path('manual_url_scrape', manual_url_scrape, name="manual_url_scrape"),
     path('<page>', links, name="links"),
     path('<page>/arrange',
-         arrange_collections,
-         name="arrange_collections"),
+         arrange_collections, name="arrange_collections"),
     path('<page>/collection-sort', collection_sort, name="collection_sort"),
 ]
