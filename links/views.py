@@ -550,7 +550,10 @@ def import_url(request):
                 id=request.POST.get('dest_page')
             )
 
-            return render(request, 'links/import_url_success.html')
+            request.session['imported_url'] = url_to_save
+
+            # return render(request, 'links/import_url_success.html')
+            return redirect('import_url_success')
 
         else:
             import_url_form = import_url_form
@@ -561,7 +564,7 @@ def import_url(request):
                        }
             context = is_premium(request.user, context)
 
-            return redirect('import-url-success')
+            return render(request, 'links/import_url.html', context)
 
     scrape_data = bookmark_utils.scrape_url(request, url_to_save)
 
@@ -583,4 +586,7 @@ def import_url(request):
 
 @login_required
 def import_url_success(request):
-    return render(request, 'links/import_url_success.html')
+    url = request.session['imported_url']
+    context = {'url': url}
+
+    return render(request, 'links/import_url_success.html', context)
