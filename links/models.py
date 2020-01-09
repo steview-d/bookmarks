@@ -130,9 +130,9 @@ class Bookmark(models.Model):
 
 class MoveBookmark(models.Model):
     dest_page = models.ForeignKey(
-        Page, default=1, null=False, on_delete=models.CASCADE
+        Page, null=False, blank=False, on_delete=models.CASCADE
     )
     dest_collection = models.ForeignKey(
         Collection,
-        default=1, null=False, blank=False, on_delete=models.CASCADE
+        null=False, blank=False, on_delete=models.CASCADE
     )
