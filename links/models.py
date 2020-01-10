@@ -11,7 +11,6 @@ class Page(models.Model):
     A page is a single view for the user than contains a number of collections.
     Initially, only 1 page per user, and can be used to store settings for
     collections.
-    Eventually will expand app to allow multiple pages.
     """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE

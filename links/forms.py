@@ -23,8 +23,17 @@ class PageForm(forms.ModelForm):
 
 
 class AddNewPageForm(PageForm):
-    num_of_columns = forms.IntegerField(
-        initial=4, label="Columns"
+
+    NUM_COLUMN_CHOICES = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+    )
+
+    num_of_columns = forms.ChoiceField(
+        initial=4, label="Columns", choices=NUM_COLUMN_CHOICES
     )
 
     class Meta:
