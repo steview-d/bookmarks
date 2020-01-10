@@ -11,7 +11,8 @@ import itertools
 import json
 import requests as req
 
-from premium.utils import is_premium, premium_check_add_page
+from premium.utils import (is_premium, premium_check_add_page,
+                           premium_check_add_collection)
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
                     EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
@@ -47,7 +48,7 @@ def links(request, page):
     # add new page form
     if 'add-page-form' in request.POST:
         # check allowed extra page at current membership level
-        check = premium_check_add_page(request, page)
+        check = premium_check_add_page(request)
 
         if check:
             form_data = AddNewPageForm(
@@ -60,7 +61,7 @@ def links(request, page):
             else:
                 add_new_page_form = form_data
         else:
-            return redirect('links', page)
+            return redirect('premium')
 
     # edit page form
     if 'edit-page-form' in request.POST:
@@ -87,13 +88,19 @@ def links(request, page):
 
     # add a new collection
     if 'add-collection' in request.POST:
-        # check name is allowed and if so, add to db
-        proposed_name = request.POST.get('collection_name')
-        if collection_utils.validate_name(
-                request, proposed_name, collections, page):
-            collection_utils.add_collection(request, page)
+        # check allowed extra collection at current membership level
+        check = premium_check_add_collection(request)
 
-        return redirect('links', page=page)
+        if check:
+            # check name is allowed and if so, add to db
+            proposed_name = request.POST.get('collection_name')
+            if collection_utils.validate_name(
+                    request, proposed_name, collections, page):
+                collection_utils.add_collection(request, page)
+
+            return redirect('links', page=page)
+        else:
+            return redirect('premium')
 
     # rename collection form
     if 'rename-collection-form' in request.POST:

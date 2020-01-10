@@ -1,7 +1,7 @@
 from links.conf import settings
 from django.contrib import messages
 
-from links.models import Page
+from links.models import Page, Collection, Bookmark
 
 
 def is_premium(request, context):
@@ -32,7 +32,7 @@ def premium_check(request):
     return request.user.groups.filter(name__in=['Premium']).exists()
 
 
-def premium_check_add_page(request, page):
+def premium_check_add_page(request):
     """
     Check if user status allows them to add another page
 
@@ -48,6 +48,28 @@ def premium_check_add_page(request, page):
             num_pages >= settings.LINKS_STND_MAX_PAGES:
         messages.error(
             request, f"Standard members may have at most 2 pages. \
+                To add more, become a Premium member.")
+        return False
+
+    return True
+
+
+def premium_check_add_collection(request):
+    """
+    Check if user status allows them to add another collection
+
+    Returns:
+        Bool
+    """
+
+    num_collections = Collection.objects.filter(
+        user=request.user
+    ).count()
+
+    if not premium_check(request) and \
+            num_collections >= settings.LINKS_STND_MAX_COLLECTIONS:
+        messages.error(
+            request, f"Standard members may have at most 20 collections. \
                 To add more, become a Premium member.")
         return False
 
