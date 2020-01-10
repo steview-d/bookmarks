@@ -74,7 +74,7 @@ $(document).ready(function() {
     // Manual Sort
     $(".bookmark-sort").sortable({
         items: 'li',
-        containment: ".bookmark-sort",
+        containment: "parent",
         delay: 200,
         cursor: "grabbing",
         axis: "y",
@@ -93,8 +93,8 @@ $(document).ready(function() {
                 type: "POST",
                 data: {
                     new_bookmark_order: postData,
-                    collection_name: ui.item.parent().parent().attr('id'),
-                    page_name: ui.item.parent().parent().parent().parent().attr('id'),
+                    collection_name: ui.item.closest('div.collection-name').attr('id'),
+                    page_name: ui.item.closest('div.page-name').attr('id'),
                     csrfmiddlewaretoken: csrftoken
                 },
                 url: "bookmark_sort_manual",
