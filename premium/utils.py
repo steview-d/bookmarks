@@ -47,7 +47,8 @@ def premium_check_add_page(request):
     if not premium_check(request) and \
             num_pages >= settings.LINKS_STND_MAX_PAGES:
         messages.error(
-            request, f"Standard members may have at most 2 pages. \
+            request, f"Standard members may have at most \
+                {settings.LINKS_STND_MAX_PAGES} pages. \
                 To add more, become a Premium member.")
         return False
 
@@ -69,7 +70,31 @@ def premium_check_add_collection(request):
     if not premium_check(request) and \
             num_collections >= settings.LINKS_STND_MAX_COLLECTIONS:
         messages.error(
-            request, f"Standard members may have at most 20 collections. \
+            request, f"Standard members may have at most \
+                {settings.LINKS_STND_MAX_COLLECTIONS} collections. \
+                To add more, become a Premium member.")
+        return False
+
+    return True
+
+
+def premium_check_add_bookmark(request):
+    """
+    Check if user status allows them to add another bookmark
+
+    Returns:
+        Bool
+    """
+
+    num_bookmarks = Bookmark.objects.filter(
+        user=request.user
+    ).count()
+
+    if not premium_check(request) and \
+            num_bookmarks >= settings.LINKS_STND_MAX_BOOKMARKS:
+        messages.error(
+            request, f"Standard members may have at most \
+                {settings.LINKS_STND_MAX_BOOKMARKS} bookmarks. \
                 To add more, become a Premium member.")
         return False
 

@@ -12,7 +12,8 @@ import json
 import requests as req
 
 from premium.utils import (is_premium, premium_check_add_page,
-                           premium_check_add_collection)
+                           premium_check_add_collection,
+                           premium_check_add_bookmark)
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
                     EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
@@ -366,29 +367,36 @@ def add_bookmark(request, page):
     add_bookmark_form = AddBookmarkForm(request.user, page)
 
     if 'add-bm-form' in request.POST:
-        add_bookmark_form = AddBookmarkForm(request.user, page, request.POST)
+        # check allowed extra bookmark at current membership level
+        check = premium_check_add_bookmark(request)
 
-        if add_bookmark_form.is_valid():
-            form = add_bookmark_form.save(commit=False)
+        if check:
+            add_bookmark_form = AddBookmarkForm(
+                request.user, page, request.POST)
 
-            form.user = request.user
+            if add_bookmark_form.is_valid():
+                form = add_bookmark_form.save(commit=False)
 
-            # set position value to next highest value. ie, last on list
-            max_pos_value = Bookmark.objects.filter(
-                user__username=request.user,
-                collection__id=request.POST['collection']).aggregate(
-                    Max('position')
-            )
+                form.user = request.user
 
-            form.position = 1 if not max_pos_value['position__max'] else \
-                max_pos_value['position__max'] + 1
+                # set position value to next highest value. ie, last on list
+                max_pos_value = Bookmark.objects.filter(
+                    user__username=request.user,
+                    collection__id=request.POST['collection']).aggregate(
+                        Max('position')
+                )
 
-            if not form.description:
-                form.description = "No description found"
+                form.position = 1 if not max_pos_value['position__max'] else \
+                    max_pos_value['position__max'] + 1
 
-            add_bookmark_form.save()
+                if not form.description:
+                    form.description = "No description found"
 
-            return redirect('links', page=page)
+                add_bookmark_form.save()
+
+                return redirect('links', page=page)
+        else:
+            return redirect('premium')
 
     else:
         add_bookmark_form = AddBookmarkForm(request.user, page)
