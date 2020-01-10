@@ -15,3 +15,12 @@ def is_premium(request, context):
     if request.groups.filter(name__in=['Premium']).exists():
         context['is_premium'] = True
     return context
+
+
+def premium_check(request):
+    """
+    checks if the passed user is a member of the 'Premium' group and
+    returns either True or False
+    """
+
+    return request.user.groups.filter(name__in=['Premium']).exists()
