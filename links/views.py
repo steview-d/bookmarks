@@ -11,7 +11,7 @@ import itertools
 import json
 import requests as req
 
-from premium.utils import is_premium
+from premium.utils import is_premium, premium_check_add_page
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
                     EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
@@ -36,26 +36,31 @@ def links(request, page):
         collection__in=collections
         )
 
-    # page forms
+    # forms
     add_new_page_form = AddNewPageForm(
         current_user=request.user, prefix='new_page', auto_id=False
     )
-
     edit_page_form = EditPageForm(
         current_user=request.user
     )
 
     # add new page form
     if 'add-page-form' in request.POST:
-        form_data = AddNewPageForm(
-            request.POST, current_user=request.user,
-            prefix='new_page', auto_id=False)
-        if form_data.is_valid():
-            new_page = page_utils.add_page(request, form_data, page)
-            return redirect('links', page=new_page)
+        # check allowed extra page at current membership level
+        check = premium_check_add_page(request, page)
 
+        if check:
+            form_data = AddNewPageForm(
+                request.POST, current_user=request.user,
+                prefix='new_page', auto_id=False)
+            if form_data.is_valid():
+                new_page = page_utils.add_page(request, form_data)
+                return redirect('links', page=new_page)
+
+            else:
+                add_new_page_form = form_data
         else:
-            add_new_page_form = form_data
+            return redirect('links', page)
 
     # edit page form
     if 'edit-page-form' in request.POST:

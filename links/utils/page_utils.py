@@ -1,4 +1,3 @@
-from links.conf import settings
 
 from django.contrib import messages
 from django.db.models import Max
@@ -7,10 +6,9 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 
 from links.models import Page
-from premium.utils import premium_check
 
 
-def add_page(request, form_data, page):
+def add_page(request, form_data):
     """
     Build a new page and add to the db.
 
@@ -18,40 +16,28 @@ def add_page(request, form_data, page):
         request (obj): The request object
         form_data (obj): The submitted form data
     """
-    num_pages = Page.objects.filter(
-        user=request.user
-    ).count()
 
-    # non premium users can have 2 pages max - check this first
-    if not premium_check(request) and \
-            num_pages >= settings.LINKS_STND_MAX_PAGES:
-        messages.error(
-            request, f"Standard members may have at most 2 pages. \
-                To add more, become a Premium member.")
-        return page
+    form = form_data.save(commit=False)
+    form.name = form.name.lower()
+    form.user = User.objects.get(username=request.user)
 
-    else:
-        form = form_data.save(commit=False)
-        form.name = form.name.lower()
-        form.user = User.objects.get(username=request.user)
+    # set position to next highest value, so last on list
+    max_pos_value = Page.objects.filter(
+        user__username=request.user).aggregate(
+            Max('position')
+    )
+    form.position = max_pos_value['position__max'] + 1
 
-        # set position to next highest value, so last on list
-        max_pos_value = Page.objects.filter(
-            user__username=request.user).aggregate(
-                Max('position')
-        )
-        form.position = max_pos_value['position__max'] + 1
+    # set empty collection order values
+    form.collection_order_2 = build_empty_collection_order(2)
+    form.collection_order_3 = build_empty_collection_order(3)
+    form.collection_order_4 = build_empty_collection_order(4)
+    form.collection_order_5 = build_empty_collection_order(5)
 
-        # set empty collection order values
-        form.collection_order_2 = build_empty_collection_order(2)
-        form.collection_order_3 = build_empty_collection_order(3)
-        form.collection_order_4 = build_empty_collection_order(4)
-        form.collection_order_5 = build_empty_collection_order(5)
+    form.save()
 
-        form.save()
-
-        new_page = form.name
-        return new_page
+    new_page = form.name
+    return new_page
 
 
 def edit_page_name(request, new_page_name, old_page_name):
