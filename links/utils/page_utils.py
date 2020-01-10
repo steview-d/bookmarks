@@ -1,3 +1,5 @@
+from links.conf import settings
+
 from django.contrib import messages
 from django.db.models import Max
 from django.shortcuts import get_object_or_404, redirect
@@ -21,11 +23,11 @@ def add_page(request, form_data, page):
     ).count()
 
     # non premium users can have 2 pages max - check this first
-    if not premium_check(request) and num_pages > 1:
+    if not premium_check(request) and \
+            num_pages >= settings.LINKS_STND_MAX_PAGES:
         messages.error(
             request, f"Standard members may have at most 2 pages. \
                 To add more, become a Premium member.")
-        print("KJKLJKLJLK")
         return page
 
     else:
