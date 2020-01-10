@@ -47,9 +47,11 @@ def links(request, page):
 
     # add new page form
     if 'add-page-form' in request.POST:
-        form_data = AddNewPageForm(request.POST, current_user=request.user)
+        form_data = AddNewPageForm(
+            request.POST, current_user=request.user,
+            prefix='new_page', auto_id=False)
         if form_data.is_valid():
-            new_page = page_utils.add_page(request, form_data)
+            new_page = page_utils.add_page(request, form_data, page)
             return redirect('links', page=new_page)
 
         else:
