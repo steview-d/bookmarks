@@ -12,7 +12,7 @@ import json
 import requests as req
 
 from premium.utils import is_premium
-from .utils import page_utils, collection_utils, bookmark_utils
+from .utils import page_utils, collection_utils, bookmark_utils, general_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
                     EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
 from .models import Bookmark, Collection, Page
@@ -165,27 +165,17 @@ def start_app(request):
 def page_sort(request):
     # get and format new page order
     data = request.POST.get('new_page_order', None)
-    print("PAGE DATA BEFORE: ", data)
     new_order = list(map(int, data.split(',')))
-    print("PAGE DATA AFTER: ", new_order)
 
-    old_page_order = Page.objects.filter(
+    original_page_order = Page.objects.filter(
         user=request.user).order_by('position')
 
     page_limit = settings.LINKS_PREM_MAX_PAGES
 
     # re-order pages based on user sort
-    for idx, page in enumerate((old_page_order), 1):
-        page.position_temp = new_order.index(page.position) + 1
-        page.position = idx + page_limit
-        page.save()
+    data = general_utils.qs_sort(
+        original_page_order, new_order, page_limit)
 
-    for page in old_page_order:
-        page.position = page.position_temp
-        page.position_temp = None
-        page.save()
-
-    data = {'success': True}
     return JsonResponse(data)
 
 
@@ -193,9 +183,7 @@ def bookmark_sort_manual(request):
     data = request.POST.get('new_bookmark_order', None)
     collection_name = request.POST.get('collection_name', None)
     page_name = request.POST.get('page_name', None)
-    print("BM DATA: ", data)
     new_order = list(map(int, data.split(',')))
-    print("BM DATA AFTER: ", new_order)
 
     # get collection bookmarks, in original order
     collections = Collection.objects.filter(
@@ -210,21 +198,10 @@ def bookmark_sort_manual(request):
 
     bookmark_limit = settings.LINKS_PREM_MAX_BOOKMARKS
 
-    print("COLLECTION NAME: ", collection_name)
-    print("PAGE NAME: ", page_name)
-    print(collections)
+    # re-order bookmarks based on user sort
+    data = general_utils.qs_sort(
+        original_bookmark_order, new_order, bookmark_limit)
 
-    for idx, bookmark in enumerate((original_bookmark_order), 1):
-        bookmark.position_temp = new_order.index(bookmark.position) + 1
-        bookmark.position = idx + bookmark_limit
-        bookmark.save()
-
-    for bookmark in original_bookmark_order:
-        bookmark.position = bookmark.position_temp
-        bookmark.position_temp = None
-        bookmark.save()
-
-    data = {'success': True}
     return JsonResponse(data)
 
 
