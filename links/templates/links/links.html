@@ -41,12 +41,13 @@
             </div>
             <div id="{{ page }}" class="row">
                 {% for column in bm_data %}
-                <div id="bookmark-sort-container" class="column" style="width: {{ column_width }}%">
+                <div class="column" style="width: {{ column_width }}%">
                     {% if column %}
                     {% for k, v in column.items %}
 
                     <!-- Render Collection Title & Options -->
-                    <ul id="{{ k }}" class="list-unstyled bookmark-sort" style="padding: 1rem">
+                    <div id="{{ k }}" style="padding: 1rem">
+
                         <div class="collection-container">
                             <div class="collection-title">
                                 <span class="collection-title-text">{{ k }}</span>
@@ -69,51 +70,52 @@
                             <input type="hidden" name="collection-position" value="{{k.position}}">
                             <input type="submit" name="rename-collection-form" class="btn btn-info btn-sm mt-1">
                         </form>
-
-                        <!-- Render Individual Bookmarks -->
-                        {% for item in v %}
-                        <li id="{{item.position}}_." style="margin: 0.5rem">
-                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="bm-container">
-                                    <div class="bm-title">
-                                        <span class="bm-title-text">{{ item.title }}</span>
-                                        <!-- <span class="bm-options-icon"><i class="fa fa-lg fa-caret-down bm-icon-toggle"
+                        <ul class="bookmark-sort list-unstyled">
+                            <!-- Render Individual Bookmarks -->
+                            {% for item in v %}
+                            <li id="{{item.position}}_." style="margin: 0.5rem">
+                                <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                    <div class="bm-container">
+                                        <div class="bm-title">
+                                            <span class="bm-title-text">{{ item.title }}</span>
+                                            <!-- <span class="bm-options-icon"><i class="fa fa-lg fa-caret-down bm-icon-toggle"
                                                 aria-hidden="true"></i></span> -->
-                                        <span class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                            role="button">
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                            <small">Options</small">
-                                        </span>
+                                            <span
+                                                class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
+                                                role="button">
+                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                <small">Options</small">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="bm-icons-show-hide">
+                                    <div class="bm-icons-container">
+                                        <a href="{% url 'edit_bookmark' page=page bookmark=item.pk %}"
+                                            class="btn btn-outline-secondary bm-icon" role="button">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            <small class="ml-1">Edit</small>
+                                        </a>
+                                        <a href="{% url 'move_bookmark' page=page bookmark=item.pk %}"
+                                            class="btn btn-outline-secondary bm-icon" role="button">
+                                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                            <small class="ml-1">Move</small>
+                                        </a>
+                                        <button class="btn btn-outline-secondary bm-icon" data-toggle="modal"
+                                            data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
+                                                aria-hidden="true"></i><small class="ml-1">Delete</small></button>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="bm-icons-show-hide">
-                                <div class="bm-icons-container">
-                                    <a href="{% url 'edit_bookmark' page=page bookmark=item.pk %}"
-                                        class="btn btn-outline-secondary bm-icon" role="button">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        <small class="ml-1">Edit</small>
-                                    </a>
-                                    <a href="{% url 'move_bookmark' page=page bookmark=item.pk %}"
-                                        class="btn btn-outline-secondary bm-icon" role="button">
-                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                        <small class="ml-1">Move</small>
-                                    </a>
-                                    <button class="btn btn-outline-secondary bm-icon" data-toggle="modal"
-                                        data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
-                                            aria-hidden="true"></i><small class="ml-1">Delete</small></button>
-                                </div>
-                            </div>
-                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="link-desc text-trunc">{{ item.description }}</div>
-                                <div class="link-url text-trunc">{{ item }}</div>
-                            </a>
-                        </li>
-                        <!-- Bookmark Delete Modal -->
-                        {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
-                        {% endfor %}
-
-                    </ul>
+                                <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                    <div class="link-desc text-trunc">{{ item.description }}</div>
+                                    <div class="link-url text-trunc">{{ item }}</div>
+                                </a>
+                            </li>
+                            <!-- Bookmark Delete Modal -->
+                            {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                     <!-- Collection Delete Modal -->
                     {% include 'links/components/collection_delete_modal.html' with collection=k %}
 
