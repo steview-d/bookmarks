@@ -11,9 +11,7 @@ import itertools
 import json
 import requests as req
 
-from premium.utils import (is_premium, premium_check_add_page,
-                           premium_check_add_collection,
-                           premium_check_add_bookmark)
+from premium.utils import is_premium, premium_check
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
 from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
                     EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
@@ -49,7 +47,7 @@ def links(request, page):
     # add new page form
     if 'add-page-form' in request.POST:
         # check allowed extra page at current membership level
-        check = premium_check_add_page(request)
+        check = premium_check(request, Page, settings.LINKS_STND_MAX_PAGES)
 
         if check:
             form_data = AddNewPageForm(
@@ -90,7 +88,8 @@ def links(request, page):
     # add a new collection
     if 'add-collection' in request.POST:
         # check allowed extra collection at current membership level
-        check = premium_check_add_collection(request)
+        check = premium_check(
+            request, Collection, settings.LINKS_STND_MAX_COLLECTIONS)
 
         if check:
             # check name is allowed and if so, add to db
@@ -368,7 +367,8 @@ def add_bookmark(request, page):
 
     if 'add-bm-form' in request.POST:
         # check allowed extra bookmark at current membership level
-        check = premium_check_add_bookmark(request)
+        check = premium_check(
+            request, Bookmark, settings.LINKS_STND_MAX_BOOKMARKS)
 
         if check:
             add_bookmark_form = AddBookmarkForm(

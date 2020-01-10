@@ -1,7 +1,6 @@
-from links.conf import settings
 from django.contrib import messages
 
-from links.models import Page, Collection, Bookmark
+# from links.models import Page, Collection, Bookmark
 
 
 def is_premium(request, context):
@@ -23,78 +22,24 @@ def is_premium(request, context):
     return context
 
 
-def premium_check(request):
+def premium_check(request, model, settings_value):
     """
-    checks if the passed user is a member of the 'Premium' group and
-    returns either True or False
-    """
-
-    return request.user.groups.filter(name__in=['Premium']).exists()
-
-
-def premium_check_add_page(request):
-    """
-    Check if user status allows them to add another page
+    Check if user status allows them to add another item
 
     Returns:
         Bool
     """
 
-    num_pages = Page.objects.filter(
+    num_items = model.objects.filter(
         user=request.user
     ).count()
 
-    if not premium_check(request) and \
-            num_pages >= settings.LINKS_STND_MAX_PAGES:
+    premium_check = request.user.groups.filter(name__in=['Premium']).exists()
+
+    if not premium_check and num_items >= settings_value:
         messages.error(
             request, f"Standard members may have at most \
-                {settings.LINKS_STND_MAX_PAGES} pages. \
-                To add more, become a Premium member.")
-        return False
-
-    return True
-
-
-def premium_check_add_collection(request):
-    """
-    Check if user status allows them to add another collection
-
-    Returns:
-        Bool
-    """
-
-    num_collections = Collection.objects.filter(
-        user=request.user
-    ).count()
-
-    if not premium_check(request) and \
-            num_collections >= settings.LINKS_STND_MAX_COLLECTIONS:
-        messages.error(
-            request, f"Standard members may have at most \
-                {settings.LINKS_STND_MAX_COLLECTIONS} collections. \
-                To add more, become a Premium member.")
-        return False
-
-    return True
-
-
-def premium_check_add_bookmark(request):
-    """
-    Check if user status allows them to add another bookmark
-
-    Returns:
-        Bool
-    """
-
-    num_bookmarks = Bookmark.objects.filter(
-        user=request.user
-    ).count()
-
-    if not premium_check(request) and \
-            num_bookmarks >= settings.LINKS_STND_MAX_BOOKMARKS:
-        messages.error(
-            request, f"Standard members may have at most \
-                {settings.LINKS_STND_MAX_BOOKMARKS} bookmarks. \
+                {settings_value} {model.__name__}s. \
                 To add more, become a Premium member.")
         return False
 
