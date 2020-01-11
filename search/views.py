@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 
 from premium.utils import is_premium
@@ -12,9 +13,20 @@ def search(request):
     q = request.GET.get('q')
 
     # find bookmarks based on search query
-    search_results = Bookmark.objects.filter(
+    search_qs = Bookmark.objects.filter(
         user=request.user, title__icontains=q
     )
+
+    # pagination
+    results_page = request.GET.get('rpage', 1)
+
+    paginator = Paginator(search_qs, 5)
+    try:
+        search_results = paginator.page(results_page)
+    except PageNotAnInteger:
+        search_results = paginator.page(1)
+    except EmptyPage:
+        search_results = paginator.page(paginator.num_pages)
 
     # get pages for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')

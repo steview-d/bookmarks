@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block page_title %}Arrange{% endblock %}
+{% block page_title %}Search | {{ q }} {% endblock %}
 
 {% block content %}
 
@@ -48,6 +48,56 @@
                         </li>
                         {% endfor %}
                     </ul>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-12">
+                    {% if search_results.has_other_pages %}
+                    <h5>Pagination</h5>
+                    <ul class="pagination">
+                        {% if search_results.has_previous %}
+                        <li class="page-item">
+                            <a href="?q={{ q }}&rpage={{ search_results.previous_page_number }}" class="page-link">
+                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="disabled page-item">
+                            <span class="page-link">
+                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            </span>
+                        </li>
+                        {% endif %}
+
+                        {% for i in search_results.paginator.page_range %}
+                        {% if search_results.number == i %}
+                        <li class="active page-item" class="active">
+                            <span class="page-link">{{ i }}</span>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a href="?q={{ q }}&rpage={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if search_results.has_next %}
+                        <li class="page-item">
+                            <a href="?q={{ q }}&rpage={{ search_results.next_page_number }}" class="page-link">
+                                <i class="fa fa-chevron-right qpage-link" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="disabled page-item">
+                            <span class="page-link">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
                 </div>
             </div>
 
