@@ -25,6 +25,8 @@ urlpatterns = [
     path('faq', faq, name="faq_page"),
     # path for links app
     path('app/', include('links.urls')),
+    # path for search app
+    path('search/', include('search.urls')),
     # paths for accounts
     path('accounts/', include('accounts.urls')),
     # paths for admin

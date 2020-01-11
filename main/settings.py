@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'pages',
     'premium',
     'support',
+    'search',
 ]
 
 MIDDLEWARE = [

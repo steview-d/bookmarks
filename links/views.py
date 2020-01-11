@@ -171,7 +171,7 @@ def start_app(request):
 
     except KeyError:
         last_page = Page.objects.get(user=request.user, position=1)
-        request.session['last_page'] = last_page.name
+        request.session['last_page'] = last_page
 
     return redirect('links', page=last_page)
 
