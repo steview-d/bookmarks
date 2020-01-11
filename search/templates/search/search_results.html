@@ -22,7 +22,18 @@
 
         <div class="container-fluid">
             <div class="row">
-                <h3>Your search for '{{ q }}' returned {{ search_results.count }} results</h3>
+                <div class="col-12">
+                    <h3>Showing results of your search for '{{ q }}'.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Results Summary -->
+                    <p>Showing {{ search_results.start_index }} - {{ search_results.end_index }} of {{ p.count }}
+                        bookmarks</p>
+                    <!-- Pagination -->
+                    {% include 'search/components/pagination.html' %}
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -52,54 +63,8 @@
             </div>
 
             <!-- Pagination -->
-            <div class="row">
-                <div class="col-12">
-                    {% if search_results.has_other_pages %}
-                    <h5>Pagination</h5>
-                    <ul class="pagination">
-                        {% if search_results.has_previous %}
-                        <li class="page-item">
-                            <a href="?q={{ q }}&rpage={{ search_results.previous_page_number }}" class="page-link">
-                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="disabled page-item">
-                            <span class="page-link">
-                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                            </span>
-                        </li>
-                        {% endif %}
+            {% include 'search/components/pagination.html' %}
 
-                        {% for i in search_results.paginator.page_range %}
-                        {% if search_results.number == i %}
-                        <li class="active page-item" class="active">
-                            <span class="page-link">{{ i }}</span>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                            <a href="?q={{ q }}&rpage={{ i }}" class="page-link">{{ i }}</a>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
-
-                        {% if search_results.has_next %}
-                        <li class="page-item">
-                            <a href="?q={{ q }}&rpage={{ search_results.next_page_number }}" class="page-link">
-                                <i class="fa fa-chevron-right qpage-link" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="disabled page-item">
-                            <span class="page-link">
-                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            </span>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    {% endif %}
-                </div>
-            </div>
 
 
         </div>

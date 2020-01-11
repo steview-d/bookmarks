@@ -38,7 +38,9 @@ def search(request):
         "all_page_names": all_pages,
         "page": page,
         "q": q,
-        "search_results": search_results
+        "search_results": search_results,
+        "p": paginator,
+        "page_num": results_page,
     }
     context = is_premium(request.user, context)
 
