@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 
+from links.utils import bookmark_utils
 from premium.utils import is_premium
 
 from links.models import Page, Bookmark
@@ -9,6 +10,11 @@ from links.utils.general_utils import set_page_name
 
 # Create your views here.
 def search(request):
+
+    # delete bookmark
+    if 'delete-bookmark-form' in request.POST:
+        bookmark_utils.delete_bookmark(request)
+
     # Fetch form search query
     q = request.GET.get('q')
 
