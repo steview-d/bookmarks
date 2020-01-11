@@ -8,9 +8,9 @@
     </ul>
     <div class="navbar-collapse collapse justify-content-end">
         <!-- topnav search bar -->
-        <form class="mx-2 my-auto d-none d-sm-inline w-100">
+        <form action= "{% url 'search' %}" method="GET" class="mx-2 my-auto d-none d-sm-inline w-100">
             <div class="input-group">
-                <input type="text" class="form-control border border-right-0" placeholder="Search Bookmarks...">
+                <input type="text" class="form-control border border-right-0" name="q" placeholder="Search Bookmarks...">
                 <span class="input-group-append">
                     <button class="btn btn-outline-secondary border border-left-0" type="submit">
                         <i class="fa fa-search"></i>
@@ -27,9 +27,9 @@
                     <i class="fa fa-search"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <form class="">
+                    <form action= "{% url 'search' %}" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control border border-right-0" placeholder="Search Bookmarks...">
+                            <input type="text" class="form-control border border-right-0" name="q" placeholder="Search Bookmarks...">
                         </div>
                         <button hidden type="submit"></button>
                     </form>
@@ -37,7 +37,7 @@
             </li>
             <!-- add bm, main app, settings, and log out buttons -->
             <li class="nav-item px-2 d-inline d-md-none">
-                <a class="nav-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                <a href="{% url 'add_bookmark' page=page %}" class="nav-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
                 <a class="nav-link" href="{% url 'start_app' %}"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
