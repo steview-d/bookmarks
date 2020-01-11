@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 
 from .forms import RegisterAccountForm, UpdateUserEmailForm
+from links.utils.general_utils import set_page_name
 from premium.utils import is_premium
 
 
@@ -67,9 +68,13 @@ def profile(request):
         update_email_form = UpdateUserEmailForm()
         password_change_form = PasswordChangeForm(request.user)
 
+    # set page value for default page choice for 'add bookmark' button
+    page = set_page_name(request)
+
     context = {"profile": user,
                "update_email_form": update_email_form,
-               "password_change_form": password_change_form}
+               "password_change_form": password_change_form,
+               "page": page}
     context = is_premium(request.user, context)
 
     return render(request, 'accounts/profile.html', context)
@@ -77,8 +82,12 @@ def profile(request):
 
 @login_required
 def about(request):
+    # set page value for default page choice for 'add bookmark' button
+    page = set_page_name(request)
 
-    context = {'app_version': settings.LINKS_APP_VERSION}
+    context = {'app_version': settings.LINKS_APP_VERSION,
+               'page': page,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'accounts/about_app.html', context)

@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 from .forms import SupportRequestForm
+from links.utils.general_utils import set_page_name
 from premium.utils import is_premium
 
 
@@ -43,7 +44,12 @@ def support(request):
     else:
         support_request_form = SupportRequestForm()
 
-    context = {"support_request_form": support_request_form}
+    # set page value for default page choice for 'add bookmark' button
+    page = set_page_name(request)
+
+    context = {"support_request_form": support_request_form,
+               'page': page,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'support/support.html', context)

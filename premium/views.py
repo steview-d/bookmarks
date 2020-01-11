@@ -8,6 +8,8 @@ import stripe
 from .forms import PremiumPurchaseForm, PaymentForm
 from .utils import is_premium
 
+from links.utils.general_utils import set_page_name
+
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -64,9 +66,14 @@ def premium(request):
         purchase_premium_form = PremiumPurchaseForm()
         payment_form = PaymentForm()
 
+    # set page value for default page choice for 'add bookmark' button
+    page = set_page_name(request)
+
     context = {'purchase_premium_form': purchase_premium_form,
                'payment_form': payment_form,
-               'publishable': settings.STRIPE_PUBLISHABLE}
+               'publishable': settings.STRIPE_PUBLISHABLE,
+               'page': page,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'premium/premium.html', context)

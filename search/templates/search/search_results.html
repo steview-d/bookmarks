@@ -22,14 +22,32 @@
 
         <div class="container-fluid">
             <div class="row">
-                <h1>SEARCH!</h1>
-                <h1>{{ q }}</h1>
+                <h3>Your search for '{{ q }}' returned {{ search_results.count }} results</h3>
             </div>
             <div class="row">
                 <div class="col-12">
-                    {% for result in search_results %}
-                    <p>{{ result }}</p>
-                    {% endfor %}
+                    <ul class="list-unstyled">
+                        {% for result in search_results %}
+                        <li id="{{result.position}}_." style="margin: 0.5rem">
+                            <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
+                                <div class="bm-container">
+                                    <div class="bm-title">
+                                        <span class="bm-title-text">{{ result.title }}</span>
+                                        <span class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
+                                            role="button">
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                            <small">Options</small">
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
+                                <div class="link-desc text-trunc">{{ result.description }}</div>
+                                <div class="link-url text-trunc">{{ result }}</div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
 

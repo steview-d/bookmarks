@@ -3,6 +3,7 @@ from django.shortcuts import render
 from premium.utils import is_premium
 
 from links.models import Page, Bookmark
+from links.utils.general_utils import set_page_name
 
 
 # Create your views here.
@@ -19,11 +20,7 @@ def search(request):
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     # set page value for default page choice for 'add bookmark' button
-    try:
-        page = request.session['last_page']
-
-    except KeyError:
-        page = Page.objects.get(user=request.user, position=1)
+    page = set_page_name(request)
 
     context = {
         "all_page_names": all_pages,
