@@ -18,9 +18,6 @@ class Page(models.Model):
     name = models.CharField(
         max_length=30, null=False, blank=False
     )
-    public = models.BooleanField(
-        default=False
-    )
     position = models.PositiveIntegerField(
         null=False, blank=False
     )
@@ -51,15 +48,6 @@ class Page(models.Model):
 
 
 class Collection(models.Model):
-    """
-    column & position defaults to 1000 so on creation, they are placed
-    at end of list. - removed, for now
-
-    *** Later on need to add code that on saving, sorts columns & positions
-    to create a nice 1, 2, 3, 4 order, and so on.
-    look into default save() method added to model I've seen used elsewhere?
-
-    """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
     )
@@ -74,6 +62,9 @@ class Collection(models.Model):
     )
     position_temp = models.PositiveIntegerField(
         null=True, blank=True
+    )
+    display_mode = models.PositiveIntegerField(
+        default=1, null=False, blank=True
     )
 
     class Meta:
