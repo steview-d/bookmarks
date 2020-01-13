@@ -128,6 +128,24 @@
                 </div>
                 {% endfor %}
             </div>
+
+            <!-- No Collections Box -->
+            {% if no_collections %}
+            <div class="row justify-content-center mt-3">
+                <div class="col-10 col-lg-6 border border-danger text-center">
+                    <h3>This page has no collections</h3>
+                    <h5>Bookmarks need to be placed within a collection</h5>
+                    <h5>Add one now</h5>
+                    <form method="POST" class="add-collection p-2">
+                        {% csrf_token %}
+                        <input type="hidden" name="column" value="1">
+                        <input type="hidden" name="is_empty" value="yes">
+                        <input type="text" name="collection_name">
+                        <input type="submit" name="add-collection" value="Add Collection" class="btn btn-sm btn-warning my-3">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
         </div>
         <!-- banner ad -->
         {% include 'advert.html' with advert_path="img/ads/banner.png" %}

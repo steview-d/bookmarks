@@ -145,6 +145,9 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
+    # Check if no collections on current page
+    no_collections = True if collections.count() == 0 else False
+
     # set this page as the last page visited
     request.session['last_page'] = page.name
 
@@ -154,7 +157,8 @@ def links(request, page):
                "page": page.name,
                "all_page_names": all_pages,
                "add_new_page_form": add_new_page_form,
-               "edit_page_form": edit_page_form, }
+               "edit_page_form": edit_page_form,
+               "no_collections": no_collections, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)

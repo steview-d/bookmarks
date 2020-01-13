@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 from django.contrib.auth.models import User
 
-from links.models import Page
+from links.models import Page, Collection
 
 
 def add_page(request, form_data):
@@ -106,6 +106,7 @@ def create_default_page(request):
     Used when a user logs in to the app for the first time, or if the user
     deletes all their pages
     """
+
     page = Page(user=request.user,
                 name="home",
                 position=1,
@@ -114,6 +115,6 @@ def create_default_page(request):
                 collection_order_4=build_empty_collection_order(4),
                 collection_order_5=build_empty_collection_order(5),
                 )
-
     page.save()
-    return redirect('links', page="home")
+
+    return redirect('links', page=page.name)
