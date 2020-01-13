@@ -73,6 +73,7 @@
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled">
                                 <!-- Render Individual Bookmarks -->
+                                {{ k.display_mode }}
                                 {% for item in v %}
                                 <li id="{{item.position}}_." style="margin: 0.5rem">
                                     <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
@@ -88,27 +89,18 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <div class="bm-icons-show-hide">
-                                        <div class="bm-icons-container">
-                                            <a href="{% url 'edit_bookmark' page=page bookmark=item.pk %}"
-                                                class="btn btn-outline-secondary bm-icon" role="button">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                <small class="ml-1">Edit</small>
-                                            </a>
-                                            <a href="{% url 'move_bookmark' page=page bookmark=item.pk %}"
-                                                class="btn btn-outline-secondary bm-icon" role="button">
-                                                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                                <small class="ml-1">Move</small>
-                                            </a>
-                                            <button class="btn btn-outline-secondary bm-icon" data-toggle="modal"
-                                                data-target="#modal-bm-{{ item.pk }}"><i class="fa fa-trash"
-                                                    aria-hidden="true"></i><small class="ml-1">Delete</small></button>
-                                        </div>
-                                    </div>
+
+                                    <!-- Bookmark Icons -->
+                                    {% include 'links/components/bookmark_option_icons.html' %}
+                                    
+                                    {% if k.display_mode != 3 %}
                                     <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                        {% if k.display_mode != 2 %}
                                         <div class="link-desc text-trunc">{{ item.description }}</div>
+                                        {% endif %}
                                         <div class="link-url text-trunc">{{ item }}</div>
                                     </a>
+                                    {% endif %}
                                 </li>
                                 <!-- Bookmark Delete Modal -->
                                 {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
