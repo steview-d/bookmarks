@@ -70,10 +70,23 @@
                             <input type="hidden" name="collection-position" value="{{k.position}}">
                             <input type="submit" name="rename-collection-form" class="btn btn-info btn-sm mt-1">
                         </form>
+
+                        <!-- Bookmark Display Options -->
+                        <div class="mt-1">
+                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                {% if k.display_mode == 1 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                data-display-mode="1">Full</button>
+                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                {% if k.display_mode == 2 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                data-display-mode="2">Normal</button>
+                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                {% if k.display_mode == 3 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                data-display-mode="3">Minimal</button>
+                        </div>
+
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled">
                                 <!-- Render Individual Bookmarks -->
-                                {{ k.display_mode }}
                                 {% for item in v %}
                                 <li id="{{item.position}}_." style="margin: 0.5rem">
                                     <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
@@ -92,7 +105,7 @@
 
                                     <!-- Bookmark Icons -->
                                     {% include 'links/components/bookmark_option_icons.html' %}
-                                    
+
                                     {% if k.display_mode != 3 %}
                                     <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                         {% if k.display_mode != 2 %}
@@ -133,7 +146,8 @@
                         <input type="hidden" name="column" value="1">
                         <input type="hidden" name="is_empty" value="yes">
                         <input type="text" name="collection_name">
-                        <input type="submit" name="add-collection" value="Add Collection" class="btn btn-sm btn-warning my-3">
+                        <input type="submit" name="add-collection" value="Add Collection"
+                            class="btn btn-sm btn-warning my-3">
                     </form>
                 </div>
             </div>

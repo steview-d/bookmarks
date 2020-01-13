@@ -662,3 +662,20 @@ def import_url_success(request):
     context = {'url': url}
 
     return render(request, 'links/import_url_success.html', context)
+
+
+@login_required
+def change_collection_display(request):
+    # Update the specified collections display mode
+    collection_id = request.POST.get('collection', None)
+    display_mode = request.POST.get('mode', None)
+
+    collection = Collection.objects.get(
+        user=request.user, id=collection_id
+    )
+
+    collection.display_mode = int(display_mode)
+    collection.save()
+
+    data = {}
+    return JsonResponse(data)

@@ -257,4 +257,22 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Collection Display Mode
+    $(".coll-display-btn").click(function() {
+        let collection = $(this).data("coll-id");
+        let mode = $(this).data("display-mode");
+        $.ajax({
+            type: "POST",
+            data: {
+                collection: collection,
+                mode: mode,
+                csrfmiddlewaretoken: csrftoken
+            },
+            url: "/app/change_collection_display",
+            success: function() {
+                location.reload();
+            }
+        });
+    });
 });
