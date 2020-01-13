@@ -667,8 +667,15 @@ def import_url_success(request):
 @login_required
 def change_collection_display(request):
     # Update the specified collections display mode
+
+    # get posted data
     collection_id = request.POST.get('collection', None)
     display_mode = request.POST.get('mode', None)
+
+    # check this view is being accessed correctly
+    if collection_id is None or display_mode is None:
+        page = general_utils.set_page_name(request)
+        return redirect('links', page=page)
 
     collection = Collection.objects.get(
         user=request.user, id=collection_id
