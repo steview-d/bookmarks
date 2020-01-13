@@ -66,6 +66,9 @@ class Collection(models.Model):
     display_mode = models.PositiveIntegerField(
         default=1, null=False, blank=True
     )
+    sort_order = models.PositiveIntegerField(
+        default=0, null=False, blank=True
+    )
 
     class Meta:
         unique_together = [['name', 'user', 'page'],
