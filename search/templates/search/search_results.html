@@ -35,50 +35,8 @@
                     {% include 'search/components/pagination.html' %}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <ul class="list-unstyled">
-                        {% for result in search_results %}
-                        <li id="{{result.position}}_." style="margin: 0.5rem">
-                            <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="bm-container">
-                                    <div class="bm-title">
-                                        <span class="bm-title-text">{{ result.title }}</span>
-                                        <span class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                            role="button">
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                            <small">Options</small">
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="bm-icons-show-hide">
-                                <div class="bm-icons-container">
-                                    <a href="{% url 'edit_bookmark' page=page bookmark=result.pk %}"
-                                        class="btn btn-outline-secondary bm-icon" role="button">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        <small class="ml-1">Edit</small>
-                                    </a>
-                                    <a href="{% url 'move_bookmark' page=page bookmark=result.pk %}"
-                                        class="btn btn-outline-secondary bm-icon" role="button">
-                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                        <small class="ml-1">Move</small>
-                                    </a>
-                                    <button class="btn btn-outline-secondary bm-icon" data-toggle="modal"
-                                        data-target="#modal-bm-{{ result.pk }}"><i class="fa fa-trash"
-                                            aria-hidden="true"></i><small class="ml-1">Delete</small></button>
-                                </div>
-                            </div>
-                            <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
-                                <div class="link-desc text-trunc">{{ result.description }}</div>
-                                <div class="link-url text-trunc">{{ result }}</div>
-                            </a>
-                        </li>
-                        {% include 'links/components/bookmark_delete_modal.html' with bookmark=result.pk %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
+            <!-- Bookmark Display -->
+            {% include 'search/components/bookmark_display_search.html' %}
 
             <!-- Pagination -->
             {% include 'search/components/pagination.html' %}

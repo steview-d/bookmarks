@@ -21,7 +21,10 @@ def search(request):
     # find bookmarks based on search query
     search_qs = Bookmark.objects.filter(
         user=request.user, title__icontains=q
-    )
+    ).order_by('added')
+
+    for i in search_qs:
+        print(i.bookmark_page)
 
     # pagination
     results_page = request.GET.get('rpage', 1)
@@ -33,6 +36,8 @@ def search(request):
         search_results = paginator.page(1)
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
+
+    print()
 
     # get pages for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
