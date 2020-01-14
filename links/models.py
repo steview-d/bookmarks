@@ -64,10 +64,12 @@ class Collection(models.Model):
         null=True, blank=True
     )
     display_mode = models.PositiveIntegerField(
-        default=1, null=False, blank=True
+        default=1, validators=[MinValueValidator(1), MaxValueValidator(3)],
+        null=False, blank=True
     )
     sort_order = models.PositiveIntegerField(
-        default=0, null=False, blank=True
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(6)],
+        null=False, blank=True
     )
 
     class Meta:
