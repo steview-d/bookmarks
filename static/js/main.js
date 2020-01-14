@@ -60,7 +60,7 @@ $(document).ready(function() {
                     new_page_order: postData,
                     csrfmiddlewaretoken: csrftoken
                 },
-                url: "page_sort",
+                url: "_page_sort",
                 success: function(data) {
                     if (data.success) {
                         location.reload();
@@ -82,7 +82,7 @@ $(document).ready(function() {
             if ($(this).hasClass("no-manual-sort")) {
                 let page = $(this).closest("div.page-name").attr("id");
                 let message = "Bookmark sorting is disabled when not in 'Manual Sort' mode.";
-                window.location = page + "/" + message + "/custom_message";
+                window.location = page + "/custom_message/" + message;
             } else {
                 let data = $(this).sortable("serialize");
                 data = data.split("[]=.");
@@ -104,7 +104,7 @@ $(document).ready(function() {
                         page_name: ui.item.closest("div.page-name").attr("id"),
                         csrfmiddlewaretoken: csrftoken
                     },
-                    url: "bookmark_sort_manual",
+                    url: "_bookmark_sort_manual",
                     success: function(data) {
                         if (data.success) {
                             location.reload();
@@ -197,7 +197,7 @@ $(document).ready(function() {
                 urlToCheck: urlToCheck,
                 csrfmiddlewaretoken: csrftoken
             },
-            url: "/app/check_valid_url",
+            url: "/app/_check_valid_url",
             success: function(data) {
                 switch (data.result) {
                     case true:
@@ -226,7 +226,7 @@ $(document).ready(function() {
                 urlToScrape: urlToScrape,
                 csrfmiddlewaretoken: csrftoken
             },
-            url: "/app/manual_url_scrape",
+            url: "/app/_manual_url_scrape",
             success: function(data) {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
@@ -258,7 +258,7 @@ $(document).ready(function() {
                 newPagePk: newPagePk,
                 csrfmiddlewaretoken: csrftoken
             },
-            url: "/app/update_collection_list",
+            url: "/app/_update_collection_list",
             success: function(data) {
                 $("#id_dest_collection").html(data.html);
             }
@@ -276,7 +276,7 @@ $(document).ready(function() {
                 mode: mode,
                 csrfmiddlewaretoken: csrftoken
             },
-            url: "/app/change_collection_display",
+            url: "/app/_change_collection_display",
             success: function() {
                 location.reload();
             }

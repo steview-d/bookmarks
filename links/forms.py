@@ -2,6 +2,8 @@ from django import forms
 
 from .models import Page, Collection, Bookmark, MoveBookmark
 
+import re
+
 
 class PageForm(forms.ModelForm):
     class Meta:
@@ -14,7 +16,7 @@ class PageForm(forms.ModelForm):
 
     def clean_name(self):
         print("clean name")
-        name = self.cleaned_data.get('name').lower()
+        name = self.cleaned_data.get('name')
 
         # check the page name is unique to that user
         if Page.objects.filter(user=self.user).filter(name=name):
@@ -22,10 +24,18 @@ class PageForm(forms.ModelForm):
                 u'You already have a page with this name')
 
         # check the page name against a list of reserved names
-        reserved_name_list = ['nope']
+        reserved_name_list = []  # Add names as / if required
         if name in reserved_name_list:
             raise forms.ValidationError(
                 u'Sorry, that name is reserved. Please choose a different one')
+
+        # check page name contains only allowed chars
+        allowed_chars = re.compile(r'[^-: a-zA-Z0-9.]')
+        char_check = allowed_chars.search(name)
+        if char_check:
+            raise forms.ValidationError(
+                u"Name can only contain letters, numbers, \
+                            spaces, hyphens '-', and colons ':'")
 
         return name
 
