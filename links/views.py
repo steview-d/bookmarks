@@ -705,3 +705,13 @@ def update_sort_order(request, page, collection, sort):
     collection.save()
 
     return redirect('links', page=page)
+
+
+def custom_message(request, page, message):
+    page = Page.objects.get(
+        user=request.user, name=page
+    )
+    messages.success(
+        request, message
+    )
+    return redirect('links', page=page)

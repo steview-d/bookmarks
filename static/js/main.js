@@ -73,40 +73,47 @@ $(document).ready(function() {
     // Bookmark Sorting
     // Manual Sort
     $(".bookmark-sort").sortable({
-        items: 'li',
+        items: "li",
         containment: "parent",
         delay: 200,
         cursor: "grabbing",
         axis: "y",
         stop: function(event, ui) {
-            let data = $(this).sortable("serialize");
-            data = data.split("[]=.");
-            data.pop();
+            if ($(this).hasClass("no-manual-sort")) {
+                let page = $(this).closest("div.page-name").attr("id");
+                let message = "Bookmark sorting is disabled when not in 'Manual Sort' mode.";
+                window.location = page + "/" + message + "/custom_message";
+            } else {
+                let data = $(this).sortable("serialize");
+                data = data.split("[]=.");
+                data.pop();
 
-            let newOrder = data.map(i => {
-                return i.replace("&", "");
-            });
+                let newOrder = data.map(i => {
+                    return i.replace("&", "");
+                });
 
-            postData = newOrder.join(",");
+                postData = newOrder.join(",");
 
-            $.ajax({
-                type: "POST",
-                data: {
-                    new_bookmark_order: postData,
-                    collection_name: ui.item.closest('div.collection-name').attr('id'),
-                    page_name: ui.item.closest('div.page-name').attr('id'),
-                    csrfmiddlewaretoken: csrftoken
-                },
-                url: "bookmark_sort_manual",
-                success: function(data) {
-                    if (data.success) {
-                        location.reload();
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        new_bookmark_order: postData,
+                        collection_name: ui.item
+                            .closest("div.collection-name")
+                            .attr("id"),
+                        page_name: ui.item.closest("div.page-name").attr("id"),
+                        csrfmiddlewaretoken: csrftoken
+                    },
+                    url: "bookmark_sort_manual",
+                    success: function(data) {
+                        if (data.success) {
+                            location.reload();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
-
 
     // Collection Sorting ---------------------------------------------------//
     // Use jQueryUI to sort collections into preferred columns and positions

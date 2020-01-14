@@ -5,7 +5,7 @@ from .views import (links, start_app, page_sort, arrange_collections,
                     move_bookmark, check_valid_url, update_collection_list,
                     import_url, manual_url_scrape, import_url_success,
                     bookmark_sort_manual, change_collection_display,
-                    update_sort_order)
+                    update_sort_order, custom_message)
 # from .utils import start_app, change_num_columns
 from .utils import collection_utils
 
@@ -20,6 +20,8 @@ urlpatterns = [
          move_bookmark, name="move_bookmark"),
     path('update_collection_list',
          update_collection_list, name="update_collection_list"),
+    path('<page>/<message>/custom_message',
+         custom_message, name="custom_message"),
     path('change-num-columns/<page>/<num>',
          collection_utils.change_num_columns, name="change_num_columns"),
     path('<page>/<collection>/<sort>/update_sort_order',
