@@ -691,3 +691,17 @@ def change_collection_display(request):
 
     data = {}
     return JsonResponse(data)
+
+
+def update_sort_order(request, page, collection, sort):
+    page = Page.objects.get(
+        user=request.user, name=page
+    )
+
+    collection = Collection.objects.get(
+        user=request.user, page=page, name=collection
+    )
+    collection.sort_order = int(sort)
+    collection.save()
+
+    return redirect('links', page=page)

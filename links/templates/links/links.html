@@ -84,6 +84,37 @@
                                 data-display-mode="3">Minimal</button>
                         </div>
 
+                        <!-- Bookmark Sort Options -->
+                        <div class="btn-group mt-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort By...
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
+                                        class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>
+                                <a class="dropdown-item {% if k.sort_order == 1 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=1 %}"><i
+                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Name</a>
+                                <a class="dropdown-item {% if k.sort_order == 2 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=2 %}"><i
+                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Name</a>
+                                <a class="dropdown-item {% if k.sort_order == 3 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=3 %}"><i
+                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date Added</a>
+                                <a class="dropdown-item {% if k.sort_order == 4 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=4 %}"><i
+                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date Added</a>
+                                <a class="dropdown-item {% if k.sort_order == 5 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=5 %}"><i
+                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date Updated</a>
+                                <a class="dropdown-item {% if k.sort_order == 6 %}active{% endif %}"
+                                    href="{% url 'update_sort_order' page=page collection=k sort=6 %}"><i
+                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date Updated</a>
+                            </div>
+                        </div>
+
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled">
                                 <!-- Render Individual Bookmarks -->
