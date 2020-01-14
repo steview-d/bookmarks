@@ -85,7 +85,7 @@ def links(request, page):
         page = Page.objects.get(user=request.user, position=1)
         return redirect('links', page=page)
 
-    # add a new collection
+    # add new collection form
     if 'add-collection' in request.POST:
         # check allowed extra collection at current membership level
         check = premium_check(
@@ -118,12 +118,12 @@ def links(request, page):
             collection_to_rename.save()
         return redirect('links', page=page)
 
-    # delete collection
+    # delete collection form
     if 'delete-collection-form' in request.POST:
         collection_utils.delete_collection(request, page, collections)
         return redirect('links', page=page)
 
-    # delete bookmark
+    # delete bookmark form
     if 'delete-bookmark-form' in request.POST:
         bookmark_utils.delete_bookmark(request)
         return redirect('links', page=page)
@@ -136,12 +136,17 @@ def links(request, page):
     collection_list = collection_utils.make_collection_list(
         request, page, num_of_columns, collections)
 
+    # create list of sort options
+    sort_options = ['position', 'title', '-title',
+                    'added', '-added', 'updated', '-updated']
+
     # iterate through collection names and create a qs of bookmarks for each
     bm_data = []
     for x in range(num_of_columns):
         column = {}
         for j in (collection_list[x]):
-            qs = bookmarks.filter(collection__name=j).order_by('position')
+            qs = bookmarks.filter(
+                collection=j).order_by(sort_options[j.sort_order])
             column[j] = qs
         bm_data.append(column)
 
