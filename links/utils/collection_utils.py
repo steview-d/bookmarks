@@ -87,25 +87,25 @@ def make_collection_list(request, page, num_of_columns, collections):
             if collection_list[col] != []:
                 for pos in range(len(collection_list[col])):
                     count += 1
-                    collection_name = get_object_or_404(
+                    collection_obj = get_object_or_404(
                         Collection,
                         page__name=page.name,
                         user=request.user,
                         position=count
                     )
-                    collection_list[col][pos] = (collection_name)
+                    collection_list[col][pos] = (collection_obj)
     else:
         # single columm collection display
         collection_list = [[]]
         if collections.count() > 0:
             for i in range(collections.count()):
-                collection_name = get_object_or_404(
+                collection_obj = get_object_or_404(
                     Collection,
                     page__name=page.name,
                     user=request.user,
                     position=i+1
                 )
-                collection_list[0].append((collection_name))
+                collection_list[0].append((collection_obj))
 
     return collection_list
 
