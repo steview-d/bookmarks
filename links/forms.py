@@ -13,12 +13,20 @@ class PageForm(forms.ModelForm):
         super(PageForm, self).__init__(*args, **kwargs)
 
     def clean_name(self):
-        """check the page name is unique to that user"""
+        print("clean name")
         name = self.cleaned_data.get('name').lower()
 
+        # check the page name is unique to that user
         if Page.objects.filter(user=self.user).filter(name=name):
             raise forms.ValidationError(
                 u'You already have a page with this name')
+
+        # check the page name against a list of reserved names
+        reserved_name_list = ['nope']
+        if name in reserved_name_list:
+            raise forms.ValidationError(
+                u'Sorry, that name is reserved. Please choose a different one')
+
         return name
 
 
