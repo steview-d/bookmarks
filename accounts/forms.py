@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 class RegisterAccountForm(UserCreationForm):
     """ extend default form with email field """
@@ -32,3 +34,15 @@ class UpdateUserEmailForm(forms.ModelForm):
             raise forms.ValidationError(
                 u'This email address already exists, please choose another')
         return email
+
+
+class UpdatedPasswordChangeForm(PasswordChangeForm):
+    """
+    PasswordChangeForm has autofocus set to True for the old_password field
+    App profile page contains more than 1 form, so subclassing form to set
+    autofocus to False on this field.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(UpdatedPasswordChangeForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['autofocus'] = False

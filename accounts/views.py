@@ -2,11 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 
-from .forms import RegisterAccountForm, UpdateUserEmailForm
+from .forms import (RegisterAccountForm, UpdateUserEmailForm,
+                    UpdatedPasswordChangeForm)
 from links.utils.general_utils import set_page_name
 from premium.utils import is_premium
 
@@ -42,7 +42,7 @@ def profile(request):
     user = User.objects.get(email=request.user.email)
 
     if "email-btn" in request.POST:
-        password_change_form = PasswordChangeForm(request.user)
+        password_change_form = UpdatedPasswordChangeForm(request.user)
         update_email_form = UpdateUserEmailForm(
             request.POST, instance=request.user)
 
@@ -54,7 +54,7 @@ def profile(request):
 
     elif "pw-btn" in request.POST:
         update_email_form = UpdateUserEmailForm()
-        password_change_form = PasswordChangeForm(
+        password_change_form = UpdatedPasswordChangeForm(
             user=request.user, data=request.POST)
 
         if password_change_form.is_valid():
@@ -66,7 +66,7 @@ def profile(request):
 
     else:
         update_email_form = UpdateUserEmailForm()
-        password_change_form = PasswordChangeForm(request.user)
+        password_change_form = UpdatedPasswordChangeForm(request.user)
 
     # set page value for default page choice for 'add bookmark' button
     page = set_page_name(request)
