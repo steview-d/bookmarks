@@ -8,6 +8,20 @@ from django.contrib.auth.models import User
 from links.models import Page
 
 
+def build_empty_collection_order(num):
+    """
+    Build a 2d list of empty lists, ready to hold collection
+    position values
+
+    Args:
+        num (int): The number of lists to build inside the main list
+    """
+    empty_order = []
+    for i in range(num):
+        empty_order.append([])
+    return empty_order
+
+
 def add_page(request, form_data):
     """
     Build a new page and add to the db.
@@ -49,28 +63,13 @@ def edit_page_name(request, new_page_name, old_page_name):
         new_page_name (str): The page name inputted by the user
         old_page_name (obj): The original / current page name
     """
-    print(type(new_page_name))
-    print(type(old_page_name))
+
     page = get_object_or_404(
         Page, user=request.user, name=old_page_name
     )
     page.name = new_page_name
     page.save()
     return new_page_name
-
-
-def build_empty_collection_order(num):
-    """
-    Build a 2d list of empty lists, ready to hold collection
-    position values
-
-    Args:
-        num (int): The number of lists to build inside the main list
-    """
-    empty_order = []
-    for i in range(num):
-        empty_order.append([])
-    return empty_order
 
 
 def delete_page(request, page):

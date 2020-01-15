@@ -15,7 +15,6 @@ class PageForm(forms.ModelForm):
         super(PageForm, self).__init__(*args, **kwargs)
 
     def clean_name(self):
-        print("clean name")
         name = self.cleaned_data.get('name')
 
         # check the page name is unique to that user
