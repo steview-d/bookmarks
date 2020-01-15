@@ -613,14 +613,21 @@ def move_bookmark(request, page, bookmark):
     return render(request, 'links/move_bookmark.html', context)
 
 
+@login_required
 def update_collection_list(request):
     """
     Get a page.id from POST and use it to generate html of collection
     names and values for the 'dest_collection' dropdown list.
     """
 
+    page_id = request.POST.get('newPagePk')
+
+    # redirect if user attempts to access view directly
+    if page_id is None:
+        return redirect('start_app')
+
     new_page = get_object_or_404(
-        Page, user=request.user, id=request.POST.get('newPagePk')
+        Page, user=request.user, id=page_id
     )
 
     new_collections = Collection.objects.filter(
@@ -645,6 +652,10 @@ def update_collection_list(request):
 def import_url(request):
 
     url_to_save = request.GET.get('url')
+
+    # redirect if user attempts to access view directly
+    if url_to_save is None:
+        return redirect('start_app')
 
     # get page position 1 to set as default in dest_page choice field
     page = Page.objects.get(
@@ -718,8 +729,15 @@ def import_url(request):
 
 @login_required
 def import_url_success(request):
+
+    try:
+        url = request.session['imported_url']
+    except KeyError:
+        return redirect('start_app')
+
     url = request.session['imported_url']
     context = {'url': url}
+    del request.session['imported_url']
 
     return render(request, 'links/import_url_success.html', context)
 
@@ -731,6 +749,10 @@ def change_collection_display(request):
     # get posted data
     collection_id = request.POST.get('collection', None)
     display_mode = request.POST.get('mode', None)
+
+    # redirect if user attempts to access view directly
+    if collection_id is None:
+        return redirect('start_app')
 
     # check this view is being accessed correctly
     if collection_id is None or display_mode is None:
@@ -748,20 +770,42 @@ def change_collection_display(request):
     return JsonResponse(data)
 
 
+@login_required
 def update_sort_order(request, page, collection, sort):
-    page = Page.objects.get(
-        user=request.user, name=page
-    )
 
-    collection = Collection.objects.get(
-        user=request.user, page=page, name=collection
-    )
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
+
+    try:
+        collection = Collection.objects.get(
+            user=request.user, page=page, name=collection
+        )
+    except ObjectDoesNotExist:
+        # stop users trying to move bookmarks that aren't theirs
+        messages.error(
+            request, f"Could not find the requested collection"
+        )
+        return redirect('start_app')
+
+    if int(sort) < 0 or int(sort) > 6:
+        messages.error(
+            request, f"Incorrect sort value - \
+                should be an integer between 0 and 6"
+        )
+        return redirect('start_app')
+
     collection.sort_order = int(sort)
     collection.save()
 
     return redirect('links', page=page)
 
 
+@login_required
 def custom_message(request, page, message):
     page = Page.objects.get(
         user=request.user, name=page
