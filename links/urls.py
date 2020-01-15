@@ -48,4 +48,5 @@ urlpatterns = [
          custom_message, name="custom_message"),
     path('<page>/<collection>/<sort>/update_sort_order',
          update_sort_order, name='update_sort_order'),
+    path('', start_app, name="start_app"),
 ]

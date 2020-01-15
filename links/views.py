@@ -19,12 +19,16 @@ from .models import Bookmark, Collection, Page
 
 
 # views
+@login_required
 def links(request, page):
     # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')  # qhome currently, to see errs
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
 
     collections = Collection.objects.filter(
         user__username=request.user,
@@ -169,6 +173,7 @@ def links(request, page):
     return render(request, 'links/links.html', context)
 
 
+@login_required
 def start_app(request):
     # check if user has at least 1 page and if not, create one & redirect to it
     if not Page.objects.filter(user=request.user).exists():
@@ -185,9 +190,15 @@ def start_app(request):
     return redirect('links', page=last_page)
 
 
+@login_required
 def page_sort(request):
     # get and format new page order
     data = request.POST.get('new_page_order', None)
+
+    # redirect if user attempts to access view directly
+    if data is None:
+        return redirect('start_app')
+
     new_order = list(map(int, data.split(',')))
 
     original_page_order = Page.objects.filter(
@@ -202,10 +213,16 @@ def page_sort(request):
     return JsonResponse(data)
 
 
+@login_required
 def bookmark_sort_manual(request):
     data = request.POST.get('new_bookmark_order', None)
     collection_name = request.POST.get('collection_name', None)
     page_name = request.POST.get('page_name', None)
+
+    # redirect if user attempts to access view directly
+    if data is None:
+        return redirect('start_app')
+
     new_order = list(map(int, data.split(',')))
 
     # get collection bookmarks, in original order
@@ -228,11 +245,17 @@ def bookmark_sort_manual(request):
     return JsonResponse(data)
 
 
+@login_required
 def arrange_collections(request, page):
+
+    # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')  # qhome currently, to see errs
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
 
     collections = Collection.objects.filter(
         user__username=request.user).filter(
@@ -258,12 +281,16 @@ def arrange_collections(request, page):
     return render(request, 'links/arrange_collections.html', context)
 
 
+@login_required
 def collection_sort(request, page):
-    # get the page object
+    # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
 
     # get collections
     collections = Collection.objects.filter(
@@ -359,11 +386,12 @@ def collection_sort(request, page):
 
 @login_required
 def add_bookmark(request, page):
-
+    # check page exists, redirect to page at position 1 if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')  # qhome currently, to see errs
+        page = Page.objects.get(user=request.user, position=1)
+        return redirect('add_bookmark', page=page)
 
     num_collections = Collection.objects.filter(
         user=request.user, page=page).count()
@@ -431,14 +459,23 @@ def manual_url_scrape(request):
 
 def edit_bookmark(request, page, bookmark):
 
+    # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
 
-    bookmark_to_edit = get_object_or_404(
-        Bookmark, pk=bookmark
-    )
+    try:
+        bookmark_to_edit = Bookmark.objects.get(user=request.user, pk=bookmark)
+    except ObjectDoesNotExist:
+        # stop users trying to edit bookmarks that aren't theirs
+        messages.error(
+            request, f"Could not find the requested bookmark"
+        )
+        return redirect('start_app')
 
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
@@ -489,15 +526,19 @@ def move_bookmark(request, page, bookmark):
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
-        return redirect('links', page='qhome')
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
 
     try:
         bookmark_to_move = Bookmark.objects.get(user=request.user, pk=bookmark)
     except ObjectDoesNotExist:
         # stop users trying to move bookmarks that aren't theirs
         messages.error(
-            request, f"That is not your bookmark to move!")
-        return redirect('links', page=page)
+            request, f"Could not find the requested bookmark"
+        )
+        return redirect('start_app')
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
