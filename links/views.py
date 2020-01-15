@@ -449,14 +449,21 @@ def add_bookmark(request, page):
     return render(request, 'links/add_bookmark.html', context)
 
 
+@login_required
 def manual_url_scrape(request):
 
-    data = bookmark_utils.scrape_url(
-        request, request.POST.get('urlToScrape', None))
+    url = request.POST.get('urlToScrape', None)
+
+    # redirect if user attempts to access view directly
+    if url is None:
+        return redirect('start_app')
+
+    data = bookmark_utils.scrape_url(request, url)
 
     return JsonResponse(data)
 
 
+@login_required
 def edit_bookmark(request, page, bookmark):
 
     # check page exists, redirect if not
@@ -500,9 +507,15 @@ def edit_bookmark(request, page, bookmark):
     return render(request, 'links/edit_bookmark.html', context)
 
 
+@login_required
 def check_valid_url(request):
 
     url = request.POST.get('urlToCheck', None)
+
+    # redirect if user attempts to access view directly
+    if url is None:
+        return redirect('start_app')
+
     data = {}
 
     if not url:
@@ -521,6 +534,7 @@ def check_valid_url(request):
     return JsonResponse(data)
 
 
+@login_required
 def move_bookmark(request, page, bookmark):
 
     try:
