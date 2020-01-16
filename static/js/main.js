@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     // --------------------------------------------------- Buttons & Toggles //
 
     // sidebar toggler
@@ -112,13 +112,13 @@ $(document).ready(function() {
     and on a successful return, the page is reloaded with the new order.
     */
 
-    var new_collection_order = [];
+    let new_collection_order = [];
     function buildList(columnNum, columnData) {
         new_collection_order[columnNum] = columnData;
         return;
     }
 
-    var column_list = [
+    let column_list = [
         "#column-1",
         "#column-2",
         "#column-3",
@@ -145,7 +145,7 @@ $(document).ready(function() {
                 let newOrder = data.map(i => {
                     return i.replace("&", "");
                 });
-                columnData = newOrder.join(",");
+                let columnData = newOrder.join(",");
                 buildList(idx, columnData);
             },
             stop: function(event, ui) {
@@ -168,7 +168,7 @@ $(document).ready(function() {
         });
     });
 
-    
+
     // ------------------------------------------------------------ Bookmark //
 
     /*
@@ -177,8 +177,8 @@ $(document).ready(function() {
     text string of the positions for all bookmarks in the collection which is
     then formatted and posted to the 'bookmark_sort_manual' view with ajax.
 
-    'bookmark_sort_manual' updates the db with the new bookmark position values and
-    on a successful return, the page is reloaded with the new order.
+    'bookmark_sort_manual' updates the db with the new bookmark position values
+    and on a successful return, the page is reloaded with the new order.
     */
 
     $(".bookmark-sort").sortable({
@@ -190,7 +190,8 @@ $(document).ready(function() {
         stop: function(event, ui) {
             if ($(this).hasClass("no-manual-sort")) {
                 let page = $(this).closest("div.page-name").attr("id");
-                let message = "Bookmark sorting is disabled when not in 'Manual Sort' mode.";
+                let message = `Bookmark sorting is disabled 
+                    when not in 'Manual Sort' mode.`;
                 window.location = page + "/custom_message/" + message;
             } else {
                 let data = $(this).sortable("serialize");
@@ -307,7 +308,7 @@ $(document).ready(function() {
     */
 
     $("#id_dest_page").change(function() {
-        newPagePk = $(this).val();
+        let newPagePk = $(this).val();
         $.ajax({
             type: "POST",
             data: {
