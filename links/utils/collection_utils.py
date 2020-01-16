@@ -112,46 +112,44 @@ def make_collection_list(request, page, num_of_columns, collections):
     return collection_list
 
 
-def add_collection(request, current_page):
+def add_collection(request, page):
     """
-    This function adds a new collection to the current page.
-    It updates the .position value of each collection within the page
-    and also the .collection_order_[x] values that decide how the collections
-    are displayed on each page, for each number of columns.
+    Create a new collection object for the current page.
+    Update the .position value of each collection within the page.
+    Update the .collection_order_[i] values, which store the column and
+    collection structure for each page.
 
-    Outside of any column ordering, the collections are ordered using the
-    .position var and this runs from 1 through to the total number of
-    collections the pages contains.
+    Collections are ordered using .position and this runs from 1
+    through to the total number of collections the page contains.
 
-    Whenever a new collection is added, the 'insert_at_position' var is created
-    to show where in the order the new collection should be added.
+    'insert_at_position' is the position within this order that the new
+    collection should be inserted.
 
-    Any collections with a position >= to this value have their .position value
-    increased by 1 to make room for the new addition.
+    Any collections with a position >= to this value will have their
+    .position value incremented by 1 to make room for the new addition.
 
-    Collections are displayed in a grid format. There can be between 1 and 5
-    columns of collections per page, and any number of collections per column.
+    Collections are displayed in a grid format. There can be between 1
+    and 5 columns per page, and any number of collections per column.
 
-    This is represented with a 2d list, named .collection_order_[x], where [x]
-    is the number of columns for that order. The list values are integers which
-    map to the .position value for each collection.
+    This is represented with a 2d list, named .collection_order_[i],
+    where [i] is the number of columns for that order. Each item in the
+    list stores a list of integers which map to the .position value for
+    each collection.
 
-    On adding a new collection, each collection order is updated by adding the
-    new collection value to the list, in a place the func determines as best.
+    On adding a new collection, collection orders other than the one
+    currently displayed are updated by inserting the new collection
+    value in the list, in a place the function determines as best.
 
     The function will always try to group collections in a similar fashion
     across all column layout options. Even though it isn't expected that a user
     will regularly switch between layout options on the same screen display,
-    if / when they do, the order they made will be preserved as best it can.
+    when they do, the order will be preserved as best it can.
 
     Args:
         request (obj): The request object
         current_page (obj) : The current page
     """
-    print(type(current_page))
-    page = get_object_or_404(
-            Page, user=request.user, name=current_page
-        )
+
     all_collections = Collection.objects.filter(
         user=request.user, page=page).order_by('-position')
 
@@ -201,7 +199,7 @@ def add_collection(request, current_page):
                 if collection_order[col][pos] >= insert_at_position:
                     collection_order[col][pos] += 1
 
-                # add collection if current position has existing collections
+                # add if current position has existing collections
                 if (collection_order[col][pos] == insert_at_position - 1 and
                         not is_empty):
                     collection_order[col].append(insert_at_position)
@@ -209,19 +207,20 @@ def add_collection(request, current_page):
         # if adding to an empty column
         if is_empty:
             if i != page.num_of_columns:
-                # decide where to place new collection on other layouts.
-                # if a column doesn't exist on a layout, place as close as
-                # possible, working backwards from the last column
+                # if a column doesn't exist on a different layout,
+                # place as close as possible, working backwards from
+                # the last column.
                 insert_column = i if column > i else column
                 collection_order[insert_column-1].append(
                     insert_at_position)
             else:
-                # if inserting into current column layout, just add in place
+                # when inserting into the current column layout, just
+                # add in place
                 collection_order[column-1] = [insert_at_position]
 
-        # inserting into columns of different layouts to the one the user
-        # is inserting into can cause new collections to be added to the end,
-        # and not in the correct order. This fixes that.
+        # inserting into columns of different layouts to the one the
+        # user is inserting into can cause new collections to be added
+        # to the end, and not in the correct order. This fixes that.
         for col in range(len(collection_order)):
             collection_order[col].sort()
 
@@ -239,7 +238,7 @@ def add_collection(request, current_page):
     new_collection = Collection()
     new_collection.user = request.user
     new_collection.page = Page.objects.get(
-        user=request.user, name=current_page)
+        user=request.user, name=page)
     new_collection.name = request.POST.get('collection_name')
     new_collection.position = insert_at_position
     new_collection.save()
