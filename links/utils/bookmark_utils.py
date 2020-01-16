@@ -8,8 +8,9 @@ from links.models import Collection, Bookmark
 
 def delete_bookmark(request):
     """
-    Delete the specified bookmark and also reset the 'position' values for
-    all remaining bookmarks within the collection to run in order again.
+    Find and delete the requested bookmark using its pk from
+    request.POST and then reset the 'position' values for all remaining
+    bookmarks within the collection to run in order again.
     """
 
     # get bookmark that is to be deleted
@@ -24,14 +25,11 @@ def delete_bookmark(request):
 
     bookmark_to_delete.delete()
 
+    # get remaining bookmarks, in position order
     all_bookmarks_in_collection = Bookmark.objects.filter(
         collection=bookmark_collection
     ).order_by('position')
 
-    # reset position order to remove gap created by deleting bookmark
-    # for count, bm in enumerate((all_bookmarks_in_collection), 1):
-    #     bm.position = count
-    #     bm.save()
     reorder_bookmarks(all_bookmarks_in_collection)
 
     return
@@ -39,9 +37,10 @@ def delete_bookmark(request):
 
 def reorder_bookmarks(bookmark_qs):
     """
-    Iterate through a queryset of bookmarks and apply
-    the .position value, in order.
+    Iterate through a queryset of bookmarks and apply the .position
+    value, in order.
     """
+
     for count, bm in enumerate((bookmark_qs), 1):
         bm.position = count
         bm.save()
@@ -51,13 +50,14 @@ def reorder_bookmarks(bookmark_qs):
 
 def scrape_url(request, url):
     """
-    Scrape data from a URL using BS4
+    Scrape metadata from a URL using BeautifulSoup4
     """
 
     # some sites refuse to play nicely unless we're sneaky and throw some
     # browser headers over too
     headers = {'User-Agent': 'Mozilla/5.0'}
 
+    # default return data
     data = {'message': 'The URL is empty',
             'title': '',
             'description': ''}
@@ -74,6 +74,7 @@ def scrape_url(request, url):
 
     else:
         soup = BeautifulSoup(r.text, 'html.parser')
+
         # get the page title
         scraped_title = soup.title.get_text() if soup.title.get_text() else \
             "Could not retrieve a title"
