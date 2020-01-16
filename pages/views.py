@@ -1,12 +1,11 @@
-from django.shortcuts import redirect, render, reverse
+from django.shortcuts import redirect, render
 
 
 # Create your views here.
 def about(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
-        # eventually will be main app page
-        return redirect(reverse('profile'))
+        return redirect('start_app')
 
     return render(request, "pages/index.html")
 
@@ -14,8 +13,7 @@ def about(request):
 def pricing(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
-        # eventually will be main app page
-        return redirect(reverse('profile'))
+        return redirect('start_app')
 
     return render(request, "pages/pricing.html")
 
@@ -23,7 +21,6 @@ def pricing(request):
 def faq(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
-        # eventually will be main app page
-        return redirect(reverse('profile'))
+        return redirect('start_app')
 
     return render(request, "pages/faq.html")
