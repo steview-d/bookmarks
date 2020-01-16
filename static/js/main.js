@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    
+    // --------------------------------------------------- Buttons & Toggles //
+
     // sidebar toggler
     $(".sidebarToggle").on("click", function() {
         $("#sidebar, #content").toggleClass("display-switch");
@@ -35,9 +38,35 @@ $(document).ready(function() {
             .slideToggle(200);
     });
 
-    // Page Sorting ---------------------------------------------------------//
-    // Use jQueryUI to sort page names then send new order
-    // for processing using ajax
+    // bookmark options menu
+    $(".bm-icon-toggle").on("click", function(e) {
+        e.preventDefault();
+        $(this)
+            .children(":first")
+            .toggleClass("fa-caret-down fa-caret-up");
+        $(this)
+            .parent()
+            .parent()
+            .parent()
+            .next()
+            .slideToggle();
+    });
+
+    // Scrape Url button
+    $("#scrape-url").on("click", scrapeUrl);
+
+
+    // ---------------------------------------------------------------- Page //
+
+    /*
+    Use jQueryUI 'sortable' to sort elements containing page names. When a page
+    has been dropped into it's new position, serialize creates a text string
+    which is then formatted and posted to the _page_sort view with ajax.
+
+    '_page_sort' updates the db with the new page position values and on a
+    successful return, the page is reloaded with the new page order.
+    */
+
     $("#page-titles").sortable({
         containment: "#page-sort-container",
         delay: 200,
@@ -70,8 +99,88 @@ $(document).ready(function() {
         }
     });
 
-    // Bookmark Sorting
-    // Manual Sort
+
+    // ---------------------------------------------------------- Collection //
+
+    /*
+    Using jQueryUI sortable, multiple columns are linked together and when the
+    user moves a collection into a new position, serialize creates a text
+    string which is then formatted and posted to the collection_sort view with
+    ajax.
+
+    'collection_sort' updates the db with the new collection position values
+    and on a successful return, the page is reloaded with the new order.
+    */
+
+    var new_collection_order = [];
+    function buildList(columnNum, columnData) {
+        new_collection_order[columnNum] = columnData;
+        return;
+    }
+
+    var column_list = [
+        "#column-1",
+        "#column-2",
+        "#column-3",
+        "#column-4",
+        "#column-5"
+    ];
+
+    column_list.forEach((key, idx) => {
+        $(key).sortable({
+            containment: "#collections-container",
+            cursor: "grabbing",
+            connectWith: [
+                "#column-1",
+                "#column-2",
+                "#column-3",
+                "#column-4",
+                "#column-5"
+            ],
+            deactivate: function() {
+                let data = $(this).sortable("serialize");
+                data = data.split("[]=.");
+                data.pop();
+
+                let newOrder = data.map(i => {
+                    return i.replace("&", "");
+                });
+                columnData = newOrder.join(",");
+                buildList(idx, columnData);
+            },
+            stop: function(event, ui) {
+                let postData = JSON.stringify(new_collection_order);
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        new_collection_order: postData,
+                        collection_id: ui.item[0].id,
+                        csrfmiddlewaretoken: csrftoken
+                    },
+                    url: "collection-sort",
+                    success: function(data) {
+                        if (data.success) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    
+    // ------------------------------------------------------------ Bookmark //
+
+    /*
+    Use jQueryUI 'sortable' to sort bookmark elements within a collection.
+    When a bookmark has been placed into it's new position, serialize creates a
+    text string of the positions for all bookmarks in the collection which is
+    then formatted and posted to the 'bookmark_sort_manual' view with ajax.
+
+    'bookmark_sort_manual' updates the db with the new bookmark position values and
+    on a successful return, the page is reloaded with the new order.
+    */
+
     $(".bookmark-sort").sortable({
         items: "li",
         containment: "parent",
@@ -115,71 +224,41 @@ $(document).ready(function() {
         }
     });
 
-    // Collection Sorting ---------------------------------------------------//
-    // Use jQueryUI to sort collections into preferred columns and positions
-    // and then send new order for processing using ajax
 
-    // var new_collection_order = [[], [], [], [], []];
-    var new_collection_order = [];
-    function buildList(columnNum, columnData) {
-        // new_collection_order[columnNum-1] = columnData;
-        new_collection_order[columnNum] = columnData;
-        return;
-    }
+    // -------------------------------------------------------- Url Scraping //
 
-    var column_list = [
-        "#column-1",
-        "#column-2",
-        "#column-3",
-        "#column-4",
-        "#column-5"
-    ];
-
-    column_list.forEach((key, idx) => {
-        $(key).sortable({
-            containment: "#collections-container",
-            cursor: "grabbing",
-            connectWith: [
-                "#column-1",
-                "#column-2",
-                "#column-3",
-                "#column-4",
-                "#column-5"
-            ],
-            deactivate: function() {
-                let data = $(this).sortable("serialize");
-                data = data.split("[]=.");
-                data.pop();
-
-                let newOrder = data.map(i => {
-                    return i.replace("&", "");
-                });
-                columnData = newOrder.join(",");
-                buildList(idx, columnData);
+    /*
+    Sends the url to the server for scraping with BeautifulSoup4. The view will
+    return values for the title & description, as well as a message that
+    states either the scrape was a success, or the reason why it wasn't.
+    */
+    function scrapeUrl() {
+        let urlToScrape = $("#id_url").val();
+        $.ajax({
+            type: "POST",
+            data: {
+                urlToScrape: urlToScrape,
+                csrfmiddlewaretoken: csrftoken
             },
-            stop: function(event, ui) {
-                let postData = JSON.stringify(new_collection_order);
-                // send the new collection orders to the server
-                // console.log(ui.item[0].id);
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        new_collection_order: postData,
-                        collection_id: ui.item[0].id,
-                        csrfmiddlewaretoken: csrftoken
-                    },
-                    url: "collection-sort",
-                    success: function(data) {
-                        if (data.success) {
-                            location.reload();
-                        }
-                    }
-                });
+            url: "/app/_manual_url_scrape",
+            success: function(data) {
+                $("#id_title").val(data.title);
+                $("#id_description").val(data.description);
+                $("#scrape-msg").text(data.message);
             }
         });
-    });
+    }
 
-    // Check URL in 'AddBookmarkForm' is valid
+    // ----------------------------- Check URL in 'AddBookmarkForm' is valid //
+
+    /*
+    Sends a url to the server with ajax for processing via the python requests
+    module and returns 1 of the following responses
+    True: URL resolves successfully
+    False : URL could not be resolved
+    None: Nothing to resolve, most likely an empty field
+    */
+
     let urlTimer;
     let timerLength = 1000;
 
@@ -215,41 +294,18 @@ $(document).ready(function() {
         });
     }
 
-    // Url Scraping
-    $("#scrape-url").on("click", scrapeUrl);
 
-    function scrapeUrl() {
-        let urlToScrape = $("#id_url").val();
-        $.ajax({
-            type: "POST",
-            data: {
-                urlToScrape: urlToScrape,
-                csrfmiddlewaretoken: csrftoken
-            },
-            url: "/app/_manual_url_scrape",
-            success: function(data) {
-                $("#id_title").val(data.title);
-                $("#id_description").val(data.description);
-                $("#scrape-msg").text(data.message);
-            }
-        });
-    }
+    // --------------------------------------------------------------- Other //
 
-    // bookmark options menu
-    $(".bm-icon-toggle").on("click", function(e) {
-        e.preventDefault();
-        $(this)
-            .children(":first")
-            .toggleClass("fa-caret-down fa-caret-up");
-        $(this)
-            .parent()
-            .parent()
-            .parent()
-            .next()
-            .slideToggle();
-    });
+    /*
+    Listen for changes on the page choice dropdown input. When a change is
+    detected, the pk for that page is sent to the server via ajax.
 
-    // MoveBookmarkForm ajax control
+    The server will process this pk by getting the collections for the new page
+    and sending them back as an html string. The ajax success call will then
+    replace the old html choices with the new ones that were returned.
+    */
+
     $("#id_dest_page").change(function() {
         newPagePk = $(this).val();
         $.ajax({
@@ -265,7 +321,14 @@ $(document).ready(function() {
         });
     });
 
-    // Collection Display Mode
+    // Collection Display Mode ajax control
+
+    /*
+    Listens for a click on the bookmark display mode buttons. When clicked,
+    ajax posts the clicked collection and requested display mode to the server.
+
+    On a successful return, the page is update to show the new display mode.
+    */
     $(".coll-display-btn").click(function() {
         let collection = $(this).data("coll-id");
         let mode = $(this).data("display-mode");
