@@ -1,14 +1,11 @@
 from django.urls import path
 
 from .views import (start_app, import_url, import_url_success,
-                    update_collection_list, page_sort, bookmark_sort_manual,
-                    change_collection_display, check_valid_url,
-                    manual_url_scrape, links, add_bookmark,
+                    update_collection_list, change_num_columns, page_sort,
+                    bookmark_sort_manual, change_collection_display,
+                    check_valid_url, manual_url_scrape, links, add_bookmark,
                     arrange_collections, collection_sort, edit_bookmark,
                     move_bookmark, custom_message, update_sort_order)
-
-from .utils import collection_utils
-
 
 urlpatterns = [
     path('_start-app',
@@ -20,7 +17,7 @@ urlpatterns = [
     path('_update_collection_list',
          update_collection_list, name="update_collection_list"),
     path('_change-num-columns/<page>/<num>',
-         collection_utils.change_num_columns, name="change_num_columns"),
+         change_num_columns, name="change_num_columns"),
     path('_page_sort',
          page_sort, name="page_sort"),
     path('_bookmark_sort_manual',

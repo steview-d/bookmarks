@@ -191,6 +191,28 @@ def start_app(request):
 
 
 @login_required
+def change_num_columns(request, page, num):
+
+    # check page exists, redirect if not
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
+
+    page = get_object_or_404(
+        Page, user=request.user, name=page
+    )
+
+    if int(num) > 0 and int(num) < 6:
+        page.num_of_columns = num
+        page.save()
+    return redirect('links', page=page.name)
+
+
+@login_required
 def page_sort(request):
     # get and format new page order
     data = request.POST.get('new_page_order', None)

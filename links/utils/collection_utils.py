@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.db.models import Max
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 
 import copy
 import itertools
@@ -10,27 +10,6 @@ import re
 from links.models import Page, Collection
 
 
-def change_num_columns(request, page, num):
-    """
-    Changes the number of columns the current page will use
-    to display content
-
-    Args:
-        request (obj): The request object
-        page (obj) : The current page
-        num (str) : The number of columns the user has requested
-
-    """
-    page = get_object_or_404(
-        Page, user=request.user, name=page
-    )
-
-    if int(num) > 0 and int(num) < 6:
-        page.num_of_columns = num
-        page.save()
-    return redirect('links', page=page.name)
-
-
 def validate_name(request, proposed_name, collections, page):
     """
     Check the requested name contains no disallowed chars and that the
@@ -38,10 +17,13 @@ def validate_name(request, proposed_name, collections, page):
 
     Args:
         request (obj): The request object
+        proposed_name (str): The name input by the user
         collections (queryset): Collections for current page and user
         page (obj): The current page
+
+    Returns:
+        Bool: True for a valid name, False if not.
     """
-    # proposed_name = request.POST.get('collection_name')
 
     # check name contains only allowed chars
     allowed_chars = re.compile(r'[^-: a-zA-Z0-9.]')
@@ -69,20 +51,38 @@ def validate_name(request, proposed_name, collections, page):
         messages.error(
             request, f"Collection name is in use, please choose another")
         return False
+
     else:
         return True
 
 
 def make_collection_list(request, page, num_of_columns, collections):
+    """
+    A function which generates a 2d list of collection names,
+    structured to match the current column layout, which is later used
+    to create lists of bookmarks for each collection.
+
+    Args:
+        request (obj): The request object
+        page (obj): The current page
+        num_of_columns (int): The number of columns currently displayed
+        collections (qs): A queryset of the users collections for the
+                          current page
+
+    Returns:
+        list: A 2d list of all collection names for the current page.
+              Every item in the list is a list of collection objects
+              for a particular column. (column = list idx + 1)
+    """
+
     if num_of_columns != 1:
         # get the collection order for the collections from the db
         collection_order = json.loads(
             eval('page.collection_order_'+str(page.num_of_columns)))
         collection_list = copy.deepcopy(collection_order)
 
-        # put collection names into a list. add them in order based on
-        # the value of collection.position and map this to the structure
-        # of collection_list
+        # starting with the collection at .position 0, map the
+        # collection objects to the collection list.
         count = 0
         for col in range(num_of_columns):
             if collection_list[col] != []:
@@ -96,7 +96,8 @@ def make_collection_list(request, page, num_of_columns, collections):
                     )
                     collection_list[col][pos] = (collection_obj)
     else:
-        # single columm collection display
+        # if there is only 1 column, add the collections to the list
+        # in order of their .position value
         collection_list = [[]]
         if collections.count() > 0:
             for i in range(collections.count()):
@@ -147,7 +148,7 @@ def add_collection(request, current_page):
         request (obj): The request object
         current_page (obj) : The current page
     """
-
+    print(type(current_page))
     page = get_object_or_404(
             Page, user=request.user, name=current_page
         )
