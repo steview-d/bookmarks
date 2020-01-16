@@ -39,6 +39,9 @@ def reorder_bookmarks(bookmark_qs):
     """
     Iterate through a queryset of bookmarks and apply the .position
     value, in order.
+
+    Args:
+        bookmark_qs (qs): A queryset of bookmarks
     """
 
     for count, bm in enumerate((bookmark_qs), 1):
@@ -51,6 +54,10 @@ def reorder_bookmarks(bookmark_qs):
 def scrape_url(request, url):
     """
     Scrape metadata from a URL using BeautifulSoup4
+
+    Args:
+        request (obj): The request object
+        url (str): A string containing a url
     """
 
     # some sites refuse to play nicely unless we're sneaky and throw some

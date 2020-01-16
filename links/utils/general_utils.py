@@ -2,6 +2,20 @@ from links.models import Page
 
 
 def qs_sort(original_order, new_order, limit):
+    """
+    A function that updates a querysets .position field values.
+
+    Args:
+        original_order (qs): A qs of objects ordered by .position field
+        new_order (list): A list containing the new order for the qs
+        limit (int): The (current) max allowed number of objects per
+                     user of type matching 'original_order' queryset.
+
+    Returns:
+        dict : A dict to pass pack to the front end with JsonResponse
+
+    """
+
     for idx, item in enumerate((original_order), 1):
         item.position_temp = new_order.index(item.position) + 1
         item.position = idx + limit
@@ -18,10 +32,12 @@ def qs_sort(original_order, new_order, limit):
 def set_page_name(request):
     """
     small helper function to set the page name so it can be passed as
-    an argument when required. For example the 'add bookmark' button
-    requires a value for page so it can choose a default destination
-    page / collection combination for the user on page load
+    an argument when required.
+    For example, the 'add bookmark' button requires a value for page so
+    it can choose a default destination page / collection combination
+    for the user on page load
     """
+
     try:
         page = request.session['last_page']
 
