@@ -32,7 +32,7 @@
                             <button type="button" id="scrape-url" class="btn btn-warning mt-2">Scrape URL</button>
                             <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                             {% csrf_token %}
-    
+
                             {% for field in import_url_form.visible_fields %}
                             <div>{{ field.label }}</div>
                             <div>{{ field.errors }}</div>
@@ -44,7 +44,13 @@
                             {% endfor %}
                             {{ move_bookmark_form.as_p }}
 
-                            <input type="submit" name="add-bm-form" class="btn btn-info">
+                            <!-- dislay message if user has no collections to add bookmark to -->
+                            {% if collection_count == 0 %}
+                            {% include 'links/components/no_collections.html' %}
+                            {% endif %}
+
+                            <input type="submit" name="add-bm-form" class="btn btn-info"
+                                {% if collection_count == 0 %}disabled{% endif %}>
                         </fieldset>
                     </form>
                 </div>

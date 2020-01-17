@@ -29,7 +29,13 @@
                             {{ import_url_form.as_p }}
                             {{ move_bookmark_form.as_p }}
 
-                            <input type="submit" value="Import" name="import-url-form" class="btn btn-info">
+                            <!-- dislay message if user has no collections to add bookmark to -->
+                            {% if collection_count == 0 %}
+                            {% include 'links/components/no_collections.html' %}
+                            {% endif %}
+
+                            <input type="submit" value="Import" name="import-url-form" class="btn btn-info"
+                                {% if collection_count == 0 %}disabled{% endif %}>
                         </fieldset>
                     </form>
                 </div>

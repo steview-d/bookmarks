@@ -415,6 +415,8 @@ def add_bookmark(request, page):
         page = Page.objects.get(user=request.user, position=1)
         return redirect('add_bookmark', page=page)
 
+    collection_count = Collection.objects.filter(user=request.user).count()
+
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
@@ -435,7 +437,7 @@ def add_bookmark(request, page):
             context = {'import_url_form': import_url_form,
                        'move_bookmark_form': move_bookmark_form,
                        'page': page.name,
-                       'all_page_names': all_pages
+                       'all_page_names': all_pages,
                        }
             context = is_premium(request.user, context)
 
@@ -453,6 +455,7 @@ def add_bookmark(request, page):
                "all_page_names": all_pages,
                'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
+               'collection_count': collection_count
                }
     context = is_premium(request.user, context)
 
@@ -664,6 +667,7 @@ def update_collection_list(request):
 def import_url(request):
 
     url_to_save = request.GET.get('url')
+    collection_count = Collection.objects.filter(user=request.user).count()
 
     # redirect if user attempts to access view directly
     if url_to_save is None:
@@ -708,6 +712,7 @@ def import_url(request):
 
     context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
+               'collection_count': collection_count
                }
     context = is_premium(request.user, context)
 
