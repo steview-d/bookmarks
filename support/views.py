@@ -39,7 +39,10 @@ def support(request):
             messages.success(
                 request, "Ticket created, we'll be in touch soon!")
 
-        return redirect(reverse("support"))
+            return redirect(reverse("support"))
+
+        else:
+            support_request_form = form_data
 
     else:
         support_request_form = SupportRequestForm()
@@ -47,7 +50,7 @@ def support(request):
     # set page value for default page choice for 'add bookmark' button
     page = set_page_name(request)
 
-    context = {"support_request_form": support_request_form,
+    context = {'support_request_form': support_request_form,
                'page': page,
                }
     context = is_premium(request.user, context)
