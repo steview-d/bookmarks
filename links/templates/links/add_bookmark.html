@@ -33,7 +33,7 @@
                             <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                             {% csrf_token %}
     
-                            {% for field in add_bookmark_form.visible_fields %}
+                            {% for field in import_url_form.visible_fields %}
                             <div>{{ field.label }}</div>
                             <div>{{ field.errors }}</div>
                             {% if field.label == 'Url' %}
@@ -41,8 +41,8 @@
                             {% endif %}
                             <div>{{ field }}</div>
                             <div>{{ field.help_text }}</div>
-
                             {% endfor %}
+                            {{ move_bookmark_form.as_p }}
 
                             <input type="submit" name="add-bm-form" class="btn btn-info">
                         </fieldset>

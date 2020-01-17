@@ -407,7 +407,7 @@ def collection_sort(request, page):
 
 
 @login_required
-def add_bookmark(request, page):
+def _add_bookmark(request, page):
     # check page exists, redirect to page at position 1 if not
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -466,6 +466,69 @@ def add_bookmark(request, page):
     context = {"page": page.name,
                "all_page_names": all_pages,
                "add_bookmark_form": add_bookmark_form}
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/add_bookmark.html', context)
+
+
+@login_required
+def add_bookmark(request, page):
+
+    # check page exists, redirect to page at position 1 if not
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        page = Page.objects.get(user=request.user, position=1)
+        return redirect('add_bookmark', page=page)
+
+    # on form post
+    if 'add-bm-form' in request.POST:
+        page = Page.objects.get(
+            user=request.user, pk=request.POST.get('dest_page')
+        )
+        import_url_form = ImportUrlForm(request.POST)
+        move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
+
+        if import_url_form.is_valid() and move_bookmark_form.is_valid():
+            form = import_url_form.save(commit=False)
+            form.user.user = request.user
+
+            dest_collection = Collection.objects.get(
+                id=request.POST.get('dest_collection'))
+
+            form.collection = dest_collection
+
+            # get new position value for bookmark
+            dest_position = Bookmark.objects.filter(
+                user=request.user, collection=dest_collection
+            ).count() + 1
+
+            form.position = dest_position
+            form.save()
+
+            return redirect('links', page=page)
+
+        else:
+            context = {'import_url_form': import_url_form,
+                       'move_bookmark_form': move_bookmark_form,
+                       }
+            context = is_premium(request.user, context)
+
+            return render(request, 'links/import_url.html', context)
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    # initialize forms
+    import_url_form = ImportUrlForm()
+    move_bookmark_form = MoveBookmarkForm(
+        request.user, page)
+
+    context = {"page": page.name,
+               "all_page_names": all_pages,
+               'import_url_form': import_url_form,
+               'move_bookmark_form': move_bookmark_form,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'links/add_bookmark.html', context)
@@ -721,9 +784,6 @@ def import_url(request):
             return redirect('import_url_success')
 
         else:
-            # import_url_form = import_url_form
-            # move_bookmark_form = move_bookmark_form
-
             context = {'import_url_form': import_url_form,
                        'move_bookmark_form': move_bookmark_form,
                        }
