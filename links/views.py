@@ -438,6 +438,7 @@ def add_bookmark(request, page):
                        'move_bookmark_form': move_bookmark_form,
                        'page': page.name,
                        'all_page_names': all_pages,
+                       'collection_count': collection_count,
                        }
             context = is_premium(request.user, context)
 
@@ -695,6 +696,7 @@ def import_url(request):
         else:
             context = {'import_url_form': import_url_form,
                        'move_bookmark_form': move_bookmark_form,
+                       'collection_count': collection_count,
                        }
             context = is_premium(request.user, context)
 
