@@ -64,22 +64,6 @@ class EditPageForm(PageForm):
         fields = ['name']
 
 
-class AddBookmarkForm(forms.ModelForm):
-    description = forms.CharField(
-        widget=forms.Textarea()
-    )
-
-    class Meta:
-        model = Bookmark
-        fields = ['url', 'title', 'description', 'collection']
-
-    def __init__(self, user, page, *args, **kwargs):
-        super(AddBookmarkForm, self).__init__(*args, **kwargs)
-        self.initial['collection'] = {'position'}
-        self.fields['collection'].queryset = Collection.objects.filter(
-            user=user, page=page).order_by('position')
-
-
 class EditBookmarkForm(forms.ModelForm):
     description = forms.CharField(
         widget=forms.Textarea()

@@ -2,7 +2,6 @@ from .conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Max
 
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -13,8 +12,8 @@ import requests as req
 
 from premium.utils import is_premium, premium_check
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
-from .forms import (AddNewPageForm, EditPageForm, AddBookmarkForm,
-                    EditBookmarkForm, MoveBookmarkForm, ImportUrlForm)
+from .forms import (AddNewPageForm, EditPageForm, EditBookmarkForm,
+                    MoveBookmarkForm, ImportUrlForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -407,71 +406,6 @@ def collection_sort(request, page):
 
 
 @login_required
-def _add_bookmark(request, page):
-    # check page exists, redirect to page at position 1 if not
-    try:
-        page = Page.objects.get(user=request.user, name=page)
-    except ObjectDoesNotExist:
-        page = Page.objects.get(user=request.user, position=1)
-        return redirect('add_bookmark', page=page)
-
-    num_collections = Collection.objects.filter(
-        user=request.user, page=page).count()
-    if num_collections == 0:
-        messages.error(
-            request, f"Create a collection for your bookmark first")
-        return redirect('links', page=page)
-
-    add_bookmark_form = AddBookmarkForm(request.user, page)
-
-    if 'add-bm-form' in request.POST:
-        # check allowed extra bookmark at current membership level
-        check = premium_check(
-            request, Bookmark, settings.LINKS_STND_MAX_BOOKMARKS)
-
-        if check:
-            add_bookmark_form = AddBookmarkForm(
-                request.user, page, request.POST)
-
-            if add_bookmark_form.is_valid():
-                form = add_bookmark_form.save(commit=False)
-
-                form.user = request.user
-
-                # set position value to next highest value. ie, last on list
-                max_pos_value = Bookmark.objects.filter(
-                    user__username=request.user,
-                    collection__id=request.POST['collection']).aggregate(
-                        Max('position')
-                )
-
-                form.position = 1 if not max_pos_value['position__max'] else \
-                    max_pos_value['position__max'] + 1
-
-                if not form.description:
-                    form.description = "No description found"
-
-                add_bookmark_form.save()
-
-                return redirect('links', page=page)
-        else:
-            return redirect('premium')
-
-    else:
-        add_bookmark_form = AddBookmarkForm(request.user, page)
-
-    # get page names for sidebar
-    all_pages = Page.objects.filter(user=request.user).order_by('position')
-
-    context = {"page": page.name,
-               "all_page_names": all_pages,
-               "add_bookmark_form": add_bookmark_form}
-    context = is_premium(request.user, context)
-
-    return render(request, 'links/add_bookmark.html', context)
-
-
-@login_required
 def add_bookmark(request, page):
 
     # check page exists, redirect to page at position 1 if not
@@ -522,7 +456,7 @@ def add_bookmark(request, page):
     # initialize forms
     import_url_form = ImportUrlForm()
     move_bookmark_form = MoveBookmarkForm(
-        request.user, page)
+        request.user, page, initial={'dest_page': page})
 
     context = {"page": page.name,
                "all_page_names": all_pages,

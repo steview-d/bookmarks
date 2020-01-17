@@ -250,7 +250,7 @@ $(document).ready(function() {
         });
     }
 
-    // ----------------------------- Check URL in 'AddBookmarkForm' is valid //
+    // ----------------------------- Check URL in '#id_url' is valid //
 
     /*
     Sends a url to the server with ajax for processing via the python requests
