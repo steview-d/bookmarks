@@ -415,6 +415,9 @@ def add_bookmark(request, page):
         page = Page.objects.get(user=request.user, position=1)
         return redirect('add_bookmark', page=page)
 
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
     # on form post
     if 'add-bm-form' in request.POST:
         page = Page.objects.get(
@@ -424,34 +427,22 @@ def add_bookmark(request, page):
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
         if import_url_form.is_valid() and move_bookmark_form.is_valid():
-            form = import_url_form.save(commit=False)
-            form.user.user = request.user
-
-            dest_collection = Collection.objects.get(
-                id=request.POST.get('dest_collection'))
-
-            form.collection = dest_collection
-
-            # get new position value for bookmark
-            dest_position = Bookmark.objects.filter(
-                user=request.user, collection=dest_collection
-            ).count() + 1
-
-            form.position = dest_position
-            form.save()
+            bookmark_utils.add_bookmark_object(request, import_url_form)
 
             return redirect('links', page=page)
 
         else:
             context = {'import_url_form': import_url_form,
                        'move_bookmark_form': move_bookmark_form,
+                       'page': page.name,
+                       'all_page_names': all_pages
                        }
             context = is_premium(request.user, context)
 
-            return render(request, 'links/import_url.html', context)
+            return render(request, 'links/add_bookmark.html', context)
 
     # get page names for sidebar
-    all_pages = Page.objects.filter(user=request.user).order_by('position')
+    # all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     # initialize forms
     import_url_form = ImportUrlForm()
@@ -690,31 +681,9 @@ def import_url(request):
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
         if import_url_form.is_valid() and move_bookmark_form.is_valid():
-
-            form = import_url_form.save(commit=False)
-            form.user = request.user
-
-            dest_collection = Collection.objects.get(
-                id=request.POST.get('dest_collection'))
-
-            form.collection = dest_collection
-
-            # get new position value for bookmark
-            dest_position = Bookmark.objects.filter(
-                user=request.user, collection=dest_collection
-            ).count() + 1
-
-            form.position = dest_position
-            form.save()
-
-            # TODO NEEDED?
-            page = Page.objects.get(
-                id=request.POST.get('dest_page')
-            )
+            bookmark_utils.add_bookmark_object(request, import_url_form)
 
             request.session['imported_url'] = url_to_save
-
-            # return render(request, 'links/import_url_success.html')
             return redirect('import_url_success')
 
         else:

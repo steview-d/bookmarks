@@ -6,6 +6,30 @@ import requests as req
 from links.models import Collection, Bookmark
 
 
+def add_bookmark_object(request, import_url_form):
+    """
+    Add a new Bookmark object
+    """
+
+    form = import_url_form.save(commit=False)
+    form.user.user = request.user
+
+    dest_collection = Collection.objects.get(
+        id=request.POST.get('dest_collection'))
+
+    form.collection = dest_collection
+
+    # get new position value for bookmark
+    dest_position = Bookmark.objects.filter(
+        user=request.user, collection=dest_collection
+    ).count() + 1
+
+    form.position = dest_position
+    form.save()
+
+    return
+
+
 def delete_bookmark(request):
     """
     Find and delete the requested bookmark using its pk from
