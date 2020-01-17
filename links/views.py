@@ -444,9 +444,6 @@ def add_bookmark(request, page):
 
             return render(request, 'links/add_bookmark.html', context)
 
-    # get page names for sidebar
-    # all_pages = Page.objects.filter(user=request.user).order_by('position')
-
     # initialize forms
     import_url_form = ImportUrlForm()
     move_bookmark_form = MoveBookmarkForm(
