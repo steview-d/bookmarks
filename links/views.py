@@ -463,12 +463,14 @@ def add_bookmark(request, page):
 def manual_url_scrape(request):
 
     url = request.POST.get('urlToScrape', None)
+    data = {}
 
     # redirect if user attempts to access view directly
     if url is None:
         return redirect('start_app')
 
-    data = bookmark_utils.scrape_url(request, url)
+    if url != '':
+        data = bookmark_utils.scrape_url(request, url)
 
     return JsonResponse(data)
 
