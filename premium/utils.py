@@ -9,8 +9,9 @@ def is_premium(request, context):
     if so, {'is_premium': True} is added to the 'context' dict
 
     Args:
-        request : request.user
-        context : the context dict that will be passed to the template
+        request (obj) : request.user
+        context (dict): the context dict that will be passed to the
+                        template
 
     Returns:
         The 'context' dict
@@ -25,6 +26,11 @@ def is_premium(request, context):
 def premium_check(request, model, settings_value):
     """
     Check if user status allows them to add another item
+
+    Args:
+        request : request.user
+        model : The model being checked against
+        settings_value : The settings value to check against
 
     Returns:
         Bool
