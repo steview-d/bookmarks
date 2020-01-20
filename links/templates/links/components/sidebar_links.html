@@ -53,9 +53,9 @@
         </ul>
     </div>
     {% if bm_data %}
-    <ul class="list-unstyled mx-4">
+    <!-- <div class="mx-4"> -->
         <!-- add page form -->
-        <li class="mx-3 my-2">
+        <div class="mx-4 my-2">
             <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
             <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
                 {% endif %}>
@@ -67,8 +67,8 @@
                 {% endfor %}
                 <input type="submit" name="add-page-form" class="btn btn-info btn-sm mt-3">
             </form>
-        </li>
-    </ul>
+        </div>
+    <!-- </div> -->
     {% endif %}
 
     <!-- display premium badge -->
