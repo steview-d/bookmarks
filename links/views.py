@@ -250,6 +250,14 @@ def arrange_collections(request, page):
 
 @login_required
 def collection_sort(request, page):
+    """
+    Re-order the collections for a given page.
+    Collections are sorted manually using jQueryUI sortable. The new order
+    is serialized and sent to this view using ajax. The .postion values are
+    updated to reflect the new order and a return instructs the page to
+    reload so the new collection order is displayed.
+    """
+
     # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -266,6 +274,11 @@ def collection_sort(request, page):
         ).order_by('position')
 
     post_data = request.POST.get('new_collection_order', None)
+
+    # redirect if user attempts to access view directly
+    if post_data is None:
+        return redirect('links', page=page.name)
+
     jdata = json.loads(post_data)
 
     # convert posted data to a list in same format as collection_order_[i]
@@ -353,7 +366,7 @@ def collection_sort(request, page):
 
 @login_required
 def change_collection_display(request):
-    # Update the specified collections display mode
+    """ Update the specified collections display mode """
 
     # get posted data
     collection_id = request.POST.get('collection', None)
@@ -381,7 +394,9 @@ def change_collection_display(request):
 
 @login_required
 def update_sort_order(request, page, collection, sort):
+    """ Update the sort order for the given collection. """
 
+    # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
@@ -416,6 +431,9 @@ def update_sort_order(request, page, collection, sort):
 
 @login_required
 def change_num_columns(request, page, num):
+    """
+    Update the number of columns displayed on the given page
+    """
 
     # check page exists, redirect if not
     try:
@@ -426,10 +444,6 @@ def change_num_columns(request, page, num):
         )
         return redirect('start_app')
 
-    page = get_object_or_404(
-        Page, user=request.user, name=page
-    )
-
     if int(num) > 0 and int(num) < 6:
         page.num_of_columns = num
         page.save()
@@ -438,6 +452,14 @@ def change_num_columns(request, page, num):
 
 @login_required
 def bookmark_sort_manual(request):
+    """
+    Re-order the bookmarks in a given collection.
+    Bookmarks are sorted manually using jQueryUI sortable. The new order
+    is serialized and sent to this view using ajax. The .postion values are
+    updated to reflect the new order and a value is returned to instruct
+    a page reload to display the new order.
+    """
+
     data = request.POST.get('new_bookmark_order', None)
     collection_name = request.POST.get('collection_name', None)
     page_name = request.POST.get('page_name', None)
@@ -469,62 +491,8 @@ def bookmark_sort_manual(request):
 
 
 @login_required
-def add_bookmark(request, page):
-
-    # check page exists, redirect to page at position 1 if not
-    try:
-        page = Page.objects.get(user=request.user, name=page)
-    except ObjectDoesNotExist:
-        page = Page.objects.get(user=request.user, position=1)
-        return redirect('add_bookmark', page=page)
-
-    collection_count = Collection.objects.filter(user=request.user).count()
-
-    # get page names for sidebar
-    all_pages = Page.objects.filter(user=request.user).order_by('position')
-
-    # on form post
-    if 'add-bm-form' in request.POST:
-        page = Page.objects.get(
-            user=request.user, pk=request.POST.get('dest_page')
-        )
-        import_url_form = ImportUrlForm(request.POST)
-        move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
-
-        if import_url_form.is_valid() and move_bookmark_form.is_valid():
-            bookmark_utils.add_bookmark_object(request, import_url_form)
-
-            return redirect('links', page=page)
-
-        else:
-            context = {'import_url_form': import_url_form,
-                       'move_bookmark_form': move_bookmark_form,
-                       'page': page.name,
-                       'all_page_names': all_pages,
-                       'collection_count': collection_count,
-                       }
-            context = is_premium(request.user, context)
-
-            return render(request, 'links/add_bookmark.html', context)
-
-    # initialize forms
-    import_url_form = ImportUrlForm()
-    move_bookmark_form = MoveBookmarkForm(
-        request.user, page, initial={'dest_page': page})
-
-    context = {"page": page.name,
-               "all_page_names": all_pages,
-               'import_url_form': import_url_form,
-               'move_bookmark_form': move_bookmark_form,
-               'collection_count': collection_count
-               }
-    context = is_premium(request.user, context)
-
-    return render(request, 'links/add_bookmark.html', context)
-
-
-@login_required
 def edit_bookmark(request, page, bookmark):
+    """ Edit and update the requested Bookmark object """
 
     # check page exists, redirect if not
     try:
@@ -535,6 +503,8 @@ def edit_bookmark(request, page, bookmark):
         )
         return redirect('start_app')
 
+    # check bookmark to edit exists, redirect if not. Also stops users trying
+    # to edit bookmarks that aren't theirs.
     try:
         bookmark_to_edit = Bookmark.objects.get(user=request.user, pk=bookmark)
     except ObjectDoesNotExist:
@@ -546,6 +516,7 @@ def edit_bookmark(request, page, bookmark):
 
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
+    # handle posted data
     if 'edit-bm-form' in request.POST:
         edit_bookmark_form = EditBookmarkForm(
             request.POST, instance=bookmark_to_edit)
@@ -568,8 +539,62 @@ def edit_bookmark(request, page, bookmark):
 
 
 @login_required
-def move_bookmark(request, page, bookmark):
+def add_bookmark(request, page):
+    """ Create a new Bookmark object """
 
+    # check page exists, redirect to page at position 1 if not
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        page = Page.objects.get(user=request.user, position=1)
+        return redirect('add_bookmark', page=page)
+
+    collection_count = Collection.objects.filter(user=request.user).count()
+
+    # initialize forms
+    import_url_form = ImportUrlForm()
+    move_bookmark_form = MoveBookmarkForm(
+        request.user, page, initial={'dest_page': page})
+
+    # handle posted data
+    if 'add-bm-form' in request.POST:
+        page = Page.objects.get(
+            user=request.user, pk=request.POST.get('dest_page')
+        )
+        import_url_form = ImportUrlForm(request.POST)
+        move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
+
+        if import_url_form.is_valid() and move_bookmark_form.is_valid():
+            # create a new Bookmark object
+            bookmark_utils.add_bookmark_object(request, import_url_form)
+
+            return redirect('links', page=page)
+
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
+
+    context = {"page": page.name,
+               'import_url_form': import_url_form,
+               "all_page_names": all_pages,
+               'move_bookmark_form': move_bookmark_form,
+               'collection_count': collection_count
+               }
+    context = is_premium(request.user, context)
+
+    return render(request, 'links/add_bookmark.html', context)
+
+
+@login_required
+def move_bookmark(request, page, bookmark):
+    """
+    Moves the requested bookmark to a page and collection chosen by the
+    user.
+    Updates the position values of the remaining bookmarks in the
+    source collection and appends the moved bookmark to the end of the
+    destination collection.
+    """
+
+    # check start page exists, and redirect if not.
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
@@ -578,21 +603,20 @@ def move_bookmark(request, page, bookmark):
         )
         return redirect('start_app')
 
+    # check bookmark to move exists, and redirect if not. Has the added
+    # benefit of stopping users trying to move bookmarks that aren't theirs.
     try:
         bookmark_to_move = Bookmark.objects.get(user=request.user, pk=bookmark)
     except ObjectDoesNotExist:
-        # stop users trying to move bookmarks that aren't theirs
         messages.error(
             request, f"Could not find the requested bookmark"
         )
         return redirect('start_app')
 
-    # get page names for sidebar
-    all_pages = Page.objects.filter(user=request.user).order_by('position')
-
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
 
+    # handle posted data
     if 'move-bm-form' in request.POST:
         page = Page.objects.get(
             user=request.user, pk=request.POST.get('dest_page')
@@ -626,15 +650,8 @@ def move_bookmark(request, page, bookmark):
 
             return redirect('links', page=page)
 
-        else:
-            context = {"page": page.name,
-                       "bookmark": bookmark_to_move,
-                       "move_bookmark_form": move_bookmark_form,
-                       "all_page_names": all_pages,
-                       }
-            context = is_premium(request.user, context)
-
-            return render(request, 'links/move_bookmark.html', context)
+    # get page names for sidebar
+    all_pages = Page.objects.filter(user=request.user).order_by('position')
 
     context = {"page": page.name,
                "bookmark": bookmark_to_move,
@@ -648,6 +665,9 @@ def move_bookmark(request, page, bookmark):
 
 @login_required
 def manual_url_scrape(request):
+    """
+    Scrapes the requested URL and returns the scraped data.
+    """
 
     url = request.POST.get('urlToScrape', None)
     data = {}
@@ -664,6 +684,10 @@ def manual_url_scrape(request):
 
 @login_required
 def check_valid_url(request):
+    """
+    Use the requests (as req) library to check if a url is valid.
+    Function looks for a http 200 response and returns True or False.
+    """
 
     url = request.POST.get('urlToCheck', None)
 
@@ -726,6 +750,10 @@ def update_collection_list(request):
 
 @login_required
 def import_url(request):
+    """
+    Import a URL using the chrome extension, scrape the sites metadata
+    and save it all as a new bookmark object.
+    """
 
     url_to_save = request.GET.get('url')
     collection_count = Collection.objects.filter(user=request.user).count()
@@ -739,7 +767,7 @@ def import_url(request):
         user=request.user, position=1
     )
 
-    # on form post
+    # handle posted data
     if 'import-url-form' in request.POST:
         page = Page.objects.get(
             user=request.user, pk=request.POST.get('dest_page')
@@ -748,6 +776,7 @@ def import_url(request):
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
         if import_url_form.is_valid() and move_bookmark_form.is_valid():
+            # create a new Bookmark object
             bookmark_utils.add_bookmark_object(request, import_url_form)
 
             request.session['imported_url'] = url_to_save
@@ -762,6 +791,7 @@ def import_url(request):
 
             return render(request, 'links/import_url.html', context)
 
+    # scrape the requested url
     scrape_data = bookmark_utils.scrape_url(request, url_to_save)
 
     import_url_form = ImportUrlForm(initial={
@@ -783,6 +813,7 @@ def import_url(request):
 
 @login_required
 def import_url_success(request):
+    """ Confirm URL import was successful """
 
     try:
         url = request.session['imported_url']
@@ -798,6 +829,8 @@ def import_url_success(request):
 
 @login_required
 def custom_message(request, page, message):
+    """ display a custom message """
+
     page = Page.objects.get(
         user=request.user, name=page
     )
