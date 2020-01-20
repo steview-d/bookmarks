@@ -568,6 +568,11 @@ def edit_bookmark(request, page, bookmark):
 def add_bookmark(request, page):
     """ Create a new Bookmark object """
 
+    # check allowed extra bookmark at current membership level
+    check = premium_check(request, Bookmark, settings.LINKS_STND_MAX_BOOKMARKS)
+    if not check:
+        return redirect('premium')
+
     # check page exists, redirect to page at position 1 if not
     try:
         page = Page.objects.get(user=request.user, name=page)
