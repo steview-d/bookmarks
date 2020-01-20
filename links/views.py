@@ -2,7 +2,7 @@ from .conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -143,7 +143,7 @@ def links(request, page):
         request, page, num_of_columns, collections)
 
     # create list of sort options
-    sort_options = ['position', 'title', '-title',
+    sort_options = ['position', 'an_title', '-an_title',
                     'added', '-added', 'updated', '-updated']
 
     # iterate through collection names and create a qs of bookmarks for each
@@ -152,7 +152,8 @@ def links(request, page):
         column = {}
         for j in (collection_list[x]):
             qs = bookmarks.filter(
-                collection=j).order_by(sort_options[j.sort_order])
+                collection=j).annotate(an_title=Lower('title')).order_by(
+                    (sort_options[j.sort_order]))
             column[j] = qs
         bm_data.append(column)
 
