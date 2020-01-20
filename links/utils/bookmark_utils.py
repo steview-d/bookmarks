@@ -12,7 +12,7 @@ def add_bookmark_object(request, import_url_form):
     """
 
     form = import_url_form.save(commit=False)
-    form.user.user = request.user
+    form.user = request.user
 
     dest_collection = Collection.objects.get(
         id=request.POST.get('dest_collection'))
