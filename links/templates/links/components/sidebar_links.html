@@ -52,6 +52,7 @@
             {% endfor %}
         </ul>
     </div>
+    {% if bm_data %}
     <ul class="list-unstyled mx-4">
         <!-- add page form -->
         <li class="mx-3 my-2">
@@ -68,6 +69,7 @@
             </form>
         </li>
     </ul>
+    {% endif %}
 
     <!-- display premium badge -->
     {% if is_premium %}

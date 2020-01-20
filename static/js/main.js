@@ -89,7 +89,7 @@ $(document).ready(function() {
                     new_page_order: postData,
                     csrfmiddlewaretoken: csrftoken
                 },
-                url: "_page_sort",
+                url: "/app/_page_sort",
                 success: function(data) {
                     if (data.success) {
                         location.reload();
