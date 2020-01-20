@@ -20,6 +20,8 @@ from .models import Bookmark, Collection, Page
 # views
 @login_required
 def links(request, page):
+    """ The main app view """
+
     # check page exists, redirect if not
     try:
         page = Page.objects.get(user=request.user, name=page)
@@ -29,6 +31,7 @@ def links(request, page):
         )
         return redirect('start_app')
 
+    # get all collections & bookmarks for current page
     collections = Collection.objects.filter(
         user__username=request.user,
         page__name=page.name
@@ -39,7 +42,7 @@ def links(request, page):
         collection__in=collections
         )
 
-    # forms
+    # initialize forms
     add_new_page_form = AddNewPageForm(
         current_user=request.user, prefix='new_page', auto_id=False
     )
@@ -174,11 +177,20 @@ def links(request, page):
 
 @login_required
 def start_app(request):
+    """
+    For app to work, users must have at least one page. This view checks
+    this, and if no page is found, it creates a default page called 'home'.
+
+    Additionally, this view is used to return a user to the last page they
+    were on. It checks for a session var called 'last_page' and returns them
+    there, or if no value is found, it defaults to the page at position=1.
+    """
+
     # check if user has at least 1 page and if not, create one & redirect to it
     if not Page.objects.filter(user=request.user).exists():
         page_utils.create_default_page(request)
 
-    # get last page data and redirect if applicable, otherwise load first page
+    # get last_page data and redirect if applicable, otherwise load first page
     try:
         last_page = request.session['last_page']
 
@@ -191,6 +203,14 @@ def start_app(request):
 
 @login_required
 def page_sort(request):
+    """
+    Re-order the users pages.
+    Pages are sorted manually using jQueryUI sortable. The new order
+    is serialized and sent to this view using ajax. The .postion values are
+    updated to reflect the new order and a return instructs the page to
+    reload so the new page order is displayed.
+    """
+
     # get and format new page order
     data = request.POST.get('new_page_order', None)
 
@@ -214,6 +234,11 @@ def page_sort(request):
 
 @login_required
 def arrange_collections(request, page):
+    """
+    Display the collections on the page in a cleaner and more concise way
+    (ie, just the collection names) to make it easier for the user to sort
+    them into a preferred order.
+    """
 
     # check page exists, redirect if not
     try:
