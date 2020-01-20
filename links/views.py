@@ -190,28 +190,6 @@ def start_app(request):
 
 
 @login_required
-def change_num_columns(request, page, num):
-
-    # check page exists, redirect if not
-    try:
-        page = Page.objects.get(user=request.user, name=page)
-    except ObjectDoesNotExist:
-        messages.error(
-            request, f"Could not find a page with the name '{page}'"
-        )
-        return redirect('start_app')
-
-    page = get_object_or_404(
-        Page, user=request.user, name=page
-    )
-
-    if int(num) > 0 and int(num) < 6:
-        page.num_of_columns = num
-        page.save()
-    return redirect('links', page=page.name)
-
-
-@login_required
 def page_sort(request):
     # get and format new page order
     data = request.POST.get('new_page_order', None)
@@ -230,38 +208,6 @@ def page_sort(request):
     # re-order pages based on user sort
     data = general_utils.qs_sort(
         original_page_order, new_order, page_limit)
-
-    return JsonResponse(data)
-
-
-@login_required
-def bookmark_sort_manual(request):
-    data = request.POST.get('new_bookmark_order', None)
-    collection_name = request.POST.get('collection_name', None)
-    page_name = request.POST.get('page_name', None)
-
-    # redirect if user attempts to access view directly
-    if data is None:
-        return redirect('start_app')
-
-    new_order = list(map(int, data.split(',')))
-
-    # get collection bookmarks, in original order
-    collections = Collection.objects.filter(
-        user__username=request.user,
-        page__name=page_name
-        ).order_by('position')
-    original_bookmark_order = Bookmark.objects.filter(
-        user__username=request.user,
-        collection__in=collections,
-        collection__name=collection_name
-        ).order_by('position')
-
-    bookmark_limit = settings.LINKS_PREM_MAX_BOOKMARKS
-
-    # re-order bookmarks based on user sort
-    data = general_utils.qs_sort(
-        original_bookmark_order, new_order, bookmark_limit)
 
     return JsonResponse(data)
 
@@ -406,6 +352,123 @@ def collection_sort(request, page):
 
 
 @login_required
+def change_collection_display(request):
+    # Update the specified collections display mode
+
+    # get posted data
+    collection_id = request.POST.get('collection', None)
+    display_mode = request.POST.get('mode', None)
+
+    # redirect if user attempts to access view directly
+    if collection_id is None:
+        return redirect('start_app')
+
+    # check this view is being accessed correctly
+    if collection_id is None or display_mode is None:
+        page = general_utils.set_page_name(request)
+        return redirect('links', page=page)
+
+    collection = Collection.objects.get(
+        user=request.user, id=collection_id
+    )
+
+    collection.display_mode = int(display_mode)
+    collection.save()
+
+    data = {}
+    return JsonResponse(data)
+
+
+@login_required
+def update_sort_order(request, page, collection, sort):
+
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
+
+    try:
+        collection = Collection.objects.get(
+            user=request.user, page=page, name=collection
+        )
+    except ObjectDoesNotExist:
+        # stop users trying to move bookmarks that aren't theirs
+        messages.error(
+            request, f"Could not find the requested collection"
+        )
+        return redirect('start_app')
+
+    if int(sort) < 0 or int(sort) > 6:
+        messages.error(
+            request, f"Incorrect sort value - \
+                should be an integer between 0 and 6"
+        )
+        return redirect('start_app')
+
+    collection.sort_order = int(sort)
+    collection.save()
+
+    return redirect('links', page=page)
+
+
+@login_required
+def change_num_columns(request, page, num):
+
+    # check page exists, redirect if not
+    try:
+        page = Page.objects.get(user=request.user, name=page)
+    except ObjectDoesNotExist:
+        messages.error(
+            request, f"Could not find a page with the name '{page}'"
+        )
+        return redirect('start_app')
+
+    page = get_object_or_404(
+        Page, user=request.user, name=page
+    )
+
+    if int(num) > 0 and int(num) < 6:
+        page.num_of_columns = num
+        page.save()
+    return redirect('links', page=page.name)
+
+
+@login_required
+def bookmark_sort_manual(request):
+    data = request.POST.get('new_bookmark_order', None)
+    collection_name = request.POST.get('collection_name', None)
+    page_name = request.POST.get('page_name', None)
+
+    # redirect if user attempts to access view directly
+    if data is None:
+        return redirect('start_app')
+
+    new_order = list(map(int, data.split(',')))
+
+    # get collection bookmarks, in original order
+    collections = Collection.objects.filter(
+        user__username=request.user,
+        page__name=page_name
+        ).order_by('position')
+    original_bookmark_order = Bookmark.objects.filter(
+        user__username=request.user,
+        collection__in=collections,
+        collection__name=collection_name
+        ).order_by('position')
+
+    bookmark_limit = settings.LINKS_PREM_MAX_BOOKMARKS
+
+    # re-order bookmarks based on user sort
+    data = general_utils.qs_sort(
+        original_bookmark_order, new_order, bookmark_limit)
+
+    return JsonResponse(data)
+
+
+@login_required
 def add_bookmark(request, page):
 
     # check page exists, redirect to page at position 1 if not
@@ -461,22 +524,6 @@ def add_bookmark(request, page):
 
 
 @login_required
-def manual_url_scrape(request):
-
-    url = request.POST.get('urlToScrape', None)
-    data = {}
-
-    # redirect if user attempts to access view directly
-    if url is None:
-        return redirect('start_app')
-
-    if url != '':
-        data = bookmark_utils.scrape_url(request, url)
-
-    return JsonResponse(data)
-
-
-@login_required
 def edit_bookmark(request, page, bookmark):
 
     # check page exists, redirect if not
@@ -518,33 +565,6 @@ def edit_bookmark(request, page, bookmark):
     context = is_premium(request.user, context)
 
     return render(request, 'links/edit_bookmark.html', context)
-
-
-@login_required
-def check_valid_url(request):
-
-    url = request.POST.get('urlToCheck', None)
-
-    # redirect if user attempts to access view directly
-    if url is None:
-        return redirect('start_app')
-
-    data = {}
-
-    if not url:
-        return JsonResponse(data)
-
-    try:
-        response = req.head(url)
-        response.raise_for_status()
-
-    except req.exceptions.RequestException:
-        data['result'] = False
-
-    else:
-        data['result'] = True
-
-    return JsonResponse(data)
 
 
 @login_required
@@ -624,6 +644,49 @@ def move_bookmark(request, page, bookmark):
     context = is_premium(request.user, context)
 
     return render(request, 'links/move_bookmark.html', context)
+
+
+@login_required
+def manual_url_scrape(request):
+
+    url = request.POST.get('urlToScrape', None)
+    data = {}
+
+    # redirect if user attempts to access view directly
+    if url is None:
+        return redirect('start_app')
+
+    if url != '':
+        data = bookmark_utils.scrape_url(request, url)
+
+    return JsonResponse(data)
+
+
+@login_required
+def check_valid_url(request):
+
+    url = request.POST.get('urlToCheck', None)
+
+    # redirect if user attempts to access view directly
+    if url is None:
+        return redirect('start_app')
+
+    data = {}
+
+    if not url:
+        return JsonResponse(data)
+
+    try:
+        response = req.head(url)
+        response.raise_for_status()
+
+    except req.exceptions.RequestException:
+        data['result'] = False
+
+    else:
+        data['result'] = True
+
+    return JsonResponse(data)
 
 
 @login_required
@@ -731,69 +794,6 @@ def import_url_success(request):
     del request.session['imported_url']
 
     return render(request, 'links/import_url_success.html', context)
-
-
-@login_required
-def change_collection_display(request):
-    # Update the specified collections display mode
-
-    # get posted data
-    collection_id = request.POST.get('collection', None)
-    display_mode = request.POST.get('mode', None)
-
-    # redirect if user attempts to access view directly
-    if collection_id is None:
-        return redirect('start_app')
-
-    # check this view is being accessed correctly
-    if collection_id is None or display_mode is None:
-        page = general_utils.set_page_name(request)
-        return redirect('links', page=page)
-
-    collection = Collection.objects.get(
-        user=request.user, id=collection_id
-    )
-
-    collection.display_mode = int(display_mode)
-    collection.save()
-
-    data = {}
-    return JsonResponse(data)
-
-
-@login_required
-def update_sort_order(request, page, collection, sort):
-
-    try:
-        page = Page.objects.get(user=request.user, name=page)
-    except ObjectDoesNotExist:
-        messages.error(
-            request, f"Could not find a page with the name '{page}'"
-        )
-        return redirect('start_app')
-
-    try:
-        collection = Collection.objects.get(
-            user=request.user, page=page, name=collection
-        )
-    except ObjectDoesNotExist:
-        # stop users trying to move bookmarks that aren't theirs
-        messages.error(
-            request, f"Could not find the requested collection"
-        )
-        return redirect('start_app')
-
-    if int(sort) < 0 or int(sort) > 6:
-        messages.error(
-            request, f"Incorrect sort value - \
-                should be an integer between 0 and 6"
-        )
-        return redirect('start_app')
-
-    collection.sort_order = int(sort)
-    collection.save()
-
-    return redirect('links', page=page)
 
 
 @login_required
