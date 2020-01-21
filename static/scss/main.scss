@@ -109,7 +109,10 @@ $topnav-spacer-height: 64px;
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    bottom: 0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     z-index: 999;
     transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
     background-color: ghostwhite;
@@ -117,6 +120,11 @@ $topnav-spacer-height: 64px;
     .display-switch {
         margin-left: -300px;
     }
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 #sidebar ul .active {
@@ -132,6 +140,7 @@ $topnav-spacer-height: 64px;
     }
 }
 
+
 // ---------------------------------------------------------- main content area
 
 #content {
@@ -144,6 +153,16 @@ $topnav-spacer-height: 64px;
 
     @media (min-width: 768px) {
         width: calc(100% - 300px);
+    }
+}
+
+// prevents #content from scrolling when
+// sidebar is active on small screens
+// ref: .js sidebar toggler
+.flex-wrapper {
+    .no-scroll {
+        overflow: hidden;
+        height: 100%;
     }
 }
 

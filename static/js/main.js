@@ -5,6 +5,7 @@ $(document).ready(function() {
     // sidebar toggler
     $(".sidebarToggle").on("click", function() {
         $("#sidebar, #content").toggleClass("display-switch");
+        $("#content").toggleClass("no-scroll");
     });
 
     // 'add new page' form toggle

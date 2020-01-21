@@ -70,7 +70,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  bottom: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   z-index: 999;
   -webkit-transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
   transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
@@ -79,6 +82,11 @@
 
 #sidebar .display-switch {
   margin-left: -300px;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 #sidebar ul .active {
@@ -108,6 +116,11 @@
   #content {
     width: calc(100% - 300px);
   }
+}
+
+.flex-wrapper .no-scroll {
+  overflow: hidden;
+  height: 100%;
 }
 
 .premium-thanks-center {
