@@ -29,7 +29,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') else False
-# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.179', 'links-sw.herokuapp.com']
 
@@ -91,18 +90,21 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
-LOCAL_DB = False
+USE_REMOTE_DB = True
 
-if LOCAL_DB:
+if USE_REMOTE_DB:
+    # postgres on heroku
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+
+else:
+    # local sqlite3
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
 
@@ -153,19 +155,28 @@ STATICFILES_DIRS = (
 
 # AWS S3
 # Allow caching of static files
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=94608000',
-}
-
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=94608000', }
 AWS_STORAGE_BUCKET_NAME = 'links-sw'
 AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
 
 # Media files
-MEDIAFILES_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if USE_REMOTE_DB:
+    # postgres on heroku
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+
+else:
+    # local sqlite3
+    MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # for use with auth_views.LoginView
 LOGIN_URL = 'login'
