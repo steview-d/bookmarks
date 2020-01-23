@@ -294,4 +294,9 @@
   margin-left: 0.3rem;
   min-width: 0;
 }
+
+#img-preview {
+  height: 100px;
+  width: auto;
+}
 /*# sourceMappingURL=main.css.map */
