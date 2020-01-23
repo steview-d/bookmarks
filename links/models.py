@@ -85,6 +85,10 @@ class Collection(models.Model):
     collection_name.short_description = "Collection Name"
 
 
+def icon_location(instance, filename):
+    return "icons/{}/{}".format(instance.user.username.lower(), filename)
+
+
 class Bookmark(models.Model):
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
@@ -102,6 +106,9 @@ class Bookmark(models.Model):
     )
     description = models.CharField(
         max_length=500, null=True, blank=True
+    )
+    icon = models.ImageField(
+        upload_to=icon_location, null=True, blank=True
     )
     added = models.DateTimeField(
         auto_now_add=True
