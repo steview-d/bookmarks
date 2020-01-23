@@ -35,7 +35,7 @@ class BookmarkAdmin(admin.ModelAdmin):
     readonly_fields = ['id', 'added', 'updated']
 
     fieldsets = [
-        ('Bookmark', {'fields': ['url', 'title', 'description']}),
+        ('Bookmark', {'fields': ['url', 'title', 'description', 'icon']}),
         ('Grouping', {'fields': ['collection', 'position']}),
         ('User', {'fields': ['user', 'added', 'updated']}),
 

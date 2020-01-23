@@ -122,7 +122,12 @@
                                 {% for item in v %}
                                 <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem;">
                                     <!-- icon image -->
-                                    <img src="{% static 'img/icon/_default_bm_icon.png' %}" alt="icon"
+                                    <img src="{% if item.icon %}
+                                        {{ MEDIA_URL }}{{ item.icon }}
+                                        {% else %}
+                                        {% static 'img/icon/_default_bm_icon.png' %}
+                                        {% endif %}
+                                        " alt="icon"
                                         class="my-auto" style="
                                             width:{{ k.display_mode|icon_size }}px;
                                             height:{{ k.display_mode|icon_size }}px;">
