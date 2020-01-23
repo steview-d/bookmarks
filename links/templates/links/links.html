@@ -6,6 +6,7 @@
 {% block content %}
 
 {% load replace_space %}
+{% load icon_size %}
 
 <div class="flex-wrapper">
 
@@ -119,32 +120,39 @@
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
-                                <li id="{{item.position}}_." style="margin: 0.5rem">
-                                    <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                        <div class="bm-container">
-                                            <div class="bm-title">
-                                                <span class="bm-title-text">{{ item.title }}</span>
-                                                <span
-                                                    class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                                    role="button">
-                                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                                    <small>Options</small>
-                                                </span>
+                                <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem;">
+                                    <!-- icon image -->
+                                    <img src="{% static 'img/icon/_default_bm_icon.png' %}" alt="icon"
+                                        class="my-auto" style="
+                                            width:{{ k.display_mode|icon_size }}px;
+                                            height:{{ k.display_mode|icon_size }}px;">
+                                    <div class="bm-text-container">
+                                        <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                            <div class="bm-container">
+                                                <div class="bm-title">
+                                                    <span class="bm-title-text">{{ item.title }}</span>
+                                                    <span
+                                                        class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
+                                                        role="button">
+                                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                        <small>Options</small>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
 
-                                    <!-- Bookmark Icons -->
-                                    {% include 'links/components/bookmark_option_icons.html' %}
+                                        <!-- Bookmark Icons -->
+                                        {% include 'links/components/bookmark_option_icons.html' %}
 
-                                    {% if k.display_mode != 3 %}
-                                    <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                        {% if k.display_mode != 2 %}
-                                        <div class="link-desc text-trunc">{{ item.description }}</div>
+                                        {% if k.display_mode != 3 %}
+                                        <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                            {% if k.display_mode != 2 %}
+                                            <div class="link-desc text-trunc">{{ item.description }}</div>
+                                            {% endif %}
+                                            <div class="link-url text-trunc">{{ item }}</div>
+                                        </a>
                                         {% endif %}
-                                        <div class="link-url text-trunc">{{ item }}</div>
-                                    </a>
-                                    {% endif %}
+                                    </div>
                                 </li>
                                 <!-- Bookmark Delete Modal -->
                                 {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
