@@ -803,7 +803,7 @@ def import_url(request):
         page = Page.objects.get(
             user=request.user, pk=request.POST.get('dest_page')
         )
-        import_url_form = ImportUrlForm(request.POST)
+        import_url_form = ImportUrlForm(request.POST, request.FILES)
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
         if import_url_form.is_valid() and move_bookmark_form.is_valid():
