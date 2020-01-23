@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
+from PIL import Image
 
 User = settings.AUTH_USER_MODEL
 
@@ -134,6 +135,16 @@ class Bookmark(models.Model):
             collection=self.collection
         )
         return page.name
+
+    def save(self, *args, **kwargs):
+        # handle images on save
+        super(Bookmark, self).save(*args, **kwargs)
+        if self.icon:
+            im = Image.open(self.icon)
+            px_size = 128
+            if im.height > px_size or im.width > px_size:
+                new_im = im.resize((px_size, px_size))
+                new_im.save(self.icon.path)
 
 
 class MoveBookmark(models.Model):

@@ -120,7 +120,7 @@
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
-                                <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem;">
+                                <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem 0.5rem 0.5rem 0;">
                                     <!-- icon image -->
                                     <img src="{% if item.icon %}
                                         {{ MEDIA_URL }}{{ item.icon }}

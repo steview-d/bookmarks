@@ -99,4 +99,4 @@ class ImportUrlForm(forms.ModelForm):
 
     class Meta:
         model = Bookmark
-        fields = ['url', 'title', 'description']
+        fields = ['url', 'title', 'description', 'icon']
