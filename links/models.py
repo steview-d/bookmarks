@@ -146,7 +146,7 @@ class Bookmark(models.Model):
             # resize image if too large
             if im.height > px_size or im.width > px_size:
                 new_im = im.resize((px_size, px_size))
-                tmp = default_storage.open(self.icon.name, 'w')
+                tmp = default_storage.open(self.icon.name, 'wb')
                 new_im.save(tmp)
                 tmp.close()
 
