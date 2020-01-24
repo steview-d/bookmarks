@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.files.storage import default_storage
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -142,9 +143,12 @@ class Bookmark(models.Model):
         if self.icon:
             im = Image.open(self.icon)
             px_size = 128
+            # resize image if too large
             if im.height > px_size or im.width > px_size:
                 new_im = im.resize((px_size, px_size))
-                new_im.save(self.icon.path)
+                tmp = default_storage.open(self.icon.name, 'w')
+                new_im.save(tmp)
+                tmp.close()
 
 
 class MoveBookmark(models.Model):
