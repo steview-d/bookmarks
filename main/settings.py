@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'support',
     'search',
     'storages',
+    # app to auto delete files from FileField & ImageField
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +92,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-USE_REMOTE_DB = False
+USE_REMOTE_DB = True
 
 if USE_REMOTE_DB:
     # postgres on heroku
