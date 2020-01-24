@@ -348,17 +348,22 @@ $(document).ready(function() {
         });
     });
 
-    // Image Upload
+    // Image Upload Preview
+
+    /*
+    Listens for a change to the file input element, and when a change is
+    registered, a preview of the uploaded file is displayed
+    */
     $('#id_icon').change(function () {
         if (this.files && this.files[0]) {
-            var reader = new FileReader();
+            let preview = new FileReader();
 
 
-            reader.onload = function (e) {
+            preview.onload = function (e) {
                 $('#img-preview').attr('src', e.target.result);
             };
 
-            reader.readAsDataURL(this.files[0]);
+            preview.readAsDataURL(this.files[0]);
         }
     });
 });
