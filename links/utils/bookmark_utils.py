@@ -99,7 +99,6 @@ def scrape_url(request, url):
     try:
         r = req.get(url, headers=headers)
         r.raise_for_status()
-
     except req.exceptions.RequestException:
         data['message'] = 'Could not load this URL'
 
@@ -107,8 +106,11 @@ def scrape_url(request, url):
         soup = BeautifulSoup(r.text, 'html.parser')
 
         # get the page title
-        scraped_title = soup.title.get_text() if soup.title.get_text() else \
-            "Could not retrieve a title"
+        try:
+            scraped_title = soup.title.get_text() if soup.title.get_text() \
+                else "Could not retrieve a title"
+        except AttributeError:
+            scraped_title = "Could not retrieve a title"
 
         # get the page description from metadata content
         metas = soup.find_all('meta')
