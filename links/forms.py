@@ -100,3 +100,7 @@ class ImportUrlForm(forms.ModelForm):
     class Meta:
         model = Bookmark
         fields = ['url', 'title', 'description', 'icon']
+        help_texts = {
+            'icon': 'Upload your own, or accept the scraped icon, \
+                if available.'
+        }
