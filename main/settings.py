@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-USE_REMOTE_DB = True
+USE_REMOTE_DB = False
 
 if USE_REMOTE_DB:
     # postgres on heroku

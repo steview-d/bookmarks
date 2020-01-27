@@ -6,6 +6,7 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
+import base64
 import itertools
 import json
 import requests as req
@@ -709,6 +710,13 @@ def manual_url_scrape(request):
 
     if url != '':
         data = bookmark_utils.scrape_url(request, url)
+
+    # Get icon / favicon and return it as a base64 encoded string
+    # When not using test_url, will need to incorporate this into
+    # bookmark_utils.scrape_url()
+    test_url = 'http://www.bbc.co.uk/apple-touch-icon-precomposed.png'
+    img = base64.b64encode(req.get(test_url).content).decode('utf-8')
+    data['pic'] = img
 
     return JsonResponse(data)
 

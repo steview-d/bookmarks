@@ -234,8 +234,22 @@ $(document).ready(function() {
     return values for the title & description, as well as a message that
     states either the scrape was a success, or the reason why it wasn't.
     */
+
+    /*
+    Adding to this, will attempt to extend this function and use it to get the
+    url for the desired icon / favicon and place it into the file upload thingy.
+
+    If can use js to get the url great, else might need to post site url to
+    django via ajax, have django return the icon / favicon location url and then
+    use the js to put that value into the file upload thingy.
+    */
+
+    // example url to use
+    test_url = 'http://www.bbc.co.uk/apple-touch-icon-precomposed.png';
+
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
+        
         $.ajax({
             type: "POST",
             data: {
@@ -247,6 +261,7 @@ $(document).ready(function() {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").text(data.message);
+                $("#qqq").attr('src', 'data:image/png;base64,' + data.pic);
             }
         });
     }
@@ -358,10 +373,11 @@ $(document).ready(function() {
         if (this.files && this.files[0]) {
             let preview = new FileReader();
 
-
             preview.onload = function (e) {
                 $('#img-preview').attr('src', e.target.result);
             };
+
+            console.log(this.files);
 
             preview.readAsDataURL(this.files[0]);
         }
