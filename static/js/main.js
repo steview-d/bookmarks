@@ -261,7 +261,9 @@ $(document).ready(function() {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").text(data.message);
-                $("#qqq").attr('src', 'data:image/png;base64,' + data.pic);
+                $("#img-preview").attr('src', 'data:image/png;base64,' + data.pic);
+                $("#id_icon").val('');
+                $("#scraped_img").val(data.pic);
             }
         });
     }
