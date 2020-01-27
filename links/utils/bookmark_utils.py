@@ -1,8 +1,12 @@
 from bs4 import BeautifulSoup
+from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+import base64
+import random
 import requests as req
+import string
 from links.models import Collection, Bookmark
 
 
@@ -25,6 +29,20 @@ def add_bookmark_object(request, import_url_form):
     ).count() + 1
 
     form.position = dest_position
+
+    if not request.FILES and request.POST.get('scraped_img'):
+        # if an icon has been scraped, and the user has not uploaded
+        # a file, convert the scraped data to an image file and save
+        # it to the Bookmark object
+        scraped_img = request.POST.get('scraped_img')
+        format, base64_str = scraped_img.split(';base64,')
+        ext = format.split('/')[-1]
+        file_name = ''.join(
+            random.choices(string.ascii_letters + string.digits, k=8))
+        img_file = ContentFile(
+            base64.b64decode(base64_str), name='scr_' + file_name + '.' + ext)
+        form.icon = img_file
+
     form.save()
 
     return

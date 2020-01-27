@@ -258,12 +258,13 @@ $(document).ready(function() {
             },
             url: "/app/_manual_url_scrape",
             success: function(data) {
+                let base64Str = 'data:image/png;base64,' + data.pic;
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").text(data.message);
-                $("#img-preview").attr('src', 'data:image/png;base64,' + data.pic);
+                $("#img-preview").attr('src', base64Str);
                 $("#id_icon").val('');
-                $("#scraped_img").val(data.pic);
+                $("#scraped_img").val(base64Str);
             }
         });
     }
