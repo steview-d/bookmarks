@@ -150,9 +150,17 @@ def scrape_url(request, url):
         if scraped_description == '':
             scraped_description = "Sorry, no metadata available for this URL"
 
+        # get url for site icon / favicon
+        icon_url = get_favicon(request)
+
+        # convert pic at url location to a base64 enc string
+        scraped_image = base64.b64encode(
+            req.get(icon_url).content).decode('utf-8')
+
         data = {'message': 'Success',
                 'title': scraped_title,
-                'description': scraped_description}
+                'description': scraped_description,
+                'pic': scraped_image, }
 
     return data
 

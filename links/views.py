@@ -6,7 +6,6 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-import base64
 import itertools
 import json
 import requests as req
@@ -710,16 +709,6 @@ def manual_url_scrape(request):
 
     if url != '':
         data = bookmark_utils.scrape_url(request, url)
-
-    # Get icon / favicon and return it as a base64 encoded string
-    # When not using test_url, will need to incorporate this into
-    # bookmark_utils.scrape_url()
-
-    # get url for site icon / favicon
-    icon_url = bookmark_utils.get_favicon(request)
-
-    # convert pic at url location to a base64 enc string
-    data['pic'] = base64.b64encode(req.get(icon_url).content).decode('utf-8')
 
     return JsonResponse(data)
 
