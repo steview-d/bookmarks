@@ -178,18 +178,17 @@ def get_favicon(request):
                 chosen_icon = i
                 break
 
-        # look for a favicon in png format
+        # look for a favicon in png, and then ico format
         if not chosen_icon:
-            for i in icons:
-                if 'favicon' in i.url and i.format == 'png':
-                    chosen_icon = i
-                    break
-        # look for a favicon in ico format
-        if not chosen_icon:
-            for i in icons:
-                if 'favicon' in i.url and i.format == 'ico':
-                    chosen_icon = i
-                    break
+            ext_order = ['png', 'ico']
+            for ext in ext_order:
+                for i in icons:
+                    if 'favicon' in i.url and i.format == ext:
+                        chosen_icon = i
+                        break
+                else:
+                    continue
+                break
 
         # look for files called 'logo'
         if not chosen_icon:
@@ -198,11 +197,10 @@ def get_favicon(request):
                     chosen_icon = i
                     break
 
-        # last resort! first png, then ico it can find
+        # last resort, any image it can find! first png, then ico
         if not chosen_icon:
             ext_order = ['png', 'ico']
             for ext in ext_order:
-                # make into list comp
                 for i in icons:
                     if i.format == ext:
                         chosen_icon = i
@@ -211,6 +209,7 @@ def get_favicon(request):
                     continue
                 break
 
+        # if still no matches, take first item on list, likely a jpg
         if chosen_icon == '':
             chosen_icon = icons[0]
 
