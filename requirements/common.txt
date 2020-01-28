@@ -11,6 +11,7 @@ django-cleanup==4.0.0
 django-crispy-forms==1.8.1
 django-storages==1.8
 docutils==0.15.2
+favicon==0.7.0
 idna==2.8
 jmespath==0.9.4
 Pillow==7.0.0

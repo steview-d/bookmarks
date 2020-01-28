@@ -1,13 +1,17 @@
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+from links.models import Collection, Bookmark
+
 import base64
+import favicon
 import random
 import requests as req
 import string
-from links.models import Collection, Bookmark
 
 
 def add_bookmark_object(request, import_url_form):
@@ -151,3 +155,63 @@ def scrape_url(request, url):
                 'description': scraped_description}
 
     return data
+
+
+def get_favicon(request):
+    """
+    Get an icon to save with bm
+    Return will be the url as a string
+    """
+
+    icons = []
+    chosen_icon = ''
+
+    icon_url = request.POST.get('urlToScrape')
+    url_comp = urlparse(icon_url)
+    url_location = str(url_comp.scheme + '://' + url_comp.netloc)
+    icons = favicon.get(url_location)
+
+    if icons:
+        # look for apple touch icon first
+        for i in icons:
+            if 'apple-touch' in i.url or 'apple-icon' in i.url:
+                chosen_icon = i
+                break
+
+        # look for a favicon in png format
+        if not chosen_icon:
+            for i in icons:
+                if 'favicon' in i.url and i.format == 'png':
+                    chosen_icon = i
+                    break
+        # look for a favicon in ico format
+        if not chosen_icon:
+            for i in icons:
+                if 'favicon' in i.url and i.format == 'ico':
+                    chosen_icon = i
+                    break
+
+        # look for files called 'logo'
+        if not chosen_icon:
+            for i in icons:
+                if 'logo' in i.url:
+                    chosen_icon = i
+                    break
+
+        # last resort! first png, then ico it can find
+        if not chosen_icon:
+            ext_order = ['png', 'ico']
+            for ext in ext_order:
+                # make into list comp
+                for i in icons:
+                    if i.format == ext:
+                        chosen_icon = i
+                        break
+                else:
+                    continue
+                break
+
+        if chosen_icon == '':
+            chosen_icon = icons[0]
+
+    return chosen_icon.url

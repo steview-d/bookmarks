@@ -714,9 +714,12 @@ def manual_url_scrape(request):
     # Get icon / favicon and return it as a base64 encoded string
     # When not using test_url, will need to incorporate this into
     # bookmark_utils.scrape_url()
-    test_url = 'http://www.bbc.co.uk/apple-touch-icon-precomposed.png'
-    img = base64.b64encode(req.get(test_url).content).decode('utf-8')
-    data['pic'] = img
+
+    # get url for site icon / favicon
+    icon_url = bookmark_utils.get_favicon(request)
+
+    # convert pic at url location to a base64 enc string
+    data['pic'] = base64.b64encode(req.get(icon_url).content).decode('utf-8')
 
     return JsonResponse(data)
 

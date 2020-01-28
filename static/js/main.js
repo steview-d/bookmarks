@@ -244,9 +244,6 @@ $(document).ready(function() {
     use the js to put that value into the file upload thingy.
     */
 
-    // example url to use
-    test_url = 'http://www.bbc.co.uk/apple-touch-icon-precomposed.png';
-
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
         
