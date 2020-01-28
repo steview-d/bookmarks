@@ -235,15 +235,6 @@ $(document).ready(function() {
     states either the scrape was a success, or the reason why it wasn't.
     */
 
-    /*
-    Adding to this, will attempt to extend this function and use it to get the
-    url for the desired icon / favicon and place it into the file upload thingy.
-
-    If can use js to get the url great, else might need to post site url to
-    django via ajax, have django return the icon / favicon location url and then
-    use the js to put that value into the file upload thingy.
-    */
-
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
         
@@ -255,13 +246,22 @@ $(document).ready(function() {
             },
             url: "/app/_manual_url_scrape",
             success: function(data) {
-                let base64Str = 'data:image/png;base64,' + data.pic;
+                // populate text fields
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").text(data.message);
-                $("#img-preview").attr('src', base64Str);
                 $("#id_icon").val('');
-                $("#scraped_img").val(base64Str);
+
+                // populate image fields
+                if (data.pic) {
+                    let base64Str = 'data:image/png;base64,' + data.pic;
+                    $("#img-preview").attr('src', base64Str);
+                    $("#scraped_img").val(base64Str);
+                    console.log(base64Str);
+                } else {
+                    $("#img-preview").attr('src', '/static/img/icon/no_img_scrape.png');
+                    $("#scraped_img").val('');
+                }
             }
         });
     }

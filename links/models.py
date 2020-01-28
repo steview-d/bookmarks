@@ -149,6 +149,7 @@ class Bookmark(models.Model):
                 tmp = default_storage.open(self.icon.name, 'wb')
                 new_im.save(tmp)
                 tmp.close()
+                im.close()
 
 
 class MoveBookmark(models.Model):
