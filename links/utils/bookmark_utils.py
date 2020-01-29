@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+from links.conf import settings
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -106,20 +107,16 @@ def scrape_url(request, url):
         url (str): A string containing a url
     """
 
-    # some sites refuse to play nicely unless we're sneaky and throw some
-    # browser headers over too
-    headers = {'User-Agent': 'Mozilla/5.0'}
-
     # default return data
     data = {'message': 'The URL is empty',
-            'title': '',
+            'title': 'Cannot Scrape this URL',
             'description': ''}
 
     if not url:
         return JsonResponse(data)
 
     try:
-        r = req.get(url, headers=headers)
+        r = req.get(url, headers=settings.LINKS_HEADERS, allow_redirects=True)
         r.raise_for_status()
     except req.exceptions.RequestException:
         data['message'] = 'Could not load this URL'
@@ -158,7 +155,8 @@ def scrape_url(request, url):
             # sometimes, favicon will find icons that lead to 404's so this
             # checks for a 200 response from the icon url itself and confirms
             # that item being returned is am image
-            q = req.get(icon_url, headers=headers)
+            q = req.get(
+                icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
             if q.status_code == 200 and 'image' in q.headers['Content-Type']:
                 scraped_image = base64.b64encode(q.content).decode('utf-8')
 
@@ -188,7 +186,8 @@ def get_site_icon(request):
 
     icon_url = request.POST.get('urlToScrape')
 
-    icons = favicon.get(icon_url)
+    icons = favicon.get(
+        icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
 
     if not icons:
         url_comp = urlparse(icon_url)

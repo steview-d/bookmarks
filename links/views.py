@@ -732,7 +732,8 @@ def check_valid_url(request):
         return JsonResponse(data)
 
     try:
-        response = req.head(url)
+        response = req.head(
+            url, headers=settings.LINKS_HEADERS, allow_redirects=True)
         response.raise_for_status()
 
     except req.exceptions.RequestException:
