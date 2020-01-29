@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-# from urllib.parse import urlparse
+from urllib.parse import urlparse
 
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
@@ -187,19 +187,16 @@ def get_site_icon(request):
     url = ''
 
     icon_url = request.POST.get('urlToScrape')
-    # url_comp = urlparse(icon_url)
-    # url_location = str(url_comp.scheme + '://' + url_comp.netloc)
-    # NOTE Temp removed url constructor and just
-    # passing in full url - see how this works
-    url_location = icon_url
 
-    # TODO check for 404 errors, like on GH hosted pages
-    # because we're creating a new url to check, in cases like GH pages
-    # ex >> https://isntlee.github.io/counterCarbon/ converts to
-    # https://isntlee.github.io/
-    # and returns a 404 as it needs last bit of url to resolve
+    icons = favicon.get(icon_url, timeout=1)
 
-    icons = favicon.get(url_location)
+    if not icons:
+        url_comp = urlparse(icon_url)
+        url_location = str(url_comp.scheme + '://' + url_comp.netloc)
+        try:
+            icons = favicon.get(url_location, timeout=1)
+        except req.exceptions.HTTPError:
+            icons = ''
 
     if icons:
         # look for apple touch icon first
