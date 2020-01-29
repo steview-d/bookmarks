@@ -92,9 +92,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-USE_REMOTE_DB = False
+USE_REMOTE_DB = True
 
-if USE_REMOTE_DB:
+# if USE_REMOTE_DB:
+if 'DATABASE_URL' in os.environ:
     # postgres on heroku
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
@@ -168,7 +169,8 @@ AWS_DEFAULT_ACL = None
 # Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-if USE_REMOTE_DB:
+# if USE_REMOTE_DB:
+if 'DATABASE_URL' in os.environ:
     # postgres on heroku
     MEDIAFILES_LOCATION = 'media'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
