@@ -156,12 +156,12 @@ def scrape_url(request, url):
         # convert pic at url location to a base64 enc string
         if icon_url:
             # sometimes, favicon will find icons that lead to 404's so this
-            # checks for a 200 response from the icon url itself
-            # TODO currently checking for 200,
-            # but should instead check NOT 400?
+            # checks for a 200 response from the icon url itself and confirms
+            # that item being returned is am image
             q = req.get(icon_url, headers=headers)
-            if q.status_code == 200:
+            if q.status_code == 200 and 'image' in q.headers['Content-Type']:
                 scraped_image = base64.b64encode(q.content).decode('utf-8')
+
             else:
                 scraped_image = ''
 
@@ -188,13 +188,13 @@ def get_site_icon(request):
 
     icon_url = request.POST.get('urlToScrape')
 
-    icons = favicon.get(icon_url, timeout=1)
+    icons = favicon.get(icon_url)
 
     if not icons:
         url_comp = urlparse(icon_url)
         url_location = str(url_comp.scheme + '://' + url_comp.netloc)
         try:
-            icons = favicon.get(url_location, timeout=1)
+            icons = favicon.get(url_location)
         except req.exceptions.HTTPError:
             icons = ''
 
