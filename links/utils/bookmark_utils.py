@@ -116,7 +116,12 @@ def scrape_url(request, url):
         return JsonResponse(data)
 
     try:
-        r = req.get(url, headers=settings.LINKS_HEADERS, allow_redirects=True)
+        r = req.get(
+            url,
+            headers=settings.LINKS_HEADERS,
+            allow_redirects=True,
+            timeout=2
+            )
         r.raise_for_status()
     except req.exceptions.RequestException:
         data['message'] = 'Could not load this URL'
@@ -155,21 +160,30 @@ def scrape_url(request, url):
             # sometimes, favicon will find icons that lead to 404's so this
             # checks for a 200 response from the icon url itself and confirms
             # that item being returned is am image
-            q = req.get(
-                icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
-
             try:
-                q.headers['Content-Type']
-            except KeyError:
-                # if 'content-type' header does not exist, it can't be checked.
-                # Create a fake value to avoid a KeyError during next check
-                q.headers['Content-Type'] = 'image'
-
-            if q.status_code == 200 and 'image' in q.headers['Content-Type']:
-                scraped_image = base64.b64encode(q.content).decode('utf-8')
-
-            else:
+                q = req.get(
+                    icon_url,
+                    headers=settings.LINKS_HEADERS,
+                    allow_redirects=True,
+                    timeout=2
+                    )
+                q.raise_for_status()
+            except req.exceptions.RequestException:
                 scraped_image = ''
+            else:
+                try:
+                    q.headers['Content-Type']
+                except KeyError:
+                    # if 'content-type' header does not exist, it can't be
+                    # checked. Create a fake value to avoid a KeyError during
+                    # next check
+                    q.headers['Content-Type'] = 'image'
+
+                if q.status_code == 200 and \
+                        'image' in q.headers['Content-Type']:
+                    scraped_image = base64.b64encode(q.content).decode('utf-8')
+                else:
+                    scraped_image = ''
 
         else:
             scraped_image = ''
@@ -202,7 +216,7 @@ def get_site_icon(request):
         url_location = str(url_comp.scheme + '://' + url_comp.netloc)
         try:
             icons = favicon.get(url_location)
-        except req.exceptions.HTTPError:
+        except req.exceptions.RequestException:
             icons = ''
 
     if icons:

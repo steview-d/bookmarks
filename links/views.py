@@ -733,7 +733,10 @@ def check_valid_url(request):
 
     try:
         response = req.head(
-            url, headers=settings.LINKS_HEADERS, allow_redirects=True)
+            url,
+            headers=settings.LINKS_HEADERS,
+            allow_redirects=True,
+            timeout=2)
         response.raise_for_status()
 
     except req.exceptions.RequestException:
