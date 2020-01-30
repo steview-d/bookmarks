@@ -237,6 +237,7 @@ $(document).ready(function() {
 
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
+        $("#scrape-url").text('SCRAPING..');
         
         $.ajax({
             type: "POST",
@@ -262,6 +263,7 @@ $(document).ready(function() {
                     $("#img-preview").attr('src', '/static/img/icon/no_img_scrape.png');
                     $("#scraped_img").val('');
                 }
+                $("#scrape-url").text('Scrape URL');
             }
         });
     }
