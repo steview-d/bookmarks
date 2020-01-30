@@ -253,11 +253,11 @@ $(document).ready(function() {
                 $("#id_icon").val('');
 
                 // populate image fields
-                if (data.pic) {
-                    let base64Str = 'data:image/png;base64,' + data.pic;
+                if (data.scraped_image) {
+                    console.log(data.scraped_image);
+                    let base64Str = 'data:image/png;base64,' + data.scraped_image;
                     $("#img-preview").attr('src', base64Str);
                     $("#scraped_img").val(base64Str);
-                    console.log(base64Str);
                 } else {
                     $("#img-preview").attr('src', '/static/img/icon/no_img_scrape.png');
                     $("#scraped_img").val('');

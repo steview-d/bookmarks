@@ -30,7 +30,7 @@
                             <div>{{ field.label }}</div>
                             <div>{{ field.errors }}</div>
                             {% if field.label == 'Url' %}
-                                <small id="url-validation-result">Url status: URL field is empty</small>
+                                <small id="url-validation-result">Url status: Valid</small>
                             {% endif %}
                             <div>{{ field }}</div>
                             <div>{{ field.help_text }}</div>
@@ -39,7 +39,7 @@
                                 {% if scraped_icon %}
                                 data:image/png;base64,{{ scraped_icon }}
                                 {% else %}
-                                {% static 'img/icon/im_preview.png' %}
+                                {% static 'img/icon/no_img_scrape.png' %}
                                 {% endif %}
                                 "
                                 alt="preview" />

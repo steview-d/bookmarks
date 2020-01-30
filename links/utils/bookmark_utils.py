@@ -110,7 +110,9 @@ def scrape_url(request, url):
     # default return data
     data = {'message': 'The URL is empty',
             'title': 'Cannot Scrape this URL',
-            'description': ''}
+            'description': '',
+            'scraped_image': ''
+            }
 
     if not url:
         return JsonResponse(data)
@@ -155,7 +157,7 @@ def scrape_url(request, url):
         # get url for site icon / favicon
         icon_url = get_site_icon(url)
 
-        # convert pic at url location to a base64 enc string
+        # convert image at url location to a base64 enc string
         if icon_url:
             # sometimes, favicon will find icons that lead to 404's so this
             # checks for a 200 response from the icon url itself and confirms
@@ -191,7 +193,7 @@ def scrape_url(request, url):
         data = {'message': 'Success',
                 'title': scraped_title,
                 'description': scraped_description,
-                'pic': scraped_image, }
+                'scraped_image': scraped_image, }
 
     return data
 

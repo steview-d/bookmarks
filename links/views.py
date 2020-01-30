@@ -840,7 +840,7 @@ def import_url(request):
     context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
                'collection_count': collection_count,
-               'scraped_icon': scrape_data['pic'],
+               'scraped_icon': scrape_data['scraped_image'],
                }
     context = is_premium(request.user, context)
 
