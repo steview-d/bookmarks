@@ -2,13 +2,17 @@ from .conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.base import ContentFile
 from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
+import base64
 import itertools
 import json
+import random
 import requests as req
+import string
 
 from premium.utils import is_premium, premium_check
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
@@ -545,10 +549,24 @@ def edit_bookmark(request, page, bookmark):
     # handle posted data
     if 'edit-bm-form' in request.POST:
         edit_bookmark_form = EditBookmarkForm(
-            request.POST, instance=bookmark_to_edit)
+            request.POST, request.FILES, instance=bookmark_to_edit)
 
         if edit_bookmark_form.is_valid():
-            edit_bookmark_form.save()
+            # check if scraped file is present
+            form = edit_bookmark_form.save(commit=False)
+            if not request.FILES and request.POST.get('scraped_img'):
+
+                scraped_img = request.POST.get('scraped_img')
+                format, base64_str = scraped_img.split(';base64,')
+                ext = format.split('/')[-1]
+                file_name = ''.join(
+                    random.choices(string.ascii_letters + string.digits, k=8))
+                img_file = ContentFile(
+                    base64.b64decode(base64_str),
+                    name='scr_' + file_name + '.' + ext)
+                form.icon = img_file
+
+            form.save()
             return redirect('links', page=page)
 
     # get page names for sidebar
