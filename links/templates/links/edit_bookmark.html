@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form method="POST" class="border p-2 mt-3">
+                    <form method="POST" enctype="multipart/form-data" class="border p-2 mt-3">
                         <fieldset>
                             <legend>Edit Bookmark</legend>
                             <button type="button" id="scrape-url" class="btn btn-warning mt-2">Scrape URL</button>
@@ -40,8 +40,15 @@
                             {% endif %}
                             <div>{{ field }}</div>
                             <div>{{ field.help_text }}</div>
-
                             {% endfor %}
+                            <img id="img-preview" class="my-2" src="
+                            {% if bookmark.icon %}
+                            {{ MEDIA_URL }}{{ bookmark.icon }}
+                            {% else %}
+                            {% static 'img/icon/_default_bm_icon.png' %}
+                            {% endif %}"
+                            alt="preview" />
+                            <hr>
 
                             <input type="submit" value="Submit Changes" name="edit-bm-form" class="btn btn-info">
                         </fieldset>

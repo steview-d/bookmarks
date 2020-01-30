@@ -71,7 +71,7 @@ class EditBookmarkForm(forms.ModelForm):
 
     class Meta:
         model = Bookmark
-        fields = ['url', 'title', 'description']
+        fields = ['url', 'title', 'description', 'icon']
 
 
 class MoveBookmarkForm(forms.ModelForm):
