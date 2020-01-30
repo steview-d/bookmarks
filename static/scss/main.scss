@@ -302,3 +302,14 @@ $topnav-spacer-height: 64px;
     height: 100px;
     max-width: 60vw;
 }
+
+.default-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-text {
+        color: white;
+    }
+}

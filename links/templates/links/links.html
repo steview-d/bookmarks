@@ -6,7 +6,7 @@
 {% block content %}
 
 {% load replace_space %}
-{% load icon_size %}
+{% load icon_styling %}
 
 <div class="flex-wrapper">
 
@@ -122,16 +122,23 @@
                                 {% for item in v %}
                                 <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem 0.5rem 0.5rem 0;">
                                     <!-- icon image -->
-                                    <img src="{% if item.icon %}
-                                        {{ MEDIA_URL }}{{ item.icon }}
-                                        {% else %}
-                                        {% static 'img/icon/_default_bm_icon.png' %}
-                                        {% endif %}
-                                        " alt="icon"
-                                        class="my-auto" style="
-                                            width:{{ k.display_mode|icon_size }}px;
-                                            height:{{ k.display_mode|icon_size }}px;
-                                            flex-shrink: 0;">
+                                    {% if item.icon %}
+                                    <img src="{{ MEDIA_URL }}{{ item.icon }}" alt="icon" class="my-auto" style="
+                                                width:{{ k.display_mode|icon_size }}px;
+                                                height:{{ k.display_mode|icon_size }}px;
+                                                flex-shrink: 0;">
+                                    {% else %}
+                                    <div class="default-icon" style="
+                                    width:{{ k.display_mode|icon_size }}px;
+                                    height:{{ k.display_mode|icon_size }}px;
+                                    background-color:{{ item.title|icon_color }};
+                                    font-size:{{ k.display_mode|icon_font_size }}px;
+                                    ">
+                                        <span class="icon-text">{{ item.title|icon_letter }}</span>
+                                    </div>
+
+                                    {% endif %}
+
                                     <div class="bm-text-container">
                                         <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                             <div class="bm-container">

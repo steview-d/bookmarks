@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     # 3rd party apps
     'crispy_forms',
     # my apps
@@ -51,7 +52,6 @@ INSTALLED_APPS = [
     'premium',
     'support',
     'search',
-    'storages',
     # app to auto delete files from FileField & ImageField
     'django_cleanup.apps.CleanupConfig',
 ]
