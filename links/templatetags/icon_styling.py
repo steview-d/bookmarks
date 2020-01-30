@@ -10,7 +10,7 @@ register = template.Library()
 def icon_size(value):
     # custom filter to calculate icon size based
     # on the value of display_mode
-    return 48-((value-1)*16)
+    return 54-((value-1)*18)
 
 
 @register.filter

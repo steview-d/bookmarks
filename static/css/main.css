@@ -303,6 +303,7 @@
 .default-icon {
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  border-radius: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
