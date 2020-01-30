@@ -35,7 +35,13 @@
                             <div>{{ field }}</div>
                             <div>{{ field.help_text }}</div>
                             {% endfor %}
-                            <img id="img-preview" class="my-2" src="{% static 'img/icon/im_preview.png' %}"
+                            <img id="img-preview" class="my-2" src="
+                                {% if scraped_icon %}
+                                data:image/png;base64,{{ scraped_icon }}
+                                {% else %}
+                                {% static 'img/icon/im_preview.png' %}
+                                {% endif %}
+                                "
                                 alt="preview" />
                             <hr>
                             <div class="mt-3">

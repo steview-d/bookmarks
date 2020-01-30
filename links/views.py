@@ -604,11 +604,11 @@ def add_bookmark(request, page):
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
-    context = {"page": page.name,
-               'import_url_form': import_url_form,
-               "all_page_names": all_pages,
+    context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
-               'collection_count': collection_count
+               'collection_count': collection_count,
+               "page": page.name,
+               "all_page_names": all_pages,
                }
     context = is_premium(request.user, context)
 
@@ -839,7 +839,8 @@ def import_url(request):
 
     context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,
-               'collection_count': collection_count
+               'collection_count': collection_count,
+               'scraped_icon': scrape_data['pic'],
                }
     context = is_premium(request.user, context)
 

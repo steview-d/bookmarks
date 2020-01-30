@@ -153,7 +153,7 @@ def scrape_url(request, url):
             scraped_description = "Sorry, no metadata available for this URL"
 
         # get url for site icon / favicon
-        icon_url = get_site_icon(request)
+        icon_url = get_site_icon(url)
 
         # convert pic at url location to a base64 enc string
         if icon_url:
@@ -196,7 +196,7 @@ def scrape_url(request, url):
     return data
 
 
-def get_site_icon(request):
+def get_site_icon(icon_url):
     """
     Get an icon to save with bm
     Return will be the url as a string
@@ -205,8 +205,6 @@ def get_site_icon(request):
     icons = []
     chosen_icon = ''
     url = ''
-
-    icon_url = request.POST.get('urlToScrape')
 
     icons = favicon.get(
         icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
