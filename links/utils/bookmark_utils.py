@@ -157,6 +157,14 @@ def scrape_url(request, url):
             # that item being returned is am image
             q = req.get(
                 icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
+
+            try:
+                q.headers['Content-Type']
+            except KeyError:
+                # if 'content-type' header does not exist, it can't be checked.
+                # Create a fake value to avoid a KeyError during next check
+                q.headers['Content-Type'] = 'image'
+
             if q.status_code == 200 and 'image' in q.headers['Content-Type']:
                 scraped_image = base64.b64encode(q.content).decode('utf-8')
 
