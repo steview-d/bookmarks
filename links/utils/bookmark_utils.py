@@ -18,8 +18,13 @@ import string
 def add_bookmark_object(request, import_url_form):
     """
     Add a new Bookmark object
+
+    Args:
+        request (obj): The request object
+        import_url_form (obj): The completed form
     """
 
+    print(type(import_url_form))
     form = import_url_form.save(commit=False)
     form.user = request.user
 
@@ -36,17 +41,8 @@ def add_bookmark_object(request, import_url_form):
     form.position = dest_position
 
     if not request.FILES and request.POST.get('scraped_img'):
-        # if an icon has been scraped, and the user has not uploaded
-        # a file, convert the scraped data to an image file and save
-        # it to the Bookmark object
-        scraped_img = request.POST.get('scraped_img')
-        format, base64_str = scraped_img.split(';base64,')
-        ext = format.split('/')[-1]
-        file_name = ''.join(
-            random.choices(string.ascii_letters + string.digits, k=8))
-        img_file = ContentFile(
-            base64.b64decode(base64_str), name='scr_' + file_name + '.' + ext)
-        form.icon = img_file
+        # save image from scraped data
+        form.icon = create_img_from_base64_str(request)
 
     form.save()
 
@@ -104,7 +100,10 @@ def scrape_url(request, url):
 
     Args:
         request (obj): The request object
-        url (str): A string containing a url
+        url (str): The url to scrape
+
+    Returns:
+        data (dict): The scraped data
     """
 
     # default return data
@@ -198,21 +197,27 @@ def scrape_url(request, url):
     return data
 
 
-def get_site_icon(icon_url):
+def get_site_icon(url):
     """
-    Get an icon to save with bm
-    Return will be the url as a string
+    Use the Favicon library to get an icon from the page that can be
+    saved to the Bookmark object.
+
+    Args:
+        url (str): The web page to scrape for a suitable icon
+
+    Returns:
+        icon_url (str): The url that contains the chosen image
     """
 
     icons = []
     chosen_icon = ''
-    url = ''
+    icon_url = ''
 
     icons = favicon.get(
-        icon_url, headers=settings.LINKS_HEADERS, allow_redirects=True)
+        url, headers=settings.LINKS_HEADERS, allow_redirects=True)
 
     if not icons:
-        url_comp = urlparse(icon_url)
+        url_comp = urlparse(url)
         url_location = str(url_comp.scheme + '://' + url_comp.netloc)
         try:
             icons = favicon.get(url_location)
@@ -261,6 +266,34 @@ def get_site_icon(icon_url):
         if chosen_icon == '':
             chosen_icon = icons[0]
 
-        url = chosen_icon.url
+        icon_url = chosen_icon.url
 
-    return url
+    return icon_url
+
+
+def create_img_from_base64_str(request):
+    """
+    Convert a base64 string to a ContentFile,
+    ready to be saved to the db as an image.
+
+    Args:
+        request (obj): The request object. This contains 'scraped_img'
+                       which is a string representation of the
+                       scraped image encoded in base64.
+
+    Returns:
+        ContentFile (obj): This is then saved to the icon field of the
+                           Bookmark object
+    """
+
+    scraped_img = request.POST.get('scraped_img')
+
+    format, base64_str = scraped_img.split(';base64,')
+    ext = format.split('/')[-1]
+    file_name = ''.join(
+        random.choices(string.ascii_letters + string.digits, k=8))
+    img_file = ContentFile(
+        base64.b64decode(base64_str),
+        name='scr_' + file_name + '.' + ext)
+
+    return img_file
