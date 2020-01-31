@@ -161,7 +161,7 @@
                                         {% if k.display_mode != 3 %}
                                         <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                             {% if k.display_mode != 2 %}
-                                            <div class="link-desc text-trunc">{{ item.description }}</div>
+                                            <div class="link-desc text-trunc tippy">{{ item.description }}</div>
                                             {% endif %}
                                             <div class="link-url text-trunc">{{ item }}</div>
                                         </a>
@@ -213,6 +213,11 @@
 </div>
 
 {% endblock %}
+
+{% block tippy_js %}
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script src="{% static 'js/tooltip.js' %}"></script>
+{% endblock tippy_js %}
 
 {% block csrf_js %}
 <script src="{% static 'js/csrf.js' %}"></script>
