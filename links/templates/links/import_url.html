@@ -30,7 +30,7 @@
                             <div>{{ field.label }}</div>
                             <div>{{ field.errors }}</div>
                             {% if field.label == 'Url' %}
-                                <small id="url-validation-result">Url status: Valid</small>
+                            <small id="url-validation-result">Url status: Valid</small>
                             {% endif %}
                             <div>{{ field }}</div>
                             <div>{{ field.help_text }}</div>
@@ -41,19 +41,14 @@
                                 {% else %}
                                 {% static 'img/icon/no_img_scrape.png' %}
                                 {% endif %}
-                                "
-                                alt="preview" />
+                                " alt="preview" />
+                            <!-- hidden field to hold scraped base64 image -->
+                            <input type="hidden" id="scraped_img" name="scraped_img" {% if scraped_icon %}
+                                value="data:image/png;base64,{{ scraped_icon }}" {% endif %}>
                             <hr>
                             <div class="mt-3">
                                 {{ move_bookmark_form.as_p }}
                             </div>
-
-                            <!-- hidden field to hold scraped base64 image -->
-                            <input type="hidden" id="scraped_img" name="scraped_img" 
-                            {% if scraped_icon %}
-                            value="data:image/png;base64,{{ scraped_icon }}"
-                            {% endif %}
-                            >
 
                             <!-- dislay message if user has no collections to add bookmark to -->
                             {% if collection_count == 0 %}
