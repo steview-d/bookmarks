@@ -38,7 +38,6 @@ def add_page(request, form_data):
     """
 
     form = form_data.save(commit=False)
-    form.name = form.name.lower()
     form.user = User.objects.get(username=request.user)
 
     # set position to next highest value, so last on list

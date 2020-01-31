@@ -46,8 +46,8 @@ def validate_name(request, proposed_name, collections, page):
         return False
 
     # check collection name is unique to page / user
-    elif collections.filter(
-            name=proposed_name).exists():
+    if collections.filter(
+            name__iexact=proposed_name).exists():
         messages.error(
             request, f"Collection name is in use, please choose another")
         return False

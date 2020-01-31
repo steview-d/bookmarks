@@ -18,7 +18,7 @@ class PageForm(forms.ModelForm):
         name = self.cleaned_data.get('name')
 
         # check the page name is unique to that user
-        if Page.objects.filter(user=self.user).filter(name=name):
+        if Page.objects.filter(user=self.user, name__iexact=name):
             raise forms.ValidationError(
                 u'You already have a page with this name')
 

@@ -24,7 +24,7 @@
             {% for name in all_page_names %}
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
                 <div class="clearfix">
-                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name|title}}
+                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
                                 aria-hidden="true"></i></a>
