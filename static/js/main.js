@@ -266,6 +266,9 @@ $(document).ready(function() {
                     $("#scraped_img").val('');
                 }
                 $("#scrape-url").text('Scrape URL');
+            },
+            error: function() {
+                $("#scrape-url").text('Scrape URL');
             }
         });
     }
