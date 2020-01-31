@@ -5,9 +5,11 @@ https://github.com/atomiks/tippyjs
 
 $(document).ready(function() {
 
-    tippy('.tippy', {
+    tippy('.tippy-desc', {
         content: 'Fetching description',
-        delay: 500,
+        allowHTML: false,
+        delay: 700,
+        theme: 'dark',
         onShow(instance) {
             instance.setContent(instance.reference.innerText);
         }

@@ -318,4 +318,13 @@
 .default-icon .icon-text {
   color: white;
 }
+
+.tippy-tooltip.dark-theme {
+  background-color: #353535;
+  color: #ffffff;
+}
+
+.tippy-tooltip.dark-theme[data-placement^='top'] .tippy-arrow {
+  border-top-color: #353535;
+}
 /*# sourceMappingURL=main.css.map */

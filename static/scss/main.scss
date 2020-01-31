@@ -1,3 +1,6 @@
+// -------------------------------------------------------------------- imports
+
+
 // ------------------------------------------------------------------ variables
 
 $white: #ffffff;
@@ -313,4 +316,15 @@ $topnav-spacer-height: 64px;
     .icon-text {
         color: white;
     }
+}
+
+// -------------------------------------------------------- tippy tooltip theme
+
+.tippy-tooltip.dark-theme {
+    background-color: #353535;
+    color: #ffffff;
+}
+
+.tippy-tooltip.dark-theme[data-placement^='top'] .tippy-arrow {
+    border-top-color: #353535;
 }
