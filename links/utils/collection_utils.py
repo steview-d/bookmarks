@@ -47,7 +47,7 @@ def validate_name(request, proposed_name, collections, page):
 
     # check collection name is unique to page / user
     if collections.filter(
-            name__iexact=proposed_name).exists():
+            name__iexact=proposed_name.strip()).exists():
         messages.error(
             request, f"Collection name is in use, please choose another")
         return False
@@ -239,7 +239,7 @@ def add_collection(request, page):
     new_collection.user = request.user
     new_collection.page = Page.objects.get(
         user=request.user, name=page)
-    new_collection.name = request.POST.get('collection_name')
+    new_collection.name = request.POST.get('collection_name').strip()
     new_collection.position = insert_at_position
     new_collection.save()
 
