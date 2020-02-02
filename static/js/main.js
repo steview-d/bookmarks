@@ -237,6 +237,15 @@ $(document).ready(function() {
 
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
+
+        // logic to check for https
+        let httpRe = new RegExp('^https?://');
+        let match = httpRe.test(urlToScrape);
+        if (!match) {
+            urlToScrape = 'https://' + urlToScrape;
+            $("#id_url").val(urlToScrape);
+        }
+
         $("#scrape-url").text('SCRAPING..');
         
         $.ajax({
