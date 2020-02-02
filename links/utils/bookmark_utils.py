@@ -228,32 +228,19 @@ def get_site_icon(url):
             icons = ''
 
     if icons:
-        # look for apple touch icon first
-        for i in icons:
-            if 'apple-touch' in i.url or 'apple-icon' in i.url:
-                chosen_icon = i
-                break
-
-        # look for a favicon in png, and then ico format
+        # check for specific file names and formats, in order, then break
         if not chosen_icon:
+            file_names = ['apple-touch', 'apple-icon', 'favicon', 'logo']
             ext_order = ['png', 'ico']
-            for ext in ext_order:
-                for i in icons:
-                    if 'favicon' in i.url and i.format == ext:
-                        chosen_icon = i
-                        break
-                else:
-                    continue
-                break
-
-        # look for files called 'logo' in png, and then ico format
-        if not chosen_icon:
-            ext_order = ['png', 'ico']
-            for ext in ext_order:
-                for i in icons:
-                    if 'logo' in i.url and i.format == ext:
-                        chosen_icon = i
-                        break
+            for file_name in file_names:
+                for ext in ext_order:
+                    for i in icons:
+                        if file_name in i.url and i.format == ext:
+                            chosen_icon = i
+                            break
+                    else:
+                        continue
+                    break
                 else:
                     continue
                 break
