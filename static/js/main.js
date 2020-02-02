@@ -238,7 +238,7 @@ $(document).ready(function() {
     function scrapeUrl() {
         let urlToScrape = $("#id_url").val();
 
-        // logic to check for https
+        // if url doesn't begin with http(s), prepend it
         let httpRe = new RegExp('^https?://');
         let match = httpRe.test(urlToScrape);
         if (!match) {

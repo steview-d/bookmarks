@@ -589,7 +589,7 @@ def add_bookmark(request, page):
     collection_count = Collection.objects.filter(user=request.user).count()
 
     # initialize forms
-    import_url_form = ImportUrlForm()
+    import_url_form = ImportUrlForm(initial={'url': 'https://'})
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
 
