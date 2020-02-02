@@ -245,9 +245,9 @@ def get_site_icon(url):
                     continue
                 break
 
-        # last resort, any image it can find! first png, then ico
+        # last resort, any image it can find! first ico, then png
         if not chosen_icon:
-            ext_order = ['png', 'ico']
+            ext_order = ['ico', 'png']
             for ext in ext_order:
                 for i in icons:
                     if i.format == ext:
