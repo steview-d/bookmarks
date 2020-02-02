@@ -255,10 +255,7 @@ $(document).ready(function() {
 
                 // populate image fields
                 if (data.scraped_image) {
-                    //
-                    // always saves as png - what if it isn't?
-                    //
-                    let base64Str = 'data:image/png;base64,' + data.scraped_image;
+                    let base64Str = 'data:image/' + data.image_ext + ';base64,' + data.scraped_image;
                     $("#img-preview").attr('src', base64Str);
                     $("#scraped_img").val(base64Str);
                 } else {
