@@ -171,8 +171,9 @@ def scrape_url(request, url):
                     )
                 q.raise_for_status()
             except req.exceptions.RequestException:
-                scraped_image = ''
-                image_ext = ''
+                # if url won't resolve, can pass as 'scraped_image' and
+                # 'image_ext' already set to ''
+                pass
             else:
                 try:
                     q.headers['Content-Type']
@@ -181,29 +182,19 @@ def scrape_url(request, url):
                     # checked. Create a fake value to avoid a KeyError during
                     # next check
                     q.headers['Content-Type'] = 'image'
-                print(q.headers['Content-Type'])
                 # at this point, icon_url is url with format type at end as ext
                 if q.status_code == 200 and \
                         'image' in q.headers['Content-Type']:
-                    scraped_image = base64.b64encode(q.content).decode('utf-8')
+                    data['scraped_image'] = base64.b64encode(
+                        q.content).decode('utf-8')
 
                     # get image format from header
-                    image_ext = 'ico' if 'ico' in q.headers['Content-Type'] \
-                        else 'png'
+                    data['image_ext'] = 'ico' if 'ico' in q.headers[
+                        'Content-Type'] else 'png'
 
-                else:
-                    scraped_image = ''
-                    image_ext = ''
-
-        else:
-            scraped_image = ''
-            image_ext = ''
-
-        data = {'message': 'Success',
-                'title': scraped_title,
-                'description': scraped_description,
-                'scraped_image': scraped_image,
-                'image_ext': image_ext}
+        data['message'] = 'Success'
+        data['title'] = scraped_title
+        data['description'] = scraped_description
 
     return data
 
@@ -237,7 +228,6 @@ def get_site_icon(url):
             icons = ''
 
     if icons:
-        print(icons)
         # look for apple touch icon first
         for i in icons:
             if 'apple-touch' in i.url or 'apple-icon' in i.url:
