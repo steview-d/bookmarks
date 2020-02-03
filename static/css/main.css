@@ -327,4 +327,12 @@
 .tippy-tooltip.dark-theme[data-placement^='top'] .tippy-arrow {
   border-top-color: #353535;
 }
+
+.ajax-progress-hide {
+  display: none;
+}
+
+.ajax-progress-show {
+  display: inline-block;
+}
 /*# sourceMappingURL=main.css.map */

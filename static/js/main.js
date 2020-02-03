@@ -84,6 +84,10 @@ $(document).ready(function() {
 
             postData = newOrder.join(",");
 
+            // ajax loader on
+            //
+            $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+
             $.ajax({
                 type: "POST",
                 data: {
@@ -93,6 +97,10 @@ $(document).ready(function() {
                 url: "/app/_page_sort",
                 success: function(data) {
                     if (data.success) {
+                        // ajax loader off
+                        //
+                        $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+
                         location.reload();
                     }
                 }
