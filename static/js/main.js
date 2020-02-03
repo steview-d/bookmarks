@@ -84,8 +84,7 @@ $(document).ready(function() {
 
             postData = newOrder.join(",");
 
-            // ajax loader on
-            //
+            // turn on spinner
             $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
 
             $.ajax({
@@ -97,10 +96,8 @@ $(document).ready(function() {
                 url: "/app/_page_sort",
                 success: function(data) {
                     if (data.success) {
-                        // ajax loader off
-                        //
+                        // turn off spinner
                         $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
-
                         location.reload();
                     }
                 }
@@ -159,6 +156,10 @@ $(document).ready(function() {
             },
             stop: function(event, ui) {
                 let postData = JSON.stringify(new_collection_order);
+
+                // turn on spinner
+                $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
+
                 $.ajax({
                     type: "POST",
                     data: {
@@ -169,6 +170,8 @@ $(document).ready(function() {
                     url: "collection-sort",
                     success: function(data) {
                         if (data.success) {
+                            // turn off spinner
+                            $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
                             location.reload();
                         }
                     }
@@ -213,6 +216,9 @@ $(document).ready(function() {
 
                 postData = newOrder.join(",");
 
+                // turn on spinner
+                $('#ajax-progress-bookmark').toggleClass("display-toggle");
+
                 $.ajax({
                     type: "POST",
                     data: {
@@ -226,6 +232,8 @@ $(document).ready(function() {
                     url: "_bookmark_sort_manual",
                     success: function(data) {
                         if (data.success) {
+                            // turn off spinner
+                            $('#ajax-progress-bookmark').toggleClass("display-toggle");
                             location.reload();
                         }
                     }

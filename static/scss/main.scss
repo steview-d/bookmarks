@@ -1,5 +1,6 @@
 // -------------------------------------------------------------------- imports
 
+@import "_spinners";
 
 // ------------------------------------------------------------------ variables
 
@@ -51,7 +52,6 @@ $topnav-spacer-height: 64px;
 .cursor-default {
     cursor: default;
 }
-
 
 // -------------------------------------------------- main display grid wrapper
 
@@ -143,7 +143,6 @@ $topnav-spacer-height: 64px;
     }
 }
 
-
 // ---------------------------------------------------------- main content area
 
 #content {
@@ -227,10 +226,8 @@ $topnav-spacer-height: 64px;
     @include container-text-icon;
     cursor: default;
     background-color: #eeeeee;
-    border-radius:3px;
+    border-radius: 3px;
     padding: 0.4rem 0.7rem;
-    
-
 
     .collection-title {
         @include container-text-icon-title;
@@ -284,7 +281,6 @@ $topnav-spacer-height: 64px;
     }
 }
 
-
 // ----------------------------------------------------------- bookmark display
 // --------------------------------------------------------------------- search
 
@@ -325,17 +321,23 @@ $topnav-spacer-height: 64px;
     color: #ffffff;
 }
 
-.tippy-tooltip.dark-theme[data-placement^='top'] .tippy-arrow {
+.tippy-tooltip.dark-theme[data-placement^="top"] .tippy-arrow {
     border-top-color: #353535;
 }
-
 
 // -------------------------------------------------------------- ajax progress
 
 .ajax-progress-hide {
-    display: none
+    display: none;
 }
 
 .ajax-progress-show {
-    display: inline-block
+    display: inline-block;
 }
+
+.display-toggle {
+    display: none;
+}
+
+// ----------------------------------------------------------------------------
+

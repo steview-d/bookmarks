@@ -34,16 +34,27 @@
                     </ul>
                 </div>
             </div>
-            <h5>Collections</h5>
+            <h5 style="display: inline-block;">Collections</h5>
+
+            <!-- spinner -->
+            <div id="ajax-progress-arrange" class="mx-4 ajax-progress-hide">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+
             <div id="collections-container" class="row mx-4 py-2">
                 {% for column in collection_data %}
-                    <div id="column-{{forloop.counter}}" class="column my-2" style="width: {{ column_width }}%">
-                        {% if column %}
-                        {% for collection in column %}
-                                <p id="{{collection.position}}_." class="badge badge-primary m-3 p-3 d-block cursor-pointer" style="font-size: 1rem;">{{ collection }}</p>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
+                <div id="column-{{forloop.counter}}" class="column my-2" style="width: {{ column_width }}%">
+                    {% if column %}
+                    {% for collection in column %}
+                    <p id="{{collection.position}}_." class="badge badge-primary m-3 p-3 d-block cursor-pointer"
+                        style="font-size: 1rem;">{{ collection }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
                 {% endfor %}
             </div>
 

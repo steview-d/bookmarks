@@ -8,7 +8,9 @@
     <hr>
     <div>
         <!-- Add Bookmark button -->
-        <a href="{% url 'add_bookmark' page=page %}"><h3 class="text-center">Add BM Button</h3></a>
+        <a href="{% url 'add_bookmark' page=page %}">
+            <h3 class="text-center">Add BM Button</h3>
+        </a>
     </div>
     <hr>
     <div>
@@ -18,7 +20,17 @@
     </div>
     <hr>
     <!-- list all user pages -->
-    <h5 class="mx-4" style="display: inline-block;">Pages</h5><h5 id="ajax-progress-page" class="mx-4 ajax-progress-hide">Loader</h5>
+    <h5 class="mx-4" style="display: inline-block;">Pages</h5>
+
+    <!-- spinner -->
+    <div id="ajax-progress-page" class="mx-4 ajax-progress-hide">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
     <div id="page-sort-container" class="mx-4 py-2">
         <ul id="page-titles" class="list-unstyled my-2">
             {% for name in all_page_names %}
@@ -33,7 +45,7 @@
                         {% endif %}
                     </a>
                 </div>
-                
+
                 <!-- edit page form -->
                 {% if name.name == page %}
                 <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
@@ -43,7 +55,7 @@
                     <p>{{ i.label_tag }} <br />
                         {{ i }}</p>
                     <small>{{ i.errors }}</small>
-                    {% endfor %} 
+                    {% endfor %}
                     <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
                 </form>
 
@@ -54,20 +66,20 @@
     </div>
     {% if bm_data %}
     <!-- <div class="mx-4"> -->
-        <!-- add page form -->
-        <div class="mx-4 my-2">
-            <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
-            <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
-                {% endif %}>
-                {% csrf_token %}
-                {% for i in add_new_page_form %}
-                <p>{{ i.label_tag }}
-                    {{ i }}</p>
-                <small>{{ i.errors }}</small>
-                {% endfor %}
-                <input type="submit" name="add-page-form" class="btn btn-info btn-sm mt-3">
-            </form>
-        </div>
+    <!-- add page form -->
+    <div class="mx-4 my-2">
+        <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
+        <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
+            {% endif %}>
+            {% csrf_token %}
+            {% for i in add_new_page_form %}
+            <p>{{ i.label_tag }}
+                {{ i }}</p>
+            <small>{{ i.errors }}</small>
+            {% endfor %}
+            <input type="submit" name="add-page-form" class="btn btn-info btn-sm mt-3">
+        </form>
+    </div>
     <!-- </div> -->
     {% endif %}
 
