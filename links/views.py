@@ -841,7 +841,9 @@ def import_url(request):
         'description': scrape_data['description']
     })
     move_bookmark_form = MoveBookmarkForm(
-        request.user, page)
+        request.user, page, initial={
+            'dest_page': page
+        })
 
     context = {'import_url_form': import_url_form,
                'move_bookmark_form': move_bookmark_form,

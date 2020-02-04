@@ -2,6 +2,7 @@
 .vscode/
 __pycache__/
 htmlcov/
+media/
 
 .coverage*
 *.sqlite3*
