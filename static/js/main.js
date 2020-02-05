@@ -261,7 +261,6 @@ $(document).ready(function() {
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
     bmSortButtons.forEach((key) => {
         $(key).on('click', function () {
-            // $('.bm-handle-container').toggleClass('bm-sort-handle');
             $(this).parent().parent().next().find('.bm-handle-container').toggleClass('bm-sort-handle');
             if($(this).is(':contains("OFF")')) {
                 $(this).text('MANUAL SORT: ON');

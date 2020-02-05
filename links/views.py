@@ -157,6 +157,15 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
+    # collection_being_sorted
+    try:
+        collection_being_sorted = request.session['collection_being_sorted']
+        del request.session['collection_being_sorted']
+        print(collection_being_sorted)
+    except KeyError:
+        print("YYY")
+        collection_being_sorted = ''
+
     # Check if no collections on current page
     no_collections = True if collections.count() == 0 else False
 
@@ -170,7 +179,8 @@ def links(request, page):
                "all_page_names": all_pages,
                "add_new_page_form": add_new_page_form,
                "edit_page_form": edit_page_form,
-               "no_collections": no_collections, }
+               "no_collections": no_collections,
+               "collection_being_sorted": collection_being_sorted, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
@@ -512,6 +522,8 @@ def bookmark_sort_manual(request):
     # re-order bookmarks based on user sort
     data = general_utils.qs_sort(
         original_bookmark_order, new_order, bookmark_limit)
+
+    request.session['collection_being_sorted'] = collection_name
 
     return JsonResponse(data)
 

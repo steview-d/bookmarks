@@ -117,8 +117,10 @@
 
                             <!-- manual sort button -->
                             <div class="row mx-4 my-2" style="display: inline-block">
-                                <button id="bm-sort-btn-{{ k.position }}" class="btn btn-sm btn-info" role="button">MANUAL SORT:
-                                    OFF</button>
+                                <button id="bm-sort-btn-{{ k.position }}" class="btn btn-sm btn-info"
+                                    role="button">MANUAL SORT:
+                                    {% if collection_being_sorted == k.name %}ON{% else %}OFF{% endif %}
+                                </button>
                             </div>
 
                         </div>
@@ -127,7 +129,8 @@
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
                                 <li id="{{item.position}}_." style="margin: 0.5rem 0.5rem 0.5rem 0;">
-                                    <div class="bm-handle-container d-flex">
+                                    <div class="bm-handle-container d-flex
+                                    {% if collection_being_sorted == k.name %}bm-sort-handle{% endif %}">
                                         <!-- icon image -->
                                         <a href="{{ item }}" target="_blank"
                                             class="bm-link text-decoration-none d-flex">
