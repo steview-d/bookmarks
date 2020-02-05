@@ -73,6 +73,7 @@ $(document).ready(function() {
         delay: 200,
         cursor: "grabbing",
         axis: "y",
+        handle: ".page-sort-handle",
         stop: function() {
             let data = $(this).sortable("serialize");
             data = data.split("[]=.");
@@ -102,6 +103,18 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
+    });
+
+    // When the 'Page Sort' button is toggled, toggle the 'page-sort-handle' class required
+    // by sortable to allow sorting of pages. 
+    $('#page-sort-btn').on('click', function () {
+        $('.page-sort-icon').toggle();
+        $('.page-sort-container').toggleClass('page-sort-handle');
+        if($(this).is(':contains("OFF")')) {
+            $(this).text('PAGE SORT: ON');
+        } else {
+            $(this).text('PAGE SORT: OFF');
         }
     });
 
@@ -410,5 +423,11 @@ $(document).ready(function() {
 
             preview.readAsDataURL(this.files[0]);
         }
+    });
+
+    // Misc
+    // Used to check js has updated on page when testing mobile devices
+    $(".js-test").on('click', function () {
+        $(this).css("background-color", "black");
     });
 });

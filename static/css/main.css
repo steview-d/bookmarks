@@ -387,6 +387,10 @@
   display: none;
 }
 
+.page-sort-icon {
+  display: none;
+}
+
 .rename-collection-form {
   display: none;
 }

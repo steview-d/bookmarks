@@ -3,7 +3,7 @@
         <i class="fa fa-bars ml-2 mt-1 pl-4 pt-3"></i>
     </div>
     <div>
-        <h3 class="text-center">LOGO HERE</h3>
+        <h3 class="js-test text-center">LOGO HERE</h3>
     </div>
     <hr>
     <div>
@@ -31,11 +31,18 @@
         </div>
     </div>
 
+    <!-- sort page icon -->
+    <div class="row mx-4 my-2">
+        <button id="page-sort-btn" class="btn btn-sm btn-info" role="button">PAGE SORT: OFF</button>
+    </div>
+
+
     <div id="page-sort-container" class="mx-4 py-2">
         <ul id="page-titles" class="list-unstyled my-2">
             {% for name in all_page_names %}
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
-                <div class="clearfix">
+                <div class="clearfix page-sort-container">
+                    <div class="float-left my-2 ml-2 page-sort-icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
