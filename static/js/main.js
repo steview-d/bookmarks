@@ -109,7 +109,7 @@ $(document).ready(function() {
     // When the 'Page Sort' button is toggled, toggle the 'page-sort-handle' class required
     // by sortable to allow sorting of pages. 
     $('#page-sort-btn').on('click', function () {
-        $('.page-sort-icon').toggle();
+        $('.page-sort-icon-container').toggleClass('page-sort-icon');
         $('.page-sort-container').toggleClass('page-sort-handle');
         if($(this).is(':contains("OFF")')) {
             $(this).text('PAGE SORT: ON');

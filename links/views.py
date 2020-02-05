@@ -161,10 +161,14 @@ def links(request, page):
     try:
         collection_being_sorted = request.session['collection_being_sorted']
         del request.session['collection_being_sorted']
-        print(collection_being_sorted)
     except KeyError:
-        print("YYY")
         collection_being_sorted = ''
+
+    try:
+        page_sort_active = request.session['page_sort_active']
+        del request.session['page_sort_active']
+    except KeyError:
+        page_sort_active = ''
 
     # Check if no collections on current page
     no_collections = True if collections.count() == 0 else False
@@ -180,7 +184,8 @@ def links(request, page):
                "add_new_page_form": add_new_page_form,
                "edit_page_form": edit_page_form,
                "no_collections": no_collections,
-               "collection_being_sorted": collection_being_sorted, }
+               "collection_being_sorted": collection_being_sorted,
+               "page_sort_active": page_sort_active, }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
@@ -239,6 +244,8 @@ def page_sort(request):
     # re-order pages based on user sort
     data = general_utils.qs_sort(
         original_page_order, new_order, page_limit)
+
+    request.session['page_sort_active'] = 'active'
 
     return JsonResponse(data)
 
@@ -523,6 +530,7 @@ def bookmark_sort_manual(request):
     data = general_utils.qs_sort(
         original_bookmark_order, new_order, bookmark_limit)
 
+    # store name of collection being sorted
     request.session['collection_being_sorted'] = collection_name
 
     return JsonResponse(data)
