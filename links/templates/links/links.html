@@ -114,57 +114,68 @@
                                     href="{% url 'update_sort_order' page=page collection=k sort=6 %}"><i
                                         class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date Updated</a>
                             </div>
+
+                            <!-- manual sort button -->
+                            <div class="row mx-4 my-2" style="display: inline-block">
+                                <button id="bm-sort-btn-{{ k.position }}" class="btn btn-sm btn-info" role="button">MANUAL SORT:
+                                    OFF</button>
+                            </div>
+
                         </div>
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
-                                <li id="{{item.position}}_." class="d-flex" style="margin: 0.5rem 0.5rem 0.5rem 0;">
-                                    <!-- icon image -->
-                                    <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none d-flex">
-                                        {% if item.icon %}
-                                        <img src="{{ MEDIA_URL }}{{ item.icon }}" alt="icon" class="my-auto" style="
+                                <li id="{{item.position}}_." style="margin: 0.5rem 0.5rem 0.5rem 0;">
+                                    <div class="bm-handle-container d-flex">
+                                        <!-- icon image -->
+                                        <a href="{{ item }}" target="_blank"
+                                            class="bm-link text-decoration-none d-flex">
+                                            {% if item.icon %}
+                                            <img src="{{ MEDIA_URL }}{{ item.icon }}" alt="icon" class="my-auto" style="
                                             width:{{ k.display_mode|icon_size }}px;
                                             height:{{ k.display_mode|icon_size }}px;
                                             flex-shrink: 0;">
-                                        {% else %}
-                                        <div class="default-icon my-auto" style="
+                                            {% else %}
+                                            <div class="default-icon my-auto" style="
                                             width:{{ k.display_mode|icon_size }}px;
                                             height:{{ k.display_mode|icon_size }}px;
                                             background-color:{{ item.title|icon_color }};
                                             font-size:{{ k.display_mode|icon_font_size }}px;
                                             ">
-                                            <span class="icon-text">{{ item.title|icon_letter }}</span>
-                                        </div>
-                                        {% endif %}
-                                    </a>
-
-                                    <div class="bm-text-container">
-                                        <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                            <div class="bm-container">
-                                                <div class="bm-title">
-                                                    <span class="bm-title-text">{{ item.title }}</span>
-                                                    <span
-                                                        class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                                        role="button">
-                                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                                        <small>Options</small>
-                                                    </span>
-                                                </div>
+                                                <span class="icon-text">{{ item.title|icon_letter }}</span>
                                             </div>
-                                        </a>
-
-                                        <!-- Bookmark Icons -->
-                                        {% include 'links/components/bookmark_option_icons.html' %}
-
-                                        {% if k.display_mode != 3 %}
-                                        <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
-                                            {% if k.display_mode != 2 %}
-                                            <div class="link-desc text-trunc tippy-desc">{{ item.description }}</div>
                                             {% endif %}
-                                            <div class="link-url text-trunc">{{ item }}</div>
                                         </a>
-                                        {% endif %}
+
+                                        <div class="bm-text-container">
+                                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                                <div class="bm-container">
+                                                    <div class="bm-title">
+                                                        <span class="bm-title-text">{{ item.title }}</span>
+                                                        <span
+                                                            class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
+                                                            role="button">
+                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                            <small>Options</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <!-- Bookmark Icons -->
+                                            {% include 'links/components/bookmark_option_icons.html' %}
+
+                                            {% if k.display_mode != 3 %}
+                                            <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
+                                                {% if k.display_mode != 2 %}
+                                                <div class="link-desc text-trunc tippy-desc">{{ item.description }}
+                                                </div>
+                                                {% endif %}
+                                                <div class="link-url text-trunc">{{ item }}</div>
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- Bookmark Delete Modal -->

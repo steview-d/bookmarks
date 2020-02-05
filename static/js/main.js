@@ -212,6 +212,7 @@ $(document).ready(function() {
         delay: 200,
         cursor: "grabbing",
         axis: "y",
+        handle: ".bm-sort-handle",
         stop: function(event, ui) {
             if ($(this).hasClass("no-manual-sort")) {
                 let page = $(this).closest("div.page-name").attr("id");
@@ -255,6 +256,20 @@ $(document).ready(function() {
         }
     });
 
+    // When the 'Bookmark Sort' button is toggled, toggle the 'bm-sort-handle' class required
+    // by sortable to allow sorting of bookmarks. 
+    const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
+    bmSortButtons.forEach((key) => {
+        $(key).on('click', function () {
+            // $('.bm-handle-container').toggleClass('bm-sort-handle');
+            $(this).parent().parent().next().find('.bm-handle-container').toggleClass('bm-sort-handle');
+            if($(this).is(':contains("OFF")')) {
+                $(this).text('MANUAL SORT: ON');
+            } else {
+                $(this).text('MANUAL SORT: OFF');
+            }
+        });
+    });
 
     // -------------------------------------------------------- Url Scraping //
 
