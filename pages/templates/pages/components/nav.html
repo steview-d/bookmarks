@@ -1,27 +1,22 @@
+{% load staticfiles %}
+
 <!-- nav bar -->
-<nav class="navbar navbar-expand-lg container">
-    <a class="navbar-brand" href="#">Title</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'about_page' %}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pricing_page' %}">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'faq_page' %}">FAQ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Log In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </li>
+
+<div class="container-fluid nav-outer">
+    <div class="container nav-inner">
+        <h1 class="navbar-title">
+            Links
+            <!-- <h1 class="navbar-title">Links</h1> -->
+        </h1>
+        <ul class="nav-bar-items">
+            <li class="nav-link"><a href="{% url 'about_page' %}">About</a></li>
+            <li class="nav-link"><a href="{% url 'pricing_page' %}">Pricing</a></li>
+            <li class="nav-link"><a href="{% url 'faq_page' %}">FAQ</a></li>
+            <li class="nav-link"><a href="{% url 'login' %}">Login</a></li>
+            <li class="nav-link"><a href="{% url 'register' %}">Register</a></li>
         </ul>
     </div>
-</nav>
+</div>
+
+<div class="topnav-spacer">
+</div>

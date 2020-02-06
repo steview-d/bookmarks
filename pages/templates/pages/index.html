@@ -6,14 +6,71 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div class="container">
+<div id="index-page" class="container-fluid">
     <!-- messages -->
     {% include 'components/messages.html' %}
 
-    <h1>Hello!</h1>
-    <p>This is the index / about page.</p>
+    <div class="py-5"></div>
 
-    <hr>
+    <div class="container-fluid" style="background-color: #555">
+        <div class="container" style="background-color: #aaa">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Hello!</h1>
+                    <p>This is the index / about page.</p>
+                    <p>This is the index / about page.</p>
+                    <p>This is the index / about page.</p>
+                    <div style="height: 150px; background-color: red"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello!</h1>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+            <div style="height: 150px; background-color: blue"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello!</h1>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+            <div style="height: 150px; background-color: green"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello!</h1>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+            <div style="height: 150px; background-color: yellow"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello!</h1>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+            <div style="height: 400px; background-color: grey"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Hello!</h1>
+            <p>This is the index / about page.</p>
+            <p>This is the index / about page.</p>
+        </div>
+    </div>
+
     {% if user.is_authenticated %}
     <h4>Temporary log out button to help with testing</h4>
     <a href="{% url 'logout' %}" class="btn btn-primary" role="button">Log Out</a>

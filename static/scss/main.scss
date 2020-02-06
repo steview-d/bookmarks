@@ -220,7 +220,6 @@ $topnav-spacer-height: 64px;
     display: none;
 }
 
-
 // ---------------------------------------------------- rename collection forms
 
 .rename-collection-form {
@@ -346,5 +345,62 @@ $topnav-spacer-height: 64px;
     display: none;
 }
 
+// ------------------------------------------------------------ 'Pages' styling
+// ------------------------------------------------------------------------ all
+
+
+// --------------------------------------------------------------------- navbar
+
+.nav-outer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-inner {
+    color: black;
+}
+
+.navbar-logo-container {
+    text-align: center;
+}
+
+.navbar-logo {
+    height: 60px;
+    margin-top: 1rem;
+}
+
+.navbar-title {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.nav-text {
+    font-size: 1.2rem;
+}
+
+.nav-bar-items {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+a {
+    color: black;
+
+}
+
+// ---------------------------------------------------------------------- index
+
+#index-page {
+    min-height: calc(100vh - #{$topnav-spacer-height});
+}
+
 // ----------------------------------------------------------------------------
+
 

@@ -445,4 +445,14 @@ $(document).ready(function() {
     $(".js-test").on('click', function () {
         $(this).css("background-color", "black");
     });
+
+    // nav bar title hide / show on scroll
+    $(window).scroll(function() {
+        if (window.scrollY > 100) {
+            $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
+        } else {
+            $('.navbar-title').css({ opacity: 1}).slideDown(600);
+        }
+    });
+
 });
