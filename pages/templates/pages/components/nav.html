@@ -2,18 +2,23 @@
 
 <!-- nav bar -->
 
-<div class="container-fluid nav-outer">
+<div id="pages-nav" class="container-fluid nav-outer">
     <div class="container nav-inner">
         <h1 class="navbar-title">
             Links
             <!-- <h1 class="navbar-title">Links</h1> -->
         </h1>
         <ul class="nav-bar-items">
-            <li class="nav-link"><a href="{% url 'about_page' %}">About</a></li>
-            <li class="nav-link"><a href="{% url 'pricing_page' %}">Pricing</a></li>
-            <li class="nav-link"><a href="{% url 'faq_page' %}">FAQ</a></li>
-            <li class="nav-link"><a href="{% url 'login' %}">Login</a></li>
-            <li class="nav-link"><a href="{% url 'register' %}">Register</a></li>
+            <li class="navbar-link {% if 'about' in request.resolver_match.url_name %}active{% endif %}">
+                <a href="{% url 'about_page' %}">About</a></li>
+            <li class="navbar-link {% if 'pricing' in request.resolver_match.url_name %}active{% endif %}">
+                <a href="{% url 'pricing_page' %}">Pricing</a></li>
+            <li class="navbar-link {% if 'faq' in request.resolver_match.url_name %}active{% endif %}">
+                <a href="{% url 'faq_page' %}">FAQ</a></li>
+            <li class="navbar-link {% if 'login' in request.resolver_match.url_name %}active{% endif %}">
+                <a href="{% url 'login' %}">Login</a></li>
+            <li class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %}">
+                <a href="{% url 'register' %}">Register</a></li>
         </ul>
     </div>
 </div>

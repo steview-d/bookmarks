@@ -7,7 +7,9 @@ def about(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    return render(request, "pages/index.html")
+    context = {}
+
+    return render(request, "pages/index.html", context)
 
 
 def pricing(request):
@@ -15,7 +17,9 @@ def pricing(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    return render(request, "pages/pricing.html")
+    context = {}
+
+    return render(request, "pages/pricing.html", context)
 
 
 def faq(request):
@@ -23,4 +27,6 @@ def faq(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    return render(request, "pages/faq.html")
+    context = {}
+
+    return render(request, "pages/faq.html", context)

@@ -594,6 +594,12 @@
   font-size: 1.2rem;
 }
 
+.navbar-link {
+  display: block;
+  padding-bottom: .5rem;
+  margin: .5rem 1rem;
+}
+
 .nav-bar-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -605,6 +611,11 @@
   text-decoration: none;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.nav-bar-items .active {
+  border-bottom: 5px solid #175c9d;
 }
 
 a {
