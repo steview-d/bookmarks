@@ -39,13 +39,20 @@
     </div>
 
 
-    <div id="page-sort-container" class="mx-4 py-2">
+    <div class="mx-4 py-2">
         <ul id="page-titles" class="list-unstyled my-2">
             {% for name in all_page_names %}
+            <!-- individual page titles -->
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
-                <div class="clearfix page-sort-container {% if page_sort_active != '' %}page-sort-handle{% endif %}">
-                    <div class="float-left my-2 ml-2 page-sort-icon-container {% if page_sort_active == '' %}page-sort-icon{% endif%}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                <!-- handle & icon for sorting page display order -->
+                <div class="clearfix page-sort-handle-container {% if page_sort_active != '' %}page-sort-handle{% endif %}">
+                    <div class="float-left my-2 ml-2 page-sort-icon-container
+                        {% if page_sort_active == '' %}
+                            hide-page-sort-icon
+                        {% endif%}">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
+                    <!-- page title & icons -->
                     <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"

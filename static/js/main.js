@@ -69,7 +69,7 @@ $(document).ready(function() {
     */
 
     $("#page-titles").sortable({
-        containment: "#page-sort-container",
+        containment: "parent",
         delay: 200,
         cursor: "grabbing",
         axis: "y",
@@ -109,13 +109,14 @@ $(document).ready(function() {
     // When the 'Page Sort' button is toggled, toggle the 'page-sort-handle' class required
     // by sortable to allow sorting of pages. 
     $('#page-sort-btn').on('click', function () {
-        $('.page-sort-icon-container').toggleClass('page-sort-icon');
-        $('.page-sort-container').toggleClass('page-sort-handle');
+        $('.page-sort-icon-container').toggleClass('hide-page-sort-icon');
+        $('.page-sort-handle-container').toggleClass('page-sort-handle');
         if($(this).is(':contains("OFF")')) {
             $(this).text('PAGE SORT: ON');
         } else {
             $(this).text('PAGE SORT: OFF');
         }
+        // $(this).text($(this).text() == 'PAGE SORT: ON' ? 'PAGE SORT: OFF' : 'PAGE SORT: ON');
     });
 
 
