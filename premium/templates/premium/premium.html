@@ -12,10 +12,10 @@
 
     <!-- Content -->
     <div id="content">
-        {% include 'top-nav.html' %}
+        {% include 'components/top-nav.html' %}
 
         <!-- messages -->
-        {% include 'messages.html' %}
+        {% include 'components/messages.html' %}
 
         {% if is_premium %}
         <!-- thanks -->
@@ -83,7 +83,7 @@
 
 
         <!-- banner ad -->
-        {% include 'advert.html' with advert_path="img/ads/banner.png" %}
+        {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
 
     </div>
 </div>
