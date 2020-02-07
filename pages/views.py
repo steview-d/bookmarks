@@ -24,7 +24,7 @@ def pricing(request):
         ['Bookmarks', '500', 'Unlimited'],
         ['Collections', '20', 'Unlimited'],
         ['Pages', '2', 'Unlimited'],
-        ['Support', 'Email', 'EMail & Telephone'],
+        ['Support', 'Email', 'Email & Telephone'],
         ['Cost', 'Free', '£20 for lifetime access'],
     ]
 
