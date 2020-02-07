@@ -694,4 +694,25 @@
 #testimonials-section {
   background-color: #A8D0DB;
 }
+
+#pricing-page {
+  min-height: calc(100vh - 133px);
+}
+
+#pricing-page section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+#pricing-page section .content {
+  padding: 1rem;
+}
+
+#pricing-text-section {
+  background-color: #ffffff;
+}
+
+#pricing-table-section {
+  background-color: #7180AC;
+}
 /*# sourceMappingURL=main.css.map */

@@ -487,5 +487,25 @@ $topnav-spacer-height: 133px;
 }
 
 
-// ----------------------------------------------------------------------------
+// -------------------------------------------------------------------- pricing
 
+#pricing-page {
+    min-height: calc(100vh - #{$topnav-spacer-height});
+
+    section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+
+        .content {
+            padding: 1rem;
+        }
+    }
+}
+
+#pricing-text-section {
+    background-color: $white;
+}
+
+#pricing-table-section {
+    background-color: $shadow-blue;
+}

@@ -6,26 +6,69 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div id="index-page">
+<div id="pricing-page">
     <!-- messages -->
     {% include 'components/messages.html' %}
 
-    <section id="headline-section" class="container">
+    <!-- pricing text detail -->
+    <section id="pricing-text-section" class="container">
         <div class="row">
-            <div class="col-7 content" style="background-color:#ddd">
-                <h2>HEADLINE</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                    maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus quo,
-                    possimus quos eos et.</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                    optio consectetur maiores dolorum illo cum impedit!</p>
+            <div class="col-12">
+                <p>Links is free to use, and always will be.</p>
+                <p>There are some restrictions which you can see below.</p>
+                <p>To remove these restrictions and go 'PREMIUM' normally costs £20/yr</p>
+                <p>We have an offer at the moment where the first 1000 users to sign up for Premium will instead get
+                    lifetime access.</p>
             </div>
+        </div>
+    </section>
 
-            <div class="col-5 content" style="background-color:#aaa">
-                <h5>IMAGE TO BE PLACED HERE</h5>
-                <p>Probably the main logo - but with additional styling?</p>
-                <p>Invert colors and circular border, etc</p>
+    <!-- pricing table -->
+    <section id="pricing-table-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">Free</th>
+                            <th scope="col">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Ads</th>
+                            <td>Ad Supported</td>
+                            <td>No Ads. Ever</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bookmarks</th>
+                            <td>500</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Collections</th>
+                            <td>20</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pages</th>
+                            <td>2</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Support</th>
+                            <td>Email</td>
+                            <td>Email & Telephone</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cost</th>
+                            <td>Free</td>
+                            <td>£20 for lifetime access</td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
