@@ -5,8 +5,12 @@
 // ------------------------------------------------------------------ variables
 
 $white: #ffffff;
-$logo-blue: #175c9d;
-$topnav-spacer-height: 64px;
+$logo-blue: #175C9D;
+$light-steel-blue: #A8D0DB;
+$shadow-blue: #7180AC;
+$middle-red: #E49273;
+$burnished-brown: #A37A74;
+$topnav-spacer-height: 133px;
 
 // --------------------------------------------------------------------- mixins
 
@@ -418,6 +422,65 @@ $topnav-spacer-height: 64px;
 
 #index-page {
     min-height: calc(100vh - #{$topnav-spacer-height});
+
+    section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+#headline-section {
+    .content {
+        padding: 1rem;
+    }
+}
+
+#features-section {
+    background-color: $shadow-blue;
+
+    .container {
+        background-color: $shadow-blue;
+
+        .content {
+            padding: 1rem;
+        }
+    }
+}
+
+#chrome-ext-section {
+    background-color: $white;
+
+    .container {
+        background-color: $white;
+
+        .content {
+            padding: 1rem;
+        }
+    }
+}
+
+#testimonials-section {
+    background-color: $light-steel-blue;
+
+    .container {
+        background-color: $light-steel-blue;
+
+        .content {
+            padding: 1rem;
+        }
+    }
+}
+
+#get-started-section {
+    background-color: $white;
+
+    .container {
+        background-color: $white;
+
+        .content {
+            padding: 1rem;
+        }
+    }
 }
 
 // ----------------------------------------------------------------------------
