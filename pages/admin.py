@@ -16,5 +16,7 @@ class ContactAdmin(admin.ModelAdmin):
         'email', 'name', 'message', 'date_created', 'actioned'
     )
 
+    list_filter = ['actioned', 'date_created']
+
 
 admin.site.register(Contact, ContactAdmin)
