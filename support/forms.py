@@ -1,6 +1,5 @@
 from django import forms
 from .models import Ticket
-# from django.contrib.auth.models import User
 
 
 class SupportRequestForm(forms.ModelForm):
