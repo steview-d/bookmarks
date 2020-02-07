@@ -219,7 +219,7 @@
 }
 
 .border {
-  border: 1px solid black;
+  border: 1px solid #000000;
 }
 
 .cursor-pointer {
@@ -599,7 +599,7 @@
 
 #pages-nav .nav-bar-items .navbar-link a {
   position: relative;
-  color: black;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -633,7 +633,7 @@
 }
 
 #footer-section {
-  background-color: black;
+  background-color: #000000;
 }
 
 #footer-section .content {
@@ -655,7 +655,7 @@
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   background-color: white;
-  color: black;
+  color: #000000;
 }
 
 #index-page {
