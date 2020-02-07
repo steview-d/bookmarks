@@ -1,24 +1,30 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block page_title %}Log In{% endblock %}
 
 {% block content %}
 
 {% include 'pages/components/nav.html' %}
 
-<div class="container-fluid set-min-height">
-
-    <div class="py-5"></div>
-    <h1>Log In Page</h1>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-        <div>
-            <small>Forgot your password? Reset it <a href="{% url 'password_reset' %}">here</a></small>
+<div class="container set-min-height">
+    <div class="row">
+        <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
+            <h3>Log In To Your Account</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit">Login</button>
+                <div>
+                    <small>Need an account? Create one <a href="{% url 'register' %}">here</a></small>
+                </div>
+                <div>
+                    <small>Forgot your password? Reset it <a href="{% url 'password_reset' %}">here</a></small>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 <!-- Footer -->

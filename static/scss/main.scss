@@ -540,3 +540,22 @@ $footer-height: 116px;
 .set-min-height {
     min-height: calc(100vh - #{$topnav-spacer-height} - #{$footer-height});
 }
+
+.user-auth-container {
+    border: 2px solid #888888;
+    border-radius: 5px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+
+    h3 {
+        text-align: center;
+    }
+
+    form {
+        margin: 2rem 1rem;
+    }
+
+    button {
+        margin: 1rem 0;
+    }
+}

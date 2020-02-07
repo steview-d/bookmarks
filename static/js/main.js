@@ -448,7 +448,7 @@ $(document).ready(function() {
 
     // nav bar title hide / show on scroll
     $(window).scroll(function() {
-        if (window.scrollY > 100) {
+        if (window.scrollY > 40) {
             $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
             $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600, function () {
                 $('#pages-nav').addClass('nav-border');

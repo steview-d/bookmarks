@@ -740,4 +740,23 @@
 .set-min-height {
   min-height: calc(100vh - 133px - 116px);
 }
+
+.user-auth-container {
+  border: 2px solid #888888;
+  border-radius: 5px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.user-auth-container h3 {
+  text-align: center;
+}
+
+.user-auth-container form {
+  margin: 2rem 1rem;
+}
+
+.user-auth-container button {
+  margin: 1rem 0;
+}
 /*# sourceMappingURL=main.css.map */
