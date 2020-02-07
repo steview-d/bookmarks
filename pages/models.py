@@ -12,9 +12,19 @@ class Contact(models.Model):
         max_length=254, null=False, blank=False
     )
     message = models.CharField(
-            max_length=500, null=False, blank=False
+        max_length=500, null=False, blank=False
+    )
+    date_created = models.DateTimeField(
+        auto_now_add=True
+    )
+    actioned = models.BooleanField(
+        default=False, blank=True
     )
 
-    class Meta:
-        def __str__(self):
-            return self.email
+    def __str__(self):
+        return self.email
+
+    def is_actioned(self):
+        return True if self.actioned else False
+
+    is_actioned.short_description = "Actioned?"
