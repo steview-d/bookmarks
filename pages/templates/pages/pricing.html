@@ -28,46 +28,25 @@
         <div class="container">
             <div class="row">
                 <table class="table table-bordered">
+                    {% for i in table_data %}
+                    {% if forloop.first %}
                     <thead>
                         <tr>
-                            <th scope="col">Feature</th>
-                            <th scope="col">Free</th>
-                            <th scope="col">Premium</th>
+                            <th scope="col">{{i.0}}</th>
+                            <th scope="col">{{i.1}}</th>
+                            <th scope="col">{{i.2}}</th>
                         </tr>
                     </thead>
+                    {% else %}
                     <tbody>
                         <tr>
-                            <th scope="row">Ads</th>
-                            <td>Ad Supported</td>
-                            <td>No Ads. Ever</td>
+                            <th scope="row">{{ i.0 }}</th>
+                            <td>{{ i.1 }}</td>
+                            <td>{{ i.2 }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Bookmarks</th>
-                            <td>500</td>
-                            <td>Unlimited</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Collections</th>
-                            <td>20</td>
-                            <td>Unlimited</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Pages</th>
-                            <td>2</td>
-                            <td>Unlimited</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Support</th>
-                            <td>Email</td>
-                            <td>Email & Telephone</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Cost</th>
-                            <td>Free</td>
-                            <td>£20 for lifetime access</td>
-                        </tr>
-
                     </tbody>
+                    {% endif %}
+                    {% endfor %}
                 </table>
             </div>
         </div>

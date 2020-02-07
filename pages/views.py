@@ -17,7 +17,18 @@ def pricing(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    context = {}
+    # data for pricing comparison table
+    table_data = [
+        ['Feature', 'Free', 'Premium'],
+        ['Ads', 'Ad Supported', 'No Ads. Ever'],
+        ['Bookmarks', '500', 'Unlimited'],
+        ['Collections', '20', 'Unlimited'],
+        ['Pages', '2', 'Unlimited'],
+        ['Support', 'Email', 'EMail & Telephone'],
+        ['Cost', 'Free', '£20 for lifetime access'],
+    ]
+
+    context = {"table_data": table_data}
 
     return render(request, "pages/pricing.html", context)
 
