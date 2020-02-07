@@ -6,7 +6,7 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div class="container-fluid">
+<div class="container-fluid set-min-height">
 
     <div class="py-5"></div>
     <h1>Log In Page</h1>
@@ -19,7 +19,9 @@
             <small>Forgot your password? Reset it <a href="{% url 'password_reset' %}">here</a></small>
         </div>
     </form>
-
 </div>
+
+<!-- Footer -->
+{% include 'pages/components/footer.html' %}
 
 {% endblock %}

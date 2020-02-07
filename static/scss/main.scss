@@ -12,6 +12,7 @@ $shadow-blue: #7180AC;
 $middle-red: #E49273;
 $burnished-brown: #A37A74;
 $topnav-spacer-height: 133px;
+$footer-height: 116px;
 
 // --------------------------------------------------------------------- mixins
 
@@ -440,9 +441,9 @@ $topnav-spacer-height: 133px;
             color: $white;
 
             .social-icons {
-                margin: .4rem;
-                padding: .4rem;
-                font-size: 1.5rem;
+                margin: .5rem;
+                padding: .5rem;
+                font-size: 1.75rem;
                 color: $white;
                 transition: .5s ease-out;
             }
@@ -531,4 +532,11 @@ $topnav-spacer-height: 133px;
 
 #contact-form-section {
     background-color: $shadow-blue;
+}
+
+
+// -------------------------------------------------- 'login / register styling
+
+.set-min-height {
+    min-height: calc(100vh - #{$topnav-spacer-height} - #{$footer-height});
 }

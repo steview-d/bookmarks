@@ -651,9 +651,9 @@
 }
 
 #footer-section .content .social-icons {
-  margin: .4rem;
-  padding: .4rem;
-  font-size: 1.5rem;
+  margin: .5rem;
+  padding: .5rem;
+  font-size: 1.75rem;
   color: #ffffff;
   -webkit-transition: .5s ease-out;
   transition: .5s ease-out;
@@ -735,5 +735,9 @@
 
 #contact-form-section {
   background-color: #7180AC;
+}
+
+.set-min-height {
+  min-height: calc(100vh - 133px - 116px);
 }
 /*# sourceMappingURL=main.css.map */
