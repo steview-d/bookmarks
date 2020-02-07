@@ -632,6 +632,32 @@
   font-size: 1.8rem;
 }
 
+#footer-section {
+  background-color: black;
+}
+
+#footer-section .content {
+  padding: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+#footer-section .content .social-icons {
+  margin: .4rem;
+  padding: .4rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  -webkit-transition: .5s ease-out;
+  transition: .5s ease-out;
+}
+
+#footer-section .content .social-icons:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: white;
+  color: black;
+}
+
 #index-page {
   min-height: calc(100vh - 133px);
 }
