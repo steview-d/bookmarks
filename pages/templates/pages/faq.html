@@ -81,6 +81,12 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Contact Form</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ contact_form.as_p }}
+                        <input type="submit" value="Send" name="contact-form" class="btn btn-info">
+                    </form>
+                    
                 </div>
             </div>
         </div>

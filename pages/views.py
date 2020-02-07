@@ -1,4 +1,6 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -28,7 +30,7 @@ def pricing(request):
         ['Cost', 'Free', '£20 for lifetime access'],
     ]
 
-    context = {"table_data": table_data}
+    context = {"table_data": table_data, }
 
     return render(request, "pages/pricing.html", context)
 
@@ -38,6 +40,19 @@ def faq(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    context = {}
+    # initialize contact form
+    contact_form = ContactForm()
+
+    # check for contact form
+    if 'contact-form' in request.POST:
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            messages.success(
+                request, f"Form sent successfully. Thank you.")
+
+            return redirect('faq_page')
+
+    context = {"contact_form": contact_form, }
 
     return render(request, "pages/faq.html", context)
