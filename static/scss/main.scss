@@ -354,6 +354,10 @@ $topnav-spacer-height: 133px;
 // ------------------------------------------------------------ 'Pages' styling
 // ------------------------------------------------------------------------ all
 
+#get-started-section {
+    background-color: $white;
+}
+
 // --------------------------------------------------------------------- navbar
 
 #pages-nav {
@@ -419,6 +423,11 @@ $topnav-spacer-height: 133px;
     }
 }
 
+.nav-border {
+    border-bottom: 1px solid #aaaaaa;
+
+}
+
 
 // --------------------------------------------------------------------- footer
 
@@ -454,62 +463,29 @@ $topnav-spacer-height: 133px;
     section {
         padding-top: 4rem;
         padding-bottom: 4rem;
+
+        .content {
+            padding: 1rem;
+        }
     }
 }
 
 #headline-section {
-    .content {
-        padding: 1rem;
-    }
+    background-color: $white;
 }
 
 #features-section {
     background-color: $shadow-blue;
-
-    .container {
-        background-color: $shadow-blue;
-
-        .content {
-            padding: 1rem;
-        }
-    }
 }
 
 #chrome-ext-section {
     background-color: $white;
-
-    .container {
-        background-color: $white;
-
-        .content {
-            padding: 1rem;
-        }
-    }
 }
 
 #testimonials-section {
     background-color: $light-steel-blue;
-
-    .container {
-        background-color: $light-steel-blue;
-
-        .content {
-            padding: 1rem;
-        }
-    }
 }
 
-#get-started-section {
-    background-color: $white;
-
-    .container {
-        background-color: $white;
-
-        .content {
-            padding: 1rem;
-        }
-    }
-}
 
 // ----------------------------------------------------------------------------
 

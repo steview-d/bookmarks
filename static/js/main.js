@@ -450,10 +450,14 @@ $(document).ready(function() {
     $(window).scroll(function() {
         if (window.scrollY > 100) {
             $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
-            $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
+            $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600, function () {
+                $('#pages-nav').addClass('nav-border');
+            });
+            
         } else {
             $('.navbar-title').css({ opacity: 1}).slideDown(600);
             $('.mobile-menu').css({ opacity: 1}).slideDown(600);
+            $('#pages-nav').removeClass('nav-border');
 
         }
     });

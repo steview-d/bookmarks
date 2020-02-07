@@ -1,31 +1,41 @@
 {% extends 'base.html' %}
 
-{% block page_title %}Pricing{% endblock %}
+{% block page_title %}About{% endblock %}
 
 {% block content %}
 
 {% include 'pages/components/nav.html' %}
 
-<div id="pricing-page" class="container-fluid">
+<div id="index-page">
     <!-- messages -->
     {% include 'components/messages.html' %}
 
-    <div class="py-5"></div>
+    <section id="headline-section" class="container">
+        <div class="row">
+            <div class="col-7 content" style="background-color:#ddd">
+                <h2>HEADLINE</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
+                    maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus quo,
+                    possimus quos eos et.</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
+                    optio consectetur maiores dolorum illo cum impedit!</p>
+            </div>
 
-    <div class="container-fluid" style="background-color: #555">
-        <div class="container" style="background-color: #aaa">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Hello!</h1>
-                    <p>This is the index / about page.</p>
-                    <p>This is the index / about page.</p>
-                    <p>This is the index / about page.</p>
-                    <div style="height: 150px; background-color: orange"></div>
-                </div>
+            <div class="col-5 content" style="background-color:#aaa">
+                <h5>IMAGE TO BE PLACED HERE</h5>
+                <p>Probably the main logo - but with additional styling?</p>
+                <p>Invert colors and circular border, etc</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- get started -->
+    {% include 'pages/components/get_started.html' %}
 
 </div>
+
+<!-- Footer -->
+{% include 'pages/components/footer.html' %}
 
 {% endblock %}
