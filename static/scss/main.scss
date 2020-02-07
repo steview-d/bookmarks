@@ -508,5 +508,27 @@ $topnav-spacer-height: 133px;
 
 #pricing-table-section {
     background-color: #343a40;
-    // background-color: $shadow-blue;
+}
+
+// ----------------------------------------------------------------------- faqs
+
+#faq-page {
+    min-height: calc(100vh - #{$topnav-spacer-height});
+
+    section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+
+        .content {
+            padding: 1rem;
+        }
+    }
+}
+
+#faq-intro-section {
+    background-color: $white;
+}
+
+#contact-form-section {
+    background-color: $shadow-blue;
 }

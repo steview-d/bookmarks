@@ -715,4 +715,25 @@
 #pricing-table-section {
   background-color: #343a40;
 }
+
+#faq-page {
+  min-height: calc(100vh - 133px);
+}
+
+#faq-page section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+#faq-page section .content {
+  padding: 1rem;
+}
+
+#faq-intro-section {
+  background-color: #ffffff;
+}
+
+#contact-form-section {
+  background-color: #7180AC;
+}
 /*# sourceMappingURL=main.css.map */

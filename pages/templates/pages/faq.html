@@ -6,26 +6,82 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div id="index-page">
+<div id="faq-page">
     <!-- messages -->
     {% include 'components/messages.html' %}
 
-    <section id="headline-section" class="container">
+    <!-- FAQ intro text -->
+    <section id="faq-intro--section" class="container">
         <div class="row">
-            <div class="col-7 content" style="background-color:#ddd">
-                <h2>HEADLINE</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                    maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus quo,
-                    possimus quos eos et.</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                    optio consectetur maiores dolorum illo cum impedit!</p>
+            <div class="col-12 content" style="background-color:#ddd">
+                <h2>FAQ INTRO TEXT</h2>
+                <p>Get answers to some of the most commonly asked questions</p>
+                <p>Have a different question? That's ok too!</p>
+                <button type="button" class="btn btn-secondary btn-sm">Contact Us</button>
             </div>
+        </div>
+        <div class="my-5"></div>
 
-            <div class="col-5 content" style="background-color:#aaa">
-                <h5>IMAGE TO BE PLACED HERE</h5>
-                <p>Probably the main logo - but with additional styling?</p>
-                <p>Invert colors and circular border, etc</p>
+        <!-- FAQ's -->
+        <div class="row">
+            <div class="col"></div>
+            <div id="accordion" class="col-md-9" style="width: 100%">
+                <!-- Question 1 -->
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                Collapsible Group Item #1
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse qshow" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                Collapsible Group Item #2
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </section>
+
+    <section id="contact-form-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Contact Form</h1>
+                </div>
             </div>
         </div>
     </section>
