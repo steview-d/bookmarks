@@ -2,9 +2,12 @@
 
 <!-- nav bar -->
 <nav id="pages-nav" class="container-fluid">
+    <!-- navbar title -->
     <h1 class="navbar-title">
         Links
     </h1>
+
+    <!-- navbar items -->
     <ul class="nav-bar-items">
         <li class="navbar-link {% if 'about' in request.resolver_match.url_name %}active{% endif %}">
             <a href="{% url 'about_page' %}">About</a></li>
@@ -12,12 +15,22 @@
             <a href="{% url 'pricing_page' %}">Pricing</a></li>
         <li class="navbar-link {% if 'faq' in request.resolver_match.url_name %}active{% endif %}">
             <a href="{% url 'faq_page' %}">FAQ</a></li>
-        <li class="navbar-link {% if 'login' in request.resolver_match.url_name %}active{% endif %}">
+        <li class="navbar-link {% if 'login' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
             <a href="{% url 'login' %}">Login</a></li>
-        <li class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %}">
+        <li class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
             <a href="{% url 'register' %}">Register</a></li>
     </ul>
+
+    <!-- login / register dropdown for small screens -->
+    <div class="d-sm-none mobile-menu" data-toggle="dropdown">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+    </div>
+
 </nav>
 
-<div class="topnav-spacer">
-</div>
+<div class="topnav-spacer"></div>

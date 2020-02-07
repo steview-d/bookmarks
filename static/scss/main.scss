@@ -405,6 +405,13 @@ $topnav-spacer-height: 64px;
             border-bottom: 5px solid $logo-blue;
         }
     }
+
+    .mobile-menu {
+        position: absolute;
+        top: 2vw;
+        left: 5vw;
+        font-size: 1.8rem;
+    }
 }
 
 // ---------------------------------------------------------------------- index
@@ -414,3 +421,4 @@ $topnav-spacer-height: 64px;
 }
 
 // ----------------------------------------------------------------------------
+

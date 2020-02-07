@@ -625,6 +625,13 @@
   border-bottom: 5px solid #175c9d;
 }
 
+#pages-nav .mobile-menu {
+  position: absolute;
+  top: 2vw;
+  left: 5vw;
+  font-size: 1.8rem;
+}
+
 #index-page {
   min-height: calc(100vh - 64px);
 }

@@ -450,8 +450,11 @@ $(document).ready(function() {
     $(window).scroll(function() {
         if (window.scrollY > 100) {
             $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
+            $('.user-icon').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
         } else {
             $('.navbar-title').css({ opacity: 1}).slideDown(600);
+            $('.user-icon').css({ opacity: 1}).slideDown(600);
+
         }
     });
 
