@@ -531,7 +531,20 @@ $footer-height: 116px;
 }
 
 #contact-form-section {
-    background-color: $shadow-blue;
+    background-color: $light-steel-blue;
+
+    .form-container {
+        margin: 0 auto;
+
+        // .invalid-feedback {
+        //     color: $white;
+        // }
+        
+        // .form-control.is-invalid,
+        // .was-validated .form-control:invalid {
+        //     border-color: $black;
+        // }
+    }
 }
 
 

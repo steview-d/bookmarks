@@ -53,6 +53,9 @@ def faq(request):
 
             return redirect('faq_page')
 
+        messages.error(
+            request, f"There was an error with your form - please try again.")
+
     context = {"contact_form": contact_form, }
 
     return render(request, "pages/faq.html", context)

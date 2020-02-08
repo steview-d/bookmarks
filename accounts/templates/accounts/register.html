@@ -9,10 +9,13 @@
 {% include 'pages/components/nav.html' %}
 
 <div class="container set-min-height">
+    <!-- messages -->
+    {% include 'components/messages.html' %}
+
     <div class="row">
         <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
             <h3>Create Your New Account</h3>
-            <form method="POST">
+            <form method="POST" novalidate>
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit">Login</button>

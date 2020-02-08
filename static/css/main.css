@@ -734,7 +734,11 @@
 }
 
 #contact-form-section {
-  background-color: #7180AC;
+  background-color: #A8D0DB;
+}
+
+#contact-form-section .form-container {
+  margin: 0 auto;
 }
 
 .set-min-height {
