@@ -13,6 +13,19 @@ class RegisterAccountForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super(RegisterAccountForm, self).__init__(*args, **kwargs)
+        # move help_text to a data-attribute so it can be used with
+        # tippy.js and displayed in a tooltip
+        for field in self.fields:
+            help_text = self.fields[field].help_text
+            self.fields[field].help_text = None
+            if help_text != '':
+                self.fields[field].widget.attrs.update({
+                    'class': 'tippy-help-text',
+                    'data-helptext': help_text
+                    })
+
 
 class UpdateUserEmailForm(forms.ModelForm):
     """ form to allow users to change their email address """

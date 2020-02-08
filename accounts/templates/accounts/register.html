@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block page_title %}Register{% endblock %}
@@ -17,7 +18,17 @@
             <h3>Create Your New Account</h3>
             <form method="POST" novalidate>
                 {% csrf_token %}
-                {{ form|crispy }}
+
+                {% for field in form.visible_fields %}
+                <div>
+                    {% if 'tippy-help-text' in field.field.widget.attrs.class %}
+                    <!-- add info / help icon if field has help text -->
+                    <i class="fa fa-info-circle tippy-register-help float-right" aria-hidden="true"></i>
+                    {% endif %}
+                    {{ field|as_crispy_field}}
+                </div>
+                {% endfor %}
+
                 <button type="submit">Login</button>
                 <div>
                     <small>Already have an account? Log in <a href="{% url 'login' %}">here</a></small>
@@ -32,3 +43,8 @@
 {% include 'pages/components/footer.html' %}
 
 {% endblock %}
+
+{% block tippy_js %}
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script src="{% static 'js/tooltip.js' %}"></script>
+{% endblock tippy_js %}
