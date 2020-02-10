@@ -775,8 +775,8 @@ a:hover {
 
 .user-auth-container form .pw-reset a {
   color: #888888;
-  -webkit-transition: .3s ease-out;
-  transition: .3s ease-out;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .user-auth-container form .pw-reset a:hover {
@@ -784,7 +784,8 @@ a:hover {
 }
 
 .user-auth-container button {
-  margin: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
 }
 
 .user-auth-container i {
@@ -794,11 +795,68 @@ a:hover {
 }
 
 .label-small {
-  font-size: 0.8rem;
-  padding: 0.2rem 0.4rem;
+  font-size: .8rem;
+  padding: .2rem .4rem;
   margin: 0 0.2rem;
   border: 1px solid black;
   color: black;
   white-space: nowrap;
+}
+
+.btn--invert {
+  background-color: transparent;
+  border: 1px solid #175c9d;
+  padding: .2rem .4rem;
+  color: #175c9d;
+  -webkit-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+}
+
+.btn--invert:hover {
+  background-color: #175c9d;
+  color: #ffffff;
+}
+
+.btn--slide {
+  padding: .2rem .4rem;
+  font-size: 1rem;
+  position: relative;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: transparent;
+  white-space: nowrap;
+}
+
+.btn--slide span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: inherit;
+  opacity: 0;
+  color: #ffffff;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.btn--slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #175c9d;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.btn--slide:hover:before {
+  width: 100%;
+}
+
+.btn--slide:hover span {
+  opacity: 1;
 }
 /*# sourceMappingURL=main.css.map */
