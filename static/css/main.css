@@ -230,6 +230,11 @@
   cursor: default;
 }
 
+.vertical-bar-left {
+  border-left: 20px solid #175c9d;
+  padding-left: 1.4rem;
+}
+
 a {
   color: #000000;
 }
@@ -720,6 +725,16 @@ a:hover {
   background-color: #ffffff;
 }
 
+#pricing-text-section .faded-link-sm a {
+  color: #888888;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+#pricing-text-section .faded-link-sm a:hover {
+  color: #222222;
+}
+
 #pricing-table-section {
   background-color: #343a40;
 }
@@ -785,7 +800,7 @@ a:hover {
 
 .user-auth-container button {
   margin-top: 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .user-auth-container i {
@@ -794,31 +809,52 @@ a:hover {
   color: #175c9d;
 }
 
-.label-small {
-  font-size: .8rem;
-  padding: .2rem .4rem;
+.label {
+  padding: 0.2rem 0.4rem;
   margin: 0 0.2rem;
   border: 1px solid black;
   color: black;
   white-space: nowrap;
 }
 
+.label-small {
+  font-size: 0.8rem;
+}
+
 .btn--invert {
   background-color: transparent;
-  border: 1px solid #175c9d;
-  padding: .2rem .4rem;
-  color: #175c9d;
-  -webkit-transition: 0.5s ease-out;
-  transition: 0.5s ease-out;
+  border: 1px solid #000000;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #000000;
+  display: inline-block;
+  -webkit-transition: 0.35s ease-out;
+  transition: 0.35s ease-out;
 }
 
 .btn--invert:hover {
+  background-color: #424242;
+  color: #ffffff;
+}
+
+.btn--invert-blue {
+  background-color: transparent;
+  border: 1px solid #175c9d;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #175c9d;
+  display: inline-block;
+  -webkit-transition: 0.35s ease-out;
+  transition: 0.35s ease-out;
+}
+
+.btn--invert-blue:hover {
   background-color: #175c9d;
   color: #ffffff;
 }
 
 .btn--slide {
-  padding: .2rem .4rem;
+  padding: 0.2rem 0.4rem;
   font-size: 1rem;
   position: relative;
   border: 1px solid #000000;

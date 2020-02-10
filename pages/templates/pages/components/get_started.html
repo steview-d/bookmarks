@@ -1,10 +1,13 @@
 <section id="get-started-section" class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-12 content" style="background-color:#ddd">
-                <h2>READY TO GET STARTED?</h2>
-                <p>Create Account</p>
-                <p>... or log in</p>
+            <div class="col-12 content text-center">
+                <div>
+                    <a href="{% url 'register' %}" class="btn--invert mt-1">Create Account</a>
+                </div>
+                <div class="faded-link-sm">
+                    <small><a href="{% url 'login' %}">or log in here</a></small>
+                </div>
             </div>
 
         </div>

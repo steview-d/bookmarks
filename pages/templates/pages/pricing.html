@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block page_title %}About{% endblock %}
 
@@ -13,15 +14,39 @@
     <!-- pricing text detail -->
     <section id="pricing-text-section" class="container">
         <div class="row">
-            <div class="col-12">
-                <p>Links is free to use, and always will be.</p>
-                <p>There are some restrictions which you can see below.</p>
-                <p>To remove these restrictions and go 'PREMIUM' normally costs £20/yr</p>
-                <p>We have an offer at the moment where the first 1000 users to sign up for Premium will instead get
-                    lifetime access.</p>
+            <div class="col-12 col-lg-5 order-lg-2 mt-n5 mb-4 my-lg-0">
+                <img src="{% static 'img/pages/faq/free.png' %}" alt="free" class="img-fluid d-block mx-auto">
+            </div>
+            <div class="col-12 col-lg-7 order-lg-1">
+                <div class="vertical-bar-left">
+                    <h2 class="mb-3 d-none d-sm-block">Free, now and forever.</h2>
+                    <p>Anyone can create a free account and start using Links straight away.</p>
+                    <p>Whilst the core experience remains the same for both free and Premium members, being a Premium
+                        member does come with some exciting bonuses. For more details, see the comparison table further
+                        down
+                    </p>
+                    <p>As a free member, you can still add, edit, organise and delete all your bookmarks in exactly the
+                        same
+                        way as a Premium member.</p>
+                    <p>Our Chrome browser <a
+                            href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
+                            target="_blank" class="label">extension</a> is free to
+                        use for all members too, and free technical support is
+                        available, should you need it.</p>
+                </div>
+                <hr class="mt-5 mb-5">
+            </div>
+        </div>
+        <div class="text-center">
+            <div>
+                <a href="{% url 'register' %}" class="btn--invert mt-1">Create Account</a>
+            </div>
+            <div class="faded-link-sm">
+                <small><a href="{% url 'login' %}">or log in here</a></small>
             </div>
         </div>
     </section>
+
 
     <!-- pricing table -->
     <section id="pricing-table-section" class="container-fluid">

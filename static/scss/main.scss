@@ -63,6 +63,11 @@ $footer-height: 116px;
     cursor: default;
 }
 
+.vertical-bar-left {
+    border-left: 20px solid $logo-blue;
+    padding-left: 1.4rem;
+}
+
 // -------------------------- page setup and override some bootstrap 4 defaults
 
 a {
@@ -514,6 +519,15 @@ a {
 
 #pricing-text-section {
     background-color: $white;
+
+    .faded-link-sm a {
+        color: #888888;
+        transition: 0.3s ease-out;
+
+        &:hover {
+            color: #222222;
+        }
+    }
 }
 
 #pricing-table-section {
@@ -592,7 +606,7 @@ a {
 
     button {
         margin-top: 1rem;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
 
     i {
@@ -606,31 +620,50 @@ a {
 
 // ----------------------------------------------------------- buttons & labels
 
-.label-small {
-    font-size: .8rem;
-    padding: .2rem .4rem;
+.label {
+    padding: 0.2rem 0.4rem;
     margin: 0 0.2rem;
     border: 1px solid black;
     color: black;
     white-space: nowrap;
+
+    &-small {
+        font-size: 0.8rem;
+    }
 }
 
 .btn--invert {
-    // font-size: 0.8rem;
     background-color: transparent;
-    border: 1px solid $logo-blue;
-    padding: .2rem .4rem;
-    color: $logo-blue;
-    transition: 0.5s ease-out;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.35s ease-out;
+
+    &:hover {
+        background-color: #424242;
+        color: $white;
+    }
 }
 
-.btn--invert:hover {
-    background-color: $logo-blue;
-    color: $white;
+.btn--invert-blue {
+    background-color: transparent;
+    border: 1px solid $logo-blue;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $logo-blue;
+    display: inline-block;
+    transition: 0.35s ease-out;
+
+    &:hover {
+        background-color: $logo-blue;
+        color: $white;
+    }
 }
 
 .btn--slide {
-    padding: .2rem .4rem;
+    padding: 0.2rem 0.4rem;
     font-size: 1rem;
     position: relative;
     border: 1px solid $black;
