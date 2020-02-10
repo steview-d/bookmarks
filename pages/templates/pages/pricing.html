@@ -34,9 +34,10 @@
                         use for all members too, and free technical support is
                         available, should you need it.</p>
                 </div>
-                <hr class="mt-5 mb-5">
             </div>
         </div>
+        <hr class="mt-5 mb-5">
+
         <div class="text-center">
             <div>
                 <a href="{% url 'register' %}" class="btn--invert mt-5">Create Account</a>
@@ -86,19 +87,41 @@
         <div class="container">
             <div class="row">
                 <div class="col"></div>
+                <div class="col-12 col-md-5 col-lg-4 col-xl-4">
+                    <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="free"
+                        class="img-fluid d-block mx-auto">
+                </div>
+                <div class="col-12 col-md-5 col-lg-4 col-xl-4 mt-5 mt-md-0 text-center">
+                    <div>
+                        <h2>Early Bird Offer</h2>
+                        <p>Limited to the first 1000 users</p>
+                        <div class="d-inline-block p-4" style="border: 1px solid black">
+                            <p>Lifetime Premium Membership.</p>
+                            <p>£20</p>
+                            <small>Normally £20/yr</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+
+
+
+
+            <!-- <div class="row">
+                <div class="col"></div>
                 <div class="col-12 md-9 text-center">
                     <h1>Early Bird Offer</h1>
+                    <p>Limited to the first 1000 users</p>
                     <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="early-bird" class="my-5">
                     <div>
                         <h5 class=""><span class="badge badge-secondary">Lifetime Premium Membership</span></h5>
                         <h2><span class="badge badge-secondary">£20</span></h2>
                         <div class="mt-n2 mb-4">
-                            <small>Normally £20/yr</small></div>
-                        <h5><span class="badge badge-secondary">Limited to the first 1000 users</span></h5>
+                            <small>Normally £20/yr</small>
+                        </div>
                     </div>
-
                     <hr class="my-5 w-50">
-
                     <div>
                         <a href="{% url 'register' %}" class="btn--invert">Create Account</a>
                     </div>
@@ -107,9 +130,10 @@
                     </div>
                 </div>
                 <div class="col"></div>
-            </div>
+            </div> -->
         </div>
     </section>
+
 
 </div>
 

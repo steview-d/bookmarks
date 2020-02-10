@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') else False
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.117', '192.168.1.102',
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.117', '192.168.1.94',
                  'links-sw.herokuapp.com']
 
 

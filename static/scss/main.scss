@@ -15,7 +15,7 @@ $shadow-blue: #7180ac;
 $middle-red: #e49273;
 $classic-rose: #EFCBE6;
 $burnished-brown: #a37a74;
-$topnav-spacer-height: 133px;
+$topnav-spacer-height: 100px;
 $footer-height: 116px;
 
 // --------------------------------------------------------------------- mixins
@@ -523,6 +523,14 @@ a {
 
 #pricing-text-section {
     background-color: $white;
+
+    img {
+        width: 80%;
+
+        @media only screen and (min-width: 992px) {
+            width: 100%;
+        }
+    }
 
     .faded-link-sm a {
         color: #888888;
