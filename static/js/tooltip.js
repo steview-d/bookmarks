@@ -17,6 +17,7 @@ $(document).ready(function() {
 
     // show help text for register account form fields
     tippy('.tippy-register-help', {
+        theme: 'dark',
         onShow(instance) {
             const el = $(instance.reference.nextElementSibling).find('.tippy-help-text');
             instance.setContent(el[0].dataset.helptext);

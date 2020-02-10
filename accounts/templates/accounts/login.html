@@ -17,13 +17,20 @@
             <h3>Log In To Your Account</h3>
             <form method="POST" novalidate>
                 {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit">Login</button>
-                <div>
-                    <small>Need an account? Create one <a href="{% url 'register' %}">here</a></small>
+                {% for field in form.visible_fields %}
+                {{ field|as_crispy_field}}
+                {% if field.label == 'Password' %}
+                <div class="pw-reset">
+                    <small><a href="{% url 'password_reset' %}">Reset Password</a></small>
                 </div>
+                {% endif %}
+
+                {% endfor %}
                 <div>
-                    <small>Forgot your password? Reset it <a href="{% url 'password_reset' %}">here</a></small>
+                    <button type="submit">Login</button></div>
+                <div>
+                    <small>Need an account? Create one <a href="{% url 'register' %}"
+                            class="label-small">here</a></small>
                 </div>
             </form>
         </div>

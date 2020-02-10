@@ -230,6 +230,15 @@
   cursor: default;
 }
 
+a {
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
 .flex-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -573,7 +582,7 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 #pages-nav .navbar-title {
@@ -603,7 +612,6 @@
 
 #pages-nav .nav-bar-items .navbar-link a {
   position: relative;
-  color: #000000;
   text-decoration: none;
 }
 
@@ -615,7 +623,7 @@
   height: 5px;
   width: 0;
   left: 50%;
-  background: #175C9D;
+  background: #175c9d;
   -webkit-transition: width 0.2s, left 0.2s;
   transition: width 0.2s, left 0.2s;
 }
@@ -626,7 +634,7 @@
 }
 
 #pages-nav .nav-bar-items .active {
-  border-bottom: 5px solid #175C9D;
+  border-bottom: 5px solid #175c9d;
 }
 
 #pages-nav .mobile-menu {
@@ -651,12 +659,12 @@
 }
 
 #footer-section .content .social-icons {
-  margin: .5rem;
-  padding: .5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   font-size: 1.75rem;
   color: #ffffff;
-  -webkit-transition: .5s ease-out;
-  transition: .5s ease-out;
+  -webkit-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
 }
 
 #footer-section .content .social-icons:hover {
@@ -684,7 +692,7 @@
 }
 
 #features-section {
-  background-color: #7180AC;
+  background-color: #7180ac;
 }
 
 #chrome-ext-section {
@@ -692,7 +700,7 @@
 }
 
 #testimonials-section {
-  background-color: #A8D0DB;
+  background-color: #a8d0db;
 }
 
 #pricing-page {
@@ -734,7 +742,7 @@
 }
 
 #contact-form-section {
-  background-color: #A8D0DB;
+  background-color: #a8d0db;
 }
 
 #contact-form-section .form-container {
@@ -760,7 +768,37 @@
   margin: 2rem 1rem;
 }
 
+.user-auth-container form .pw-reset {
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+.user-auth-container form .pw-reset a {
+  color: #888888;
+  -webkit-transition: .3s ease-out;
+  transition: .3s ease-out;
+}
+
+.user-auth-container form .pw-reset a:hover {
+  color: #222222;
+}
+
 .user-auth-container button {
   margin: 1rem 0;
+}
+
+.user-auth-container i {
+  margin-top: 0.2rem;
+  font-size: 1.2rem;
+  color: #175c9d;
+}
+
+.label-small {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+  border: 1px solid black;
+  color: black;
+  white-space: nowrap;
 }
 /*# sourceMappingURL=main.css.map */
