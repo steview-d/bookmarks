@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 
 
 class RegisterAccountForm(UserCreationForm):
@@ -59,3 +59,27 @@ class UpdatedPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(UpdatedPasswordChangeForm, self).__init__(*args, **kwargs)
         self.fields['old_password'].widget.attrs['autofocus'] = False
+
+
+class NewSetPasswordForm(SetPasswordForm):
+    """
+    Extend SetPasswordForm to add helpt_text data-helptext attribute
+    so it can be used with tippy.js to display help text when hovering
+    or clicking the 'i' icon.
+    """
+
+    class Meta:
+        fields = ['new_password1']
+
+    def __init__(self, *args, **kwargs):
+        super(NewSetPasswordForm, self).__init__(*args, **kwargs)
+        # move help_text to a data-attribute so it can be used with
+        # tippy.js and displayed in a tooltip
+        for field in self.fields:
+            help_text = self.fields[field].help_text
+            self.fields[field].help_text = None
+            if help_text != '':
+                self.fields[field].widget.attrs.update({
+                    'class': 'tippy-help-text',
+                    'data-helptext': help_text
+                    })

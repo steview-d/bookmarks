@@ -23,4 +23,13 @@ $(document).ready(function() {
             instance.setContent(el[0].dataset.helptext);
         }
     });
+
+    // show help text for set password form field
+    tippy('.tippy-set-pw-help', {
+        theme: 'dark',
+        onShow(instance) {
+            const el = $(instance.reference.nextElementSibling).find('.tippy-help-text');
+            instance.setContent(el[0].dataset.helptext);
+        }
+    });
 });
