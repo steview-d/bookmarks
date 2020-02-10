@@ -684,8 +684,8 @@ a:hover {
 }
 
 #index-page section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 #index-page section .content {
@@ -713,8 +713,8 @@ a:hover {
 }
 
 #pricing-page section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 #pricing-page section .content {
@@ -739,13 +739,17 @@ a:hover {
   background-color: #343a40;
 }
 
+#pricing-early-bird {
+  background-color: #beb8eb;
+}
+
 #faq-page {
   min-height: calc(100vh - 133px);
 }
 
 #faq-page section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 #faq-page section .content {

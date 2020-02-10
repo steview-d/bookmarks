@@ -15,7 +15,7 @@
     <section id="pricing-text-section" class="container">
         <div class="row">
             <div class="col-12 col-lg-5 order-lg-2 mt-n5 mb-4 my-lg-0">
-                <img src="{% static 'img/pages/faq/free.png' %}" alt="free" class="img-fluid d-block mx-auto">
+                <img src="{% static 'img/pages/pricing/free.png' %}" alt="free" class="img-fluid d-block mx-auto">
             </div>
             <div class="col-12 col-lg-7 order-lg-1">
                 <div class="vertical-bar-left">
@@ -39,7 +39,7 @@
         </div>
         <div class="text-center">
             <div>
-                <a href="{% url 'register' %}" class="btn--invert mt-1">Create Account</a>
+                <a href="{% url 'register' %}" class="btn--invert mt-5">Create Account</a>
             </div>
             <div class="faded-link-sm">
                 <small><a href="{% url 'login' %}">or log in here</a></small>
@@ -81,8 +81,35 @@
         </div>
     </section>
 
-    <!-- get started -->
-    {% include 'pages/components/get_started.html' %}
+    <!-- special offer -->
+    <section id="pricing-early-bird" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-12 md-9 text-center">
+                    <h1>Early Bird Offer</h1>
+                    <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="early-bird" class="my-5">
+                    <div>
+                        <h5 class=""><span class="badge badge-secondary">Lifetime Premium Membership</span></h5>
+                        <h2><span class="badge badge-secondary">£20</span></h2>
+                        <div class="mt-n2 mb-4">
+                            <small>Normally £20/yr</small></div>
+                        <h5><span class="badge badge-secondary">Limited to the first 1000 users</span></h5>
+                    </div>
+
+                    <hr class="my-5 w-50">
+
+                    <div>
+                        <a href="{% url 'register' %}" class="btn--invert">Create Account</a>
+                    </div>
+                    <div class="faded-link-sm">
+                        <small><a href="{% url 'login' %}">or log in here</a></small>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </section>
 
 </div>
 

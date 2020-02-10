@@ -13,6 +13,7 @@ $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
 $shadow-blue: #7180ac;
 $middle-red: #e49273;
+$classic-rose: #EFCBE6;
 $burnished-brown: #a37a74;
 $topnav-spacer-height: 133px;
 $footer-height: 116px;
@@ -47,6 +48,11 @@ $footer-height: 116px;
 
 @mixin flex-none {
     flex: 0 0 auto;
+}
+
+@mixin section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 // ----------------------------------------------------------------- re-usables
@@ -477,8 +483,7 @@ a {
     min-height: calc(100vh - #{$topnav-spacer-height});
 
     section {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        @include section-padding;
 
         .content {
             padding: 1rem;
@@ -508,8 +513,7 @@ a {
     min-height: calc(100vh - #{$topnav-spacer-height});
 
     section {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        @include section-padding;
 
         .content {
             padding: 1rem;
@@ -534,14 +538,19 @@ a {
     background-color: #343a40;
 }
 
+#pricing-early-bird {
+    background-color: #beb8eb;
+
+
+}
+
 // ----------------------------------------------------------------------- faqs
 
 #faq-page {
     min-height: calc(100vh - #{$topnav-spacer-height});
 
     section {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        @include section-padding;
 
         .content {
             padding: 1rem;
