@@ -87,7 +87,9 @@
                     <form method="POST" novalidate>
                         {% csrf_token %}
                         {{ contact_form|crispy }}
-                        <input type="submit" value="Send" name="contact-form" class="btn btn-info">
+                        <input type="submit" value="Send" name="contact-form" class="btn btn-outline-info">
+                        <input type="reset" value="Reset" class="btn btn-outline-danger">
+
                     </form>
                     
                 </div>
