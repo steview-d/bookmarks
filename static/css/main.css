@@ -235,6 +235,10 @@
   padding-left: 1.4rem;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   color: #000000;
 }
@@ -750,7 +754,12 @@ a:hover {
 }
 
 #pricing-early-bird {
-  background-color: #beb8eb;
+  background-color: #EFF4F7;
+}
+
+#pricing-early-bird .box {
+  display: inline-block;
+  border: 2px solid #175c9d;
 }
 
 #faq-page {

@@ -76,6 +76,10 @@ $footer-height: 116px;
 
 // -------------------------- page setup and override some bootstrap 4 defaults
 
+html {
+    scroll-behavior: smooth;
+}
+
 a {
     color: $black;
 
@@ -547,8 +551,12 @@ a {
 }
 
 #pricing-early-bird {
-    background-color: #beb8eb;
+    background-color: #EFF4F7;
 
+    .box {
+        display: inline-block;
+        border: 2px solid $logo-blue;
+    }
 
 }
 
