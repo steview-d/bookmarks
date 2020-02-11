@@ -462,4 +462,20 @@ $(document).ready(function() {
         }
     });
 
+    // on click, toggle 'plus' icon for each entry on faq page
+    $(".collapse")
+        .on("show.bs.collapse", function() {
+            $(this)
+                .parent()
+                .find(".fa-plus-square-o")
+                .toggleClass('fa-plus-square-o fa-plus-square');
+        })
+        .on("hide.bs.collapse", function() {
+            $(this)
+                .parent()
+                .find(".fa-plus-square")
+                .toggleClass('fa-plus-square-o fa-plus-square');
+
+        });
+
 });
