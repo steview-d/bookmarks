@@ -14,66 +14,161 @@
     {% include 'components/messages.html' %}
 
     <!-- FAQ intro text -->
-    <section id="faq-intro--section" class="container">
+    <section id="faq-section" class="container">
         <div class="row">
-            <div class="col-12 content" style="background-color:#ddd">
-                <h2>FAQ INTRO TEXT</h2>
-                <p>Get answers to some of the most commonly asked questions</p>
-                <p>Have a different question? That's ok too!</p>
-                <button type="button" class="btn btn-secondary btn-sm">Contact Us</button>
+            <div class="col-12 content text-center">
+                <h2>Get answers to some of the most commonly asked questions</h2>
+                <!-- <p>Get answers to some of the most commonly asked questions</p> -->
+                <div class="other-questions text-center my-5">
+                    <h5>Have a different question? That's ok too!</h5>
+                    <a href="#contact-form-section" class="btn--invert mt-3">Contact Us</a>
+                </div>
             </div>
         </div>
-        <div class="my-5"></div>
+
 
         <!-- FAQ's -->
+
         <div class="row">
             <div class="col"></div>
             <div id="accordion" class="col-md-9" style="width: 100%">
+
                 <!-- Question 1 -->
                 <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                Collapsible Group Item #1
-                            </button>
-                        </h5>
+                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq1"
+                        aria-expanded="false" aria-controls="faq1">
+                        <div>
+                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            Frequently Asked Question #1
+                        </div>
                     </div>
-
-                    <div id="collapseOne" class="collapse qshow" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="faq1" class="collapse" aria-labelledby="faq1" data-parent="#accordion">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                Accusantium
+                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
+                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                nihil
+                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                rerum? A
+                                voluptatibus totam cumque voluptate?</p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Question 2 -->
                 <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                aria-expanded="false" aria-controls="collapseTwo">
-                                Collapsible Group Item #2
-                            </button>
-                        </h5>
+                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq2"
+                        aria-expanded="false" aria-controls="faq2">
+                        <div>
+                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            Frequently Asked Question #2
+                        </div>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div id="faq2" class="collapse" aria-labelledby="faq2" data-parent="#accordion">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                Accusantium
+                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
+                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                nihil
+                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                rerum? A
+                                voluptatibus totam cumque voluptate?</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Question 3 -->
+                <div class="card">
+                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq3"
+                        aria-expanded="false" aria-controls="faq3">
+                        <div>
+                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            Frequently Asked Question #3
+                        </div>
+                    </div>
+                    <div id="faq3" class="collapse" aria-labelledby="faq3" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                Accusantium
+                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
+                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                nihil
+                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                rerum? A
+                                voluptatibus totam cumque voluptate?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="card">
+                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq4"
+                        aria-expanded="false" aria-controls="faq4">
+                        <div>
+                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            Frequently Asked Question #4
+                        </div>
+                    </div>
+                    <div id="faq4" class="collapse" aria-labelledby="faq4" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                Accusantium
+                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
+                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                nihil
+                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                rerum? A
+                                voluptatibus totam cumque voluptate?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="card">
+                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq5"
+                        aria-expanded="false" aria-controls="faq5">
+                        <div>
+                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            Frequently Asked Question #5
+                        </div>
+                    </div>
+                    <div id="faq5" class="collapse" aria-labelledby="faq5" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                Accusantium
+                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
+                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                nihil
+                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                rerum? A
+                                voluptatibus totam cumque voluptate?</p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div class="col"></div>
         </div>
@@ -91,7 +186,7 @@
                         <input type="reset" value="Reset" class="btn btn-outline-danger">
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>

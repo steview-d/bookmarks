@@ -8,14 +8,14 @@ $white: #ffffff;
 $black: #000000;
 $logo-blue: #175c9d;
 $light-steel-blue: #a8d0db;
-$light-grey: #d7dae5;
+$light-grey: #eff4f7;
 $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
 $shadow-blue: #7180ac;
 $middle-red: #e49273;
-$classic-rose: #EFCBE6;
+$classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
-$topnav-spacer-height: 120px;
+$topnav-spacer-height: 90px;
 $footer-height: 116px;
 
 // --------------------------------------------------------------------- mixins
@@ -551,20 +551,17 @@ a {
 }
 
 #pricing-early-bird {
-    background-color: #EFF4F7;
+    background-color: #eff4f7;
 
     .box {
         display: inline-block;
         border: 2px solid $logo-blue;
     }
-
 }
 
 // ----------------------------------------------------------------------- faqs
 
 #faq-page {
-    min-height: calc(100vh - #{$topnav-spacer-height});
-
     section {
         @include section-padding;
 
@@ -574,8 +571,57 @@ a {
     }
 }
 
-#faq-intro-section {
+#faq-section {
     background-color: $white;
+
+    .other-questions {
+        display: inline-block;
+        padding: 2rem;
+        border: 2px solid black;
+    }
+
+    .card {
+        border-width: 0;
+
+        .card-header {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.2rem;
+            padding: .5rem;
+            background-color: transparent;
+            transition: 0.2s ease-out;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $light-grey;
+            }
+
+            i {
+                padding-right: 1rem;
+            }
+
+            // i {
+            //     padding: .9rem .5rem 0;
+            //     font-size: 1.2rem;
+                
+            // }
+
+            // .btn {
+            //     font-size: 1.2rem;
+            //     text-align: left;
+            // }
+
+            // .btn-link {
+            //     text-decoration: none;
+            //     color: $black;
+            // }
+        }
+
+        .card-body {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+    }
 }
 
 #contact-form-section {
@@ -595,7 +641,7 @@ a {
     }
 }
 
-// -------------------------------------------------- 'login / register styling
+// --------------------------------------------------- login / register styling
 
 .set-min-height {
     min-height: calc(100vh - #{$topnav-spacer-height} - #{$footer-height});
@@ -604,7 +650,7 @@ a {
 .user-auth-container {
     border: 2px solid #888888;
     border-radius: 5px;
-    margin: 2rem auto;
+    margin: 5rem auto 2rem;
     padding: 1.5rem;
 
     h3 {

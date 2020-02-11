@@ -269,7 +269,7 @@ a:hover {
 }
 
 .topnav-spacer {
-  height: 120px;
+  height: 90px;
 }
 
 #topnav-icons i {
@@ -365,7 +365,7 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 90px);
   z-index: -100;
   -webkit-transform: translate(0, -10%);
           transform: translate(0, -10%);
@@ -684,7 +684,7 @@ a:hover {
 }
 
 #index-page {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 90px);
 }
 
 #index-page section {
@@ -713,7 +713,7 @@ a:hover {
 }
 
 #pricing-page {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 90px);
 }
 
 #pricing-page section {
@@ -754,16 +754,12 @@ a:hover {
 }
 
 #pricing-early-bird {
-  background-color: #EFF4F7;
+  background-color: #eff4f7;
 }
 
 #pricing-early-bird .box {
   display: inline-block;
   border: 2px solid #175c9d;
-}
-
-#faq-page {
-  min-height: calc(100vh - 120px);
 }
 
 #faq-page section {
@@ -775,8 +771,47 @@ a:hover {
   padding: 1rem;
 }
 
-#faq-intro-section {
+#faq-section {
   background-color: #ffffff;
+}
+
+#faq-section .other-questions {
+  display: inline-block;
+  padding: 2rem;
+  border: 2px solid black;
+}
+
+#faq-section .card {
+  border-width: 0;
+}
+
+#faq-section .card .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-size: 1.2rem;
+  padding: .5rem;
+  background-color: transparent;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#faq-section .card .card-header:hover {
+  cursor: pointer;
+  background-color: #eff4f7;
+}
+
+#faq-section .card .card-header i {
+  padding-right: 1rem;
+}
+
+#faq-section .card .card-body {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 #contact-form-section {
@@ -788,13 +823,13 @@ a:hover {
 }
 
 .set-min-height {
-  min-height: calc(100vh - 120px - 116px);
+  min-height: calc(100vh - 90px - 116px);
 }
 
 .user-auth-container {
   border: 2px solid #888888;
   border-radius: 5px;
-  margin: 2rem auto;
+  margin: 5rem auto 2rem;
   padding: 1.5rem;
 }
 
