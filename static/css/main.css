@@ -269,7 +269,7 @@ a:hover {
 }
 
 .topnav-spacer {
-  height: 100px;
+  height: 120px;
 }
 
 #topnav-icons i {
@@ -365,7 +365,7 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
   z-index: -100;
   -webkit-transform: translate(0, -10%);
           transform: translate(0, -10%);
@@ -684,7 +684,7 @@ a:hover {
 }
 
 #index-page {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
 }
 
 #index-page section {
@@ -713,7 +713,7 @@ a:hover {
 }
 
 #pricing-page {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
 }
 
 #pricing-page section {
@@ -763,7 +763,7 @@ a:hover {
 }
 
 #faq-page {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
 }
 
 #faq-page section {
@@ -788,7 +788,7 @@ a:hover {
 }
 
 .set-min-height {
-  min-height: calc(100vh - 100px - 116px);
+  min-height: calc(100vh - 120px - 116px);
 }
 
 .user-auth-container {
