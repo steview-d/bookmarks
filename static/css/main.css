@@ -235,6 +235,11 @@
   padding-left: 1.4rem;
 }
 
+.vertical-bar-right {
+  border-right: 20px solid #175c9d;
+  padding-right: 1.4rem;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -700,16 +705,74 @@ a:hover {
   background-color: #ffffff;
 }
 
+#headline-section img {
+  width: 50%;
+}
+
+@media only screen and (min-width: 992px) {
+  #headline-section img {
+    width: 80%;
+  }
+}
+
 #features-section {
   background-color: #7180ac;
+}
+
+#features-section img {
+  width: 50%;
+}
+
+@media only screen and (min-width: 992px) {
+  #features-section img {
+    width: 80%;
+  }
+}
+
+#features-section p {
+  direction: rtl;
 }
 
 #chrome-ext-section {
   background-color: #ffffff;
 }
 
+#chrome-ext-section img {
+  width: 50%;
+  border: 3px solid #000000;
+  border-radius: 4px;
+}
+
+@media only screen and (min-width: 992px) {
+  #chrome-ext-section img {
+    width: 80%;
+  }
+}
+
 #testimonials-section {
-  background-color: #a8d0db;
+  background-color: #15191D;
+  color: #ffffff;
+}
+
+#testimonials-section .box {
+  margin: 1rem 3rem;
+}
+
+#testimonials-section .box .head {
+  height: 60px;
+  background-color: #175c9d;
+}
+
+#testimonials-section .box .body {
+  height: 180px;
+  background-color: #eff4f7;
+  color: #15191D;
+}
+
+#testimonials-section .box img {
+  position: relative;
+  height: 80px;
+  top: 33%;
 }
 
 #pricing-page {
@@ -913,17 +976,17 @@ a:hover {
 
 .btn--invert-red {
   background-color: transparent;
-  border: 1px solid #F93333;
+  border: 1px solid #f93333;
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
-  color: #F93333;
+  color: #f93333;
   display: inline-block;
   -webkit-transition: 0.35s ease-out;
   transition: 0.35s ease-out;
 }
 
 .btn--invert-red:hover {
-  background-color: #F93333;
+  background-color: #f93333;
   color: #ffffff;
 }
 

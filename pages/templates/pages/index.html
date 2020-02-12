@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block page_title %}About{% endblock %}
 
@@ -12,20 +13,21 @@
 
     <section id="headline-section" class="container">
         <div class="row">
-            <div class="col-7 content" style="background-color:#ddd">
-                <h2>HEADLINE</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                    maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus quo,
-                    possimus quos eos et.</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                    optio consectetur maiores dolorum illo cum impedit!</p>
+            <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
+                <img src="{% static 'img/pages/about/logo_c.png' %}" alt="free" class="img-fluid d-block mx-auto">
             </div>
+            <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
+                <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
+                    <h2 class="mb-3 d-none d-sm-block">Your new favorite bookmarking app</h2>
+                    <p>With Links, never forget another page again.</p>
+                    <p>All your bookmarks, in one place, organised how you choose, just a few click away.</p>
+                    <!-- image idea -->
+                    <!-- picture of woman, pop art style, looking up and thinking
+                        then above, surrounded by loads of bookmark / site icons -->
+                    <p>Another paragraph here, and it should be better than the 2 above whuch will need replacing /
+                        improving</p>
 
-            <div class="col-5 content" style="background-color:#aaa">
-                <h5>IMAGE TO BE PLACED HERE</h5>
-                <p>Probably the main logo - but with additional styling?</p>
-                <p>Invert colors and circular border, etc</p>
+                </div>
             </div>
         </div>
     </section>
@@ -33,20 +35,19 @@
     <section id="features-section" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-5 content" style="background-color:#aaa">
-                    <h5>IMAGE TO BE PLACED HERE</h5>
-                    <p>Likely a screenshot of how bookmarks are displayed within the main app</p>
+                <div class="col-12 col-lg-6 col-xl-5 qmt-n3 mb-5 my-lg-auto">
+                    <img src="{% static 'img/pages/about/screen1.png' %}" alt="free" class="img-fluid d-block mx-auto">
                 </div>
-
-                <div class="col-7 content" style="background-color:#ddd">
-                    <h2>FEATURES</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                        maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus
-                        quo,
-                        possimus quos eos et.</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                        optio consectetur maiores dolorum illo cum impedit!</p>
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="vertical-bar-right text-justify pl-3 pl-lg-4">
+                        <h2 class="mb-3 d-none d-sm-block text-right">Features</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto neque,
+                            doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
+                            magnam hic commodi nemo laborum!&lrm;</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto neque,
+                            doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
+                            magnam hic commodi nemo laborum!&lrm;</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,24 +56,28 @@
     <section id="chrome-ext-section" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-7 content" style="background-color:#ddd">
-                    <h2>Chrome Extension</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                        maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus
-                        quo,
-                        possimus quos eos et.</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                        optio consectetur maiores dolorum illo cum impedit!</p>
+                <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
+                    <img src="{% static 'img/pages/about/chrome_ext.jpg' %}" alt="free"
+                        class="img-fluid d-block mx-auto">
                 </div>
+                <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
+                    <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
+                        <h2 class="mb-3 d-none d-sm-block">Chrome Browser Extension</h2>
+                        <p>Eos praesentium, beatae vel quam eaque veniam harum, ab ratione
+                            temporibus aliquam ex!.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate animi sunt, cum corrupti
+                            reiciendis veniam iure aut.</p>
+                        <!-- image idea -->
+                        <!-- picture of woman, pop art style, looking up and thinking
+                            then above, surrounded by loads of bookmark / site icons -->
+                        <p>Another paragraph here, and it should be better than the 2 above whuch will need replacing /
+                            improving</p>
+                        <div class="text-center mt-4">
+                            <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
+                                target="_blank" class="btn--invert">Install Extension</a>
+                        </div>
 
-                <div class="col-5 content" style="background-color:#aaa">
-                    <h5>IMAGE TO BE PLACED HERE</h5>
-                    <p>A screenshot of the chrome icon? Also the extension icon</p>
-                    <p>Screen clip of extension bar?</p>
-                    <hr>
-                    <h5>Also, background to this whole section should be well known website icons, scattered across
-                        background and faded out</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,15 +86,11 @@
     <section id="testimonials-section" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12 content" style="background-color:#ddd">
-                    <h2>Testimonials</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, debitis!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit libero, labore perspiciatis,
-                        maiores amet eius inventore voluptatibus veniam, vitae quidem? Nesciunt est accusamus delectus
-                        quo,
-                        possimus quos eos et.</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis non rem laboriosam mollitia
-                        optio consectetur maiores dolorum illo cum impedit!</p>
+                <div class="col-12 content">
+                    <h2 class="text-center mb-5">Testimonials</h2>
+                    <div class="row">
+                        
+                    </div>
                 </div>
 
             </div>

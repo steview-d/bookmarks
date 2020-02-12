@@ -6,13 +6,14 @@
 
 $white: #ffffff;
 $black: #000000;
+$dark-grey: #15191D;
 $logo-blue: #175c9d;
 $light-steel-blue: #a8d0db;
 $light-grey: #eff4f7;
 $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
 $shadow-blue: #7180ac;
-$red : #F93333;
+$red: #f93333;
 $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
@@ -73,6 +74,11 @@ $footer-height: 116px;
 .vertical-bar-left {
     border-left: 20px solid $logo-blue;
     padding-left: 1.4rem;
+}
+
+.vertical-bar-right {
+    border-right: 20px solid $logo-blue;
+    padding-right: 1.4rem;
 }
 
 // -------------------------- page setup and override some bootstrap 4 defaults
@@ -482,7 +488,7 @@ a {
     }
 }
 
-// ---------------------------------------------------------------------- index
+// -------------------------------------------------------------- index / about
 
 #index-page {
     min-height: calc(100vh - #{$topnav-spacer-height});
@@ -498,18 +504,71 @@ a {
 
 #headline-section {
     background-color: $white;
+
+    img {
+        width: 50%;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
 }
 
 #features-section {
     background-color: $shadow-blue;
+
+    img {
+        width: 50%;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
+
+    p {
+        // text-align: justify;
+        direction: rtl;
+    }
 }
 
 #chrome-ext-section {
     background-color: $white;
+
+    img {
+        width: 50%;
+        border: 3px solid $black;
+        border-radius: 4px;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
 }
 
 #testimonials-section {
-    background-color: $light-steel-blue;
+    background-color: $dark-grey;
+    color: $white;
+
+    .box {
+        // background-color: green;
+        margin: 1rem 3rem;
+
+        .head {
+            height: 60px;
+            background-color: $logo-blue;
+        }
+
+        .body {
+            height: 180px;
+            background-color: $light-grey;
+            color: $dark-grey
+        }
+
+        img {
+            position: relative;
+            height: 80px;
+            top: 33%;        }
+    }
 }
 
 // -------------------------------------------------------------------- pricing
