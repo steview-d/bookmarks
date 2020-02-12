@@ -311,8 +311,9 @@ $(document).ready(function() {
                     let base64Str = 'data:image/' + data.image_ext + ';base64,' + data.scraped_image;
                     $("#img-preview").attr('src', base64Str);
                     $("#scraped_img").val(base64Str);
+                    console.log("JKHJK");
                 } else {
-                    $("#img-preview").attr('src', '/static/img/icon/no_img_scrape.png');
+                    $("#img-preview").attr('src', '/static/img/no_img_scrape.png');
                     $("#scraped_img").val('');
                 }
                 $("#scrape-url").text('Scrape URL');
