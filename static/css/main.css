@@ -911,6 +911,22 @@ a:hover {
   color: #ffffff;
 }
 
+.btn--invert-red {
+  background-color: transparent;
+  border: 1px solid #F93333;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #F93333;
+  display: inline-block;
+  -webkit-transition: 0.35s ease-out;
+  transition: 0.35s ease-out;
+}
+
+.btn--invert-red:hover {
+  background-color: #F93333;
+  color: #ffffff;
+}
+
 .btn--slide {
   padding: 0.2rem 0.4rem;
   font-size: 1rem;

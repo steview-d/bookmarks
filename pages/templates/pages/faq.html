@@ -178,12 +178,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-10 col-md-7 col-lg-6 col-xl-5 form-container">
-                    <h1>Contact Form</h1>
+                    <h1 class="mb-4 text-center">Get In Touch</h1>
                     <form method="POST" novalidate>
                         {% csrf_token %}
                         {{ contact_form|crispy }}
-                        <input type="submit" value="Send" name="contact-form" class="btn btn-outline-info">
-                        <input type="reset" value="Reset" class="btn btn-outline-danger">
+                        <input type="submit" value="Send" name="contact-form" class="btn--invert-blue">
+                        <input type="button" value="Reset" id="contact-form-reset" class="btn--invert-red ml-2">
 
                     </form>
 

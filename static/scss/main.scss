@@ -12,6 +12,7 @@ $light-grey: #eff4f7;
 $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
 $shadow-blue: #7180ac;
+$red : #F93333;
 $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
@@ -713,6 +714,21 @@ a {
 
     &:hover {
         background-color: $logo-blue;
+        color: $white;
+    }
+}
+
+.btn--invert-red {
+    background-color: transparent;
+    border: 1px solid $red;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $red;
+    display: inline-block;
+    transition: 0.35s ease-out;
+
+    &:hover {
+        background-color: $red;
         color: $white;
     }
 }

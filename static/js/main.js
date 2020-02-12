@@ -478,4 +478,8 @@ $(document).ready(function() {
 
         });
 
+    // reset contact form button
+    $('#contact-form-reset').on('click', function() {
+        $('#id_name, #id_email, #id_message').val('');
+    });
 });
