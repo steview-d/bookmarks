@@ -6,7 +6,7 @@
 
 $white: #ffffff;
 $black: #000000;
-$dark-grey: #15191D;
+$dark-grey: #15191d;
 $logo-blue: #175c9d;
 $light-steel-blue: #a8d0db;
 $light-grey: #eff4f7;
@@ -546,30 +546,71 @@ a {
 }
 
 #testimonials-section {
-    background-color: $dark-grey;
-    color: $white;
+    background-color: $shadow-blue;
+    color: $black;
+}
 
-    .box {
-        // background-color: green;
-        margin: 1rem 3rem;
+#testimonialCarousel {
+    color: $black;
 
-        .head {
-            height: 60px;
-            background-color: $logo-blue;
+    .carousel-inner {
+        .testimonial {
+            background-color: transparent;
+
+            .img-container {
+                text-align: center;
+                margin-bottom: 3rem;
+
+                img {
+                    height: 160px;
+                }
+            }
+
+            .quote {
+                z-index: 10000;
+                position: relative;
+                padding: 0 2rem;
+                text-align: center;
+            }
+
+            .quote_by {
+                text-align: right;
+            }
         }
+    }
+    .controls {
+        width: 5%;
 
-        .body {
-            height: 180px;
-            background-color: $light-grey;
-            color: $dark-grey
+        i {
+            font-size: 3rem;
         }
+    }
 
-        img {
-            position: relative;
-            height: 80px;
-            top: 33%;        }
+    .carousel-control-next,
+    .carousel-control-prev {
+        align-items: flex-start;
+        top: 60%;
+    }
+
+    .carousel-indicators {
+        bottom: -40px;
+    }
+
+    .carousel-indicators li {	
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin: 0 .5rem;
+        background: #eeeeee;
+        border: 4px solid $white;
+    }
+    .carousel-indicators li.active {
+        color: $white;
+        background: $logo-blue;    
+        border: 5px double;    
     }
 }
+
 
 // -------------------------------------------------------------------- pricing
 
