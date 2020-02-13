@@ -125,7 +125,9 @@ def scrape_url(request, url):
             timeout=2
             )
         r.raise_for_status()
-    except req.exceptions.RequestException:
+    except (req.exceptions.RequestException, UnicodeError):
+        # UnicodeError to catch errors caused by this bug:
+        # https://bugs.python.org/issue32958
         data['message'] = 'Could not load this URL'
 
     else:
@@ -212,26 +214,41 @@ def get_site_icon(url):
                         nothing if no suitable icon found
     """
 
-    icons = []
+    icons = ''
     chosen_icon = ''
     icon_url = ''
 
-    icons = favicon.get(
-        url, headers=settings.LINKS_HEADERS, allow_redirects=True)
+    # lists of file names and file extensions to check for when scraping
+    file_names = ['apple-touch', 'apple-icon', '180x180', '152x152',
+                  '144x144', '120x120', 'icon', 'logo', 'favicon', ]
+    ext_order = ['png', 'ico', 'jpg']
+
+    # also TODO
+    # order of filename search needs refining - esp the icon / favicon thing
+    # some logos are better than the favicon, but some are not square...
+
+    try:
+        icons = favicon.get(url,
+                            headers=settings.LINKS_HEADERS,
+                            timeout=2,
+                            allow_redirects=True)
+    except req.exceptions.RequestException:
+        icons = ''
 
     if not icons:
         url_comp = urlparse(url)
         url_location = str(url_comp.scheme + '://' + url_comp.netloc)
         try:
-            icons = favicon.get(url_location)
+            icons = favicon.get(url_location,
+                                headers=settings.LINKS_HEADERS,
+                                timeout=2,
+                                allow_redirects=True)
         except req.exceptions.RequestException:
             icons = ''
 
     if icons:
         # check for specific file names and formats, in order, then break
         if not chosen_icon:
-            file_names = ['apple-touch', 'apple-icon', 'favicon', 'logo']
-            ext_order = ['png', 'ico']
             for file_name in file_names:
                 for ext in ext_order:
                     for i in icons:
@@ -247,7 +264,7 @@ def get_site_icon(url):
 
         # last resort, any image it can find! first ico, then png
         if not chosen_icon:
-            ext_order = ['ico', 'png']
+            ext_order = ['png', 'ico']
             for ext in ext_order:
                 for i in icons:
                     if i.format == ext:
