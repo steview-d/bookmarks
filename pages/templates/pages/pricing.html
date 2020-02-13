@@ -87,43 +87,47 @@
     </section>
 
     <!-- special offer -->
-    <section id="pricing-early-bird" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col"></div>
-                <div class="col-12 col-md-5 col-lg-4 col-xl-4 my-auto">
-                    <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="free"
-                        class="img-fluid d-block mx-auto">
-                </div>
-                <div class="col-12 col-md-5 col-lg-4 col-xl-4 mt-5 mt-md-0 text-center">
-                    <div>
-                        <h2>Early Bird Offer</h2>
-                        <small>Limited to the first 1000 users</small>
-                        <div class="my-5 p-3 box">
-                            <h4 class="mb-3">Lifetime Premium Membership</h4>
-                            <hr class="w-25">
-                            <h2><span class="badge badge-secondary">£20</span></h2>
-                            <div class="mt-n2">
-                                <small>Normally £20/yr</small>
+    <div class="icon-tile-bg-wrapper">
+        <section id="pricing-early-bird" class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-12 col-md-5 col-lg-4 col-xl-4 my-auto">
+                        <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="free"
+                            class="img-fluid d-block mx-auto">
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-4 col-xl-4 mt-5 mt-md-0 text-center">
+                        <div>
+                            <div class="p-3 box">
+                                <h2>Early Bird Offer</h2>
+                                <small>Limited to the first 1000 users</small>
+                            </div>
+                            <div class="my-5 p-3 box">
+                                <h4 class="mb-3">Lifetime Premium Membership</h4>
+                                <hr class="w-25">
+                                <h2><span class="badge badge-secondary">£20</span></h2>
+                                <div class="mt-n2">
+                                    <small>Normally £20/yr</small>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col"></div>
                 </div>
-                <div class="col"></div>
-            </div>
 
-            <hr class="my-5">
+                <hr class="my-5">
 
-            <div class="text-center">
-                <div>
-                    <a href="{% url 'register' %}" class="btn--invert">Create Account</a>
-                </div>
-                <div class="faded-link-sm">
-                    <small><a href="{% url 'login' %}">or log in here</a></small>
+                <div class="text-center">
+                    <div>
+                        <a href="{% url 'register' %}" class="btn--invert">Create Account</a>
+                    </div>
+                    <div class="faded-link-sm">
+                        <small><a href="{% url 'login' %}">or log in here</a></small>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 
 </div>

@@ -9,34 +9,39 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div class="container set-min-height">
-    <!-- messages -->
-    {% include 'components/messages.html' %}
+<div class="icon-tile-bg-wrapper">
+    <section id="register" class="container-fluid set-min-height">
+        <div class="container">
+            <!-- messages -->
+            {% include 'components/messages.html' %}
 
-    <div class="row">
-        <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
-            <h3>Create Your New Account</h3>
-            <form method="POST" novalidate>
-                {% csrf_token %}
+            <div class="row">
+                <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
+                    <h3>Create Your New Account</h3>
+                    <form method="POST" novalidate>
+                        {% csrf_token %}
 
-                {% for field in form.visible_fields %}
-                <div>
-                    {% if 'tippy-help-text' in field.field.widget.attrs.class %}
-                    <!-- add info / help icon if field has help text -->
-                    <i class="fa fa-info-circle tippy-register-help float-right" aria-hidden="true"></i>
-                    {% endif %}
-                    {{ field|as_crispy_field}}
+                        {% for field in form.visible_fields %}
+                        <div>
+                            {% if 'tippy-help-text' in field.field.widget.attrs.class %}
+                            <!-- add info / help icon if field has help text -->
+                            <i class="fa fa-info-circle tippy-register-help float-right" aria-hidden="true"></i>
+                            {% endif %}
+                            {{ field|as_crispy_field}}
+                        </div>
+                        {% endfor %}
+
+                        <button class="btn--invert" type="submit">Create Account</button>
+                        <div>
+                            <small>Already have an account? Log in <a href="{% url 'login' %}"
+                                    class="label label-small">here</a></small>
+                        </div>
+
+                    </form>
                 </div>
-                {% endfor %}
-
-                <button class="btn--invert" type="submit">Create Account</button>
-                <div>
-                    <small>Already have an account? Log in <a href="{% url 'login' %}" class="label label-small">here</a></small>
-                </div>
-
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <!-- Footer -->

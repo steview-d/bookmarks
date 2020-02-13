@@ -1,11 +1,9 @@
 {% load staticfiles %}
 
 <!-- nav bar -->
-<nav id="pages-nav" class="container-fluid">
+<nav id="pages-nav" class="container-fluid
+    {% if 'accounts' in request.path %} nav-border{% endif %}">
     <!-- navbar title -->
-    <!-- <h1 class="navbar-title">
-        Links
-    </h1> -->
     <div class="navbar-title display-4">Links</div>
 
     <!-- navbar items -->

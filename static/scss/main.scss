@@ -57,6 +57,12 @@ $footer-height: 116px;
     padding-bottom: 6rem;
 }
 
+@mixin icon-tile-bg {
+    background-image: url("/static/img/bg/icon_tile.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
 // ----------------------------------------------------------------- re-usables
 
 .border {
@@ -94,6 +100,10 @@ a {
         text-decoration: none;
         color: $black;
     }
+}
+
+.icon-tile-bg-wrapper {
+    @include icon-tile-bg;
 }
 
 // -------------------------------------------------- main display grid wrapper
@@ -503,7 +513,7 @@ a {
 }
 
 #headline-section {
-    background-color: $white;
+    background-color: rgba(255, 255, 255, 0.96);
 
     img {
         width: 50%;
@@ -532,7 +542,7 @@ a {
 }
 
 #chrome-ext-section {
-    background-color: $white;
+    background-color: rgba(255, 255, 255, 0.96);
 
     img {
         width: 50%;
@@ -596,21 +606,20 @@ a {
         bottom: -40px;
     }
 
-    .carousel-indicators li {	
+    .carousel-indicators li {
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        margin: 0 .5rem;
+        margin: 0 0.5rem;
         background: #eeeeee;
         border: 4px solid $white;
     }
     .carousel-indicators li.active {
         color: $white;
-        background: $logo-blue;    
-        border: 5px double;    
+        background: $logo-blue;
+        border: 5px double;
     }
 }
-
 
 // -------------------------------------------------------------------- pricing
 
@@ -652,11 +661,13 @@ a {
 }
 
 #pricing-early-bird {
-    background-color: #eff4f7;
+    // background-color: #eff4f7;
+    background-color: rgba(255, 255, 255, 0.96);
 
     .box {
         display: inline-block;
         border: 2px solid $logo-blue;
+        background-color: $white;
     }
 }
 
@@ -728,11 +739,17 @@ a {
 
 // --------------------------------------------------- login / register styling
 
+#login,
+#register {
+    background-color: rgba(255, 255, 255, 0.96);
+}
+
 .set-min-height {
     min-height: calc(100vh - #{$topnav-spacer-height} - #{$footer-height});
 }
 
 .user-auth-container {
+    background-color: $white;
     border: 2px solid #888888;
     border-radius: 5px;
     margin: 5rem auto 2rem;

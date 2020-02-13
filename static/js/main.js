@@ -458,7 +458,9 @@ $(document).ready(function() {
         } else {
             $('.navbar-title').css({ opacity: 1}).slideDown(600);
             $('.mobile-menu').css({ opacity: 1}).slideDown(600);
-            $('#pages-nav').removeClass('nav-border');
+            if (!window.location.href.includes('accounts')) {
+                $('#pages-nav').removeClass('nav-border');
+            }
 
         }
     });

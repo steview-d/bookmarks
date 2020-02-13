@@ -253,6 +253,12 @@ a:hover {
   color: #000000;
 }
 
+.icon-tile-bg-wrapper {
+  background-image: url("/static/img/bg/icon_tile.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
 .flex-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -702,7 +708,7 @@ a:hover {
 }
 
 #headline-section {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
 #headline-section img {
@@ -734,7 +740,7 @@ a:hover {
 }
 
 #chrome-ext-section {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
 #chrome-ext-section img {
@@ -806,7 +812,7 @@ a:hover {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
   background: #eeeeee;
   border: 4px solid #ffffff;
 }
@@ -859,12 +865,13 @@ a:hover {
 }
 
 #pricing-early-bird {
-  background-color: #eff4f7;
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
 #pricing-early-bird .box {
   display: inline-block;
   border: 2px solid #175c9d;
+  background-color: #ffffff;
 }
 
 #faq-page section {
@@ -927,11 +934,17 @@ a:hover {
   margin: 0 auto;
 }
 
+#login,
+#register {
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
 .set-min-height {
   min-height: calc(100vh - 90px - 116px);
 }
 
 .user-auth-container {
+  background-color: #ffffff;
   border: 2px solid #888888;
   border-radius: 5px;
   margin: 5rem auto 2rem;
