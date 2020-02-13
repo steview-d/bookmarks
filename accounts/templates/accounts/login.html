@@ -6,35 +6,36 @@
 
 {% block content %}
 
-{% include 'pages/components/nav.html' %}
-
 <div class="icon-tile-bg-wrapper">
-    <section id="login" class="container-fluid set-min-height">
-        <div class="container">
-            <!-- messages -->
-            {% include 'components/messages.html' %}
+    <section id="login" class="qset-min-height">
+        {% include 'pages/components/nav.html' %}
+        <div class="container-fluid">
+            <div class="container">
+                <!-- messages -->
+                {% include 'components/messages.html' %}
 
-            <div class="row">
-                <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
-                    <h3>Log In To Your Account</h3>
-                    <form method="POST" novalidate>
-                        {% csrf_token %}
-                        {% for field in form.visible_fields %}
-                        {{ field|as_crispy_field}}
-                        {% if field.label == 'Password' %}
-                        <div class="pw-reset">
-                            <small><a href="{% url 'password_reset' %}">Forgot Your Password?</a></small>
-                        </div>
-                        {% endif %}
+                <div class="row">
+                    <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
+                        <h3>Log In To Your Account</h3>
+                        <form method="POST" novalidate>
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                            {{ field|as_crispy_field}}
+                            {% if field.label == 'Password' %}
+                            <div class="pw-reset">
+                                <small><a href="{% url 'password_reset' %}">Forgot Your Password?</a></small>
+                            </div>
+                            {% endif %}
 
-                        {% endfor %}
-                        <div>
-                            <button class="btn--invert" type="submit">Login</button></div>
-                        <div>
-                            <small>Need an account? Create one <a href="{% url 'register' %}"
-                                    class="label label-small">here</a></small>
-                        </div>
-                    </form>
+                            {% endfor %}
+                            <div>
+                                <button class="btn--invert" type="submit">Login</button></div>
+                            <div>
+                                <small>Need an account? Create one <a href="{% url 'register' %}"
+                                        class="label label-small">here</a></small>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

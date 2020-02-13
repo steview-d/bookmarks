@@ -18,6 +18,7 @@ $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
 $topnav-spacer-height: 90px;
+$navbar-spacer-height: 152px;
 $footer-height: 116px;
 
 // --------------------------------------------------------------------- mixins
@@ -61,6 +62,10 @@ $footer-height: 116px;
     background-image: url("/static/img/bg/icon_tile.png");
     background-repeat: repeat;
     background-attachment: fixed;
+}
+
+@mixin background-overlay($opacity) {
+    background-color: rgba(255, 255, 255, $opacity);
 }
 
 // ----------------------------------------------------------------- re-usables
@@ -401,8 +406,13 @@ a {
 // ------------------------------------------------------------ 'Pages' styling
 // ------------------------------------------------------------------------ all
 
-#get-started-section {
-    background-color: $white;
+// #get-started-section {
+//     background-color: $white;
+// }
+
+.navbar-spacer {
+    height: $navbar-spacer-height;
+    background-color: transparent;
 }
 
 // --------------------------------------------------------------------- navbar
@@ -500,17 +510,13 @@ a {
 
 // -------------------------------------------------------------- index / about
 
-#index-page {
-    min-height: calc(100vh - #{$topnav-spacer-height});
-
-    section {
+#index-page section {
         @include section-padding;
 
         .content {
             padding: 1rem;
         }
     }
-}
 
 #headline-section {
     background-color: rgba(255, 255, 255, 0.96);
@@ -542,7 +548,7 @@ a {
 }
 
 #chrome-ext-section {
-    background-color: rgba(255, 255, 255, 0.96);
+    @include background-overlay(.96);
 
     img {
         width: 50%;
@@ -623,17 +629,13 @@ a {
 
 // -------------------------------------------------------------------- pricing
 
-#pricing-page {
-    min-height: calc(100vh - #{$topnav-spacer-height});
-
-    section {
+#pricing-page section {
         @include section-padding;
 
         .content {
             padding: 1rem;
         }
     }
-}
 
 #pricing-text-section {
     background-color: $white;
@@ -661,8 +663,7 @@ a {
 }
 
 #pricing-early-bird {
-    // background-color: #eff4f7;
-    background-color: rgba(255, 255, 255, 0.96);
+    @include background-overlay(.96);
 
     .box {
         display: inline-block;
@@ -673,15 +674,13 @@ a {
 
 // ----------------------------------------------------------------------- faqs
 
-#faq-page {
-    section {
+#faq-page section {
         @include section-padding;
 
         .content {
             padding: 1rem;
         }
     }
-}
 
 #faq-section {
     background-color: $white;
@@ -740,19 +739,20 @@ a {
 // --------------------------------------------------- login / register styling
 
 #login,
-#register {
-    background-color: rgba(255, 255, 255, 0.96);
+#register,
+.pw-control {
+    @include background-overlay(.6);
 }
 
 .set-min-height {
-    min-height: calc(100vh - #{$topnav-spacer-height} - #{$footer-height});
+    min-height: calc(100vh - #{$navbar-spacer-height} - #{$footer-height});
 }
 
 .user-auth-container {
     background-color: $white;
     border: 2px solid #888888;
     border-radius: 5px;
-    margin: 5rem auto 2rem;
+    margin: 3rem auto 2rem;
     padding: 1.5rem;
 
     h3 {

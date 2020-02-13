@@ -593,8 +593,9 @@ a:hover {
   display: none;
 }
 
-#get-started-section {
-  background-color: #ffffff;
+.navbar-spacer {
+  height: 152px;
+  background-color: transparent;
 }
 
 #pages-nav {
@@ -692,10 +693,6 @@ a:hover {
           transform: scale(1.1);
   background-color: white;
   color: #000000;
-}
-
-#index-page {
-  min-height: calc(100vh - 90px);
 }
 
 #index-page section {
@@ -823,10 +820,6 @@ a:hover {
   border: 5px double;
 }
 
-#pricing-page {
-  min-height: calc(100vh - 90px);
-}
-
 #pricing-page section {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -935,19 +928,20 @@ a:hover {
 }
 
 #login,
-#register {
-  background-color: rgba(255, 255, 255, 0.96);
+#register,
+.pw-control {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .set-min-height {
-  min-height: calc(100vh - 90px - 116px);
+  min-height: calc(100vh - 152px - 116px);
 }
 
 .user-auth-container {
   background-color: #ffffff;
   border: 2px solid #888888;
   border-radius: 5px;
-  margin: 5rem auto 2rem;
+  margin: 3rem auto 2rem;
   padding: 1.5rem;
 }
 
