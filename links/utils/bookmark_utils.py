@@ -11,6 +11,7 @@ from links.models import Collection, Bookmark
 import base64
 import favicon
 import random
+import re
 import requests as req
 import string
 
@@ -218,14 +219,13 @@ def get_site_icon(url):
     chosen_icon = ''
     icon_url = ''
 
-    # lists of file names and file extensions to check for when scraping
+    # lists of file names and file extensions to check for when scraping.
+    # filenames are checked using regex so list items can be either a basic
+    # string or a regex statement for more advanced searching.
     file_names = ['apple-touch', 'apple-icon', '180x180', '152x152',
-                  '144x144', '120x120', 'icon', 'logo', 'favicon', ]
+                  '144x144', '120x120', '^(?!.*favicon).*icon.*$', 'logo',
+                  'favicon', ]
     ext_order = ['png', 'ico', 'jpg']
-
-    # also TODO
-    # order of filename search needs refining - esp the icon / favicon thing
-    # some logos are better than the favicon, but some are not square...
 
     try:
         icons = favicon.get(url,
@@ -252,7 +252,7 @@ def get_site_icon(url):
             for file_name in file_names:
                 for ext in ext_order:
                     for i in icons:
-                        if file_name in i.url and i.format == ext:
+                        if re.search(file_name, i.url) and i.format == ext:
                             chosen_icon = i
                             break
                     else:
@@ -264,7 +264,7 @@ def get_site_icon(url):
 
         # last resort, any image it can find! first ico, then png
         if not chosen_icon:
-            ext_order = ['png', 'ico']
+            ext_order = ['ico', 'png', 'jpg']
             for ext in ext_order:
                 for i in icons:
                     if i.format == ext:
