@@ -223,8 +223,8 @@ def get_site_icon(url):
     # filenames are checked using regex so list items can be either a basic
     # string or a regex statement for more advanced searching.
     file_names = ['apple-touch', 'apple-icon', '180x180', '152x152',
-                  '144x144', '120x120', '^(?!.*favicon).*icon.*$', 'logo',
-                  'favicon', ]
+                  '144x144', '120x120', '^(?!.*favicon).*icon.*$', 'favicon',
+                  'logo', ]
     ext_order = ['png', 'ico', 'jpg']
 
     try:
