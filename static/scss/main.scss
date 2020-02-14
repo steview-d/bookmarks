@@ -539,6 +539,34 @@ a {
             width: 80%;
         }
     }
+
+    .grid-container {
+        width: 100%;
+    }
+
+    // css grid of icons 4x4
+    .display-icon-grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        gap: 2px;
+        border: 4px solid black;
+        padding: .5rem;
+
+        .icon-grid-item {
+             background-color: transparent;
+
+            img {
+                width: 100%;
+                transition: .3s ease-out;
+
+                &:hover {
+                    transform: scale(1.15);
+                    border-radius: 8px;;
+                }
+            }
+        }
+    }
 }
 
 #features-section {
@@ -884,7 +912,7 @@ a {
     }
 
     &:hover {
-        background-color: $white;
+        background-color: #f8f8f8;
         color: #424242;
     }
 }

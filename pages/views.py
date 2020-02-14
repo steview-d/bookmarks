@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from .forms import ContactForm
 
+import random
+
 
 # Create your views here.
 def about(request):
@@ -9,7 +11,10 @@ def about(request):
     if request.user.is_authenticated:
         return redirect('start_app')
 
-    context = {}
+    # get filenames of icons to display on page, random(n)
+    display_icons = random.sample(range(1, 90), 16)
+
+    context = {'display_icons': display_icons}
 
     return render(request, "pages/index.html", context)
 

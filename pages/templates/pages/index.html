@@ -15,7 +15,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
-                    <img src="{% static 'img/pages/about/logo_c.png' %}" alt="free" class="img-fluid d-block mx-auto">
+                    <div class="row">
+                        <div class="mx-auto">
+                            <!-- 4x4 css grid of icons -->
+                            <div class="display-icon-grid">
+
+                                {% for icon in display_icons %}
+                                <div class="icon-grid-item">
+                                    <img src="{% static 'img/icons/other/'%}{{ icon }}.png" alt="icon"
+                                        class="img-fluid">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
                 <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
                     <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
@@ -77,11 +93,11 @@
                         <!-- picture of woman, pop art style, looking up and thinking
                             then above, surrounded by loads of bookmark / site icons -->
                         <p>Another paragraph here, and it should be better than the 2 above whuch will need
-                            replacing /
-                            improving</p>
-                        <div class="text-center mt-4">
+                            replacing / improving</p>
+                        <div class="text-right mt-4">
                             <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
-                                target="_blank" class="btn--invert">Install Extension</a>
+                                target="_blank" class="btn--square mt-1"><span><small>Install
+                                        Extension</small></span></a>
                         </div>
 
                     </div>
@@ -130,7 +146,8 @@
 
                                     <hr>
                                     <p class="quote_by"><b>Suzi Gardner</b>, <span
-                                            class="text-nowrap">Entrepreneur</span></p>
+                                            class="text-nowrap">Entrepreneur</span>
+                                    </p>
                                 </div>
 
                                 <div class="testimonial carousel-item col-12 col-sm-8 col-md-6 offset-sm-2 offset-md-3">
