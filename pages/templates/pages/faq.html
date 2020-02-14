@@ -8,169 +8,176 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div id="faq-page">
+<div id="faq-page" class="icon-tile-bg-wrapper">
 
     <!-- messages -->
     {% include 'components/messages.html' %}
 
     <!-- FAQ intro text -->
-    <section id="faq-section" class="container">
-        <div class="row">
-            <div class="col-12 content text-center">
-                <h2>Get answers to some of the most commonly asked questions</h2>
-                <!-- <p>Get answers to some of the most commonly asked questions</p> -->
-                <div class="other-questions text-center my-5">
-                    <h5>Have a different question? That's ok too!</h5>
-                    <a href="#contact-form-section" class="btn--invert mt-3">Contact Us</a>
+    <section id="faq-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 content text-center">
+                    <h2>Get answers to some of the most commonly asked questions</h2>
+                    <!-- <p>Get answers to some of the most commonly asked questions</p> -->
+                    <div class="other-questions text-center my-5">
+                        <h5>Have a different question? That's ok too!</h5>
+                        <a href="#contact-form-section" class="btn--square mt-3"><span>Contact Form</span></a>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <!-- FAQ's -->
+            <!-- FAQ's -->
 
-        <div class="row">
-            <div class="col"></div>
-            <div id="faq-accordion" class="col-md-9" style="width: 100%">
+            <div class="row">
+                <div class="col"></div>
+                <div id="faq-accordion" class="col-md-9" style="width: 100%">
 
-                <!-- Question 1 -->
-                <div class="card">
-                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq1"
-                        aria-expanded="false" aria-controls="faq1">
-                        <div>
-                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                    <!-- Question 1 -->
+                    <div class="card">
+                        <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq1"
+                            aria-expanded="false" aria-controls="faq1">
+                            <div>
+                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                Frequently Asked Question #1
+                            </div>
                         </div>
-                        <div>
-                            Frequently Asked Question #1
+                        <div id="faq1" class="collapse" aria-labelledby="faq1" data-parent="#faq-accordion">
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                    Accusantium
+                                    dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis!
+                                    Vero
+                                    quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                    nihil
+                                    laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                    rerum? A
+                                    voluptatibus totam cumque voluptate?</p>
+                            </div>
                         </div>
                     </div>
-                    <div id="faq1" class="collapse" aria-labelledby="faq1" data-parent="#faq-accordion">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
-                                Accusantium
-                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
-                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
 
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
-                                nihil
-                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
-                                rerum? A
-                                voluptatibus totam cumque voluptate?</p>
+                    <!-- Question 2 -->
+                    <div class="card">
+                        <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq2"
+                            aria-expanded="false" aria-controls="faq2">
+                            <div>
+                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                Frequently Asked Question #2
+                            </div>
+                        </div>
+                        <div id="faq2" class="collapse" aria-labelledby="faq2" data-parent="#faq-accordion">
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                    Accusantium
+                                    dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis!
+                                    Vero
+                                    quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                    nihil
+                                    laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                    rerum? A
+                                    voluptatibus totam cumque voluptate?</p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Question 3 -->
+                    <div class="card">
+                        <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq3"
+                            aria-expanded="false" aria-controls="faq3">
+                            <div>
+                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                Frequently Asked Question #3
+                            </div>
+                        </div>
+                        <div id="faq3" class="collapse" aria-labelledby="faq3" data-parent="#faq-accordion">
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                    Accusantium
+                                    dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis!
+                                    Vero
+                                    quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                    nihil
+                                    laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                    rerum? A
+                                    voluptatibus totam cumque voluptate?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="card">
+                        <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq4"
+                            aria-expanded="false" aria-controls="faq4">
+                            <div>
+                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                Frequently Asked Question #4
+                            </div>
+                        </div>
+                        <div id="faq4" class="collapse" aria-labelledby="faq4" data-parent="#faq-accordion">
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                    Accusantium
+                                    dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis!
+                                    Vero
+                                    quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                    nihil
+                                    laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                    rerum? A
+                                    voluptatibus totam cumque voluptate?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="card">
+                        <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq5"
+                            aria-expanded="false" aria-controls="faq5">
+                            <div>
+                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                Frequently Asked Question #5
+                            </div>
+                        </div>
+                        <div id="faq5" class="collapse" aria-labelledby="faq5" data-parent="#faq-accordion">
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
+                                    Accusantium
+                                    dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis!
+                                    Vero
+                                    quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
+
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
+                                    nihil
+                                    laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
+                                    rerum? A
+                                    voluptatibus totam cumque voluptate?</p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
-
-                <!-- Question 2 -->
-                <div class="card">
-                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq2"
-                        aria-expanded="false" aria-controls="faq2">
-                        <div>
-                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            Frequently Asked Question #2
-                        </div>
-                    </div>
-                    <div id="faq2" class="collapse" aria-labelledby="faq2" data-parent="#faq-accordion">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
-                                Accusantium
-                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
-                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
-
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
-                                nihil
-                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
-                                rerum? A
-                                voluptatibus totam cumque voluptate?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="card">
-                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq3"
-                        aria-expanded="false" aria-controls="faq3">
-                        <div>
-                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            Frequently Asked Question #3
-                        </div>
-                    </div>
-                    <div id="faq3" class="collapse" aria-labelledby="faq3" data-parent="#faq-accordion">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
-                                Accusantium
-                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
-                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
-
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
-                                nihil
-                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
-                                rerum? A
-                                voluptatibus totam cumque voluptate?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="card">
-                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq4"
-                        aria-expanded="false" aria-controls="faq4">
-                        <div>
-                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            Frequently Asked Question #4
-                        </div>
-                    </div>
-                    <div id="faq4" class="collapse" aria-labelledby="faq4" data-parent="#faq-accordion">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
-                                Accusantium
-                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
-                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
-
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
-                                nihil
-                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
-                                rerum? A
-                                voluptatibus totam cumque voluptate?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-                <div class="card">
-                    <div class="card-header collapsed" role="button" data-toggle="collapse" data-target="#faq5"
-                        aria-expanded="false" aria-controls="faq5">
-                        <div>
-                            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            Frequently Asked Question #5
-                        </div>
-                    </div>
-                    <div id="faq5" class="collapse" aria-labelledby="faq5" data-parent="#faq-accordion">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, culpa aperiam!
-                                Accusantium
-                                dicta fuga consectetur quis numquam laudantium ut quia cupiditate esse perferendis! Vero
-                                quam reprehenderit, voluptatum laudantium laboriosam accusantium?</p>
-
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum sed animi autem atque
-                                nihil
-                                laboriosam ipsa minus ea repudiandae neque similique asperiores, perferendis soluta
-                                rerum? A
-                                voluptatibus totam cumque voluptate?</p>
-                        </div>
-                    </div>
-                </div>
-
-
+                <div class="col"></div>
             </div>
-            <div class="col"></div>
         </div>
     </section>
 
@@ -182,8 +189,8 @@
                     <form method="POST" novalidate>
                         {% csrf_token %}
                         {{ contact_form|crispy }}
-                        <input type="submit" value="Send" name="contact-form" class="btn--invert-blue">
-                        <input type="button" value="Reset" id="contact-form-reset" class="btn--invert-red ml-2">
+                        <input type="submit" value="Send" name="contact-form" class="btn--half-square">
+                        <input type="button" value="Reset" id="contact-form-reset" class="btn--half-square ml-2">
 
                     </form>
 

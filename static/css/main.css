@@ -756,7 +756,7 @@ a:hover {
   gap: 2px;
   border: 4px solid black;
   border-radius: 6px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 #headline-section .display-icon-grid .icon-grid-item {
@@ -765,8 +765,8 @@ a:hover {
 
 #headline-section .display-icon-grid .icon-grid-item img {
   width: 100%;
-  -webkit-transition: .3s ease-out;
-  transition: .3s ease-out;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 #headline-section .display-icon-grid .icon-grid-item img:hover {
@@ -918,20 +918,27 @@ a:hover {
 }
 
 #faq-section {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.98);
 }
 
 #faq-section .other-questions {
   display: inline-block;
+  background-color: #ffffff;
   padding: 2rem;
   border: 2px solid black;
 }
 
-#faq-section .card {
+#faq-section #faq-accordion {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  padding: 2rem;
+}
+
+#faq-section #faq-accordion .card {
   border-width: 0;
 }
 
-#faq-section .card .card-header {
+#faq-section #faq-accordion .card .card-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -946,16 +953,16 @@ a:hover {
   transition: 0.2s ease-out;
 }
 
-#faq-section .card .card-header:hover {
+#faq-section #faq-accordion .card .card-header:hover {
   cursor: pointer;
   background-color: #eff4f7;
 }
 
-#faq-section .card .card-header i {
+#faq-section #faq-accordion .card .card-header i {
   padding-right: 1rem;
 }
 
-#faq-section .card .card-body {
+#faq-section #faq-accordion .card .card-body {
   text-align: justify;
   text-justify: inter-word;
 }
@@ -1107,6 +1114,33 @@ a:hover {
 }
 
 .btn--square:hover {
+  background-color: #f8f8f8;
+  color: #424242;
+}
+
+.btn--half-square {
+  position: relative;
+  width: 5rem;
+  height: 2.55rem;
+  background-color: #424242;
+  border: 2px solid #424242;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  display: inline-block;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.btn--half-square span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.25rem 0.4rem;
+  text-align: right;
+  line-height: 1rem;
+}
+
+.btn--half-square:hover {
   background-color: #f8f8f8;
   color: #424242;
 }
