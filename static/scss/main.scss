@@ -411,7 +411,7 @@ a {
 
 // - components - //
 #get-started-section {
-    // @include background-overlay(0.96);
+    @include background-overlay(0.96);
 }
 
 .navbar-spacer {
@@ -426,11 +426,10 @@ a {
     top: 0;
     width: 100%;
     z-index: 1000;
-    @include background-overlay(.95);
-    // background-color: white;
+    @include background-overlay(0.90);
 
     @media only screen and (min-width: 576px) {
-        padding: .5rem 15px;
+        padding: 0.5rem 15px;
     }
 
     .navbar-title {
@@ -531,6 +530,8 @@ a {
 #headline-section {
     // @include background-overlay(1);
 
+    @include background-overlay(1);
+
     img {
         width: 50%;
 
@@ -552,14 +553,14 @@ a {
     }
 
     p {
-        // text-align: justify;
         direction: rtl;
     }
 }
 
 #chrome-ext-section {
-    // @include background-overlay(0.96);
 
+    @include background-overlay(.96);
+    
     img {
         width: 50%;
         border: 3px solid $black;
@@ -877,7 +878,7 @@ a {
         position: absolute;
         bottom: 0;
         right: 0;
-        padding: .2rem .4rem;
+        padding: 0.2rem 0.4rem;
         text-align: right;
         line-height: 1rem;
     }

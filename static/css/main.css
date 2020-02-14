@@ -592,6 +592,10 @@ a:hover {
   display: none;
 }
 
+#get-started-section {
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
 .navbar-spacer {
   height: 168px;
   background-color: transparent;
@@ -602,12 +606,12 @@ a:hover {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 @media only screen and (min-width: 576px) {
   #pages-nav {
-    padding: .5rem 15px;
+    padding: 0.5rem 15px;
   }
 }
 
@@ -710,6 +714,10 @@ a:hover {
   padding: 1rem;
 }
 
+#headline-section {
+  background-color: white;
+}
+
 #headline-section img {
   width: 50%;
 }
@@ -736,6 +744,10 @@ a:hover {
 
 #features-section p {
   direction: rtl;
+}
+
+#chrome-ext-section {
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
 #chrome-ext-section img {
@@ -1056,7 +1068,7 @@ a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: .2rem .4rem;
+  padding: 0.2rem 0.4rem;
   text-align: right;
   line-height: 1rem;
 }
