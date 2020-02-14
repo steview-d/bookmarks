@@ -256,7 +256,6 @@ a:hover {
 .icon-tile-bg-wrapper {
   background-image: url("/static/img/bg/icon_tile.png");
   background-repeat: repeat;
-  background-attachment: fixed;
 }
 
 .flex-wrapper {
@@ -594,7 +593,7 @@ a:hover {
 }
 
 .navbar-spacer {
-  height: 152px;
+  height: 168px;
   background-color: transparent;
 }
 
@@ -603,7 +602,13 @@ a:hover {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+@media only screen and (min-width: 576px) {
+  #pages-nav {
+    padding: .5rem 15px;
+  }
 }
 
 #pages-nav .navbar-title {
@@ -623,6 +628,7 @@ a:hover {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   padding: 0;
+  font-weight: 600;
 }
 
 #pages-nav .nav-bar-items .navbar-link {
@@ -704,10 +710,6 @@ a:hover {
   padding: 1rem;
 }
 
-#headline-section {
-  background-color: rgba(255, 255, 255, 0.96);
-}
-
 #headline-section img {
   width: 50%;
 }
@@ -734,10 +736,6 @@ a:hover {
 
 #features-section p {
   direction: rtl;
-}
-
-#chrome-ext-section {
-  background-color: rgba(255, 255, 255, 0.96);
 }
 
 #chrome-ext-section img {
@@ -771,12 +769,10 @@ a:hover {
 }
 
 #testimonialCarousel .carousel-inner .testimonial .img-container img {
-  height: 160px;
+  height: 200px;
 }
 
 #testimonialCarousel .carousel-inner .testimonial .quote {
-  z-index: 10000;
-  position: relative;
   padding: 0 2rem;
   text-align: center;
 }
@@ -934,7 +930,7 @@ a:hover {
 }
 
 .set-min-height {
-  min-height: calc(100vh - 152px - 116px);
+  min-height: calc(100vh - 168px - 116px);
 }
 
 .user-auth-container {
@@ -980,7 +976,7 @@ a:hover {
 }
 
 .user-auth-container .fa-info {
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .label {
@@ -1041,6 +1037,33 @@ a:hover {
 .btn--invert-red:hover {
   background-color: #f93333;
   color: #ffffff;
+}
+
+.btn--square {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  background-color: #424242;
+  border: 2px solid #424242;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  display: inline-block;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.btn--square span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: .2rem .4rem;
+  text-align: right;
+  line-height: 1rem;
+}
+
+.btn--square:hover {
+  background-color: #ffffff;
+  color: #424242;
 }
 
 .btn--slide {

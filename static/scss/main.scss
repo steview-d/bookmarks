@@ -21,7 +21,7 @@ $burnished-brown: #a37a74;
 
 // - spacing - //
 $topnav-spacer-height: 90px;
-$navbar-spacer-height: 152px;
+$navbar-spacer-height: 168px;
 $footer-height: 116px;
 
 // --------------------------------------------------------------------- mixins
@@ -64,7 +64,7 @@ $footer-height: 116px;
 @mixin icon-tile-bg {
     background-image: url("/static/img/bg/icon_tile.png");
     background-repeat: repeat;
-    background-attachment: fixed;
+    // background-attachment: fixed;
 }
 
 @mixin background-overlay($opacity) {
@@ -409,9 +409,10 @@ a {
 // ------------------------------------------------------------ 'Pages' styling
 // ------------------------------------------------------------------------ all
 
-// #get-started-section {
-//     background-color: $white;
-// }
+// - components - //
+#get-started-section {
+    // @include background-overlay(0.96);
+}
 
 .navbar-spacer {
     height: $navbar-spacer-height;
@@ -425,7 +426,12 @@ a {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.9);
+    @include background-overlay(.95);
+    // background-color: white;
+
+    @media only screen and (min-width: 576px) {
+        padding: .5rem 15px;
+    }
 
     .navbar-title {
         text-align: center;
@@ -440,6 +446,7 @@ a {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         padding: 0;
+        font-weight: 600;
 
         .navbar-link {
             display: block;
@@ -514,15 +521,15 @@ a {
 // -------------------------------------------------------------- index / about
 
 #index-page section {
-        @include section-padding;
+    @include section-padding;
 
-        .content {
-            padding: 1rem;
-        }
+    .content {
+        padding: 1rem;
     }
+}
 
 #headline-section {
-    background-color: rgba(255, 255, 255, 0.96);
+    // @include background-overlay(1);
 
     img {
         width: 50%;
@@ -551,7 +558,7 @@ a {
 }
 
 #chrome-ext-section {
-    @include background-overlay(.96);
+    // @include background-overlay(0.96);
 
     img {
         width: 50%;
@@ -581,13 +588,11 @@ a {
                 margin-bottom: 3rem;
 
                 img {
-                    height: 160px;
+                    height: 200px;
                 }
             }
 
             .quote {
-                z-index: 10000;
-                position: relative;
                 padding: 0 2rem;
                 text-align: center;
             }
@@ -633,12 +638,12 @@ a {
 // -------------------------------------------------------------------- pricing
 
 #pricing-page section {
-        @include section-padding;
+    @include section-padding;
 
-        .content {
-            padding: 1rem;
-        }
+    .content {
+        padding: 1rem;
     }
+}
 
 #pricing-text-section {
     background-color: $white;
@@ -666,7 +671,7 @@ a {
 }
 
 #pricing-early-bird {
-    @include background-overlay(.96);
+    @include background-overlay(0.96);
 
     .box {
         display: inline-block;
@@ -678,12 +683,12 @@ a {
 // ----------------------------------------------------------------------- faqs
 
 #faq-page section {
-        @include section-padding;
+    @include section-padding;
 
-        .content {
-            padding: 1rem;
-        }
+    .content {
+        padding: 1rem;
     }
+}
 
 #faq-section {
     background-color: $white;
@@ -744,7 +749,7 @@ a {
 #login,
 #register,
 .pw-control {
-    @include background-overlay(.6);
+    @include background-overlay(0.6);
 }
 
 .set-min-height {
@@ -785,7 +790,7 @@ a {
         margin-bottom: 0.5rem;
     }
 
-    .fa-square{
+    .fa-square {
         margin-top: 0.35rem;
         font-size: 1.2rem;
         color: $logo-blue;
@@ -794,7 +799,7 @@ a {
     }
 
     .fa-info {
-        font-size: .7rem;
+        font-size: 0.7rem;
     }
 }
 
@@ -854,6 +859,32 @@ a {
     &:hover {
         background-color: $red;
         color: $white;
+    }
+}
+
+.btn--square {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    background-color: #424242;
+    border: 2px solid #424242;
+    border-radius: 0.25rem;
+    color: $white;
+    display: inline-block;
+    transition: 0.2s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: .2rem .4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: $white;
+        color: #424242;
     }
 }
 

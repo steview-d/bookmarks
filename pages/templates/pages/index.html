@@ -5,28 +5,31 @@
 
 {% block content %}
 
-{% include 'pages/components/nav.html' %}
-
 <div id="index-page">
+    {% include 'pages/components/nav.html' %}
+
     <!-- messages -->
     {% include 'components/messages.html' %}
 
-    <section id="headline-section" class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
-                <img src="{% static 'img/pages/about/logo_c.png' %}" alt="free" class="img-fluid d-block mx-auto">
-            </div>
-            <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
-                <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
-                    <h2 class="mb-3 d-none d-sm-block">Your new favorite bookmarking app</h2>
-                    <p>With Links, never forget another page again.</p>
-                    <p>All your bookmarks, in one place, organised how you choose, just a few click away.</p>
-                    <!-- image idea -->
-                    <!-- picture of woman, pop art style, looking up and thinking
+    <section id="headline-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
+                    <img src="{% static 'img/pages/about/logo_c.png' %}" alt="free" class="img-fluid d-block mx-auto">
+                </div>
+                <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
+                    <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
+                        <h2 class="mb-3 d-none d-sm-block">Your new favorite bookmarking app</h2>
+                        <p>With Links, never forget another page again.</p>
+                        <p>All your bookmarks, in one place, organised how you choose, just a few clicks away.</p>
+                        <!-- image idea -->
+                        <!-- picture of woman, pop art style, looking up and thinking
                         then above, surrounded by loads of bookmark / site icons -->
-                    <p>Another paragraph here, and it should be better than the 2 above whuch will need replacing /
-                        improving</p>
+                        <p>Another paragraph here, and it should be better than the 2 above whuch will need
+                            replacing /
+                            improving</p>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,10 +44,12 @@
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="vertical-bar-right text-justify pl-3 pl-lg-4">
                         <h2 class="mb-3 d-none d-sm-block text-right">Features</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto neque,
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto
+                            neque,
                             doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
                             magnam hic commodi nemo laborum!&lrm;</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto neque,
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto
+                            neque,
                             doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
                             magnam hic commodi nemo laborum!&lrm;</p>
                     </div>
@@ -53,39 +58,37 @@
         </div>
     </section>
 
-    <div class="icon-tile-bg-wrapper">
-        <section id="chrome-ext-section" class="container-fluid">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
-                            <img src="{% static 'img/pages/about/chrome_ext.jpg' %}" alt="free"
-                                class="img-fluid d-block mx-auto">
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
-                            <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
-                                <h2 class="mb-3 d-none d-sm-block">Chrome Browser Extension</h2>
-                                <p>Eos praesentium, beatae vel quam eaque veniam harum, ab ratione
-                                    temporibus aliquam ex!.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate animi sunt, cum
-                                    corrupti
-                                    reiciendis veniam iure aut.</p>
-                                <!-- image idea -->
-                                <!-- picture of woman, pop art style, looking up and thinking
+    <section id="chrome-ext-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4 my-lg-auto">
+                    <img src="{% static 'img/pages/about/chrome_ext.jpg' %}" alt="free"
+                        class="img-fluid d-block mx-auto">
+                </div>
+                <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
+                    <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
+                        <h2 class="mb-3 d-none d-sm-block">Chrome Browser Extension</h2>
+                        <p>Eos praesentium, beatae vel quam eaque veniam harum, ab ratione
+                            temporibus aliquam ex!.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate animi sunt, cum
+                            corrupti
+                            reiciendis veniam iure aut.</p>
+                        <!-- image idea -->
+                        <!-- picture of woman, pop art style, looking up and thinking
                             then above, surrounded by loads of bookmark / site icons -->
-                                <p>Another paragraph here, and it should be better than the 2 above whuch will need
-                                    replacing /
-                                    improving</p>
-                                <div class="text-center mt-4">
-                                    <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
-                                        target="_blank" class="btn--invert">Install Extension</a>
-                                </div>
-
-                            </div>
+                        <p>Another paragraph here, and it should be better than the 2 above whuch will need
+                            replacing /
+                            improving</p>
+                        <div class="text-center mt-4">
+                            <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
+                                target="_blank" class="btn--invert">Install Extension</a>
                         </div>
+
                     </div>
                 </div>
-        </section>
-    </div>
+            </div>
+        </div>
+    </section>
 
     <section id="testimonials-section" class="container-fluid">
         <div class="container">
@@ -106,7 +109,8 @@
                                             class="img-fluid">
                                     </div>
                                     <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam? Distinctio,
+                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
+                                        Distinctio,
                                         repudiandae!</p>
 
                                     <hr>
@@ -120,7 +124,8 @@
                                             class="img-fluid">
                                     </div>
                                     <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam? Distinctio,
+                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
+                                        Distinctio,
                                         repudiandae!</p>
 
                                     <hr>
@@ -134,11 +139,13 @@
                                             class="img-fluid">
                                     </div>
                                     <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam? Distinctio,
+                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
+                                        Distinctio,
                                         repudiandae!</p>
 
                                     <hr>
-                                    <p class="quote_by"><b>Joe Lally</b>, <span class="text-nowrap">Student</span></p>
+                                    <p class="quote_by"><b>Joe Lally</b>, <span class="text-nowrap">Student</span>
+                                    </p>
                                 </div>
 
                             </div>
@@ -168,7 +175,6 @@
 
     <!-- get started -->
     {% include 'pages/components/get_started.html' %}
-
 </div>
 
 <!-- Footer -->
