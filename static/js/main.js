@@ -448,12 +448,11 @@ $(document).ready(function() {
     });
 
     // nav bar title hide / show on scroll
-    $(window).scroll(function() {
+    function navbarBehaviour () {
         if (window.scrollY > 1) {
             $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
             $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600, function () {
                 $('#pages-nav').addClass('nav-border');
-                // $('#pages-nav').css({ 'background-color': 'rgba(255, 255, 255, 0.9)', transition: 'background-color 0.5s'});
             });
             
         } else {
@@ -461,11 +460,14 @@ $(document).ready(function() {
             $('.mobile-menu').css({ opacity: 1}).slideDown(600);
             if (!window.location.href.includes('accounts')) {
                 $('#pages-nav').removeClass('nav-border');
-                // $('#pages-nav').css({ 'background-color': 'rgba(255, 255, 255, 0.1)', transition: 'background-color 0.5s'});
             }
 
         }
-    });
+    }
+
+    // activate on scroll and initial page load
+    $(window).scroll(navbarBehaviour);
+    navbarBehaviour();
 
     // on click, toggle 'plus' icon for each entry on faq page
     $(".collapse")
