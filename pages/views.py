@@ -32,7 +32,7 @@ def pricing(request):
         ['Collections', '20', 'Unlimited'],
         ['Pages', '2', 'Unlimited'],
         ['Support', 'Email', 'Email & Telephone'],
-        ['Cost', 'Free', '£20 for lifetime access'],
+        ['Cost', 'Free', '£20 / yr'],
     ]
 
     context = {"table_data": table_data, }

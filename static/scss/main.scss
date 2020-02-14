@@ -110,6 +110,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    background-color: rgba(250,250,250,.9);
+}
+
 a {
     color: $black;
 
@@ -684,7 +688,7 @@ a {
 }
 
 #pricing-text-section {
-    background-color: $white;
+    @include background-overlay(.98);
 
     img {
         width: 80%;
@@ -697,15 +701,11 @@ a {
 
 #pricing-table-section {
     background-color: #343a40;
-}
 
-#pricing-early-bird {
-    @include background-overlay(0.96);
-
-    .box {
+    .offer-box {
         display: inline-block;
-        border: 2px solid $logo-blue;
         background-color: $white;
+        border-radius: 8px;
     }
 }
 

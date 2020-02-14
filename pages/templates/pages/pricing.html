@@ -7,47 +7,45 @@
 
 {% include 'pages/components/nav.html' %}
 
-<div id="pricing-page">
+<div id="pricing-page" class="icon-tile-bg-wrapper">
     <!-- messages -->
     {% include 'components/messages.html' %}
 
     <!-- pricing text detail -->
-    <section id="pricing-text-section" class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4">
-                <img src="{% static 'img/pages/pricing/free.png' %}" alt="free" class="img-fluid d-block mx-auto">
-            </div>
-            <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
-                <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
-                    <h2 class="mb-3 d-none d-sm-block">Free, now and forever.</h2>
-                    <p>Anyone can create a free account and start using Links straight away.</p>
-                    <p>Whilst the core experience remains the same for both free and Premium members, being a Premium
-                        member does come with some exciting bonuses. For more details, see the comparison table further
-                        down
-                    </p>
-                    <div class="text-center my-4">
-                        <a href="#pricing-table-section" class="btn--invert">Feature Comparison</a>
-                    </div>
-                    <p>As a free member, you can still add, edit, organise and delete all your bookmarks in exactly the
-                        same
-                        way as a Premium member.</p>
-                    <p>Our Chrome browser extension is free to use for all members too, and free technical support is
-                        available, should you need it.</p>
-                    <div class="text-center mt-4">
-                        <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
-                            target="_blank" class="btn--invert">Install Extension</a>
+    <section id="pricing-text-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 order-lg-2 mt-n3 mb-4">
+                    <img src="{% static 'img/pages/pricing/free.png' %}" alt="free" class="img-fluid d-block mx-auto">
+                </div>
+                <div class="col-12 col-lg-6 col-xl-7 order-lg-1">
+                    <div class="vertical-bar-left text-justify pr-3 pr-lg-4">
+                        <h2 class="mb-3 d-none d-sm-block">Free, now and forever.</h2>
+                        <p>Anyone can create a free account and start using Links straight away.</p>
+                        <p>Whilst the core experience remains the same for both free and Premium members, being a
+                            Premium
+                            member does come with some exciting bonuses. For more details, see the comparison table
+                            further
+                            down
+                        </p>
+                        <div class="text-left my-5">
+                            <a href="{% url 'pricing_page' %}" class="btn--square mt-1"><span><small>Compare
+                                        Features</small></span></a>
+                        </div>
+                        <p>As a free member, you can still add, edit, organise and delete all your bookmarks in exactly
+                            the
+                            same
+                            way as a Premium member.</p>
+                        <p>Our Chrome browser extension is free to use for all members too, and free technical support
+                            is
+                            available, should you need it.</p>
+                        <div class="mt-5">
+                            <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
+                                target="_blank" class="btn--square mt-1"><span><small>Install
+                                        Extension</small></span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <hr class="mt-5 mb-5">
-
-        <div class="text-center">
-            <div>
-                <a href="{% url 'register' %}" class="btn--invert mt-5">Create Account</a>
-            </div>
-            <div class="faded-link-sm text-left">
-                <small><a href="{% url 'login' %}">or log in here</a></small>
             </div>
         </div>
     </section>
@@ -84,50 +82,28 @@
                 <div class="col"></div>
             </div>
         </div>
-    </section>
 
-    <!-- special offer -->
-    <div class="icon-tile-bg-wrapper">
-        <section id="pricing-early-bird" class="container-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col-12 col-md-5 col-lg-4 col-xl-4 my-auto">
-                        <img src="{% static 'img/pages/pricing/early-bird.png' %}" alt="free"
-                            class="img-fluid d-block mx-auto">
-                    </div>
-                    <div class="col-12 col-md-5 col-lg-4 col-xl-4 mt-5 mt-md-0 text-center">
-                        <div>
-                            <div class="p-3 box">
-                                <h2>Early Bird Offer</h2>
-                                <small>Limited to the first 1000 users</small>
-                            </div>
-                            <div class="my-5 p-3 box">
-                                <h4 class="mb-3">Lifetime Premium Membership</h4>
-                                <hr class="w-25">
-                                <h2><span class="badge badge-secondary">£20</span></h2>
-                                <div class="mt-n2">
-                                    <small>Normally £20/yr</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"></div>
+        <!-- launch offer -->
+        <div class="row">
+            <div class="p-4 mt-5 text-center mx-auto offer-box">
+                <h2>Launch Offer</h2>
+                <div class="mt-n2">
+                    <small>Limited to the first 1000 users</small>
                 </div>
 
-                <hr class="my-5">
-
-                <div class="text-center">
-                    <div>
-                        <a href="{% url 'register' %}" class="btn--invert">Create Account</a>
-                    </div>
-                    <div class="faded-link-sm">
-                        <small><a href="{% url 'login' %}">or log in here</a></small>
-                    </div>
+                <h4 class="my-3">Lifetime Premium Membership</h4>
+                <hr class="w-25">
+                <h2><span class="badge badge-secondary">£20</span></h2>
+                <div class="mt-n2">
+                    <small>Normally £20/yr</small>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
+
+    <!-- get started -->
+    {% include 'pages/components/get_started.html' %}
 
 
 </div>
