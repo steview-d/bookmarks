@@ -95,6 +95,15 @@ $footer-height: 116px;
     padding-right: 1.4rem;
 }
 
+.faded-link-sm a {
+    color: #888888;
+    transition: 0.3s ease-out;
+
+    &:hover {
+        color: #222222;
+    }
+}
+
 // -------------------------- page setup and override some bootstrap 4 defaults
 
 html {
@@ -426,7 +435,8 @@ a {
     top: 0;
     width: 100%;
     z-index: 1000;
-    @include background-overlay(0.90);
+    // @include background-overlay(0.90);
+    background-color: rgba(250,250,250,.9);
 
     @media only screen and (min-width: 576px) {
         padding: 0.5rem 15px;
@@ -528,9 +538,7 @@ a {
 }
 
 #headline-section {
-    // @include background-overlay(1);
-
-    @include background-overlay(1);
+    @include background-overlay(.98);
 
     img {
         width: 50%;
@@ -551,6 +559,7 @@ a {
         grid-template-rows: auto auto auto auto;
         gap: 2px;
         border: 4px solid black;
+        border-radius: 6px;
         padding: .5rem;
 
         .icon-grid-item {
@@ -682,15 +691,6 @@ a {
 
         @media only screen and (min-width: 992px) {
             width: 100%;
-        }
-    }
-
-    .faded-link-sm a {
-        color: #888888;
-        transition: 0.3s ease-out;
-
-        &:hover {
-            color: #222222;
         }
     }
 }
@@ -906,7 +906,7 @@ a {
         position: absolute;
         bottom: 0;
         right: 0;
-        padding: 0.2rem 0.4rem;
+        padding: 0.25rem 0.4rem;
         text-align: right;
         line-height: 1rem;
     }
