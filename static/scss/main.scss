@@ -4,6 +4,7 @@
 
 // ------------------------------------------------------------------ variables
 
+// - colors - //
 $white: #ffffff;
 $black: #000000;
 $dark-grey: #15191d;
@@ -17,6 +18,8 @@ $red: #f93333;
 $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
+
+// - spacing - //
 $topnav-spacer-height: 90px;
 $navbar-spacer-height: 152px;
 $footer-height: 116px;
@@ -782,12 +785,16 @@ a {
         margin-bottom: 0.5rem;
     }
 
-    i {
-        margin-top: 0.2rem;
+    .fa-square{
+        margin-top: 0.35rem;
         font-size: 1.2rem;
         color: $logo-blue;
 
         // media query to make icon bigger on smaller devices?
+    }
+
+    .fa-info {
+        font-size: .7rem;
     }
 }
 
@@ -812,7 +819,7 @@ a {
     padding: 0.2rem 0.4rem;
     color: $black;
     display: inline-block;
-    transition: 0.35s ease-out;
+    transition: 0.25s ease-out;
 
     &:hover {
         background-color: #424242;
@@ -827,7 +834,7 @@ a {
     padding: 0.2rem 0.4rem;
     color: $logo-blue;
     display: inline-block;
-    transition: 0.35s ease-out;
+    transition: 0.25s ease-out;
 
     &:hover {
         background-color: $logo-blue;
@@ -842,7 +849,7 @@ a {
     padding: 0.2rem 0.4rem;
     color: $red;
     display: inline-block;
-    transition: 0.35s ease-out;
+    transition: 0.25s ease-out;
 
     &:hover {
         background-color: $red;

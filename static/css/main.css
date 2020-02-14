@@ -973,10 +973,14 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
-.user-auth-container i {
-  margin-top: 0.2rem;
+.user-auth-container .fa-square {
+  margin-top: 0.35rem;
   font-size: 1.2rem;
   color: #175c9d;
+}
+
+.user-auth-container .fa-info {
+  font-size: .7rem;
 }
 
 .label {
@@ -998,8 +1002,8 @@ a:hover {
   padding: 0.2rem 0.4rem;
   color: #000000;
   display: inline-block;
-  -webkit-transition: 0.35s ease-out;
-  transition: 0.35s ease-out;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
 }
 
 .btn--invert:hover {
@@ -1014,8 +1018,8 @@ a:hover {
   padding: 0.2rem 0.4rem;
   color: #175c9d;
   display: inline-block;
-  -webkit-transition: 0.35s ease-out;
-  transition: 0.35s ease-out;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
 }
 
 .btn--invert-blue:hover {
@@ -1030,8 +1034,8 @@ a:hover {
   padding: 0.2rem 0.4rem;
   color: #f93333;
   display: inline-block;
-  -webkit-transition: 0.35s ease-out;
-  transition: 0.35s ease-out;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
 }
 
 .btn--invert-red:hover {
