@@ -17,22 +17,19 @@
     <section id="faq-section" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12 content text-center">
+                <div class="text-center mt-n5 mt-lg-n3">
                     <h2>Get answers to some of the most commonly asked questions</h2>
                     <!-- <p>Get answers to some of the most commonly asked questions</p> -->
-                    <div class="other-questions text-center my-5">
+                    <div class="other-questions text-center">
                         <h5>Have a different question? That's ok too!</h5>
-                        <a href="#contact-form-section" class="btn--square mt-3"><span>Contact Form</span></a>
+                        <a href="#contact-form-section" class="btn--square mt-3"><span><small>Contact Form</small></span></a>
                     </div>
                 </div>
             </div>
-
-
             <!-- FAQ's -->
-
             <div class="row">
                 <div class="col"></div>
-                <div id="faq-accordion" class="col-md-9" style="width: 100%">
+                <div id="faq-accordion" class="col-12 col-md-9 vertical-bar-left pr-3 pr-lg-4">
 
                     <!-- Question 1 -->
                     <div class="card">
@@ -189,8 +186,8 @@
                     <form method="POST" novalidate>
                         {% csrf_token %}
                         {{ contact_form|crispy }}
-                        <input type="submit" value="Send" name="contact-form" class="btn--half-square">
-                        <input type="button" value="Reset" id="contact-form-reset" class="btn--half-square ml-2">
+                        <input type="submit" value="Send" name="contact-form" class="btn--half-square-invert">
+                        <input type="button" value="Reset" id="contact-form-reset" class="btn--half-square-invert ml-2">
 
                     </form>
 

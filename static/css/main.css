@@ -231,12 +231,12 @@
 }
 
 .vertical-bar-left {
-  border-left: 20px solid #175c9d;
+  border-left: 14px solid #343A40;
   padding-left: 1.4rem;
 }
 
 .vertical-bar-right {
-  border-right: 20px solid #175c9d;
+  border-right: 14px solid #ffffff;
   padding-right: 1.4rem;
 }
 
@@ -722,6 +722,7 @@ a:hover {
 #index-page section {
   padding-top: 6rem;
   padding-bottom: 6rem;
+  border-bottom: 2px solid #AAAAAA;
 }
 
 #index-page section .content {
@@ -753,10 +754,10 @@ a:hover {
       grid-template-columns: auto auto auto auto;
   -ms-grid-rows: auto auto auto auto;
       grid-template-rows: auto auto auto auto;
-  gap: 2px;
+  gap: 4px;
   border: 4px solid black;
   border-radius: 6px;
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 #headline-section .display-icon-grid .icon-grid-item {
@@ -776,7 +777,8 @@ a:hover {
 }
 
 #features-section {
-  background-color: #7180ac;
+  background-color: rgba(41, 46, 51, 0.99);
+  color: white;
 }
 
 #features-section img {
@@ -810,12 +812,18 @@ a:hover {
 }
 
 #testimonials-section {
-  background-color: #7180ac;
-  color: #000000;
+  background-color: rgba(36, 37, 53, 0.98);
+  color: #ffffff;
+}
+
+#testimonials-section h1 {
+  display: inline-block;
+  border: 1px solid #ffffff;
+  padding: 1rem 1.25rem;
 }
 
 #testimonialCarousel {
-  color: #000000;
+  color: #ffffff;
 }
 
 #testimonialCarousel .carousel-inner .testimonial {
@@ -846,6 +854,7 @@ a:hover {
 
 #testimonialCarousel .controls i {
   font-size: 3rem;
+  color: #ffffff;
 }
 
 #testimonialCarousel .carousel-control-next,
@@ -861,8 +870,8 @@ a:hover {
 }
 
 #testimonialCarousel .carousel-indicators li {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   margin: 0 0.5rem;
   background: #eeeeee;
@@ -871,8 +880,8 @@ a:hover {
 
 #testimonialCarousel .carousel-indicators li.active {
   color: #ffffff;
-  background: #175c9d;
-  border: 5px double;
+  background: rgba(36, 37, 53, 0.98);
+  border: 4px solid;
 }
 
 #pricing-page section {
@@ -899,7 +908,12 @@ a:hover {
 }
 
 #pricing-table-section {
-  background-color: #343a40;
+  background-color: rgba(41, 46, 51, 0.99);
+}
+
+#pricing-table-section table {
+  background-color: transparent;
+  padding: 4rem;
 }
 
 #pricing-table-section .offer-box {
@@ -921,21 +935,31 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.98);
 }
 
+#faq-section h2 {
+  display: inline-block;
+  background-color: rgba(41, 46, 51, 0.99);
+  color: #ffffff;
+  margin-bottom: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
 #faq-section .other-questions {
   display: inline-block;
-  background-color: #ffffff;
+  background-color: transparent;
+  margin: 3.5rem auto;
   padding: 2rem;
-  border: 2px solid black;
 }
 
 #faq-section #faq-accordion {
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0);
+  padding: .5rem;
 }
 
 #faq-section #faq-accordion .card {
   border-width: 0;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 #faq-section #faq-accordion .card .card-header {
@@ -953,9 +977,10 @@ a:hover {
   transition: 0.2s ease-out;
 }
 
-#faq-section #faq-accordion .card .card-header:hover {
+#faq-section #faq-accordion .card .card-header:hover, #faq-section #faq-accordion .card .card-header:active {
   cursor: pointer;
-  background-color: #eff4f7;
+  background-color: rgba(41, 46, 51, 0.99);
+  color: #ffffff;
 }
 
 #faq-section #faq-accordion .card .card-header i {
@@ -968,7 +993,8 @@ a:hover {
 }
 
 #contact-form-section {
-  background-color: #a8d0db;
+  background-color: rgba(36, 37, 53, 0.98);
+  color: #ffffff;
 }
 
 #contact-form-section .form-container {
@@ -982,7 +1008,7 @@ a:hover {
 }
 
 .set-min-height {
-  min-height: calc(100vh - 168px - 116px);
+  min-height: calc(100vh - 116px);
 }
 
 .user-auth-container {
@@ -1024,7 +1050,7 @@ a:hover {
 .user-auth-container .fa-square {
   margin-top: 0.35rem;
   font-size: 1.2rem;
-  color: #175c9d;
+  color: #343A40;
 }
 
 .user-auth-container .fa-info {
@@ -1059,38 +1085,6 @@ a:hover {
   color: #ffffff;
 }
 
-.btn--invert-blue {
-  background-color: transparent;
-  border: 1px solid #175c9d;
-  border-radius: 0.25rem;
-  padding: 0.2rem 0.4rem;
-  color: #175c9d;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-}
-
-.btn--invert-blue:hover {
-  background-color: #175c9d;
-  color: #ffffff;
-}
-
-.btn--invert-red {
-  background-color: transparent;
-  border: 1px solid #f93333;
-  border-radius: 0.25rem;
-  padding: 0.2rem 0.4rem;
-  color: #f93333;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-}
-
-.btn--invert-red:hover {
-  background-color: #f93333;
-  color: #ffffff;
-}
-
 .btn--square {
   position: relative;
   width: 5rem;
@@ -1114,8 +1108,35 @@ a:hover {
 }
 
 .btn--square:hover {
-  background-color: #f8f8f8;
+  background-color: transparent;
   color: #424242;
+}
+
+.btn--square-invert {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0.35rem;
+  color: #000000;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--square-invert span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.25rem 0.4rem;
+  text-align: right;
+  line-height: 1rem;
+}
+
+.btn--square-invert:hover {
+  background-color: transparent;
+  color: #ffffff;
 }
 
 .btn--half-square {
@@ -1127,8 +1148,8 @@ a:hover {
   border-radius: 0.25rem;
   color: #ffffff;
   display: inline-block;
-  -webkit-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
 }
 
 .btn--half-square span {
@@ -1141,8 +1162,38 @@ a:hover {
 }
 
 .btn--half-square:hover {
-  background-color: #f8f8f8;
+  background-color: transparent;
   color: #424242;
+  font-weight: 600;
+}
+
+.btn--half-square-invert {
+  position: relative;
+  width: 5rem;
+  height: 2.55rem;
+  margin-top: .25rem;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0.35rem;
+  color: #000000;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--half-square-invert span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.25rem 0.4rem;
+  text-align: right;
+  line-height: 1rem;
+}
+
+.btn--half-square-invert:hover {
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .btn--slide {

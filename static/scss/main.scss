@@ -4,12 +4,13 @@
 
 // ------------------------------------------------------------------ variables
 
-// - colors - //
+// - colors - solid - //
 $white: #ffffff;
 $black: #000000;
 $dark-grey: #15191d;
 $logo-blue: #175c9d;
 $light-steel-blue: #a8d0db;
+$onyx: #343A40;
 $light-grey: #eff4f7;
 $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
@@ -18,6 +19,15 @@ $red: #f93333;
 $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
+$powder-blue: #DEDFF2;
+
+// - colors - alpha - //
+$light-blue-alpha: rgba(215, 228, 247, .98);
+$light-purple-alpha: rgba(205, 214, 242, .98);
+$pale-orange-alpha: rgba(255, 242, 204, .98);
+$gunmetal-alpha: rgba(41, 46, 51, .99);
+$pink-alpha: rgba(242, 205, 224, .98);
+$dark-blue-alpha: rgba(36, 37, 53, .98);
 
 // - spacing - //
 $topnav-spacer-height: 90px;
@@ -71,6 +81,7 @@ $footer-height: 116px;
     background-color: rgba(255, 255, 255, $opacity);
 }
 
+
 // ----------------------------------------------------------------- re-usables
 
 .border {
@@ -86,12 +97,12 @@ $footer-height: 116px;
 }
 
 .vertical-bar-left {
-    border-left: 20px solid $logo-blue;
+    border-left: 14px solid $onyx;
     padding-left: 1.4rem;
 }
 
 .vertical-bar-right {
-    border-right: 20px solid $logo-blue;
+    border-right: 14px solid $white;
     padding-right: 1.4rem;
 }
 
@@ -535,6 +546,7 @@ a {
 
 #index-page section {
     @include section-padding;
+    border-bottom: 2px solid #AAAAAA;
 
     .content {
         padding: 1rem;
@@ -561,10 +573,10 @@ a {
         display: grid;
         grid-template-columns: auto auto auto auto;
         grid-template-rows: auto auto auto auto;
-        gap: 2px;
+        gap: 4px;
         border: 4px solid black;
         border-radius: 6px;
-        padding: 0.5rem;
+        padding: 0.25rem;
 
         .icon-grid-item {
             background-color: transparent;
@@ -583,7 +595,8 @@ a {
 }
 
 #features-section {
-    background-color: $shadow-blue;
+    background-color: $gunmetal-alpha;
+    color: white;
 
     img {
         width: 50%;
@@ -613,12 +626,18 @@ a {
 }
 
 #testimonials-section {
-    background-color: $shadow-blue;
-    color: $black;
+    background-color: $dark-blue-alpha;
+    color: $white;
+
+    h1 {
+        display: inline-block;
+        border: 1px solid $white;
+        padding: 1rem 1.25rem;
+    }
 }
 
 #testimonialCarousel {
-    color: $black;
+    color: $white;
 
     .carousel-inner {
         .testimonial {
@@ -648,6 +667,7 @@ a {
 
         i {
             font-size: 3rem;
+            color: $white;
         }
     }
 
@@ -662,8 +682,8 @@ a {
     }
 
     .carousel-indicators li {
-        width: 14px;
-        height: 14px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         margin: 0 0.5rem;
         background: #eeeeee;
@@ -671,8 +691,8 @@ a {
     }
     .carousel-indicators li.active {
         color: $white;
-        background: $logo-blue;
-        border: 5px double;
+        background: $dark-blue-alpha;
+        border: 4px solid;
     }
 }
 
@@ -699,7 +719,13 @@ a {
 }
 
 #pricing-table-section {
-    background-color: #343a40;
+    // background-color: #343a40;
+    background-color: $gunmetal-alpha;
+
+    table {
+        background-color: transparent;
+        padding: 4rem;
+    }
 
     .offer-box {
         display: inline-block;
@@ -721,20 +747,32 @@ a {
 #faq-section {
     @include background-overlay(0.98);
 
+    h2 {
+        display: inline-block;
+        background-color: $gunmetal-alpha;
+        color: $white;
+        margin-bottom: 0;
+        padding: 1rem 1.25rem;
+        border: 1px solid $black;
+        border-radius: 5px;
+    }
+
     .other-questions {
         display: inline-block;
-        background-color: $white;
+        background-color: transparent;
+        margin: 3.5rem auto;
         padding: 2rem;
-        border: 2px solid black;
+        // border: 2px solid black;
     }
 
     #faq-accordion {
-        background-color: $white;
-        border: 2px solid $black;
-        padding: 2rem;
+        background-color: rgba(255,255,255,0);
+        padding: .5rem;
 
         .card {
             border-width: 0;
+            background-color: rgba(255,255,255,0.8);
+
 
             .card-header {
                 display: flex;
@@ -744,9 +782,11 @@ a {
                 background-color: transparent;
                 transition: 0.2s ease-out;
 
-                &:hover {
+                &:hover,
+                &:active {
                     cursor: pointer;
-                    background-color: $light-grey;
+                    background-color: $gunmetal-alpha;
+                    color: $white;
                 }
 
                 i {
@@ -763,7 +803,8 @@ a {
 }
 
 #contact-form-section {
-    background-color: $light-steel-blue;
+    background-color: $dark-blue-alpha;
+    color: $white;
 
     .form-container {
         margin: 0 auto;
@@ -788,7 +829,7 @@ a {
 }
 
 .set-min-height {
-    min-height: calc(100vh - #{$navbar-spacer-height} - #{$footer-height});
+    min-height: calc(100vh - #{$footer-height});
 }
 
 .user-auth-container {
@@ -828,7 +869,7 @@ a {
     .fa-square {
         margin-top: 0.35rem;
         font-size: 1.2rem;
-        color: $logo-blue;
+        color: $onyx;
 
         // media query to make icon bigger on smaller devices?
     }
@@ -867,36 +908,6 @@ a {
     }
 }
 
-.btn--invert-blue {
-    background-color: transparent;
-    border: 1px solid $logo-blue;
-    border-radius: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    color: $logo-blue;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    &:hover {
-        background-color: $logo-blue;
-        color: $white;
-    }
-}
-
-.btn--invert-red {
-    background-color: transparent;
-    border: 1px solid $red;
-    border-radius: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    color: $red;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    &:hover {
-        background-color: $red;
-        color: $white;
-    }
-}
-
 .btn--square {
     position: relative;
     width: 5rem;
@@ -918,8 +929,34 @@ a {
     }
 
     &:hover {
-        background-color: #f8f8f8;
+        background-color: transparent;
         color: #424242;
+    }
+}
+
+.btn--square-invert {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    background-color: $white;
+    border: 1px solid $white;
+    border-radius: 0.35rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: $white;
     }
 }
 
@@ -932,7 +969,7 @@ a {
     border-radius: 0.25rem;
     color: $white;
     display: inline-block;
-    transition: 0.2s ease-out;
+    transition: 0.25s ease-out;
 
     span {
         position: absolute;
@@ -944,8 +981,37 @@ a {
     }
 
     &:hover {
-        background-color: #f8f8f8;
+        background-color: transparent;
         color: #424242;
+        font-weight: 600;
+    }
+}
+
+.btn--half-square-invert {
+    position: relative;
+    width: 5rem;
+    height: 2.55rem;
+    margin-top: .25rem;
+    background-color: $white;
+    border: 1px solid $white;
+    border-radius: 0.35rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: $white;
+        font-weight: 600;
     }
 }
 
