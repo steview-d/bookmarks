@@ -250,6 +250,16 @@
   color: #222222;
 }
 
+.tippy-i .fa-square {
+  margin-top: 0.35rem;
+  font-size: 1.2rem;
+  color: #343a40;
+}
+
+.tippy-i .fa-info {
+  font-size: 0.7rem;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -270,6 +280,10 @@ a:hover {
 .icon-tile-bg-wrapper {
   background-image: url("/static/img/bg/icon_tile.png");
   background-repeat: repeat;
+}
+
+.px-space {
+  height: 1px;
 }
 
 .flex-wrapper {
@@ -1050,16 +1064,6 @@ a:hover {
 .user-auth-container button {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-}
-
-.user-auth-container .fa-square {
-  margin-top: 0.35rem;
-  font-size: 1.2rem;
-  color: #343a40;
-}
-
-.user-auth-container .fa-info {
-  font-size: 0.7rem;
 }
 
 #about-app .logo-img {

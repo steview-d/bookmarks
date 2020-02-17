@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
 
 {% block page_title %}Profile{% endblock %}
 
@@ -12,60 +15,84 @@
     <!-- Content -->
     <div id="content" class="icon-tile-bg-wrapper">
         <div class="bg-fade">
-        {% include 'components/top-nav.html' %}
+            {% include 'components/top-nav.html' %}
 
-        <!-- messages -->
-        {% include 'components/messages.html' %}
+            <!-- messages -->
+            {% include 'components/messages.html' %}
 
-        <div class="container-fluid">
-            <div class="my-3">
-                <div class="display-4">Profile for <strong>{{ user }}</strong></div>
-                {% if is_premium %}
-                <h4><span class="badge badge-success">PREMIUM MEMBER</span></h4>
-                {% endif %}
-                <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
+            <div class="container-fluid">
+                <!-- user info -->
+                <div class="mt-2 mb-5 text-center">
+                    <div class="display-4">{{ user }}</div>
+                    {% if is_premium %}
+                    <hr class="w-25">
+                    <h4><span class="badge badge-success">PREMIUM MEMBER</span></h4>
+                    {% endif %}
+                    <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
+                </div>
+
+                <div class="row">
+                    <!-- update email address form -->
+                    <div class="col-12 col-lg-6">
+                        <form method="POST" class="border p-2 mt-3" novalidate>
+                            <fieldset>
+                                <legend>Update Email Address</legend>
+                                {% csrf_token %}
+
+                                <p>Email Address: {{ user.email }}</p>
+                                {{ update_email_form|crispy }}
+
+                                <input type="submit" name="email-btn" class="btn btn-info">
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <!-- change password form -->
+                    <div class="col-12 col-lg-6">
+                        <form method="POST" class="border p-2 mt-3" novalidate>
+                            <fieldset>
+                                <legend>Change Password</legend>
+                                {% csrf_token %}
+
+                                {% for field in password_change_form.visible_fields %}
+
+                                <div>
+                                    {% if 'tippy-help-text' in field.field.widget.attrs.class %}
+                                    <!-- add info / help icon if field has help text -->
+                                    <span class="fa-stack tippy-pw-help tippy-i float-right">
+                                        <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                        <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                    </span>
+                                    {% endif %}
+                                    {{ field|as_crispy_field}}
+                                </div>
+
+                                {% endfor %}
+
+                                <input type="submit" name="pw-btn" class="btn btn-info">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- stats -->
+                <div class="border p-2 my-3">
+                    <h3>Stats</h3>
+                    <p>Insert app related stats here</p>
+                    <p>Actual stats still tbc</p>
+                    <p>Things like total bookmarks, collections, pages, etc</p>
+                </div>
+
             </div>
-
-            <form method="POST" class="border p-2 mt-3">
-                <fieldset>
-                    <legend>Update Email Address</legend>
-                    {% csrf_token %}
-
-                    <p>Email Address: {{ user.email }}</p>
-                    {{ update_email_form.as_p }}
-
-                    <input type="submit" name="email-btn" class="btn btn-info">
-                </fieldset>
-            </form>
-
-            <form method="POST" class="border p-2 mt-3">
-                <fieldset>
-                    <legend>Change Password</legend>
-                    {% csrf_token %}
-
-                    {% for i in password_change_form %}
-
-                    <p>{{ i.label_tag }} {{ i }} </p>
-                    <small>{{ i.errors }}</small>
-
-                    {% endfor %}
-
-                    <input type="submit" name="pw-btn" class="btn btn-info">
-                </fieldset>
-            </form>
-
-            <!-- stats -->
-            <div class="border p-2 my-3">
-                <h3>Stats</h3>
-                <p>Insert app related stats here</p>
-                <p>Actual stats still tbc</p>
-                <p>Things like total bookmarks, collections, pages, etc</p>
-            </div>
-
+            <!-- banner ad -->
+            {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
         </div>
-        <!-- banner ad -->
-        {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
     </div>
 </div>
 
 {% endblock %}
+
+{% block tippy_js %}
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script src="{% static 'js/tooltip.js' %}"></script>
+{% endblock tippy_js %}

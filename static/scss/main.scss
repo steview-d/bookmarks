@@ -114,6 +114,20 @@ $footer-height: 116px;
     }
 }
 
+.tippy-i {
+    .fa-square {
+        margin-top: 0.35rem;
+        font-size: 1.2rem;
+        color: $onyx;
+
+        // media query to make icon bigger on smaller devices?
+    }
+
+    .fa-info {
+        font-size: 0.7rem;
+    }
+}
+
 // -------------------------- page setup and override some bootstrap 4 defaults
 
 html {
@@ -135,6 +149,12 @@ a {
 
 .icon-tile-bg-wrapper {
     @include icon-tile-bg;
+}
+
+// force bg overlay all the way
+// to the bottom of the page.
+.px-space {
+    height: 1px
 }
 
 // -------------------------------------------------- main display grid wrapper
@@ -869,17 +889,17 @@ a {
         margin-bottom: 0.5rem;
     }
 
-    .fa-square {
-        margin-top: 0.35rem;
-        font-size: 1.2rem;
-        color: $onyx;
+    // .fa-square {
+    //     margin-top: 0.35rem;
+    //     font-size: 1.2rem;
+    //     color: $onyx;
 
-        // media query to make icon bigger on smaller devices?
-    }
+    //     // media query to make icon bigger on smaller devices?
+    // }
 
-    .fa-info {
-        font-size: 0.7rem;
-    }
+    // .fa-info {
+    //     font-size: 0.7rem;
+    // }
 }
 
 // ----------------------------------------------------------- settings - about

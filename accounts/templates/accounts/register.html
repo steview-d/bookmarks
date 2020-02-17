@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
 {% load staticfiles %}
+
 {% load crispy_forms_tags %}
 
 {% block page_title %}Register{% endblock %}
@@ -28,7 +28,7 @@
                             <div>
                                 {% if 'tippy-help-text' in field.field.widget.attrs.class %}
                                 <!-- add info / help icon if field has help text -->
-                                <span class="fa-stack tippy-register-help float-right">
+                                <span class="fa-stack tippy-pw-help tippy-i float-right">
                                     <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
                                     <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
                                 </span>
