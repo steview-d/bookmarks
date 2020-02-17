@@ -374,6 +374,11 @@ a:hover {
   transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
 }
 
+#content .bg-fade {
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
 @media (min-width: 768px) {
   #content {
     width: calc(100% - 300px);
@@ -1055,6 +1060,11 @@ a:hover {
 
 .user-auth-container .fa-info {
   font-size: 0.7rem;
+}
+
+#about-app {
+  background-color: rgba(255, 255, 255, 0.98);
+  color: black;
 }
 
 .label {
