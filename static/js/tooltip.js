@@ -15,21 +15,13 @@ $(document).ready(function() {
         }
     });
 
-    // show help text for register account form fields
-    tippy('.tippy-register-help', {
+    // show help text for password fields on password creation / change
+    tippy('.tippy-pw-help', {
         theme: 'dark',
         onShow(instance) {
             const el = $(instance.reference.nextElementSibling).find('.tippy-help-text');
             instance.setContent(el[0].dataset.helptext);
         }
     });
-
-    // show help text for set password form field
-    tippy('.tippy-set-pw-help', {
-        theme: 'dark',
-        onShow(instance) {
-            const el = $(instance.reference.nextElementSibling).find('.tippy-help-text');
-            instance.setContent(el[0].dataset.helptext);
-        }
-    });
+ 
 });
