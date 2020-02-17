@@ -10,7 +10,7 @@ $black: #000000;
 $dark-grey: #15191d;
 $logo-blue: #175c9d;
 $light-steel-blue: #a8d0db;
-$onyx: #343A40;
+$onyx: #343a40;
 $light-grey: #eff4f7;
 $alice-blue: #eff6ff;
 $ghost-white: #f7faff;
@@ -19,15 +19,15 @@ $red: #f93333;
 $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
-$powder-blue: #DEDFF2;
+$powder-blue: #dedff2;
 
 // - colors - alpha - //
-$light-blue-alpha: rgba(215, 228, 247, .98);
-$light-purple-alpha: rgba(205, 214, 242, .98);
-$pale-orange-alpha: rgba(255, 242, 204, .98);
-$gunmetal-alpha: rgba(41, 46, 51, .99);
-$pink-alpha: rgba(242, 205, 224, .98);
-$dark-blue-alpha: rgba(36, 37, 53, .98);
+$light-blue-alpha: rgba(215, 228, 247, 0.98);
+$light-purple-alpha: rgba(205, 214, 242, 0.98);
+$pale-orange-alpha: rgba(255, 242, 204, 0.98);
+$gunmetal-alpha: rgba(41, 46, 51, 0.99);
+$pink-alpha: rgba(242, 205, 224, 0.98);
+$dark-blue-alpha: rgba(36, 37, 53, 0.98);
 
 // - spacing - //
 $topnav-spacer-height: 90px;
@@ -80,7 +80,6 @@ $footer-height: 116px;
 @mixin background-overlay($opacity) {
     background-color: rgba(255, 255, 255, $opacity);
 }
-
 
 // ----------------------------------------------------------------- re-usables
 
@@ -240,7 +239,7 @@ a {
 
     .bg-fade {
         min-height: 100vh;
-        @include background-overlay(.98);
+        @include background-overlay(0.98);
     }
 
     @media (min-width: 768px) {
@@ -551,7 +550,7 @@ a {
 
 #index-page section {
     @include section-padding;
-    border-bottom: 2px solid #AAAAAA;
+    border-bottom: 2px solid #aaaaaa;
 
     .content {
         padding: 1rem;
@@ -771,13 +770,12 @@ a {
     }
 
     #faq-accordion {
-        background-color: rgba(255,255,255,0);
-        padding: .5rem;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0.5rem;
 
         .card {
             border-width: 0;
-            background-color: rgba(255,255,255,0.8);
-
+            background-color: rgba(255, 255, 255, 0.8);
 
             .card-header {
                 display: flex;
@@ -884,12 +882,21 @@ a {
     }
 }
 
-
 // ----------------------------------------------------------- settings - about
 
 #about-app {
-    @include background-overlay(0.98);
-    color: black
+    .logo-img {
+        height: 200px;
+    }
+
+    i {
+        transition: 0.2s ease-out;
+
+        &:hover {
+            transform: scale(1.1);
+            color: $logo-blue;
+        }
+    }
 }
 
 // ----------------------------------------------------------- buttons & labels
@@ -1004,7 +1011,7 @@ a {
     position: relative;
     width: 5rem;
     height: 2.55rem;
-    margin-top: .25rem;
+    margin-top: 0.25rem;
     background-color: $white;
     border: 1px solid $white;
     border-radius: 0.35rem;

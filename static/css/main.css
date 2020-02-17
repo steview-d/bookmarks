@@ -231,7 +231,7 @@
 }
 
 .vertical-bar-left {
-  border-left: 14px solid #343A40;
+  border-left: 14px solid #343a40;
   padding-left: 1.4rem;
 }
 
@@ -727,7 +727,7 @@ a:hover {
 #index-page section {
   padding-top: 6rem;
   padding-bottom: 6rem;
-  border-bottom: 2px solid #AAAAAA;
+  border-bottom: 2px solid #aaaaaa;
 }
 
 #index-page section .content {
@@ -959,7 +959,7 @@ a:hover {
 
 #faq-section #faq-accordion {
   background-color: rgba(255, 255, 255, 0);
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 #faq-section #faq-accordion .card {
@@ -1055,16 +1055,26 @@ a:hover {
 .user-auth-container .fa-square {
   margin-top: 0.35rem;
   font-size: 1.2rem;
-  color: #343A40;
+  color: #343a40;
 }
 
 .user-auth-container .fa-info {
   font-size: 0.7rem;
 }
 
-#about-app {
-  background-color: rgba(255, 255, 255, 0.98);
-  color: black;
+#about-app .logo-img {
+  height: 200px;
+}
+
+#about-app i {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#about-app i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  color: #175c9d;
 }
 
 .label {
@@ -1181,7 +1191,7 @@ a:hover {
   position: relative;
   width: 5rem;
   height: 2.55rem;
-  margin-top: .25rem;
+  margin-top: 0.25rem;
   background-color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 0.35rem;
