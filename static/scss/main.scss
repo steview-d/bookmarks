@@ -154,7 +154,7 @@ a {
 // force bg overlay all the way
 // to the bottom of the page.
 .px-space {
-    height: 1px
+    height: 1px;
 }
 
 // -------------------------------------------------- main display grid wrapper
@@ -919,11 +919,9 @@ a {
     }
 }
 
-
 // --------------------------------------------------------- settings - profile
 
 #profile {
-
     h4 > i {
         color: $logo-blue;
     }
@@ -932,7 +930,7 @@ a {
         border: none;
 
         @media only screen and (min-width: 992px) {
-            border: 1px solid #AAAAAA;
+            border: 1px solid #aaaaaa;
         }
     }
 
@@ -942,12 +940,48 @@ a {
         color: $white;
         font-weight: 700;
         font-size: 1.2rem;
-        padding: 0.1rem .5rem 0.1rem;
-        margin: .25rem;
+        padding: 0.1rem 0.5rem 0.1rem;
+        margin: 0.25rem;
         border-radius: 4px;
     }
 }
 
+// -------------------------------------------------------------------- support
+
+#support {
+    h4 > i {
+        color: $logo-blue;
+    }
+
+    .section-square-wrapper {
+        position: relative;
+
+        .section-square {
+            position: absolute;
+            top: -44px;
+            // left: 8%;
+            width: 90px;
+            height: 90px;
+            padding-top: 0.7rem;
+            font-size: 0.8rem;
+            border: 3px solid $onyx;
+            text-align: center;
+            background-color: $logo-blue;
+            color: $white;
+        }
+
+        .square-left {
+            left: 8%;
+        }
+    }
+
+    .premium-tel-box {
+        border: none;
+        padding: 4rem 1rem 2rem;
+        border: 2px solid $onyx;
+        border-radius: 3px;
+    }
+}
 
 // ----------------------------------------------------------- buttons & labels
 

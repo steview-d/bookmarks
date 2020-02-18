@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
 
 {% block page_title %}Support{% endblock %}
 
 {% block content %}
 
-<div class="flex-wrapper">
+<section id="support" class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
@@ -12,60 +15,62 @@
     <!-- Content -->
     <div id="content" class="icon-tile-bg-wrapper">
         <div class="bg-fade">
-        {% include 'components/top-nav.html' %}
+            {% include 'components/top-nav.html' %}
 
-        <!-- messages -->
-        {% include 'components/messages.html' %}
+            <!-- messages -->
+            {% include 'components/messages.html' %}
 
-        <div class="container-fluid text-center">
-            <div>
-                <div class="display-4">Support</div>
-            </div>
+            <!-- main content -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
 
-            <div class="mt-5">
-                {% if is_premium %}
-                <!-- premium support -->
-                <h2>Priority Telephone Support</h2>
-                <h3><span class="badge badge-info m-2 p-2">01632 442442</span></h3>
-                <h5>Available for <span class="badge badge-success">PREMIUM</span> members only</h5>
-                <p>Please have your username and email address ready</p>
-                <p class="my-3">
-                    Not in a rush? Use the form below and we'll get back to you as quick as we can.
-                </p>
-                {% else %}
-                <!-- non premium message -->
-                <h2>Need help? No problem!</h2>
-                <h4>Please fill out the form below and we'll get back to you as quick as we can.</h4>
-                {% endif %}
-            </div>
+                        <!-- premium support -->
+                        <div class="section-square-wrapper mb-4">
+                            <div class="section-square square-left"><strong>Premium Member Benefit</strong></div>
+                            <div class="my-5 premium-tel-box text-center">
+                                <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Priority Telephone
+                                    Support</h4>
+                                {% if is_premium %}
+                                <h2><span class="badge badge-dark m-2 p-2">01632 442442</span></h2>
+                                <hr class="w-50 my-4">
+                                <h6>Please have your username and email address ready</h6>
+                                {% else %}
+                                <div>
+                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
+                                            Premium</span></a>
+                                </div>
+                                <hr class="w-50 my-4">
+                                <h6>Become a Premium member and get instant support</h6>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
 
-            <!-- support form -->
-            <form method="POST" class="p-2">
-                <h5 class="my-4">Support Request Form</h5>
-                {% csrf_token %}
-                {{ support_request_form.as_p}}
-                <input type="submit" name="support-form" class="btn btn-info">
-                <div class="my-3">
-                    <small>A copy of your support request will be emailed to {{ user.email }}</small>
+
+                        <!-- support form -->
+                        <div class="p-2 p-sm-0">
+                            <h4 class="pt-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Support Request
+                                Form</h4>
+                            <form method="POST" class="mb-5" novalidate>
+                                {% csrf_token %}
+                                {{ support_request_form|crispy}}
+                                <input type="submit" value="Send" name="support-form" class="btn--standard mt-2">
+                                <div class="my-1">
+                                    <small>A copy of your support request will be emailed to
+                                        {{ user.email }}</small>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-            </form>
 
-            <!-- premium support pitch -->
-            {% if not is_premium %}
-            <div class="my-3">
-                <h5>In a rush? Prefer to talk to a person?</h5>
-                <h5>Sign up for <a href="{% url 'premium' %}" class="btn btn-success" role="button">PREMIUM</a> now and
-                    get priority telephone support.</h5>
+                <!-- banner ad -->
+                {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
             </div>
-            {% endif %}
-
-
-        </div>
-
-        <!-- banner ad -->
-        {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

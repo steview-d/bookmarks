@@ -1091,7 +1091,7 @@ a:hover {
 
 @media only screen and (min-width: 992px) {
   #profile .profile-forms {
-    border: 1px solid #AAAAAA;
+    border: 1px solid #aaaaaa;
   }
 }
 
@@ -1101,9 +1101,41 @@ a:hover {
   color: #ffffff;
   font-weight: 700;
   font-size: 1.2rem;
-  padding: 0.1rem .5rem 0.1rem;
-  margin: .25rem;
+  padding: 0.1rem 0.5rem 0.1rem;
+  margin: 0.25rem;
   border-radius: 4px;
+}
+
+#support h4 > i {
+  color: #175c9d;
+}
+
+#support .section-square-wrapper {
+  position: relative;
+}
+
+#support .section-square-wrapper .section-square {
+  position: absolute;
+  top: -44px;
+  width: 90px;
+  height: 90px;
+  padding-top: 0.7rem;
+  font-size: 0.8rem;
+  border: 3px solid #343a40;
+  text-align: center;
+  background-color: #175c9d;
+  color: #ffffff;
+}
+
+#support .section-square-wrapper .square-left {
+  left: 8%;
+}
+
+#support .premium-tel-box {
+  border: none;
+  padding: 4rem 1rem 2rem;
+  border: 2px solid #343a40;
+  border-radius: 3px;
 }
 
 .label {
