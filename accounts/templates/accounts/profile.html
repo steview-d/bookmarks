@@ -38,9 +38,12 @@
                     <div class="col-12 {% if not is_premium %}col-lg-6{% endif %} mb-2 my-lb-0">
                         <div class="p-3 my-3">
                             <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Your Bookmarks</h4>
-                            <p>You have a total of <span class="number-box">{{ num_bookmarks }}</span> bookmarks</p>
-                            <p>They are contained within <span class="number-box">{{ num_collections }}</span> collections</p>
-                            <p>Your entire collection is spread over <span class="number-box">{{ num_pages }}</span> pages</p>
+                            <p>You have a total of <span class="number-box">{{ num_bookmarks }}</span>
+                                bookmark{{ num_bookmarks|pluralize }}</p>
+                            <p>They are contained within <span class="number-box">{{ num_collections }}</span>
+                                collection{{ num_collections|pluralize }}</p>
+                            <p>Your entire collection is spread over <span class="number-box">{{ num_pages }}</span>
+                                page{{ num_pages|pluralize }}</p>
                         </div>
                     </div>
 
@@ -54,7 +57,8 @@
                                     <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
                                             Premium</span></a>
                                 </div>
-                                <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.</p>
+                                <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.
+                                </p>
 
                             </div>
                         </div>

@@ -404,16 +404,6 @@ a:hover {
   height: 100%;
 }
 
-.premium-thanks-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: calc(100vh - 90px);
-  z-index: -100;
-  -webkit-transform: translate(0, -10%);
-          transform: translate(0, -10%);
-}
-
 .column {
   color: black;
 }
@@ -1136,6 +1126,10 @@ a:hover {
   padding: 4rem 1rem 2rem;
   border: 2px solid #343a40;
   border-radius: 3px;
+}
+
+#premium .set-height {
+  min-height: calc(80vh - 90px);
 }
 
 .label {
