@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render, reverse
 
 from .forms import (RegisterAccountForm, UpdateUserEmailForm,
                     UpdatedPasswordChangeForm)
+from links.models import Bookmark, Collection, Page
 from links.utils.general_utils import set_page_name
 from premium.utils import is_premium
 
@@ -71,10 +72,24 @@ def profile(request):
     # set page value for default page choice for 'add bookmark' button
     page = set_page_name(request)
 
+    # stats
+    num_bookmarks = Bookmark.objects.filter(
+        user__username=request.user,
+        ).count()
+    num_collections = Collection.objects.filter(
+        user__username=request.user,
+        ).count()
+    num_pages = Page.objects.filter(
+        user__username=request.user,
+        ).count()
+
     context = {"profile": user,
                "update_email_form": update_email_form,
                "password_change_form": password_change_form,
-               "page": page}
+               "page": page,
+               "num_bookmarks": num_bookmarks,
+               "num_collections": num_collections,
+               "num_pages": num_pages, }
     context = is_premium(request.user, context)
 
     return render(request, 'accounts/profile.html', context)

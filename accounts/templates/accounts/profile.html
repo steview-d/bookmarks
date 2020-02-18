@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div class="flex-wrapper">
+<div id="profile" class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
@@ -19,71 +19,87 @@
 
             <!-- messages -->
             {% include 'components/messages.html' %}
-
-            <div class="container-fluid">
+            <div class="container">
                 <!-- user info -->
                 <div class="mt-2 mb-5 text-center">
                     <div class="display-4">{{ user }}</div>
-                    {% if is_premium %}
                     <hr class="w-25">
+
+                    {% if is_premium %}
                     <h4><span class="badge badge-success">PREMIUM MEMBER</span></h4>
                     {% endif %}
                     <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
                 </div>
 
+
+
                 <div class="row">
+                    <!-- stats -->
+                    <div class="col-12 {% if not is_premium %}col-lg-6{% endif %} mb-2 my-lb-0">
+                        <div class="p-3 my-3">
+                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Your Bookmarks</h4>
+                            <p>You have a total of <span class="number-box">{{ num_bookmarks }}</span> bookmarks</p>
+                            <p>They are contained within <span class="number-box">{{ num_collections }}</span> collections</p>
+                            <p>Your entire collection is spread over <span class="number-box">{{ num_pages }}</span> pages</p>
+                        </div>
+                    </div>
+
+                    <!-- premium status / offer -->
+                    {% if not is_premium %}
+                    <div class="col-12 col-lg-6 my-4 my-lg-0">
+
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 text-center">
+                                <div>
+                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
+                                            Premium</span></a>
+                                </div>
+                                <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="row mb-5">
                     <!-- update email address form -->
-                    <div class="col-12 col-lg-6">
-                        <form method="POST" class="border p-2 mt-3" novalidate>
-                            <fieldset>
-                                <legend>Update Email Address</legend>
-                                {% csrf_token %}
+                    <div class="col-12 col-lg-6 order-lg-2 mb-5">
+                        <form method="POST" class="p-3 mt-3 profile-forms" novalidate>
+                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Update Email Address</h4>
+                            {% csrf_token %}
+                            <p>Current Email Address: {{ user.email }}</p>
+                            {{ update_email_form|crispy }}
 
-                                <p>Email Address: {{ user.email }}</p>
-                                {{ update_email_form|crispy }}
-
-                                <input type="submit" name="email-btn" class="btn btn-info">
-                            </fieldset>
+                            <input type="submit" value="Update" name="email-btn" class="btn--standard">
                         </form>
                     </div>
 
                     <!-- change password form -->
-                    <div class="col-12 col-lg-6">
-                        <form method="POST" class="border p-2 mt-3" novalidate>
-                            <fieldset>
-                                <legend>Change Password</legend>
-                                {% csrf_token %}
+                    <div class="col-12 col-lg-6 order-lg-1 mb-5">
+                        <form method="POST" class="p-3 mt-3 profile-forms" novalidate>
+                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Change Password</h4>
+                            {% csrf_token %}
+                            {% for field in password_change_form.visible_fields %}
+                            <div>
+                                {% if 'tippy-help-text' in field.field.widget.attrs.class %}
+                                <!-- add info / help icon if field has help text -->
+                                <span class="fa-stack tippy-pw-help tippy-i float-right">
+                                    <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                </span>
+                                {% endif %}
+                                {{ field|as_crispy_field}}
+                            </div>
 
-                                {% for field in password_change_form.visible_fields %}
+                            {% endfor %}
 
-                                <div>
-                                    {% if 'tippy-help-text' in field.field.widget.attrs.class %}
-                                    <!-- add info / help icon if field has help text -->
-                                    <span class="fa-stack tippy-pw-help tippy-i float-right">
-                                        <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
-                                        <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                                    </span>
-                                    {% endif %}
-                                    {{ field|as_crispy_field}}
-                                </div>
-
-                                {% endfor %}
-
-                                <input type="submit" name="pw-btn" class="btn btn-info">
-                            </fieldset>
+                            <input type="submit" value="Change" name="pw-btn" class="btn--standard">
                         </form>
                     </div>
                 </div>
-
-                <!-- stats -->
-                <div class="border p-2 my-3">
-                    <h3>Stats</h3>
-                    <p>Insert app related stats here</p>
-                    <p>Actual stats still tbc</p>
-                    <p>Things like total bookmarks, collections, pages, etc</p>
-                </div>
-
             </div>
+
             <!-- banner ad -->
             {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
         </div>

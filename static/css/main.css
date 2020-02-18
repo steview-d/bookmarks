@@ -1081,6 +1081,31 @@ a:hover {
   color: #175c9d;
 }
 
+#profile h4 > i {
+  color: #175c9d;
+}
+
+#profile .profile-forms {
+  border: none;
+}
+
+@media only screen and (min-width: 992px) {
+  #profile .profile-forms {
+    border: 1px solid #AAAAAA;
+  }
+}
+
+#profile .number-box {
+  border: 1px solid #175c9d;
+  background-color: #175c9d;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.1rem .5rem 0.1rem;
+  margin: .25rem;
+  border-radius: 4px;
+}
+
 .label {
   padding: 0.2rem 0.4rem;
   margin: 0 0.2rem;
@@ -1091,6 +1116,22 @@ a:hover {
 
 .label-small {
   font-size: 0.8rem;
+}
+
+.btn--standard {
+  background-color: #424242;
+  border: 1px solid #000000;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #ffffff;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--standard:hover {
+  background-color: transparent;
+  color: #000000;
 }
 
 .btn--invert {
