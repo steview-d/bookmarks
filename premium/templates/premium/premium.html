@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% load crispy_forms_tags %}
+
 {% block page_title %}Premium{% endblock %}
 
 {% block content %}
@@ -29,68 +31,66 @@
                         </div>
                     </div>
                 </div>
-  
             </div>
-        </div>
 
-        {% else %}
-        <!-- premum pitch -->
+            {% else %}
+            <!-- premum pitch -->
 
-        <div class="container-fluid text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
+                        <div class="section-square-wrapper mb-4">
+                            <div class="section-square square-left"><strong>Premium<br>Gives You<br>All This</strong>
+                            </div>
+                            <ul class="row my-5 mx-0 premium-features-box list-unstyled">
+                                <li class="col-6 col-lg-4"><i class="fa fa-bookmark fa-lg" aria-hidden="true"></i>
+                                    <strong>Unlimited Bookmarks</strong></li>
+                                <li class="col-6 col-lg-4"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>
+                                    <strong>Unlimited Collections</strong></li>
+                                <li class="col-6 col-lg-4"><i class="fa fa-columns fa-lg" aria-hidden="true"></i>
+                                    <strong>Unlimited Pages</strong></li>
+                                <li class="col-6 col-lg-4"><i class="fa fa-ban fa-lg" aria-hidden="true"></i>
+                                    <strong>No More Adverts</strong></li>
+                                <li class="col-6 col-lg-4"><i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                    <strong>Telephone Support</strong></li>
+                                <li class="col-6 col-lg-4"><i class="fa fa-unlock fa-lg" aria-hidden="true"></i>
+                                    <strong>New Features, First</strong></li>
+                            </ul>
+                        </div>
 
-            <div>
-                <div class="display-4">Go Premium</div>
-            </div>
-            <div class="my-5">
-                <h5>With Premium membership you get</h5>
-                <ul class="list-unstyled">
-                    <li>No Ads. Ever!</li>
-                    <li>Unlimited Bookmarks</li>
-                    <li>Unlimited Categories</li>
-                    <li>Unlimited Pages</li>
-                    <li>Priority Telephone Support</li>
-                    <li>Access to New Features First</li>
-                </ul>
-            </div>
-            <div class="my-5">
-                <h5>Lifetime access for just</h5>
-                <div class="btn btn-primary my-3">£20</div>
-                <div><small>Lifetime access is a limited time only offer for the first 1000 members</small>
+                        <div class="col-12 text-center price-block">
+                            <h5>Get Lifetime Access</h5>
+                            <div class="btn btn-light my-3 price"><strong>£20</strong></div>
+                            <div><small>Limited to the first 1000 members</small>
+                            </div>
+                            <div><small>After this, a monthly / annual fee will apply</small></div>
+                        </div>
+
+                        <!-- premium sign up form -->
+                        <div class="pb-3">
+                            <h5 class="my-4">Payment Details</h5>
+                            <form method="POST" id="payment-form" class="p-2 mt-3" novalidate>
+                                <div id="credit-card-errors" style="display: none">
+                                    <div class="alert-message block-message error" id="stripe-error-message"></div>
+                                </div>
+
+                                {{ purchase_premium_form|crispy }}
+
+                                {{ payment_form|crispy }}
+
+                                {% csrf_token %}
+                                <input class="btn--standard mt-2" id="submit_payment_btn" name="commit" type="submit"
+                                    value="Make Payment">
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div><small>After this, a monthly / annual fee will apply</small></div>
             </div>
+            {% endif %}
 
-            <!-- premium sign up form -->
-            <div class="border py-3">
-                <h5 class="my-4">Sign Up Forms</h5>
-                <hr>
-                <form role="form" method="POST" id="payment-form" class="p-2 mt-3">
-                    <legend>Payment Details</legend>
-                    <div id="credit-card-errors" style="display: none">
-                        <div class="alert-message block-message error" id="stripe-error-message"></div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ purchase_premium_form.as_p }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ payment_form.as_p }}
-                    </div>
-
-                    {% csrf_token %}
-                    <div class="form-group col-md-12">
-                        <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit"
-                            value="Submit Payment">
-                    </div>
-                </form>
-            </div>
+            <!-- banner ad -->
+            {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
         </div>
-        {% endif %}
-
-        <!-- banner ad -->
-        {% include 'components/advert.html' with advert_path="img/ads/banner.png" %}
-    </div>
     </div>
 </section>
 {% endblock %}

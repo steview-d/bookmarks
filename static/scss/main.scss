@@ -277,16 +277,7 @@ a {
     }
 }
 
-// ------------------------------------------------------ premium thanks center
-
-// .premium-thanks-center {
-//     display: flex;
-//     min-height: calc(100vh - #{$topnav-spacer-height});
-//     z-index: -100;
-//     // transform: translateY(-10%);
-// }
-
-// ------------------------------------------------------------- main links app
+s// ------------------------------------------------------------- main links app
 
 .column {
     color: black; // temp placeholder
@@ -952,7 +943,6 @@ a {
     h4 > i {
         color: $logo-blue;
     }
-
     .section-square-wrapper {
         position: relative;
 
@@ -964,7 +954,7 @@ a {
             height: 90px;
             padding-top: 0.7rem;
             font-size: 0.8rem;
-            border: 3px solid $onyx;
+            border: 2px solid $onyx;
             text-align: center;
             background-color: $logo-blue;
             color: $white;
@@ -986,10 +976,97 @@ a {
 // -------------------------------------------------------------------- premium
 
 #premium {
+    h4 > i {
+        color: $logo-blue;
+    }
+
     .set-height {
         min-height: calc(80vh - #{$topnav-spacer-height});
     }
+
+    .section-square-wrapper {
+        position: relative;
+    
+        .section-square {
+            position: absolute;
+            top: -44px;
+            // left: 8%;
+            width: 90px;
+            height: 90px;
+            padding-top: 0.7rem;
+            font-size: 0.8rem;
+            border: 2px solid $onyx;
+            text-align: center;
+            background-color: $logo-blue;
+            color: $white;
+        }
+    
+        .square-left {
+            left: 8%;
+        }
+    }
+    
+    .premium-features-box {
+        @include background-overlay(.5);
+        padding: 3rem 0 1rem;
+        border: 2px solid $onyx;
+        border-radius: 3px;
+        
+        @media only screen and (min-width: 576px) {
+            padding: 4rem 1rem 1.5rem;
+        }
+
+        li {
+            text-align: center;
+            font-size: 1rem;
+            padding: .8rem;
+            // margin-bottom: 1rem;
+
+            @media only screen and (min-width: 576px) {
+                font-size: 1.2rem;
+                padding: 1rem;
+                margin-bottom: .5rem;
+            }
+
+            i {
+                display: inline-block;
+                margin: auto;
+                border-radius: 5px;
+                padding: .8rem;
+                font-size: 2rem;
+                color: $logo-blue;
+
+                @media only screen and (min-width: 576px) {
+                    font-size: 3rem;
+                    padding: 1rem;
+                }
+            }
+
+            strong {
+                display: block;
+            }
+
+        }
+    }
+
+    .price-block {
+        margin: 5rem auto;
+        padding: 2rem;
+        background-color: $onyx;
+        color: $white;
+
+        .price {
+            background-color: $white;
+            color: $onyx;
+            font-size: 1.8rem;
+            padding: .4rem .6rem;
+            border-radius: 4px;
+        }
+    }
+
 }
+
+// using section-square-wrapper above - need to tidy up
 
 // ----------------------------------------------------------- buttons & labels
 

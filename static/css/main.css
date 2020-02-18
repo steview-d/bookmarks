@@ -404,7 +404,7 @@ a:hover {
   height: 100%;
 }
 
-.column {
+s.column {
   color: black;
 }
 
@@ -1111,7 +1111,7 @@ a:hover {
   height: 90px;
   padding-top: 0.7rem;
   font-size: 0.8rem;
-  border: 3px solid #343a40;
+  border: 2px solid #343a40;
   text-align: center;
   background-color: #175c9d;
   color: #ffffff;
@@ -1128,8 +1128,95 @@ a:hover {
   border-radius: 3px;
 }
 
+#premium h4 > i {
+  color: #175c9d;
+}
+
 #premium .set-height {
   min-height: calc(80vh - 90px);
+}
+
+#premium .section-square-wrapper {
+  position: relative;
+}
+
+#premium .section-square-wrapper .section-square {
+  position: absolute;
+  top: -44px;
+  width: 90px;
+  height: 90px;
+  padding-top: 0.7rem;
+  font-size: 0.8rem;
+  border: 2px solid #343a40;
+  text-align: center;
+  background-color: #175c9d;
+  color: #ffffff;
+}
+
+#premium .section-square-wrapper .square-left {
+  left: 8%;
+}
+
+#premium .premium-features-box {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 3rem 0 1rem;
+  border: 2px solid #343a40;
+  border-radius: 3px;
+}
+
+@media only screen and (min-width: 576px) {
+  #premium .premium-features-box {
+    padding: 4rem 1rem 1.5rem;
+  }
+}
+
+#premium .premium-features-box li {
+  text-align: center;
+  font-size: 1rem;
+  padding: .8rem;
+}
+
+@media only screen and (min-width: 576px) {
+  #premium .premium-features-box li {
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-bottom: .5rem;
+  }
+}
+
+#premium .premium-features-box li i {
+  display: inline-block;
+  margin: auto;
+  border-radius: 5px;
+  padding: .8rem;
+  font-size: 2rem;
+  color: #175c9d;
+}
+
+@media only screen and (min-width: 576px) {
+  #premium .premium-features-box li i {
+    font-size: 3rem;
+    padding: 1rem;
+  }
+}
+
+#premium .premium-features-box li strong {
+  display: block;
+}
+
+#premium .price-block {
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+#premium .price-block .price {
+  background-color: #ffffff;
+  color: #343a40;
+  font-size: 1.8rem;
+  padding: .4rem .6rem;
+  border-radius: 4px;
 }
 
 .label {
