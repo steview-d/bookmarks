@@ -441,12 +441,6 @@ $(document).ready(function() {
         }
     });
 
-    // Misc
-    // Used to check js has updated on page when testing mobile devices
-    $(".js-test").on('click', function () {
-        $(this).css("background-color", "black");
-    });
-
     // nav bar title hide / show on scroll
     function navbarBehaviour () {
         if (window.scrollY > 1) {
