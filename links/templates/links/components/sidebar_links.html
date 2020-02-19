@@ -18,13 +18,14 @@
             <h4 class="text-center"><i class="fa fa-plus" aria-hidden="true"></i>Add Bookmark</h4>
         </a>
     </div>
-    
+
+    <!-- display advert -->
     <div>
-        <!-- display advert -->
         <!-- temp disable image whilst testing with incorrect path -->
         {% include 'components/advert.html' with advert_path="qimg/ads/square.png" %}
     </div>
     <hr>
+
     <!-- list all user pages -->
     <h5 class="mx-4" style="display: inline-block;">Pages</h5>
 
@@ -40,7 +41,7 @@
     <!-- sort page button -->
     <div class="row mx-4 my-2">
         <button id="page-sort-btn" class="btn btn-sm btn-info" role="button">PAGE SORT:
-            {% if page_sort_active != '' %}ON{% else %}OFF{% endif %}
+            {% if page_sort_active %}ON{% else %}OFF{% endif %}
         </button>
     </div>
 
@@ -51,9 +52,10 @@
             <!-- individual page titles -->
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
                 <!-- handle & icon for sorting page display order -->
-                <div class="clearfix page-sort-handle-container {% if page_sort_active != '' %}page-sort-handle{% endif %}">
+                <div
+                    class="clearfix page-sort-handle-container {% if page_sort_active %}page-sort-handle{% endif %}">
                     <div class="float-left my-2 ml-2 page-sort-icon-container
-                        {% if page_sort_active == '' %}
+                        {% if not page_sort_active %}
                             hide-page-sort-icon
                         {% endif%}">
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>

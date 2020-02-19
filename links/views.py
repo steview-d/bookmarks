@@ -157,13 +157,14 @@ def links(request, page):
             column[j] = qs
         bm_data.append(column)
 
-    # collection_being_sorted
+    # set collection_being_sorted var
     try:
         collection_being_sorted = request.session['collection_being_sorted']
         del request.session['collection_being_sorted']
     except KeyError:
         collection_being_sorted = ''
 
+    # set page_sort_active var
     try:
         page_sort_active = request.session['page_sort_active']
         del request.session['page_sort_active']
