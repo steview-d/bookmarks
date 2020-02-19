@@ -1173,14 +1173,14 @@ s.column {
 #premium .premium-features-box li {
   text-align: center;
   font-size: 1rem;
-  padding: .8rem;
+  padding: 0.8rem;
 }
 
 @media only screen and (min-width: 576px) {
   #premium .premium-features-box li {
     font-size: 1.2rem;
     padding: 1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -1188,7 +1188,7 @@ s.column {
   display: inline-block;
   margin: auto;
   border-radius: 5px;
-  padding: .8rem;
+  padding: 0.8rem;
   font-size: 2rem;
   color: #175c9d;
 }
@@ -1216,7 +1216,7 @@ s.column {
   background-color: #ffffff;
   color: #343a40;
   font-size: 1.8rem;
-  padding: .4rem .6rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 4px;
 }
 
@@ -1227,12 +1227,12 @@ s.column {
 }
 
 #credit-card-errors {
-  background-color: #E36868;
+  background-color: #e36868;
   color: #ffffff;
-  margin: .75rem 0;
-  padding: .8rem;
+  margin: 0.75rem 0;
+  padding: 0.8rem;
   border-radius: 5px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1433,5 +1433,18 @@ s.column {
 
 .btn--slide:hover span {
   opacity: 1;
+}
+
+.messages {
+  background-color: #ffffff;
+  padding: 0;
+}
+
+.messages .alert {
+  margin-bottom: 0;
+}
+
+.messages .alert .close {
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */

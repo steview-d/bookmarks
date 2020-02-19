@@ -1,5 +1,10 @@
 {% if messages %}
 {% for message in messages %}
-<h4 class="my-3"><kbd>{{ message }}</kbd></h4>
+<div class="container-fluid messages text-center">
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags}}{% endif %}">
+        <a class="close" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+</div>
 {% endfor %}
 {% endif %}

@@ -20,7 +20,7 @@ $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
 $powder-blue: #dedff2;
-$error-red: #E36868;
+$error-red: #e36868;
 
 // - colors - alpha - //
 $light-blue-alpha: rgba(215, 228, 247, 0.98);
@@ -987,7 +987,7 @@ s// ------------------------------------------------------------- main links app
 
     .section-square-wrapper {
         position: relative;
-    
+
         .section-square {
             position: absolute;
             top: -44px;
@@ -1001,18 +1001,18 @@ s// ------------------------------------------------------------- main links app
             background-color: $logo-blue;
             color: $white;
         }
-    
+
         .square-left {
             left: 8%;
         }
     }
-    
+
     .premium-features-box {
-        @include background-overlay(.5);
+        @include background-overlay(0.5);
         padding: 3rem 0 1rem;
         border: 2px solid $onyx;
         border-radius: 3px;
-        
+
         @media only screen and (min-width: 576px) {
             padding: 4rem 1rem 1.5rem;
         }
@@ -1020,20 +1020,20 @@ s// ------------------------------------------------------------- main links app
         li {
             text-align: center;
             font-size: 1rem;
-            padding: .8rem;
+            padding: 0.8rem;
             // margin-bottom: 1rem;
 
             @media only screen and (min-width: 576px) {
                 font-size: 1.2rem;
                 padding: 1rem;
-                margin-bottom: .5rem;
+                margin-bottom: 0.5rem;
             }
 
             i {
                 display: inline-block;
                 margin: auto;
                 border-radius: 5px;
-                padding: .8rem;
+                padding: 0.8rem;
                 font-size: 2rem;
                 color: $logo-blue;
 
@@ -1046,7 +1046,6 @@ s// ------------------------------------------------------------- main links app
             strong {
                 display: block;
             }
-
         }
     }
 
@@ -1061,11 +1060,10 @@ s// ------------------------------------------------------------- main links app
             background-color: $white;
             color: $onyx;
             font-size: 1.8rem;
-            padding: .4rem .6rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 4px;
         }
     }
-
 }
 
 .payment-tooltip i {
@@ -1077,13 +1075,12 @@ s// ------------------------------------------------------------- main links app
 #credit-card-errors {
     background-color: $error-red;
     color: $white;
-    margin: .75rem 0;
-    padding: .8rem;
+    margin: 0.75rem 0;
+    padding: 0.8rem;
     border-radius: 5px;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-
 }
 
 // using section-square-wrapper above - need to tidy up
@@ -1277,6 +1274,21 @@ s// ------------------------------------------------------------- main links app
         }
         span {
             opacity: 1;
+        }
+    }
+}
+
+// ------------------------------------------------------------------- messages
+
+.messages {
+    background-color: $white;
+    padding: 0;
+
+    .alert {
+        margin-bottom: 0;
+
+        .close {
+            cursor: pointer;
         }
     }
 }
