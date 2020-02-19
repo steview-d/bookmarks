@@ -1205,10 +1205,11 @@ s.column {
 }
 
 #premium .price-block {
-  margin: 5rem auto;
-  padding: 2rem;
   background-color: #343a40;
   color: #ffffff;
+  border-radius: 3px;
+  margin: 5rem auto;
+  padding: 2rem;
 }
 
 #premium .price-block .price {
@@ -1217,6 +1218,23 @@ s.column {
   font-size: 1.8rem;
   padding: .4rem .6rem;
   border-radius: 4px;
+}
+
+.payment-tooltip i {
+  position: absolute;
+  top: -2px;
+  left: -4px;
+}
+
+#credit-card-errors {
+  background-color: #E36868;
+  color: #ffffff;
+  margin: .75rem 0;
+  padding: .8rem;
+  border-radius: 5px;
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .label {

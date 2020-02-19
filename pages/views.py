@@ -12,7 +12,7 @@ def about(request):
         return redirect('start_app')
 
     # get filenames of icons to display on page, random(n)
-    display_icons = random.sample(range(1, 114), 16)
+    display_icons = random.sample(range(1, 113), 16)
 
     context = {'display_icons': display_icons}
 

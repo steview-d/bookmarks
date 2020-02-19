@@ -20,6 +20,7 @@ $middle-red: #e49273;
 $classic-rose: #efcbe6;
 $burnished-brown: #a37a74;
 $powder-blue: #dedff2;
+$error-red: #E36868;
 
 // - colors - alpha - //
 $light-blue-alpha: rgba(215, 228, 247, 0.98);
@@ -1050,10 +1051,11 @@ s// ------------------------------------------------------------- main links app
     }
 
     .price-block {
-        margin: 5rem auto;
-        padding: 2rem;
         background-color: $onyx;
         color: $white;
+        border-radius: 3px;
+        margin: 5rem auto;
+        padding: 2rem;
 
         .price {
             background-color: $white;
@@ -1063,6 +1065,24 @@ s// ------------------------------------------------------------- main links app
             border-radius: 4px;
         }
     }
+
+}
+
+.payment-tooltip i {
+    position: absolute;
+    top: -2px;
+    left: -4px;
+}
+
+#credit-card-errors {
+    background-color: $error-red;
+    color: $white;
+    margin: .75rem 0;
+    padding: .8rem;
+    border-radius: 5px;
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
 
 }
 

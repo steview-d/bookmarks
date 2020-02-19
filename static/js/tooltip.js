@@ -5,6 +5,11 @@ https://github.com/atomiks/tippyjs
 
 $(document).ready(function() {
 
+    // initialize tooltips
+    // single use non-dynamic tooltips where content is
+    // embedded within the html document
+    tippy('[data-tippy-content]');
+
     // show full bookmark description text
     tippy('.tippy-desc', {
         allowHTML: false,
@@ -23,5 +28,5 @@ $(document).ready(function() {
             instance.setContent(el[0].dataset.helptext);
         }
     });
- 
+
 });

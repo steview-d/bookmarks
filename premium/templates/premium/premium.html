@@ -68,19 +68,55 @@
 
                         <!-- premium sign up form -->
                         <div class="pb-3">
-                            <h5 class="my-4">Payment Details</h5>
+                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Payment Details</h4>
                             <form method="POST" id="payment-form" class="p-2 mt-3" novalidate>
                                 <div id="credit-card-errors" style="display: none">
                                     <div class="alert-message block-message error" id="stripe-error-message"></div>
                                 </div>
 
-                                {{ purchase_premium_form|crispy }}
+                                <div class="form-row">
+                                    <div class="form-group col-md-7 mb-0">
+                                        {{ purchase_premium_form.full_name|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-5 mb-0">
+                                        {{ purchase_premium_form.postcode|as_crispy_field }}
+                                    </div>
+                                </div>
 
-                                {{ payment_form|crispy }}
+                                <div class="form-row">
+                                    <div class="form-group col-md-7 mb-0">
+                                        {{ payment_form.credit_card_number|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-5 mb-0">
+                                        {{ payment_form.cvv|as_crispy_field }}
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-6 mb-0">
+                                        {{ payment_form.expiry_month|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-6 mb-0">
+                                        {{ payment_form.expiry_year|as_crispy_field }}
+                                    </div>
+                                </div>
+
+                                {{ payment_form.stripe_id }}
 
                                 {% csrf_token %}
                                 <input class="btn--standard mt-2" id="submit_payment_btn" name="commit" type="submit"
                                     value="Make Payment">
+                                <div class="row">
+                                    <small class="ml-3 mt-1">How is my data processed?</small>
+                                    <span class="fa-stack tippy-i payment-tooltip"
+                                        data-tippy-content="<ul><li>No payment details are stored on our servers.</li>
+                                                            <li>The only information we retain is your name and postcode.</li>
+                                                            <li>These are kept for payment verification and account support purposes only.</li></ul>">
+                                        <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                        <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                    </span>
+
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -94,6 +130,11 @@
     </div>
 </section>
 {% endblock %}
+
+{% block tippy_js %}
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script src="{% static 'js/tooltip.js' %}"></script>
+{% endblock tippy_js %}
 
 {% block stripe_js %}
 <!-- stripe js -->

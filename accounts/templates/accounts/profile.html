@@ -31,42 +31,7 @@
                     <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
                 </div>
 
-
-
                 <div class="row">
-                    <!-- stats -->
-                    <div class="col-12 {% if not is_premium %}col-lg-6{% endif %} mb-2 my-lb-0">
-                        <div class="p-3 my-3">
-                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Your Bookmarks</h4>
-                            <p>You have a total of <span class="number-box">{{ num_bookmarks }}</span>
-                                bookmark{{ num_bookmarks|pluralize }}</p>
-                            <p>They are contained within <span class="number-box">{{ num_collections }}</span>
-                                collection{{ num_collections|pluralize }}</p>
-                            <p>Your entire collection is spread over <span class="number-box">{{ num_pages }}</span>
-                                page{{ num_pages|pluralize }}</p>
-                        </div>
-                    </div>
-
-                    <!-- premium status / offer -->
-                    {% if not is_premium %}
-                    <div class="col-12 col-lg-6 my-4 my-lg-0">
-
-                        <div class="row align-items-center h-100">
-                            <div class="col-12 text-center">
-                                <div>
-                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
-                                            Premium</span></a>
-                                </div>
-                                <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-
-                <div class="row mb-5">
                     <!-- update email address form -->
                     <div class="col-12 col-lg-6 order-lg-2 mb-5">
                         <form method="POST" class="p-3 mt-3 profile-forms" novalidate>
@@ -102,6 +67,40 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="row">
+                    <!-- stats -->
+                    <div class="col-12 {% if not is_premium %}col-lg-6{% endif %} mb-2 my-lb-0">
+                        <div class="p-3 my-3">
+                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Your Bookmarks</h4>
+                            <p>You have a total of <span class="number-box">{{ num_bookmarks }}</span>
+                                bookmark{{ num_bookmarks|pluralize }}</p>
+                            <p>They are contained within <span class="number-box">{{ num_collections }}</span>
+                                collection{{ num_collections|pluralize }}</p>
+                            <p>Your entire collection is spread over <span class="number-box">{{ num_pages }}</span>
+                                page{{ num_pages|pluralize }}</p>
+                        </div>
+                    </div>
+
+                    <!-- premium status / offer -->
+                    {% if not is_premium %}
+                    <div class="col-12 col-lg-6 my-4 my-lg-0">
+
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 text-center">
+                                <div>
+                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
+                                            Premium</span></a>
+                                </div>
+                                <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
             </div>
 
             <!-- banner ad -->
