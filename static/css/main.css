@@ -353,7 +353,8 @@ a:hover {
   z-index: 999;
   -webkit-transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
   transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
-  background-color: ghostwhite;
+  background-color: #343a40;
+  color: #ffffff;
 }
 
 #sidebar .display-switch {
@@ -365,8 +366,59 @@ a:hover {
   height: 0;
 }
 
+#sidebar .logo {
+  display: block;
+  margin: 2rem auto 4rem;
+  width: 140px;
+  border-radius: 50%;
+  border: 10px solid #175c9d;
+}
+
+#sidebar .toggle-pos {
+  position: absolute;
+  top: 0;
+}
+
+#sidebar .add-bm-btn-sidebar h4 {
+  display: inline-block;
+  background-color: white;
+  color: #343a40;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+}
+
+#sidebar .add-bm-btn-sidebar h4 i {
+  margin-right: 0.5rem;
+  color: #000000;
+}
+
+#sidebar ul {
+  margin: 3rem 1rem 0;
+}
+
+#sidebar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 #sidebar ul .active {
-  background-color: #b0e0e6;
+  background-color: #ffffff;
+}
+
+#sidebar ul .active a {
+  color: #000000;
+}
+
+#sidebar .menu-close {
+  position: absolute;
+  bottom: 10px;
+  right: calc(50% - 2rem/1.5);
+}
+
+#sidebar .menu-close .fa-times {
+  position: absolute;
+  top: -2px;
 }
 
 @media (max-width: 767px) {
