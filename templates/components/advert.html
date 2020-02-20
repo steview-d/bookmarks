@@ -3,7 +3,7 @@
 {% if not is_premium %}
 <div class="container-fluid my-5 text-center">
     <div class="d-flex justify-content-center">
-        <img src="{% static advert_path %}" class="img-fluid" alt="banner-ad">
+        <a href="http://google.com" target="_blank"><img src="{% static 'img/ads/ad1.png' %}" class="img-fluid" alt="banner-ad"></a>
     </div>
     <a href="{% url 'premium' %}"><small>Remove Ads!</small></a>
 </div>
