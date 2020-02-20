@@ -1,9 +1,13 @@
 {% load staticfiles %}
 
+{% load random_number %}
+
 {% if not is_premium %}
 <div class="container-fluid my-5 text-center">
     <div class="d-flex justify-content-center">
-        <a href="http://google.com" target="_blank"><img src="{% static 'img/ads/ad1.png' %}" class="img-fluid" alt="banner-ad"></a>
+        <!-- 'random int' used to generate an int between 1 and the number of adverts currently in rotation -->
+        <a href="http://google.com" target="_blank"><img src="
+            {% static 'img/ads/ad' %}{% random_int 5 %}.png" class="img-fluid" alt="banner-ad"></a>
     </div>
     <a href="{% url 'premium' %}"><small>Remove Ads!</small></a>
 </div>
