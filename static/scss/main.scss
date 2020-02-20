@@ -955,7 +955,10 @@ s// ------------------------------------------------------------- main links app
 
 #about-app {
     .logo-img {
-        height: 200px;
+        height: 186px;
+        width: 186px;
+        border: 14px solid $logo-blue;
+        border-radius: 50%;
     }
 
     i {
