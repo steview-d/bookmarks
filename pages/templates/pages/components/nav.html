@@ -7,7 +7,7 @@
     <div class="navbar-title display-4">Links</div>
 
     <!-- navbar items -->
-    <ul class="nav-bar-items">
+    <ul class="navbar-items">
         <li class="navbar-link {% if 'about' in request.resolver_match.url_name %}active{% endif %}">
             <a href="{% url 'about_page' %}">About</a></li>
         <li class="navbar-link {% if 'pricing' in request.resolver_match.url_name %}active{% endif %}">

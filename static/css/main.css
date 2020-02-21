@@ -235,7 +235,7 @@ a:hover {
   margin-top: 1rem;
 }
 
-#pages-nav .nav-bar-items {
+#pages-nav .navbar-items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -250,18 +250,18 @@ a:hover {
   font-weight: 600;
 }
 
-#pages-nav .nav-bar-items .navbar-link {
+#pages-nav .navbar-items .navbar-link {
   display: block;
   padding-bottom: 0.5rem;
   margin: 0.5rem 1rem;
 }
 
-#pages-nav .nav-bar-items .navbar-link a {
+#pages-nav .navbar-items .navbar-link a {
   position: relative;
   text-decoration: none;
 }
 
-#pages-nav .nav-bar-items .navbar-link a:after {
+#pages-nav .navbar-items .navbar-link a:after {
   content: "";
   display: block;
   position: absolute;
@@ -274,16 +274,16 @@ a:hover {
   transition: width 0.2s, left 0.2s;
 }
 
-#pages-nav .nav-bar-items .navbar-link a:hover:after {
+#pages-nav .navbar-items .navbar-link a:hover:after {
   width: 100%;
   left: 0;
 }
 
-#pages-nav .nav-bar-items .active {
+#pages-nav .navbar-items .active {
   border-bottom: 5px solid #175c9d;
 }
 
-#pages-nav .mobile-menu {
+.mobile-menu {
   position: absolute;
   top: 2vw;
   left: 5vw;
@@ -363,13 +363,9 @@ a:hover {
   color: #ffffff;
 }
 
-#sidebar .display-switch {
-  margin-left: -300px;
-}
-
-#sidebar::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+#sidebar .toggle-pos {
+  position: absolute;
+  top: 0;
 }
 
 #sidebar .logo {
@@ -378,25 +374,6 @@ a:hover {
   width: 140px;
   border-radius: 50%;
   border: 10px solid #175c9d;
-}
-
-#sidebar .toggle-pos {
-  position: absolute;
-  top: 0;
-}
-
-#sidebar .add-bm-btn-sidebar h4 {
-  display: inline-block;
-  background-color: white;
-  color: #343a40;
-  padding: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ffffff;
-}
-
-#sidebar .add-bm-btn-sidebar h4 i {
-  margin-right: 0.5rem;
-  color: #000000;
 }
 
 #sidebar ul {
@@ -425,6 +402,29 @@ a:hover {
 #sidebar .menu-close .fa-times {
   position: absolute;
   top: -2px;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.add-bm-btn-sidebar h4 {
+  display: inline-block;
+  background-color: white;
+  color: #343a40;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+}
+
+.add-bm-btn-sidebar h4 i {
+  margin-right: 0.5rem;
+  color: #000000;
+}
+
+.display-switch {
+  margin-left: -300px;
 }
 
 @media (max-width: 767px) {
