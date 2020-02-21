@@ -1,0 +1,44 @@
+// --------------------------------------------- top navbar used when logged in
+
+#topnav {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background-color: $white;
+
+    @media (min-width: 768px) {
+        width: calc(100% - 300px);
+    }
+}
+
+.topnav-spacer {
+    height: $topnav-spacer-height;
+}
+
+#topnav-icons i {
+    font-size: 1.5rem;
+
+    @media (min-width: 576px) {
+        font-size: 2rem;
+    }
+}
+
+// style seach box dropdown
+.dropright {
+    .dropdown-menu {
+        transition: all 0.25s;
+        overflow: hidden;
+        transform-origin: left;
+        transform: scale(0, 1);
+        display: block;
+    }
+    &:hover {
+        .dropdown-menu {
+            transform: scale(1);
+        }
+    }
+    .dropdown-menu {
+        width: 200px;
+        padding: 0;
+    }
+}

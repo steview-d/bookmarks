@@ -1,0 +1,269 @@
+// ----------------------------- 'Pages' styling - index / about, pricing & faq
+
+// -------------------------------------------------------------- index / about
+
+#index-page section {
+    @include section-padding;
+    border-bottom: 2px solid #aaaaaa;
+
+    .content {
+        padding: 1rem;
+    }
+}
+
+#headline-section {
+    @include background-overlay(0.98);
+
+    img {
+        width: 50%;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
+
+    .grid-container {
+        width: 100%;
+    }
+
+    // css grid of icons 4x4
+    .display-icon-grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        gap: 4px;
+        border: 4px solid black;
+        border-radius: 6px;
+        padding: 0.25rem;
+
+        .icon-grid-item {
+            background-color: transparent;
+
+            img {
+                width: 100%;
+                transition: 0.3s ease-out;
+
+                &:hover {
+                    transform: scale(1.15);
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+}
+
+#features-section {
+    background-color: $gunmetal-alpha;
+    color: white;
+
+    img {
+        width: 50%;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
+
+    p {
+        direction: rtl;
+    }
+}
+
+#chrome-ext-section {
+    @include background-overlay(0.96);
+
+    img {
+        width: 50%;
+        border: 3px solid $black;
+        border-radius: 4px;
+
+        @media only screen and (min-width: 992px) {
+            width: 80%;
+        }
+    }
+}
+
+#testimonials-section {
+    background-color: $dark-blue-alpha;
+    color: $white;
+
+    h1 {
+        display: inline-block;
+        border: 1px solid $white;
+        padding: 1rem 1.25rem;
+    }
+}
+
+#testimonialCarousel {
+    color: $white;
+
+    .carousel-inner {
+        .testimonial {
+            background-color: transparent;
+
+            .img-container {
+                text-align: center;
+                margin-bottom: 3rem;
+
+                img {
+                    height: 200px;
+                }
+            }
+
+            .quote {
+                padding: 0 2rem;
+                text-align: center;
+            }
+
+            .quote_by {
+                text-align: right;
+            }
+        }
+    }
+    .controls {
+        width: 5%;
+
+        i {
+            font-size: 3rem;
+            color: $white;
+        }
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev {
+        align-items: flex-start;
+        top: 60%;
+    }
+
+    .carousel-indicators {
+        bottom: -40px;
+    }
+
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 0.5rem;
+        background: #eeeeee;
+        border: 4px solid $white;
+    }
+    .carousel-indicators li.active {
+        color: $white;
+        background: $dark-blue-alpha;
+        border: 4px solid;
+    }
+}
+
+// -------------------------------------------------------------------- pricing
+
+#pricing-page section {
+    @include section-padding;
+
+    .content {
+        padding: 1rem;
+    }
+}
+
+#pricing-text-section {
+    @include background-overlay(0.98);
+
+    img {
+        width: 80%;
+
+        @media only screen and (min-width: 992px) {
+            width: 100%;
+        }
+    }
+}
+
+#pricing-table-section {
+    // background-color: #343a40;
+    background-color: $gunmetal-alpha;
+
+    table {
+        background-color: transparent;
+        padding: 4rem;
+    }
+
+    .offer-box {
+        display: inline-block;
+        background-color: $white;
+        border-radius: 8px;
+    }
+}
+
+// ----------------------------------------------------------------------- faqs
+
+#faq-page section {
+    @include section-padding;
+
+    .content {
+        padding: 1rem;
+    }
+}
+
+#faq-section {
+    @include background-overlay(0.98);
+
+    h2 {
+        display: inline-block;
+        background-color: $gunmetal-alpha;
+        color: $white;
+        margin-bottom: 0;
+        padding: 1rem 1.25rem;
+        border: 1px solid $black;
+        border-radius: 5px;
+    }
+
+    .other-questions {
+        display: inline-block;
+        background-color: transparent;
+        margin: 3.5rem auto;
+        padding: 2rem;
+        // border: 2px solid black;
+    }
+
+    #faq-accordion {
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0.5rem;
+
+        .card {
+            border-width: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+
+            .card-header {
+                display: flex;
+                flex-direction: row;
+                font-size: 1.2rem;
+                padding: 1rem;
+                background-color: transparent;
+                transition: 0.2s ease-out;
+
+                &:hover,
+                &:active {
+                    cursor: pointer;
+                    background-color: $gunmetal-alpha;
+                    color: $white;
+                }
+
+                i {
+                    padding-right: 1rem;
+                }
+            }
+
+            .card-body {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+        }
+    }
+}
+
+#contact-form-section {
+    background-color: $dark-blue-alpha;
+    color: $white;
+
+    .form-container {
+        margin: 0 auto;
+    }
+}

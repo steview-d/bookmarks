@@ -1,0 +1,93 @@
+// ------------------- side navigation bar used for main app and settings pages
+
+#sidebar {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    z-index: 999;
+    transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
+    background-color: $onyx;
+    color: $white;
+
+    .display-switch {
+        margin-left: -300px;
+    }
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+#sidebar .logo {
+    display: block;
+    margin: 2rem auto 4rem;
+    width: 140px;
+    border-radius: 50%;
+    border: 10px solid $logo-blue;
+}
+
+#sidebar {
+    .toggle-pos {
+        position: absolute;
+        top: 0;
+    }
+
+    .add-bm-btn-sidebar {
+        h4 {
+            display: inline-block;
+            background-color: white;
+            color: $onyx;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid $white;
+
+            i {
+                margin-right: 0.5rem;
+                color: $black;
+            }
+        }
+    }
+}
+
+#sidebar ul {
+    margin: 3rem 1rem 0;
+
+    li a {
+        color: $white;
+        text-decoration: none;
+    }
+
+    .active {
+        background-color: $white;
+
+        a {
+            color: $black;
+        }
+    }
+}
+
+#sidebar .menu-close {
+    position: absolute;
+    bottom: 10px;
+    right: calc(50% - 2rem / 1.5);
+
+    .fa-times {
+        position: absolute;
+        top: -2px;
+    }
+}
+
+@media (max-width: 767px) {
+    #sidebar {
+        margin-left: -300px;
+    }
+    #sidebar.display-switch {
+        margin-left: 0;
+    }
+}

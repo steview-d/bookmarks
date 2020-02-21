@@ -1,0 +1,46 @@
+// --------------------- user_auth pages - login, register, reset password, etc
+
+#login,
+#register,
+.pw-control {
+    @include background-overlay(0.6);
+}
+
+.set-min-height {
+    min-height: calc(100vh - #{$footer-height});
+}
+
+.user-auth-container {
+    background-color: $white;
+    border: 2px solid #888888;
+    border-radius: 5px;
+    margin: 3rem auto 2rem;
+    padding: 1.5rem;
+
+    h3 {
+        text-align: center;
+    }
+
+    form {
+        margin: 2rem 1rem;
+
+        .pw-reset {
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+
+            a {
+                color: #888888;
+                transition: 0.3s ease-out;
+
+                &:hover {
+                    color: #222222;
+                }
+            }
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}

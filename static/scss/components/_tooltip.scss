@@ -1,0 +1,27 @@
+// ------------------------------------------------------------ square info box
+
+.tippy-i {
+    .fa-square {
+        margin-top: 0.35rem;
+        font-size: 1.2rem;
+        color: $onyx;
+
+        // media query to make icon bigger on smaller devices?
+    }
+
+    .fa-info {
+        font-size: 0.7rem;
+    }
+}
+
+
+// ---------------------------------------------------------------------- theme
+
+.tippy-tooltip.dark-theme {
+    background-color: #353535;
+    color: #ffffff;
+}
+
+.tippy-tooltip.dark-theme[data-placement^="top"] .tippy-arrow {
+    border-top-color: #353535;
+}

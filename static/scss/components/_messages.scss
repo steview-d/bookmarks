@@ -1,0 +1,14 @@
+// ------------------------------------------------------------------- messages
+
+.messages {
+    background-color: $white;
+    padding: 0;
+
+    .alert {
+        margin-bottom: 0;
+
+        .close {
+            cursor: pointer;
+        }
+    }
+}

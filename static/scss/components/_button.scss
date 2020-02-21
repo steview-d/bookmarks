@@ -1,0 +1,190 @@
+.label {
+    padding: 0.2rem 0.4rem;
+    margin: 0 0.2rem;
+    border: 1px solid black;
+    color: black;
+    white-space: nowrap;
+
+    &-small {
+        font-size: 0.8rem;
+    }
+}
+
+.btn--standard {
+    background-color: #424242;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $white;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    &:hover {
+        background-color: transparent;
+        color: $black;
+    }
+}
+
+.btn--invert {
+    background-color: transparent;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    &:hover {
+        background-color: #424242;
+        color: $white;
+    }
+}
+
+.btn--square {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    background-color: #424242;
+    border: 2px solid #424242;
+    border-radius: 0.25rem;
+    color: $white;
+    display: inline-block;
+    transition: 0.2s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: #424242;
+    }
+}
+
+.btn--square-invert {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    background-color: $white;
+    border: 1px solid $white;
+    border-radius: 0.35rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: $white;
+    }
+}
+
+.btn--half-square {
+    position: relative;
+    width: 5rem;
+    height: 2.55rem;
+    background-color: #424242;
+    border: 2px solid #424242;
+    border-radius: 0.25rem;
+    color: $white;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: #424242;
+        font-weight: 600;
+    }
+}
+
+.btn--half-square-invert {
+    position: relative;
+    width: 5rem;
+    height: 2.55rem;
+    margin-top: 0.25rem;
+    background-color: $white;
+    border: 1px solid $white;
+    border-radius: 0.35rem;
+    color: $black;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: $white;
+        font-weight: 600;
+    }
+}
+
+.btn--slide {
+    padding: 0.2rem 0.4rem;
+    font-size: 1rem;
+    position: relative;
+    border: 1px solid $black;
+    color: $black;
+    background-color: transparent;
+    white-space: nowrap;
+
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: inherit;
+        opacity: 0;
+        color: $white;
+        transition: 0.2s ease-out;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: $logo-blue;
+        transition: 0.3s ease-out;
+    }
+
+    &:hover {
+        &:before {
+            width: 100%;
+        }
+        span {
+            opacity: 1;
+        }
+    }
+}

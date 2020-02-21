@@ -1,0 +1,45 @@
+// --------------------------------------------------------------------- mixins
+
+@mixin black-border {
+    border: 1px solid $black;
+}
+
+@mixin container-text-icon {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin container-text-icon-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin container-title-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin flex-none {
+    flex: 0 0 auto;
+}
+
+@mixin section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+@mixin icon-tile-bg {
+    background-image: url("/static/img/bg/icon_tile.png");
+    background-repeat: repeat;
+}
+
+@mixin background-overlay($opacity) {
+    background-color: rgba(255, 255, 255, $opacity);
+}

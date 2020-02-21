@@ -1,0 +1,97 @@
+// ---------------------------------------- scss applicable to all / most pages
+
+// ----------------------------------------------------------------- re-usables
+
+.border {
+    @include black-border;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.vertical-bar-left {
+    border-left: 14px solid $onyx;
+    padding-left: 1.4rem;
+}
+
+.vertical-bar-right {
+    border-right: 14px solid $white;
+    padding-right: 1.4rem;
+}
+
+.faded-link-sm a {
+    color: #888888;
+    transition: 0.3s ease-out;
+
+    &:hover {
+        color: #222222;
+    }
+}
+
+// tiled background for all pages outside of main app
+.icon-tile-bg-wrapper {
+    @include icon-tile-bg;
+}
+
+// force bg overlay all the way
+// to the bottom of the page.
+.px-space {
+    height: 1px;
+}
+
+#get-started-section {
+    @include background-overlay(0.96);
+}
+
+
+// -------------------------------------------------------------- ajax progress
+
+.ajax-progress-hide {
+    display: none;
+}
+
+.ajax-progress-show {
+    display: inline-block;
+}
+
+.display-toggle {
+    display: none;
+}
+
+// ---------------------------------------------------------- main content area
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
+
+    .bg-fade {
+        min-height: 100vh;
+        @include background-overlay(0.98);
+    }
+
+    @media (min-width: 768px) {
+        width: calc(100% - 300px);
+    }
+}
+
+.flex-wrapper {
+    display: flex;
+    width: 100%;
+
+    // prevents #content from scrolling when
+    // sidebar is active on small screens
+    // ref: .js sidebar toggler
+    .no-scroll {
+        overflow: hidden;
+        height: 100%;
+    }
+}

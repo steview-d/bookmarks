@@ -1,0 +1,25 @@
+// --------------------------------------------------------------------- footer
+
+#footer-section {
+    background-color: $black;
+
+    .content {
+        padding: 1rem;
+        text-align: center;
+        color: $white;
+
+        .social-icons {
+            margin: 0.5rem;
+            padding: 0.5rem;
+            font-size: 1.75rem;
+            color: $white;
+            transition: 0.5s ease-out;
+        }
+
+        .social-icons:hover {
+            transform: scale(1.1);
+            background-color: white;
+            color: $black;
+        }
+    }
+}

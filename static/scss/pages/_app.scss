@@ -1,0 +1,135 @@
+// ------------------------------------------------------------- main links app
+
+.column {
+    color: black; // temp placeholder
+}
+
+.link-desc {
+    font-size: 0.8rem;
+}
+
+.link-url {
+    font-size: 0.6rem;
+}
+
+.text-trunc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bm-link {
+    color: #616161;
+    &:hover {
+        color: #616161;
+    }
+}
+
+#img-preview {
+    height: 100px;
+    max-width: 60vw;
+}
+
+
+// ------------------------------------------------------ add / edit page forms
+
+#add-page-form {
+    display: none;
+}
+
+.edit-page-form {
+    display: none;
+}
+
+// ----------------------------------------------------------- page sort button
+
+.hide-page-sort-icon {
+    display: none;
+}
+
+// ---------------------------------------------------- rename collection forms
+
+.rename-collection-form {
+    display: none;
+}
+
+// ------------------------------------------------------- collection title bar
+
+.collection-container {
+    @include container-text-icon;
+    cursor: default;
+    background-color: #eeeeee;
+    border-radius: 3px;
+    padding: 0.4rem 0.7rem;
+
+    .collection-title {
+        @include container-text-icon-title;
+
+        .collection-title-text {
+            @include container-title-text;
+            font-size: 1.4rem;
+        }
+    }
+
+    .collection-icons {
+        @include flex-none;
+        font-size: 1.2rem;
+    }
+}
+
+// ----------------------------------------------------------- bookmark options
+
+.bm-container {
+    @include container-text-icon;
+
+    .bm-title {
+        @include container-text-icon-title;
+
+        .bm-title-text {
+            @include container-title-text;
+        }
+        .bm-options-icon {
+            @include flex-none;
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            padding: 0 0.25rem;
+        }
+    }
+}
+
+.bm-icons-show-hide {
+    display: none;
+
+    .bm-icons-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .bm-icon {
+            display: flex;
+            align-items: center;
+            margin: 0.15rem 0.25rem 0.15rem 0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+// ----------------------------------------------------------- bookmark styling
+
+.bm-text-container {
+    margin-left: 0.3rem;
+    min-width: 0;
+}
+
+.default-icon {
+    flex-shrink: 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-text {
+        color: white;
+    }
+}
