@@ -43,6 +43,23 @@ a:hover {
   color: #000000;
 }
 
+.btn--white {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #424242;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--white:hover {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
 .btn--invert {
   background-color: transparent;
   border: 1px solid #000000;
@@ -113,63 +130,6 @@ a:hover {
   color: #ffffff;
 }
 
-.btn--half-square {
-  position: relative;
-  width: 5rem;
-  height: 2.55rem;
-  background-color: #424242;
-  border: 2px solid #424242;
-  border-radius: 0.25rem;
-  color: #ffffff;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-}
-
-.btn--half-square span {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 0.25rem 0.4rem;
-  text-align: right;
-  line-height: 1rem;
-}
-
-.btn--half-square:hover {
-  background-color: transparent;
-  color: #424242;
-  font-weight: 600;
-}
-
-.btn--half-square-invert {
-  position: relative;
-  width: 5rem;
-  height: 2.55rem;
-  margin-top: 0.25rem;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 0.35rem;
-  color: #000000;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-}
-
-.btn--half-square-invert span {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 0.25rem 0.4rem;
-  text-align: right;
-  line-height: 1rem;
-}
-
-.btn--half-square-invert:hover {
-  background-color: transparent;
-  color: #ffffff;
-  font-weight: 600;
-}
-
 .btn--slide {
   padding: 0.2rem 0.4rem;
   font-size: 1rem;
@@ -217,6 +177,17 @@ a:hover {
   margin-top: 0.35rem;
   font-size: 1.2rem;
   color: #343a40;
+  padding: 0.75rem 1.75rem 0.75rem 0.75rem;
+  top: -12px;
+  left: -4px;
+}
+
+@media only screen and (min-width: 576px) {
+  .tippy-i .fa-square {
+    padding: 0;
+    top: 0;
+    left: 0;
+  }
 }
 
 .tippy-i .fa-info {

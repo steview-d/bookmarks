@@ -1,4 +1,4 @@
-// ------------------------------------------------------------ square info box
+// ---------------------------------------------------- square tooltip info box
 
 .tippy-i {
     .fa-square {
@@ -6,14 +6,24 @@
         font-size: 1.2rem;
         color: $onyx;
 
-        // media query to make icon bigger on smaller devices?
+        // increase padding slightly on small screens to make it
+        // easier to select tooltip by touch.
+        padding: 0.75rem 1.75rem 0.75rem 0.75rem;
+        top: -12px;
+        left: -4px;
+
+        @media only screen and (min-width: 576px) {
+            // reset padding on screens above large
+            padding: 0;
+            top: 0;
+            left: 0;
+        }
     }
 
     .fa-info {
         font-size: 0.7rem;
     }
 }
-
 
 // ---------------------------------------------------------------------- theme
 
