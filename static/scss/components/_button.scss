@@ -11,7 +11,7 @@
 }
 
 .btn--standard {
-    background-color: #424242;
+    background-color: $dark-grey;
     border: 1px solid $black;
     border-radius: 0.25rem;
     padding: 0.2rem 0.4rem;
@@ -25,6 +25,22 @@
     }
 }
 
+.btn--white {
+    background-color: $white;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    color: $dark-grey;
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    &:hover {
+        background-color: transparent;
+        border-color: $white;
+        color: $white;
+    }
+}
+
 .btn--invert {
     background-color: transparent;
     border: 1px solid $black;
@@ -35,7 +51,7 @@
     transition: 0.25s ease-out;
 
     &:hover {
-        background-color: #424242;
+        background-color: $dark-grey;
         color: $white;
     }
 }
@@ -44,8 +60,8 @@
     position: relative;
     width: 5rem;
     height: 5rem;
-    background-color: #424242;
-    border: 2px solid #424242;
+    background-color: $dark-grey;
+    border: 2px solid $dark-grey;
     border-radius: 0.25rem;
     color: $white;
     display: inline-block;
@@ -62,7 +78,7 @@
 
     &:hover {
         background-color: transparent;
-        color: #424242;
+        color: $dark-grey;
     }
 }
 
@@ -92,61 +108,7 @@
     }
 }
 
-.btn--half-square {
-    position: relative;
-    width: 5rem;
-    height: 2.55rem;
-    background-color: #424242;
-    border: 2px solid #424242;
-    border-radius: 0.25rem;
-    color: $white;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    span {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 0.25rem 0.4rem;
-        text-align: right;
-        line-height: 1rem;
-    }
-
-    &:hover {
-        background-color: transparent;
-        color: #424242;
-        font-weight: 600;
-    }
-}
-
-.btn--half-square-invert {
-    position: relative;
-    width: 5rem;
-    height: 2.55rem;
-    margin-top: 0.25rem;
-    background-color: $white;
-    border: 1px solid $white;
-    border-radius: 0.35rem;
-    color: $black;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    span {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 0.25rem 0.4rem;
-        text-align: right;
-        line-height: 1rem;
-    }
-
-    &:hover {
-        background-color: transparent;
-        color: $white;
-        font-weight: 600;
-    }
-}
-
+// not currently in use - delete if not required
 .btn--slide {
     padding: 0.2rem 0.4rem;
     font-size: 1rem;
