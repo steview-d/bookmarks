@@ -27,7 +27,7 @@ def links(request, page):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -264,7 +264,7 @@ def arrange_collections(request, page):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -307,7 +307,7 @@ def collection_sort(request, page):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -445,7 +445,7 @@ def update_sort_order(request, page, collection, sort):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -456,14 +456,14 @@ def update_sort_order(request, page, collection, sort):
     except ObjectDoesNotExist:
         # stop users trying to move bookmarks that aren't theirs
         messages.error(
-            request, f"Could not find the requested collection"
+            request, f"Could not find the requested collection."
         )
         return redirect('start_app')
 
     if int(sort) < 0 or int(sort) > 6:
         messages.error(
             request, f"Incorrect sort value - \
-                should be an integer between 0 and 6"
+                should be an integer between 0 and 6."
         )
         return redirect('start_app')
 
@@ -484,7 +484,7 @@ def change_num_columns(request, page, num):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -546,7 +546,7 @@ def edit_bookmark(request, page, bookmark):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -557,7 +557,7 @@ def edit_bookmark(request, page, bookmark):
     except ObjectDoesNotExist:
         # stop users trying to edit bookmarks that aren't theirs
         messages.error(
-            request, f"Could not find the requested bookmark"
+            request, f"Could not find the requested bookmark."
         )
         return redirect('start_app')
 
@@ -657,7 +657,7 @@ def move_bookmark(request, page, bookmark):
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find a page with the name '{page}'"
+            request, f"Could not find a page with the name '{page}'."
         )
         return redirect('start_app')
 
@@ -667,7 +667,7 @@ def move_bookmark(request, page, bookmark):
         bookmark_to_move = Bookmark.objects.get(user=request.user, pk=bookmark)
     except ObjectDoesNotExist:
         messages.error(
-            request, f"Could not find the requested bookmark"
+            request, f"Could not find the requested bookmark."
         )
         return redirect('start_app')
 

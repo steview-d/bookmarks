@@ -92,7 +92,7 @@ def delete_page(request, page):
         Page, name=page, user=request.user,
     ).delete()
     messages.success(
-            request, f"Page Deletion Successful")
+            request, f"Page deletion successful.")
 
     # re-allocate .position values
     pages = Page.objects.filter(user=request.user).order_by('position')

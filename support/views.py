@@ -42,6 +42,10 @@ def support(request):
             return redirect(reverse("support"))
 
         else:
+            messages.error(
+                request, f"There was an error with your form, \
+                    please try again."
+            )
             support_request_form = form_data
 
     else:

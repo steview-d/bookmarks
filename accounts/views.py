@@ -52,6 +52,11 @@ def profile(request):
             messages.success(
                 request, f"Your email address has been updated. Thank you.")
             return redirect(reverse("profile"))
+        else:
+            messages.error(
+                request, f"There was an error with your form - \
+                    please try again."
+            )
 
     elif "pw-btn" in request.POST:
         update_email_form = UpdateUserEmailForm()
@@ -64,6 +69,11 @@ def profile(request):
             messages.success(
                 request, f"Your password has been updated. Thank you.")
             return redirect(reverse("profile"))
+        else:
+            messages.error(
+                request, f"There was an error with your form - \
+                    please try again."
+            )
 
     else:
         update_email_form = UpdateUserEmailForm()

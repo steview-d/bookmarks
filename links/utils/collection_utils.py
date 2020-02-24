@@ -37,19 +37,19 @@ def validate_name(request, proposed_name, collections, page):
     # check collection name not blank or just spaces
     if proposed_name == '':
         messages.error(
-            request, f"You must choose a name")
+            request, f"You must choose a name.")
         return False
 
     if proposed_name.isspace():
         messages.error(
-            request, f"The name cannot be just blank spaces")
+            request, f"The name cannot be just blank spaces.")
         return False
 
     # check collection name is unique to page / user
     if collections.filter(
             name__iexact=proposed_name.strip()).exists():
         messages.error(
-            request, f"Collection name is in use, please choose another")
+            request, f"Collection name is in use, please choose another.")
         return False
 
     else:
@@ -266,7 +266,7 @@ def delete_collection(request, page, collections):
     position_to_delete = collection_to_delete.position
     collection_to_delete.delete()
     messages.success(
-            request, f"Collection Deletion Successful")
+            request, f"Collection deletion successful.")
 
     # reset collection.position for each
     for count, collection in enumerate((collections), 1):

@@ -57,11 +57,11 @@ def premium(request):
             else:
                 messages.error(
                     request, "Sorry, your payment could not be taken. \
-                        Please try again, or use a different card")
+                        Please try again, or use a different card.")
         else:
             messages.error(
                 request, "Sorry, your payment could not be taken. \
-                    Please use a different card")
+                    Please use a different card.")
     else:
         purchase_premium_form = PremiumPurchaseForm()
         payment_form = PaymentForm()
