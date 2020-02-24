@@ -640,14 +640,18 @@ h4 > .fa-stop {
 }
 
 #chrome-ext-section img {
-  width: 50%;
-  border: 3px solid #000000;
-  border-radius: 4px;
+  width: 40%;
+}
+
+@media only screen and (min-width: 768px) {
+  #chrome-ext-section img {
+    width: 30%;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   #chrome-ext-section img {
-    width: 80%;
+    width: 60%;
   }
 }
 

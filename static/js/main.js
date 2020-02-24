@@ -484,7 +484,7 @@ $(document).ready(function() {
         $('#id_name, #id_email, #id_message').val('');
     });
 
-    // close sidebar on swipe
+    // close sidebar on swipe - uses third party swipe.js script
     $('#sidebar').onSwipe((result)=>{
         if(result.left == true && window.innerWidth <= 767) {
             $("#sidebar, #content").toggleClass("display-switch");

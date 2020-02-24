@@ -57,12 +57,14 @@
     @include background-overlay(0.96);
 
     img {
-        width: 50%;
-        border: 3px solid $black;
-        border-radius: 4px;
+        width: 40%;
+
+        @media only screen and (min-width: 768px) {
+            width: 30%;
+        }
 
         @media only screen and (min-width: 992px) {
-            width: 80%;
+            width: 60%;
         }
     }
 }
