@@ -24,13 +24,8 @@
     padding-right: 1.4rem;
 }
 
-.faded-link-sm a {
-    color: #888888;
-    transition: 0.3s ease-out;
-
-    &:hover {
-        color: #222222;
-    }
+.or-log-in a {
+    @include faded-link;
 }
 
 // tiled background for all pages outside of main app
@@ -44,12 +39,42 @@
     height: 1px;
 }
 
-#get-started-section {
+#create-account-section {
     @include background-overlay(0.96);
+}
+
+// settings pages header icon before
+h4 > .fa-stop {
+    color: $logo-blue;
+}
+
+// settings pages section box with blue square title as header
+.section-square-wrapper {
+    position: relative;
+
+    .section-square {
+        position: absolute;
+        top: -44px;
+        // left: 8%;
+        width: 90px;
+        height: 90px;
+        padding-top: 0.7rem;
+        font-size: 0.8rem;
+        border: 2px solid $onyx;
+        text-align: center;
+        background-color: $logo-blue;
+        color: $white;
+    }
+
+    .square-left {
+        left: 8%;
+    }
 }
 
 
 // -------------------------------------------------------------- ajax progress
+// -------------------------------- here for .js to use as required, to control
+// -------------------------------------the display of ajax progress indicators
 
 .ajax-progress-hide {
     display: none;
@@ -63,7 +88,9 @@
     display: none;
 }
 
+
 // ---------------------------------------------------------- main content area
+// ------------------------------------- applies to main app and settings pages
 
 #content {
     width: 100%;
@@ -87,9 +114,8 @@
     display: flex;
     width: 100%;
 
-    // prevents #content from scrolling when
-    // sidebar is active on small screens
-    // ref: .js sidebar toggler
+    // -------------.no-scroll prevents #content from scrolling when sidebar is
+    // ----------------------active on small screens - ref: .js sidebar toggler
     .no-scroll {
         overflow: hidden;
         height: 100%;

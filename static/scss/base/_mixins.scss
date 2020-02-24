@@ -43,3 +43,12 @@
 @mixin background-overlay($opacity) {
     background-color: rgba(255, 255, 255, $opacity);
 }
+
+@mixin faded-link {
+    color: #888888;
+    transition: 0.3s ease-out;
+
+    &:hover {
+        color: #222222;
+    }
+}

@@ -20,163 +20,102 @@
     }
 }
 
+
 // --------------------------------------------------------- settings - profile
 
-#profile {
-    h4 > i {
-        color: $logo-blue;
+.profile-forms {
+    @media only screen and (min-width: 992px) {
+        border: 1px solid #aaaaaa;
+    }
+}
+
+.number-box {
+    border: 1px solid $logo-blue;
+    background-color: $logo-blue;
+    color: $white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 0.1rem 0.5rem 0.1rem;
+    margin: 0.25rem;
+    border-radius: 4px;
+}
+
+
+// -------------------------------------------------------------------- support
+
+.premium-tel-box {
+    border: none;
+    padding: 4rem 1rem 2rem;
+    border: 2px solid $onyx;
+    border-radius: 3px;
+}
+
+
+// -------------------------------------------------------------------- premium
+
+#premium .set-height {
+    min-height: calc(80vh - #{$topnav-spacer-height});
+}
+
+.premium-features-box {
+    @include background-overlay(0.5);
+    padding: 3rem 0 1rem;
+    border: 2px solid $onyx;
+    border-radius: 3px;
+
+    @media only screen and (min-width: 576px) {
+        padding: 4rem 1rem 1.5rem;
     }
 
-    .profile-forms {
-        border: none;
+    li {
+        text-align: center;
+        font-size: 1rem;
+        padding: 0.8rem;
 
-        @media only screen and (min-width: 992px) {
-            border: 1px solid #aaaaaa;
+        @media only screen and (min-width: 576px) {
+            font-size: 1.2rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        i {
+            display: inline-block;
+            margin: auto;
+            border-radius: 5px;
+            padding: 0.8rem;
+            font-size: 2rem;
+            color: $logo-blue;
+
+            @media only screen and (min-width: 576px) {
+                font-size: 3rem;
+                padding: 1rem;
+            }
+        }
+
+        strong {
+            display: block;
         }
     }
+}
 
-    .number-box {
-        border: 1px solid $logo-blue;
-        background-color: $logo-blue;
-        color: $white;
-        font-weight: 700;
-        font-size: 1.2rem;
-        padding: 0.1rem 0.5rem 0.1rem;
-        margin: 0.25rem;
+.price-block {
+    background-color: $onyx;
+    color: $white;
+    border-radius: 3px;
+    margin: 5rem auto;
+    padding: 2rem;
+
+    .price {
+        background-color: $white;
+        color: $onyx;
+        font-size: 1.8rem;
+        padding: 0.4rem 0.6rem;
         border-radius: 4px;
     }
 }
 
-// -------------------------------------------------------------------- support
-
-#support {
-    h4 > i {
-        color: $logo-blue;
-    }
-    .section-square-wrapper {
-        position: relative;
-
-        .section-square {
-            position: absolute;
-            top: -44px;
-            // left: 8%;
-            width: 90px;
-            height: 90px;
-            padding-top: 0.7rem;
-            font-size: 0.8rem;
-            border: 2px solid $onyx;
-            text-align: center;
-            background-color: $logo-blue;
-            color: $white;
-        }
-
-        .square-left {
-            left: 8%;
-        }
-    }
-
-    .premium-tel-box {
-        border: none;
-        padding: 4rem 1rem 2rem;
-        border: 2px solid $onyx;
-        border-radius: 3px;
-    }
-}
-
-// -------------------------------------------------------------------- premium
-
-#premium {
-    h4 > i {
-        color: $logo-blue;
-    }
-
-    .set-height {
-        min-height: calc(80vh - #{$topnav-spacer-height});
-    }
-
-    .section-square-wrapper {
-        position: relative;
-
-        .section-square {
-            position: absolute;
-            top: -44px;
-            // left: 8%;
-            width: 90px;
-            height: 90px;
-            padding-top: 0.7rem;
-            font-size: 0.8rem;
-            border: 2px solid $onyx;
-            text-align: center;
-            background-color: $logo-blue;
-            color: $white;
-        }
-
-        .square-left {
-            left: 8%;
-        }
-    }
-
-    .premium-features-box {
-        @include background-overlay(0.5);
-        padding: 3rem 0 1rem;
-        border: 2px solid $onyx;
-        border-radius: 3px;
-
-        @media only screen and (min-width: 576px) {
-            padding: 4rem 1rem 1.5rem;
-        }
-
-        li {
-            text-align: center;
-            font-size: 1rem;
-            padding: 0.8rem;
-            // margin-bottom: 1rem;
-
-            @media only screen and (min-width: 576px) {
-                font-size: 1.2rem;
-                padding: 1rem;
-                margin-bottom: 0.5rem;
-            }
-
-            i {
-                display: inline-block;
-                margin: auto;
-                border-radius: 5px;
-                padding: 0.8rem;
-                font-size: 2rem;
-                color: $logo-blue;
-
-                @media only screen and (min-width: 576px) {
-                    font-size: 3rem;
-                    padding: 1rem;
-                }
-            }
-
-            strong {
-                display: block;
-            }
-        }
-    }
-
-    .price-block {
-        background-color: $onyx;
-        color: $white;
-        border-radius: 3px;
-        margin: 5rem auto;
-        padding: 2rem;
-
-        .price {
-            background-color: $white;
-            color: $onyx;
-            font-size: 1.8rem;
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-        }
-    }
-}
-
-.payment-tooltip i {
-    position: absolute;
+.payment-tooltip {
+    position: relative;
     top: -2px;
     left: -4px;
 }

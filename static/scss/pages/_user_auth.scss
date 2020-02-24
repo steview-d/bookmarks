@@ -29,12 +29,7 @@
             margin-bottom: 1rem;
 
             a {
-                color: #888888;
-                transition: 0.3s ease-out;
-
-                &:hover {
-                    color: #222222;
-                }
+                @include faded-link;
             }
         }
     }

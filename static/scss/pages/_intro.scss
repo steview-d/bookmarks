@@ -5,48 +5,32 @@
 #index-page section {
     @include section-padding;
     border-bottom: 2px solid #aaaaaa;
-
-    .content {
-        padding: 1rem;
-    }
 }
 
 #headline-section {
     @include background-overlay(0.98);
+}
 
-    img {
-        width: 50%;
+// 4x4 icon grid
+.display-icon-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 4px;
+    border: 4px solid black;
+    border-radius: 6px;
+    padding: 0.25rem;
 
-        @media only screen and (min-width: 992px) {
-            width: 80%;
-        }
-    }
+    .icon-grid-item {
+        background-color: transparent;
 
-    .grid-container {
-        width: 100%;
-    }
+        img {
+            width: 100%;
+            transition: 0.3s ease-out;
 
-    // css grid of icons 4x4
-    .display-icon-grid {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        gap: 4px;
-        border: 4px solid black;
-        border-radius: 6px;
-        padding: 0.25rem;
-
-        .icon-grid-item {
-            background-color: transparent;
-
-            img {
-                width: 100%;
-                transition: 0.3s ease-out;
-
-                &:hover {
-                    transform: scale(1.15);
-                    border-radius: 8px;
-                }
+            &:hover {
+                transform: scale(1.15);
+                border-radius: 8px;
             }
         }
     }
@@ -154,14 +138,11 @@
     }
 }
 
+
 // -------------------------------------------------------------------- pricing
 
 #pricing-page section {
     @include section-padding;
-
-    .content {
-        padding: 1rem;
-    }
 }
 
 #pricing-text-section {
@@ -177,7 +158,6 @@
 }
 
 #pricing-table-section {
-    // background-color: #343a40;
     background-color: $gunmetal-alpha;
 
     table {
@@ -192,14 +172,11 @@
     }
 }
 
+
 // ----------------------------------------------------------------------- faqs
 
 #faq-page section {
     @include section-padding;
-
-    .content {
-        padding: 1rem;
-    }
 }
 
 #faq-section {
@@ -220,41 +197,40 @@
         background-color: transparent;
         margin: 3.5rem auto;
         padding: 2rem;
-        // border: 2px solid black;
     }
+}
 
-    #faq-accordion {
-        background-color: rgba(255, 255, 255, 0);
-        padding: 0.5rem;
+#faq-accordion {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0.5rem;
 
-        .card {
-            border-width: 0;
-            background-color: rgba(255, 255, 255, 0.8);
+    .card {
+        border-width: 0;
+        background-color: rgba(255, 255, 255, 0.8);
 
-            .card-header {
-                display: flex;
-                flex-direction: row;
-                font-size: 1.2rem;
-                padding: 1rem;
-                background-color: transparent;
-                transition: 0.2s ease-out;
+        .card-header {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.2rem;
+            padding: 1rem;
+            background-color: transparent;
+            transition: 0.2s ease-out;
 
-                &:hover,
-                &:active {
-                    cursor: pointer;
-                    background-color: $gunmetal-alpha;
-                    color: $white;
-                }
-
-                i {
-                    padding-right: 1rem;
-                }
+            &:hover,
+            &:active {
+                cursor: pointer;
+                background-color: $gunmetal-alpha;
+                color: $white;
             }
 
-            .card-body {
-                text-align: justify;
-                text-justify: inter-word;
+            i {
+                padding-right: 1rem;
             }
+        }
+
+        .card-body {
+            text-align: justify;
+            text-justify: inter-word;
         }
     }
 }
