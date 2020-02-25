@@ -1,6 +1,5 @@
 // -------------------------------------------------------------------- buttons
 
-
 .label {
     padding: 0.2rem 0.4rem;
     margin: 0 0.2rem;
@@ -14,101 +13,23 @@
 }
 
 .btn--standard {
-    background-color: $dark-grey;
-    border: 1px solid $black;
-    border-radius: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    color: $white;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    &:hover {
-        background-color: transparent;
-        color: $black;
-    }
+    @include default-button($dark-grey, $white, $black, transparent, $black);
 }
 
 .btn--white {
-    background-color: $white;
-    border: 1px solid $black;
-    border-radius: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    color: $dark-grey;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    &:hover {
-        background-color: transparent;
-        border-color: $white;
-        color: $white;
-    }
+    @include default-button($white, $dark-grey, $black, transparent, $white, $white);
 }
 
 .btn--invert {
-    background-color: transparent;
-    border: 1px solid $black;
-    border-radius: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    color: $black;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    &:hover {
-        background-color: $dark-grey;
-        color: $white;
-    }
+    @include default-button(transparent, $black, $black, $dark-grey, $white);
 }
 
 .btn--square {
-    position: relative;
-    width: 5rem;
-    height: 5rem;
-    background-color: $dark-grey;
-    border: 2px solid $dark-grey;
-    border-radius: 0.25rem;
-    color: $white;
-    display: inline-block;
-    transition: 0.2s ease-out;
-
-    span {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 0.25rem 0.4rem;
-        text-align: right;
-        line-height: 1rem;
-    }
-
-    &:hover {
-        background-color: transparent;
-        color: $dark-grey;
-    }
+    @include square-button($dark-grey, $white, $logo-blue, $white);
 }
 
 .btn--square-invert {
-    position: relative;
-    width: 5rem;
-    height: 5rem;
-    background-color: $white;
-    border: 1px solid $white;
-    border-radius: 0.35rem;
-    color: $black;
-    display: inline-block;
-    transition: 0.25s ease-out;
-
-    span {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 0.25rem 0.4rem;
-        text-align: right;
-        line-height: 1rem;
-    }
-
-    &:hover {
-        background-color: transparent;
-        color: $white;
-    }
+    @include square-button($white, $black, $logo-blue, $white);
 }
 
 // not currently in use - delete if not required

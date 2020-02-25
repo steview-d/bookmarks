@@ -28,11 +28,19 @@ a:hover {
 }
 
 .btn--standard {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
   background-color: #424242;
+  color: #ffffff;
   border: 1px solid #000000;
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
-  color: #ffffff;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
@@ -44,11 +52,19 @@ a:hover {
 }
 
 .btn--white {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
   background-color: #ffffff;
+  color: #424242;
   border: 1px solid #000000;
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
-  color: #424242;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
@@ -56,16 +72,24 @@ a:hover {
 
 .btn--white:hover {
   background-color: transparent;
-  border-color: #ffffff;
   color: #ffffff;
+  border-color: #ffffff;
 }
 
 .btn--invert {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
   background-color: transparent;
+  color: #000000;
   border: 1px solid #000000;
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
-  color: #000000;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
@@ -77,11 +101,16 @@ a:hover {
 }
 
 .btn--square {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : hover background color
+    * col4 : hover font color
+    */
   position: relative;
   width: 5rem;
   height: 5rem;
   background-color: #424242;
-  border: 2px solid #424242;
   border-radius: 0.25rem;
   color: #ffffff;
   display: inline-block;
@@ -91,42 +120,47 @@ a:hover {
 
 .btn--square span {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 2px;
+  right: 2px;
   padding: 0.25rem 0.4rem;
   text-align: right;
   line-height: 1rem;
 }
 
 .btn--square:hover {
-  background-color: transparent;
-  color: #424242;
+  background-color: #175c9d;
+  color: #ffffff;
 }
 
 .btn--square-invert {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : hover background color
+    * col4 : hover font color
+    */
   position: relative;
   width: 5rem;
   height: 5rem;
   background-color: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 0.35rem;
+  border-radius: 0.25rem;
   color: #000000;
   display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
 }
 
 .btn--square-invert span {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 2px;
+  right: 2px;
   padding: 0.25rem 0.4rem;
   text-align: right;
   line-height: 1rem;
 }
 
 .btn--square-invert:hover {
-  background-color: transparent;
+  background-color: #175c9d;
   color: #ffffff;
 }
 

@@ -41,6 +41,7 @@
 }
 
 @mixin background-overlay($opacity) {
+    // opacity : level of opacity for rgba value
     background-color: rgba(255, 255, 255, $opacity);
 }
 
@@ -50,5 +51,64 @@
 
     &:hover {
         color: #222222;
+    }
+}
+
+
+// - button setup
+
+@mixin square-button($col1, $col2, $col3, $col4) {
+    /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : hover background color
+    * col4 : hover font color
+    */
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    background-color: $col1;
+    border-radius: 0.25rem;
+    color: $col2;
+    display: inline-block;
+    transition: 0.2s ease-out;
+
+    span {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        padding: 0.25rem 0.4rem;
+        text-align: right;
+        line-height: 1rem;
+    }
+
+    &:hover {
+        background-color: $col3;
+        color: $col4;
+    }
+}
+
+@mixin default-button($col1, $col2, $col3, $col4, $col5, $col6:null) {
+    /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
+    background-color: $col1;
+    color: $col2;
+    border: 1px solid $col3;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    
+    display: inline-block;
+    transition: 0.25s ease-out;
+
+    &:hover {
+        background-color: $col4;
+        color: $col5;
+        border-color: $col6;
     }
 }
