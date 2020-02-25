@@ -20,6 +20,10 @@
     @include default-button($white, $dark-grey, $black, transparent, $white, $white);
 }
 
+.btn--red {
+    @include default-button($error-red, $white, $error-red, transparent, $black, $black);
+}
+
 .btn--white-hover-white {
     @include default-button($white, $dark-grey, $white, $white, $dark-grey, $white);
 }

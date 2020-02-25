@@ -21,16 +21,17 @@
         </a>
     </div>
 
-    <div class="row">
-        <div class="col-12">
+    <div id="page-options" class="row mx-0">
+        <div class="col-12 p-0">
             <!-- list all user pages -->
             <h5 class="ml-4 d-inline-block"><span>Pages</span></h5>
             {% if bm_data %}
 
             <div class="float-right">
                 <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
-                <button id="page-sort-btn" class="btn--page-options mr-2 {% if page_sort_active %}page-sort-active{% endif %}"
-                    role="button"><i class="fa fa-sort" aria-hidden="true"></i></button>
+                <button id="page-sort-btn"
+                    class="btn--page-options mr-2 {% if page_sort_active %}page-sort-active{% endif %}" role="button"><i
+                        class="fa fa-sort" aria-hidden="true"></i></button>
                 <!-- add new page button -->
                 <button id="add-page-btn" class="btn--page-options mr-4" role="button"><i class="fa fa-plus"
                         aria-hidden="true"></i></button>
@@ -77,19 +78,21 @@
                         {% if name.name == page %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
                                 aria-hidden="true"></i></a>
-                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
-                                aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a>
+                        <!-- <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
+                                aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a> -->
                         {% endif %}
                     </a>
                 </div>
 
                 <!-- edit page form -->
                 {% if name.name == page %}
-                <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
-                    {% endif %}>
+                <form method="POST" class="edit-page-form px-3 pb-3" {% if edit_page_form.errors %}
+                    style="display: block;" {% endif %}>
                     {% csrf_token %}
                     {{ edit_page_form|crispy}}
-                    <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
+                    <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">
+                    <input type="button" value="Delete" class="btn--red ml-2 float-right" data-toggle="modal"
+                        data-target="#page-delete-modal">
                 </form>
 
                 {% endif %}

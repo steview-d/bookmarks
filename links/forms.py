@@ -63,6 +63,10 @@ class EditPageForm(PageForm):
         model = Page
         fields = ['name']
 
+    def __init__(self, *args, **kwargs):
+        super(EditPageForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = "New Page Name"
+
 
 class EditBookmarkForm(forms.ModelForm):
     description = forms.CharField(

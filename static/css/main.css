@@ -84,6 +84,35 @@ a:hover {
   outline: none;
 }
 
+.btn--red {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
+  background-color: #e36868;
+  color: #ffffff;
+  border: 1px solid #e36868;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--red:hover {
+  background-color: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.btn--red:focus {
+  outline: none;
+}
+
 .btn--white-hover-white {
   /*
     * col1 : background color
@@ -550,6 +579,11 @@ a:hover {
 .page-sort-active {
   background-color: #76E26A;
   border: 1px solid #76E26A;
+}
+
+.edit-page-form label {
+  color: #000000;
+  font-size: .8rem;
 }
 
 #footer-section {
