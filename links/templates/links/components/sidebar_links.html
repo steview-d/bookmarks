@@ -1,5 +1,7 @@
 {% load staticfiles %}
 
+{% load crispy_forms_tags %}
+
 <nav id="sidebar">
 
     <!-- sidebar toggle button -->
@@ -19,38 +21,46 @@
         </a>
     </div>
 
-    <hr> 
-
-    <!-- list all user pages -->
-    <h5 class="mx-4" style="display: inline-block;">Pages</h5>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <!-- list all user pages -->
+            <h5 class="ml-4 d-inline-block"><span>Pages</span></h5>
+            {% if bm_data %}
+            <!-- add page form -->
+            <div class="float-right">
+                <button id="add-page-btn" class="btn--white mr-4" role="button"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
+            </div>
+            <div>
+                <form method="POST" id="add-page-form" class="mx-4 my-3" {% if add_new_page_form.errors %} style="display: block;"
+                    {% endif %} novalidate>
+                    {% csrf_token %}
+                    {{ add_new_page_form|crispy }}
+                    <input type="submit" value="Add Page" name="add-page-form" class="btn--white mt-1">
+                    <hr class="w-50 mt-4 border-white">
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 
     <!-- spinner -->
-    <div id="ajax-progress-page" class="mx-4 ajax-progress-hide">
+    <!-- <div id="ajax-progress-page" class="mx-4 ajax-progress-hide">
         <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
-    {% if bm_data %}
-    <div class="row mx-4 my-2">
-        <button id="page-sort-btn" class="btn btn-sm btn-info" role="button">PAGE SORT:
-            {% if page_sort_active %}ON{% else %}OFF{% endif %}
-        </button>
-    </div>
-    {% endif %}
-
-
-    <div class="mx-4 py-2">
-        <ul id="page-titles" class="list-unstyled my-2">
+    <div class="mx-2">
+        <ul id="page-titles" class="list-unstyled qmy-2">
             {% for name in all_page_names %}
             <!-- individual page titles -->
             <li id="{{name.position}}_." class="{% if name.name == page %}active{% endif %}">
                 <!-- handle & icon for sorting page display order -->
-                <div
-                    class="clearfix page-sort-handle-container {% if page_sort_active %}page-sort-handle{% endif %}">
+                <div class="clearfix page-sort-handle-container {% if page_sort_active %}page-sort-handle{% endif %}">
                     <div class="float-left my-2 ml-2 page-sort-icon-container
                         {% if not page_sort_active %}
                             hide-page-sort-icon
@@ -86,23 +96,14 @@
             {% endfor %}
         </ul>
     </div>
+
+    <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
     {% if bm_data %}
-    <!-- <div class="mx-4"> -->
-    <!-- add page form -->
-    <div class="mx-4 my-2">
-        <button id="add-page-btn" class="btn btn-sm btn-info" role="button">ADD NEW PAGE</button>
-        <form method="POST" id="add-page-form" class="p-2" {% if add_new_page_form.errors %} style="display: block;"
-            {% endif %}>
-            {% csrf_token %}
-            {% for i in add_new_page_form %}
-            <p>{{ i.label_tag }}
-                {{ i }}</p>
-            <small>{{ i.errors }}</small>
-            {% endfor %}
-            <input type="submit" name="add-page-form" class="btn btn-info btn-sm mt-3">
-        </form>
+    <div class="row mx-4 my-2">
+        <button id="page-sort-btn" class="btn btn-sm btn-info" role="button">PAGE SORT:
+            {% if page_sort_active %}ON{% else %}OFF{% endif %}
+        </button>
     </div>
-    <!-- </div> -->
     {% endif %}
 
     <!-- display premium badge -->

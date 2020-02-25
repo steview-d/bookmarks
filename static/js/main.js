@@ -11,8 +11,14 @@ $(document).ready(function() {
     // 'add new page' form toggle
     $("#add-page-btn").on("click", function() {
         $(this)
+            .parent()
             .next()
+            .children()
             .slideToggle(200);
+        $(this)
+            .children('i')
+            .toggleClass('fa-plus fa-chevron-down');
+        // $('#page-titles').toggleClass('display-toggle');
     });
 
     // 'edit page' form toggle

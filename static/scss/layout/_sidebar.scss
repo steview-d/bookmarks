@@ -14,6 +14,10 @@
     background-color: $onyx;
     color: $white;
 
+    h5>span {
+        vertical-align: middle;
+    }
+
     .toggle-pos {
         position: absolute;
         top: 0;
@@ -29,7 +33,7 @@
 
     // settings pages / users pages
     ul {
-        margin: 3rem 1rem 0;
+        margin: 0 1rem 3rem;
 
         li a {
             color: $white;
@@ -90,4 +94,8 @@
     #sidebar.display-switch {
         margin-left: 0;
     }
+}
+
+#add-page-btn i {
+    width: 1rem;
 }

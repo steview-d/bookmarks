@@ -51,6 +51,10 @@ a:hover {
   color: #000000;
 }
 
+.btn--standard:focus {
+  outline: none;
+}
+
 .btn--white {
   /*
     * col1 : background color
@@ -76,6 +80,10 @@ a:hover {
   border-color: #ffffff;
 }
 
+.btn--white:focus {
+  outline: none;
+}
+
 .btn--invert {
   /*
     * col1 : background color
@@ -98,6 +106,10 @@ a:hover {
 .btn--invert:hover {
   background-color: #424242;
   color: #ffffff;
+}
+
+.btn--invert:focus {
+  outline: none;
 }
 
 .btn--square {
@@ -132,6 +144,10 @@ a:hover {
   color: #ffffff;
 }
 
+.btn--square:focus {
+  outline: none;
+}
+
 .btn--square-invert {
   /*
     * col1 : background color
@@ -162,6 +178,10 @@ a:hover {
 .btn--square-invert:hover {
   background-color: #175c9d;
   color: #ffffff;
+}
+
+.btn--square-invert:focus {
+  outline: none;
 }
 
 .btn--slide {
@@ -397,6 +417,10 @@ a:hover {
   color: #ffffff;
 }
 
+#sidebar h5 > span {
+  vertical-align: middle;
+}
+
 #sidebar .toggle-pos {
   position: absolute;
   top: 0;
@@ -411,7 +435,7 @@ a:hover {
 }
 
 #sidebar ul {
-  margin: 3rem 1rem 0;
+  margin: 0 1rem 3rem;
 }
 
 #sidebar ul li a {
@@ -468,6 +492,10 @@ a:hover {
   #sidebar.display-switch {
     margin-left: 0;
   }
+}
+
+#add-page-btn i {
+  width: 1rem;
 }
 
 #footer-section {
