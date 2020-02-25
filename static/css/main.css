@@ -84,6 +84,35 @@ a:hover {
   outline: none;
 }
 
+.btn--white-hover-white {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
+  background-color: #ffffff;
+  color: #424242;
+  border: 1px solid #ffffff;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--white-hover-white:hover {
+  background-color: #ffffff;
+  color: #424242;
+  border-color: #ffffff;
+}
+
+.btn--white-hover-white:focus {
+  outline: none;
+}
+
 .btn--invert {
   /*
     * col1 : background color
@@ -181,6 +210,24 @@ a:hover {
 }
 
 .btn--square-invert:focus {
+  outline: none;
+}
+
+.btn--page-options {
+  display: inline-block;
+  border: 1px solid #ffffff;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  -webkit-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+.btn--page-options:hover i {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.btn--page-options:focus {
   outline: none;
 }
 
@@ -444,6 +491,7 @@ a:hover {
 }
 
 #sidebar ul .active {
+  border-radius: 3px;
   background-color: #ffffff;
 }
 
@@ -494,8 +542,14 @@ a:hover {
   }
 }
 
-#add-page-btn i {
+#add-page-btn i,
+#page-sort-btn i {
   width: 1rem;
+}
+
+.page-sort-active {
+  background-color: #76E26A;
+  border: 1px solid #76E26A;
 }
 
 #footer-section {

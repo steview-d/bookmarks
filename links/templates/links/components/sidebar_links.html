@@ -15,26 +15,30 @@
     </div>
 
     <!-- Add Bookmark button -->
-    <div class="add-bm-btn-sidebar text-center">
+    <div class="add-bm-btn-sidebar text-center mb-5">
         <a href="{% url 'add_bookmark' page=page %}">
             <h4 class="text-center"><i class="fa fa-plus" aria-hidden="true"></i>Add Bookmark</h4>
         </a>
     </div>
 
-    <hr>
     <div class="row">
         <div class="col-12">
             <!-- list all user pages -->
             <h5 class="ml-4 d-inline-block"><span>Pages</span></h5>
             {% if bm_data %}
-            <!-- add page form -->
+
             <div class="float-right">
-                <button id="add-page-btn" class="btn--white mr-4" role="button"><i class="fa fa-plus"
+                <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
+                <button id="page-sort-btn" class="btn--page-options mr-2 {% if page_sort_active %}page-sort-active{% endif %}"
+                    role="button"><i class="fa fa-sort" aria-hidden="true"></i></button>
+                <!-- add new page button -->
+                <button id="add-page-btn" class="btn--page-options mr-4" role="button"><i class="fa fa-plus"
                         aria-hidden="true"></i></button>
             </div>
             <div>
-                <form method="POST" id="add-page-form" class="mx-4 my-3" {% if add_new_page_form.errors %} style="display: block;"
-                    {% endif %} novalidate>
+                <!-- add new page form -->
+                <form method="POST" id="add-page-form" class="mx-4 my-3" {% if add_new_page_form.errors %}
+                    style="display: block;" {% endif %} novalidate>
                     {% csrf_token %}
                     {{ add_new_page_form|crispy }}
                     <input type="submit" value="Add Page" name="add-page-form" class="btn--white mt-1">
@@ -64,8 +68,9 @@
                     <div class="float-left my-2 ml-2 page-sort-icon-container
                         {% if not page_sort_active %}
                             hide-page-sort-icon
-                        {% endif%}">
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        {% endif %}">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true" {% if name.name == page %}style="color: black"
+                            {% endif %}></i>
                     </div>
                     <!-- page title & icons -->
                     <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
@@ -83,11 +88,7 @@
                 <form method="POST" class="edit-page-form p-2" {% if edit_page_form.errors %} style="display: block;"
                     {% endif %}>
                     {% csrf_token %}
-                    {% for i in edit_page_form %}
-                    <p>{{ i.label_tag }} <br />
-                        {{ i }}</p>
-                    <small>{{ i.errors }}</small>
-                    {% endfor %}
+                    {{ edit_page_form|crispy}}
                     <input type="submit" name="edit-page-form" class="btn btn-info btn-sm">
                 </form>
 
@@ -96,15 +97,6 @@
             {% endfor %}
         </ul>
     </div>
-
-    <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
-    {% if bm_data %}
-    <div class="row mx-4 my-2">
-        <button id="page-sort-btn" class="btn btn-sm btn-info" role="button">PAGE SORT:
-            {% if page_sort_active %}ON{% else %}OFF{% endif %}
-        </button>
-    </div>
-    {% endif %}
 
     <!-- display premium badge -->
     {% if is_premium %}

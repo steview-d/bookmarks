@@ -20,6 +20,10 @@
     @include default-button($white, $dark-grey, $black, transparent, $white, $white);
 }
 
+.btn--white-hover-white {
+    @include default-button($white, $dark-grey, $white, $white, $dark-grey, $white);
+}
+
 .btn--invert {
     @include default-button(transparent, $black, $black, $dark-grey, $white);
 }
@@ -30,6 +34,22 @@
 
 .btn--square-invert {
     @include square-button($white, $black, $logo-blue, $white);
+}
+
+.btn--page-options {
+    display: inline-block;
+    border: 1px solid $white;
+    border-radius: 0.25rem;
+    background-color: $white;
+    transition: .2s ease-out;
+
+    &:hover i {
+        transform: scale(1.1);
+    }
+
+    &:focus {
+        outline:none
+    }
 }
 
 // not currently in use - delete if not required
