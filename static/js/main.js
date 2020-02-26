@@ -117,13 +117,7 @@ $(document).ready(function() {
     $('#page-sort-btn').on('click', function () {
         $('.page-sort-icon-container').toggleClass('hide-page-sort-icon');
         $('.page-sort-handle-container').toggleClass('page-sort-handle');
-        // if($(this).is(':contains("OFF")')) {
-        //     $(this).text('PAGE SORT: ON');
-        // } else {
-        //     $(this).text('PAGE SORT: OFF');
-        // }
         $(this).toggleClass('page-sort-active');
-        // $(this).text($(this).text() == 'PAGE SORT: ON' ? 'PAGE SORT: OFF' : 'PAGE SORT: ON');
     });
 
 

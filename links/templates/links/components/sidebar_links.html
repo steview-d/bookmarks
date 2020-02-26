@@ -36,14 +36,14 @@
                 <button id="add-page-btn" class="btn--page-options mr-4" role="button"><i class="fa fa-plus"
                         aria-hidden="true"></i></button>
             </div>
-            <div>
-                <!-- add new page form -->
-                <form method="POST" id="add-page-form" class="mx-4 my-3" {% if add_new_page_form.errors %}
+            <!-- add new page form -->
+            <div id="add-page-form-wrapper" class="mx-4">
+                <form method="POST" class="add-page-form mx-3" {% if add_new_page_form.errors %}
                     style="display: block;" {% endif %} novalidate>
                     {% csrf_token %}
+                    <h6>Add New Page</h6>
                     {{ add_new_page_form|crispy }}
-                    <input type="submit" value="Add Page" name="add-page-form" class="btn--white mt-1">
-                    <hr class="w-50 mt-4 border-white">
+                    <input type="submit" value="Add Page" name="add-page-form" class="btn--standard mt-1 mb-3">
                 </form>
             </div>
             {% endif %}
@@ -59,7 +59,7 @@
         </div>
     </div> -->
 
-    <div class="mx-2">
+    <div class="mx-2 my-2">
         <ul id="page-titles" class="list-unstyled qmy-2">
             {% for name in all_page_names %}
             <!-- individual page titles -->

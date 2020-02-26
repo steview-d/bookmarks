@@ -477,6 +477,12 @@ a:hover {
   padding: 0;
 }
 
+.add-page-form,
+.edit-page-form,
+.hide-page-sort-icon {
+  display: none;
+}
+
 #sidebar {
   width: 300px;
   position: fixed;
@@ -581,9 +587,21 @@ a:hover {
   border: 1px solid #76E26A;
 }
 
-.edit-page-form label {
+#add-page-form-wrapper {
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
+.add-page-form,
+.edit-page-form {
   color: #000000;
   font-size: .8rem;
+  overflow: hidden;
+}
+
+.add-page-form h6,
+.edit-page-form h6 {
+  padding: 1rem 0 .5rem;
 }
 
 #footer-section {
@@ -1188,18 +1206,6 @@ h4 > .fa-stop {
 #img-preview {
   height: 100px;
   max-width: 60vw;
-}
-
-#add-page-form {
-  display: none;
-}
-
-.edit-page-form {
-  display: none;
-}
-
-.hide-page-sort-icon {
-  display: none;
 }
 
 .rename-collection-form {

@@ -1,3 +1,12 @@
+// ------------------------------------------------------- form display classes
+
+.add-page-form,
+.edit-page-form,
+.hide-page-sort-icon {
+    display: none;
+}
+
+
 // ------------------- side navigation bar used for main app and settings pages
 
 #sidebar {
@@ -108,7 +117,19 @@
     border: 1px solid $green;
 }
 
-.edit-page-form label {
+#add-page-form-wrapper {
+    background-color: $white;
+    border-radius: 3px;
+}
+
+.add-page-form,
+.edit-page-form {
     color: $black;
     font-size: .8rem;
+    overflow: hidden;
+
+    h6 {
+        padding: 1rem 0 .5rem;
+    }
 }
+
