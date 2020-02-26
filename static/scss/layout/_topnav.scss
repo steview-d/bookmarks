@@ -4,7 +4,13 @@
     position: fixed;
     z-index: 100;
     width: 100%;
-    background-color: $white;
+    // background-color: $white;
+
+    .form-control:focus {
+        // outline: none;
+        box-shadow: none;
+        border-color: #ced4da;
+    }
 
     @media (min-width: 768px) {
         width: calc(100% - 300px);
