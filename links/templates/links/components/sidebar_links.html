@@ -38,8 +38,8 @@
             </div>
             <!-- add new page form -->
             <div id="add-page-form-wrapper" class="mx-4">
-                <form method="POST" class="add-page-form mx-3" {% if add_new_page_form.errors %}
-                    style="display: block;" {% endif %} novalidate>
+                <form method="POST" class="add-page-form mx-3" {% if add_new_page_form.errors %} style="display: block;"
+                    {% endif %} novalidate>
                     {% csrf_token %}
                     <h6>Add New Page</h6>
                     {{ add_new_page_form|crispy }}
@@ -76,10 +76,12 @@
                     <!-- page title & icons -->
                     <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
+                        {% if bm_data %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
                                 aria-hidden="true"></i></a>
                         <!-- <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
                                 aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a> -->
+                        {% endif %}
                         {% endif %}
                     </a>
                 </div>
