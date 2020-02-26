@@ -40,6 +40,7 @@ a:hover {
   color: #ffffff;
   border: 1px solid #000000;
   border-radius: 0.25rem;
+  margin-top: .25rem;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -68,6 +69,7 @@ a:hover {
   color: #424242;
   border: 1px solid #000000;
   border-radius: 0.25rem;
+  margin-top: .25rem;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -97,6 +99,7 @@ a:hover {
   color: #ffffff;
   border: 1px solid #e36868;
   border-radius: 0.25rem;
+  margin-top: .25rem;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -126,6 +129,7 @@ a:hover {
   color: #424242;
   border: 1px solid #ffffff;
   border-radius: 0.25rem;
+  margin-top: .25rem;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -155,6 +159,7 @@ a:hover {
   color: #000000;
   border: 1px solid #000000;
   border-radius: 0.25rem;
+  margin-top: .25rem;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -698,6 +703,10 @@ h4 > .fa-stop {
 
 .section-square-wrapper .square-left {
   left: 8%;
+}
+
+#advert-block {
+  margin: 5rem 0 3rem;
 }
 
 .ajax-progress-hide {
@@ -1347,6 +1356,19 @@ h4 > .fa-stop {
 
 .default-icon .icon-text {
   color: white;
+}
+
+#move-bookmark-form .icon {
+  width: 56px;
+  height: auto;
+}
+
+#move-bookmark-form .title {
+  margin: 0 0 .5rem;
+}
+
+#move-bookmark-form .url {
+  margin: .5rem 0 0;
 }
 
 .result-location {

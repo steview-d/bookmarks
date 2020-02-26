@@ -94,6 +94,8 @@ class MoveBookmarkForm(forms.ModelForm):
             'required': "Bookmarks cannot be in a page with no collections, \
                 please choose a page with at least one collecion"
             }
+        self.fields['dest_page'].label = "Destination Page"
+        self.fields['dest_collection'].label = "Destination Collection"
 
 
 class ImportUrlForm(forms.ModelForm):
