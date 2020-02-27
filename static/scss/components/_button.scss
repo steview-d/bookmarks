@@ -3,12 +3,28 @@
 .label {
     padding: 0.2rem 0.4rem;
     margin: 0 0.2rem;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid $black;
+    color: $black;
     white-space: nowrap;
 
     &-small {
         font-size: 0.8rem;
+    }
+}
+
+.label--white {
+    padding: 0.2rem 0.4rem;
+    margin: 0 0.2rem;
+    border: 1px solid $white;
+    color: $white;
+    white-space: nowrap;
+
+    &-small {
+        font-size: 0.8rem;
+    }
+
+    &:hover {
+        color: $white;
     }
 }
 

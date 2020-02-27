@@ -286,7 +286,8 @@ def arrange_collections(request, page):
                "num_of_columns": num_of_columns,
                "column_width": 100 / num_of_columns,
                "all_page_names": all_pages,
-               "collection_data": collection_list, }
+               "collection_data": collection_list,
+               "num_of_collections": collections.count(),}
     context = is_premium(request.user, context)
 
     return render(request, 'links/arrange_collections.html', context)

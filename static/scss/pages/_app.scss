@@ -130,7 +130,7 @@
     }
 
     .title {
-        margin: .5rem 0 0;
+        margin: 0.5rem 0 0;
     }
 
     .url {
@@ -149,4 +149,50 @@
             margin: 0 0 0.5rem;
         }
     }
+}
+
+// -------------------------------------------------------- arrange collections
+
+.arrange-text {
+    // border: 2px solid $light-grey;
+    border-radius: 4px;
+    margin-top: .5rem;
+    padding: 1.3rem 1.5rem 1.5rem;
+    display: inline-block;
+    background-color: $info-green;
+    color: $white;
+    font-weight: 600;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 576px) {
+        // border: 1px solid $dark-grey;
+        // border-radius: 4px;
+    }
+}
+
+.collection-header-number {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin-bottom: 0;
+    border: 1px solid $black;
+    border-radius: 2px;
+    background-color: $dark-grey;
+    color: $white;
+}
+
+.collection-wrapper {
+    display: block;
+    cursor: pointer;
+    margin: 1.5rem 0.75rem;
+    padding: 1rem;
+    border-radius: 3px;
+    background-color: $logo-blue;
+    color: $white;
+    font-weight: 600;
+    text-align: center;
 }

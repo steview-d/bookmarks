@@ -20,21 +20,24 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container-fluid">
-            <div class="row">
-                <!-- section to choose number of columns - temp -->
-                <div class="d-inline-block mx-2">
-                    <span><a href="{% url 'links' page=page %}" class="btn btn-sm btn-info"
-                            role="button">Back</a></span>
-                    <p>Here you can arrange the collections on the page in a way that suits you. You can</p>
-                    <ul>
-                        <li>Change the order collections are displayed within their columns</li>
-                        <li>Change the order the columns are displayed on the page</li>
-                        <li>Move a collection to a different column on this page, or any other</li>
-                    </ul>
+        <div class="container">
+
+            <!-- arrange-collection-text -->
+            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Arrange Collections</h4>
+            <div class="text-center">
+                <div class="arrange-text">
+                    {% if num_of_collections %}
+                    <p class="mb-2">Organise your collections by dragging them into position.</p>
+                    <p>Click <a href="{% url 'start_app' %}" class="label--white label--white-small"><span>close</span></a> when
+                        done</p>
+                    {% else %}
+                    <p class="mb-2">Page does not contain any collections to arrange.</p>
+                    <a href="{% url 'start_app' %}" class="label--white label--white-small">close</a>
+                    {% endif %}
                 </div>
             </div>
-            <h5 style="display: inline-block;">Collections</h5>
+
+
 
             <!-- spinner -->
             <div id="ajax-progress-arrange" class="mx-4 ajax-progress-hide">
@@ -45,25 +48,39 @@
                 </div>
             </div>
 
-            <div id="collections-container" class="row mx-4 py-2">
+            <!-- collection headings -->
+            {% if num_of_collections %}
+            <div id="collection-headers" class="row mx-md-4 mt-5 py-2 text-center d-flex justify-content-around">
                 {% for column in collection_data %}
-                <div id="column-{{forloop.counter}}" class="column my-2" style="width: {{ column_width }}%">
+                <div qstyle="width: {{ column_width }}%">
+                    <h6 class="collection-header-number">{{ forloop.counter }}
+                    </h6>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- collections to arrange -->
+            <div id="collections-container" class="row mx-1 mx-md-4 py-2 ">
+                {% for column in collection_data %}
+                <div id="column-{{forloop.counter}}" class="column" style="width: {{ column_width }}%">
+
                     {% if column %}
                     {% for collection in column %}
-                    <p id="{{collection.position}}_." class="badge badge-primary m-3 p-3 d-block cursor-pointer"
-                        style="font-size: 1rem;">{{ collection }}</p>
+                    <p id="{{collection.position}}_." class="collection-wrapper text-trunc">{{ collection }}</p>
                     {% endfor %}
                     {% endif %}
                 </div>
                 {% endfor %}
             </div>
-
-
         </div>
-        <!-- banner ad -->
-        {% include 'components/advert.html' %}
+
 
     </div>
+    <!-- banner ad -->
+    {% include 'components/advert.html' %}
+
+</div>
 </div>
 
 

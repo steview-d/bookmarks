@@ -18,13 +18,29 @@ a:hover {
 .label {
   padding: 0.2rem 0.4rem;
   margin: 0 0.2rem;
-  border: 1px solid black;
-  color: black;
+  border: 1px solid #000000;
+  color: #000000;
   white-space: nowrap;
 }
 
 .label-small {
   font-size: 0.8rem;
+}
+
+.label--white {
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.label--white-small {
+  font-size: 0.8rem;
+}
+
+.label--white:hover {
+  color: #ffffff;
 }
 
 .btn--standard {
@@ -1381,7 +1397,7 @@ h4 > .fa-stop {
 }
 
 #move-bm-detail .title {
-  margin: .5rem 0 0;
+  margin: 0.5rem 0 0;
 }
 
 #move-bm-detail .url {
@@ -1402,6 +1418,44 @@ h4 > .fa-stop {
   #move-bm-detail .title {
     margin: 0 0 0.5rem;
   }
+}
+
+.arrange-text {
+  border-radius: 4px;
+  margin-top: .5rem;
+  padding: 1.3rem 1.5rem 1.5rem;
+  display: inline-block;
+  background-color: #52BD97;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.arrange-text p {
+  margin-bottom: 0;
+}
+
+.collection-header-number {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin-bottom: 0;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  background-color: #424242;
+  color: #ffffff;
+}
+
+.collection-wrapper {
+  display: block;
+  cursor: pointer;
+  margin: 1.5rem 0.75rem;
+  padding: 1rem;
+  border-radius: 3px;
+  background-color: #175c9d;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
 }
 
 .result-location {
