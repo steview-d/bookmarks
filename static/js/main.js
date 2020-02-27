@@ -356,14 +356,21 @@ $(document).ready(function() {
             success: function(data) {
                 switch (data.result) {
                     case true:
-                        $("#url-validation-result").text("Url status: Valid");
+                        // $("#url-validation-result").text("Url status: Valid");
+                        $("#url-validation-result").html(
+                        "Url status: <span class='status status-valid'>Valid</span>"
+                        );
+
                         break;
                     case false:
-                        $("#url-validation-result").text("Url status: Invalid");
+                        // $("#url-validation-result").text("Url status: Invalid");
+                        $("#url-validation-result").html(
+                            "Url status: <span class='status status-invalid'>Invalid</span>"
+                            );
                         break;
                     default:
                         $("#url-validation-result").text(
-                            "Url status: URL field is empty"
+                            "Url status: Url field is empty"
                         );
                 }
             }

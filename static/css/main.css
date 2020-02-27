@@ -1484,6 +1484,29 @@ h4 > .fa-stop {
   text-align: center;
 }
 
+.url-validation-wrapper {
+  margin: -.8rem 0 1rem;
+}
+
+.url-validation-wrapper small {
+  font-weight: 600;
+}
+
+.url-validation-wrapper .status {
+  font-weight: 400;
+  padding: .1rem .4rem .2rem;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.url-validation-wrapper .status-valid {
+  background-color: #52BD97;
+}
+
+.url-validation-wrapper .status-invalid {
+  background-color: #e36868;
+}
+
 .result-location {
   font-size: 0.8rem;
   margin-top: 0.35rem;

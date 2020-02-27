@@ -210,3 +210,30 @@
     font-weight: 600;
     text-align: center;
 }
+
+
+// -------------------------------------------------------- add / edit bookmark
+
+.url-validation-wrapper {
+    margin: -.8rem 0 1rem;
+
+    small {
+        font-weight: 600;
+    }
+
+    .status {
+        font-weight: 400;
+        padding: .1rem .4rem .2rem;
+        border-radius: 4px;
+        color: $white;
+
+        &-valid {
+            background-color: $info-green;
+        }
+
+        &-invalid {
+            background-color: $error-red;
+        }
+    }
+}
+
