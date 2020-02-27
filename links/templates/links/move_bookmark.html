@@ -49,8 +49,8 @@
                     <form method="POST" class="bookmark-move-form">
                         {% csrf_token %}
                         {{ move_bookmark_form|crispy }}
-                        <input type="submit" value="Move Bookmark" class="btn--standard" name="move-bm-form"
-                            class="btn btn-info">
+                        <input type="submit" value="Move Bookmark" class="btn--standard" name="move-bm-form">
+                        <a href="{% url 'start_app' %}" class="btn--red float-right">Cancel</a>
                     </form>
                 </div>
             </div>
