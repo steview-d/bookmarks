@@ -63,8 +63,7 @@
                         </div>
 
                         <!-- Rename Collection Form -->
-                        <form method="POST" class="rename-collection-form p-2" {% if edit_page_form.errors %}
-                            style="display: block;" {% endif %}>
+                        <form method="POST" class="rename-collection-form p-2">
                             {% csrf_token %}
                             <div>Rename Collection</div>
                             <input type="text" name="new-collection-name">

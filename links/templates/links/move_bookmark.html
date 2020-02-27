@@ -25,13 +25,18 @@
                     <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Move Bookmark</h4>
 
                     <!-- bookmark detail -->
-                    <div class="d-flex flex-row border p-3">
+                    <div id="move-bm-detail" class="border p-3">
                         <div class="">
-                            <img src="{{ MEDIA_URL }}{{ bookmark.icon }}" alt="icon" class="icon mr-3">
+                            <img src="{{ MEDIA_URL }}{{ bookmark.icon }}" alt="icon" class="icon">
                         </div>
                         <div class="text-trunc">
                             <h6 class="title text-trunc">{{ bookmark.title }}</h6>
-                            <a href="{{ bookmark.url }}" target="_blank"><small class="url label text-trunc">{{ bookmark.url }}</small></a>
+                            <div class="text-trunc">
+                                <div class=" text-trunc">
+                                    <a href="{{ bookmark.url }}" target="_blank"><small
+                                            class="url text-trunc">{{ bookmark.url }}</small></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

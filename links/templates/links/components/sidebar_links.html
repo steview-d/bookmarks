@@ -89,7 +89,7 @@
                 <!-- edit page form -->
                 {% if name.name == page %}
                 <form method="POST" class="edit-page-form px-3 pb-3" {% if edit_page_form.errors %}
-                    style="display: block;" {% endif %}>
+                    style="display: block;" {% endif %} novalidate>
                     {% csrf_token %}
                     {{ edit_page_form|crispy}}
                     <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">

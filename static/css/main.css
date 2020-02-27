@@ -40,7 +40,7 @@ a:hover {
   color: #ffffff;
   border: 1px solid #000000;
   border-radius: 0.25rem;
-  margin-top: .25rem;
+  margin: .25rem 0;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -69,7 +69,7 @@ a:hover {
   color: #424242;
   border: 1px solid #000000;
   border-radius: 0.25rem;
-  margin-top: .25rem;
+  margin: .25rem 0;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -99,7 +99,7 @@ a:hover {
   color: #ffffff;
   border: 1px solid #e36868;
   border-radius: 0.25rem;
-  margin-top: .25rem;
+  margin: .25rem 0;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -129,7 +129,7 @@ a:hover {
   color: #424242;
   border: 1px solid #ffffff;
   border-radius: 0.25rem;
-  margin-top: .25rem;
+  margin: .25rem 0;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -159,7 +159,7 @@ a:hover {
   color: #000000;
   border: 1px solid #000000;
   border-radius: 0.25rem;
-  margin-top: .25rem;
+  margin: .25rem 0;
   padding: 0.2rem 0.4rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
@@ -1363,17 +1363,45 @@ h4 > .fa-stop {
   color: white;
 }
 
-#move-bookmark-form .icon {
-  width: 56px;
+#move-bm-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+#move-bm-detail .icon {
+  width: 50px;
   height: auto;
+  margin-right: 0;
 }
 
-#move-bookmark-form .title {
-  margin: 0 0 .5rem;
-}
-
-#move-bookmark-form .url {
+#move-bm-detail .title {
   margin: .5rem 0 0;
+}
+
+#move-bm-detail .url {
+  margin: 0.5rem 0 1rem;
+}
+
+@media only screen and (min-width: 576px) {
+  #move-bm-detail {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    text-align: left;
+  }
+  #move-bm-detail .icon {
+    margin-right: 1rem;
+  }
+  #move-bm-detail .title {
+    margin: 0 0 0.5rem;
+  }
 }
 
 .result-location {
