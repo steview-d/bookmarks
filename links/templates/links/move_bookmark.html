@@ -7,6 +7,8 @@
 
 {% block content %}
 
+{% load icon_styling %}
+
 <div id="move-bookmark-form" class="flex-wrapper">
 
     <!-- Sidebar -->
@@ -27,7 +29,14 @@
                     <!-- bookmark detail -->
                     <div id="move-bm-detail" class="border p-3">
                         <div class="">
+                            {% if bookmark.icon %}
                             <img src="{{ MEDIA_URL }}{{ bookmark.icon }}" alt="icon" class="icon">
+                            {% else %}
+                            <div class="no-icon" style="
+                            background-color:{{ bookmark.title|icon_color }};">
+                                <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="text-trunc">
                             <h6 class="title text-trunc">{{ bookmark.title }}</h6>

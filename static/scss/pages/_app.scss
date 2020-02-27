@@ -129,6 +129,24 @@
         margin-right: 0;
     }
 
+    .no-icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 6px;
+        font-size: 2.2rem;
+        margin: 0 auto;
+
+        .icon-text {
+            position: relative;
+            top: -1px;
+            color: white;
+        }
+    }
+
     .title {
         margin: 0.5rem 0 0;
     }
@@ -141,8 +159,9 @@
         flex-direction: row;
         text-align: left;
 
-        .icon {
-            margin-right: 1rem;
+        .icon,
+        .no-icon {
+            margin: 0 1rem 0 0;
         }
 
         .title {
@@ -156,7 +175,7 @@
 .arrange-text {
     // border: 2px solid $light-grey;
     border-radius: 4px;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     padding: 1.3rem 1.5rem 1.5rem;
     display: inline-block;
     background-color: $info-green;
@@ -165,11 +184,6 @@
 
     p {
         margin-bottom: 0;
-    }
-
-    @media only screen and (min-width: 576px) {
-        // border: 1px solid $dark-grey;
-        // border-radius: 4px;
     }
 }
 

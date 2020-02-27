@@ -1396,6 +1396,31 @@ h4 > .fa-stop {
   margin-right: 0;
 }
 
+#move-bm-detail .no-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  font-size: 2.2rem;
+  margin: 0 auto;
+}
+
+#move-bm-detail .no-icon .icon-text {
+  position: relative;
+  top: -1px;
+  color: white;
+}
+
 #move-bm-detail .title {
   margin: 0.5rem 0 0;
 }
@@ -1412,8 +1437,9 @@ h4 > .fa-stop {
             flex-direction: row;
     text-align: left;
   }
-  #move-bm-detail .icon {
-    margin-right: 1rem;
+  #move-bm-detail .icon,
+  #move-bm-detail .no-icon {
+    margin: 0 1rem 0 0;
   }
   #move-bm-detail .title {
     margin: 0 0 0.5rem;
@@ -1422,7 +1448,7 @@ h4 > .fa-stop {
 
 .arrange-text {
   border-radius: 4px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   padding: 1.3rem 1.5rem 1.5rem;
   display: inline-block;
   background-color: #52BD97;
