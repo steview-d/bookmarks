@@ -28,7 +28,7 @@
 
                     <!-- bookmark detail -->
                     <div id="move-bm-detail" class="border p-3">
-                        <div class="">
+                        <div>
                             {% if bookmark.icon %}
                             <img src="{{ MEDIA_URL }}{{ bookmark.icon }}" alt="icon" class="icon">
                             {% else %}
@@ -38,13 +38,11 @@
                             </div>
                             {% endif %}
                         </div>
-                        <div class="text-trunc">
+                        <div>
                             <h6 class="title text-trunc">{{ bookmark.title }}</h6>
                             <div class="text-trunc">
-                                <div class=" text-trunc">
-                                    <a href="{{ bookmark.url }}" target="_blank"><small
-                                            class="url text-trunc">{{ bookmark.url }}</small></a>
-                                </div>
+                                <a href="{{ bookmark.url }}" target="_blank"><small
+                                        class="url">{{ bookmark.url }}</small></a>
                             </div>
                         </div>
                     </div>
