@@ -346,6 +346,12 @@ $(document).ready(function() {
     function checkURL() {
         let urlToCheck = $("#id_url").val();
 
+        let httpRe = new RegExp('^https?://');
+        let match = httpRe.test(urlToCheck);
+        if (!match) {
+            urlToCheck = 'https://' + urlToCheck;
+        }
+
         $.ajax({
             type: "POST",
             data: {
