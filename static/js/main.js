@@ -548,3 +548,9 @@ function updateIconLetter() {
     let firstLetter = title.charAt(0);
     $('#default-icon').find('span').text(firstLetter.toUpperCase());
 }
+
+// display selected file in input field
+$("#id_icon").on("change", function() {
+    var fName = $(this).val().split("\\").pop();
+    $(this).next().text(fName);
+});

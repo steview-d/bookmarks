@@ -26,28 +26,35 @@
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
                     <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
                         <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Edit Bookmark</h4>
-                        <button type="button" id="scrape-url" class="btn--scrape"><i class="fa fa-magic"
+                        <button type="button" id="scrape-url" class="btn--autofill"><i class="fa fa-magic"
                                 aria-hidden="true"></i>AUTOFILL</button>
                         <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                         {% csrf_token %}
 
+                        <!-- render form -->
                         {% for field in edit_bookmark_form.visible_fields %}
-                        <div>{{ field|as_crispy_field }}</div>
-
-                        {% if field.label == 'Url' %}
-                        <div class="url-validation-wrapper">
-                            <small id="url-validation-result" class="">Url status: <span
-                                    class="status status-valid">Valid</span></small>
-                            <span class="fa-stack tippy-i tippy-url-validation">
-                                <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
-                                <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                        {% endif %}
-
+                            {% if field.label != 'Icon' %}
+                                <div>{{ field|as_crispy_field }}</div>
+                                {% if field.label == 'Url' %}
+                                    <div class="url-validation-wrapper">
+                                        <small id="url-validation-result" class="">Url status: <span
+                                                class="status status-valid">Valid</span></small>
+                                        <span class="fa-stack tippy-i tippy-url-validation">
+                                            <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                            <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <div class="mb-2">Icon</div>
+                                <div class="custom-file">
+                                    <input type="file" name="icon" class="custom-file-input" accept="image/*" id="id_icon">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            {% endif %}
                         {% endfor %}
 
-                        <div class="mt-n3 mb-4">
+                        <div>
                             <small>Upload your own, use autofill to get the site icon directly, or allow
                                 the app to create one for you.</small>
                         </div>
@@ -65,7 +72,7 @@
                             </div>
                         </div>
 
-                        <button type="button" id="use-default-icon" class="btn--standard">Use DEFAULT ICON</button>
+                        <button type="button" id="use-default-icon" class="btn--purple">Use Default Icon</button>
 
                         <!-- hidden field to hold scraped base64 image -->
                         <input type="hidden" id="scraped_img" name="scraped_img" value="">
