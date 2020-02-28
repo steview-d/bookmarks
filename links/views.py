@@ -576,6 +576,17 @@ def edit_bookmark(request, page, bookmark):
                 # save image from scraped data
                 form.icon = bookmark_utils.create_img_from_base64_str(request)
 
+            if not request.FILES and \
+                    not request.POST.get('scraped_img') and \
+                    request.POST.get('use-default'):
+                # need to send something else from frontend that explicity says
+                # to use default icon, otherwise current icon is deleted if
+                # user simply only wanted to, for ex, update the title.
+                # as it stands, if user doesn't scrape or upload an icon, there
+                # is no data for it stored, so when app comes to this part, it
+                # finds nothing and thinks sod it, I'll delete that.
+                form.icon = None
+
             form.save()
             return redirect('links', page=page)
 

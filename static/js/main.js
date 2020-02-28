@@ -521,3 +521,13 @@ $(document).ready(function() {
     });
 
 });
+
+// Create a default icon when displaying icons on add / edit / import page
+$('#use-default-icon').on('click', function () {
+    $('#img-preview').addClass('icon-display-hide');
+    $('#generic-icon').removeClass('icon-display-hide');
+    // $("#id_icon").val('');
+    $("#id_icon, #scraped_img").val('');
+    // $('#scraped_img').val('');
+    $('#use-default').val('true');
+});
