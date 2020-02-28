@@ -338,17 +338,23 @@ $(document).ready(function() {
     let urlTimer;
     let timerLength = 1000;
 
+    // check url timer
     $("#id_url").keyup(function() {
         clearTimeout(urlTimer);
         urlTimer = setTimeout(checkURL, timerLength);
     });
+
+    // Run checkUrl function on page load
+    if ($('#edit-bookmark').length){
+            checkURL();
+    }
 
     function checkURL() {
         let urlToCheck = $("#id_url").val();
 
         let httpRe = new RegExp('^https?://');
         let match = httpRe.test(urlToCheck);
-        if (!match) {
+        if (!match && urlToCheck) {
             urlToCheck = 'https://' + urlToCheck;
         }
 

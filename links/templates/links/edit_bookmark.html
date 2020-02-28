@@ -32,7 +32,12 @@
                         <div>{{ field|as_crispy_field }}</div>
                         {% if field.label == 'Url' %}
                         <div class="url-validation-wrapper">
-                            <small id="url-validation-result" class="">Url status: <span class="status status-valid">Valid</span></small>
+                            <small id="url-validation-result" class="">Url status: <span
+                                    class="status status-valid">Valid</span></small>
+                            <span class="fa-stack tippy-i tippy-url-validation">
+                                <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                            </span>
                         </div>
                         {% endif %}
                         {% endfor %}
@@ -60,6 +65,11 @@
 
 
 {% endblock %}
+
+{% block tippy_js %}
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script src="{% static 'js/tooltip.js' %}"></script>
+{% endblock tippy_js %}
 
 {% block csrf_js %}
 <script src="{% static 'js/csrf.js' %}"></script>

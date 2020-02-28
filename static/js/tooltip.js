@@ -4,29 +4,41 @@ https://github.com/atomiks/tippyjs
 */
 
 $(document).ready(function() {
-
     // initialize tooltips
     // single use non-dynamic tooltips where content is
     // embedded within the html document
-    tippy('[data-tippy-content]');
+    tippy("[data-tippy-content]");
 
     // show full bookmark description text
-    tippy('.tippy-desc', {
+    tippy(".tippy-desc", {
         allowHTML: false,
         delay: 700,
-        theme: 'dark',
+        theme: "dark",
         onShow(instance) {
             instance.setContent(instance.reference.innerText);
         }
     });
 
     // show help text for password fields on password creation / change
-    tippy('.tippy-pw-help', {
-        theme: 'dark',
+    tippy(".tippy-pw-help", {
+        theme: "dark",
         onShow(instance) {
-            const el = $(instance.reference.nextElementSibling).find('.tippy-help-text');
+            const el = $(instance.reference.nextElementSibling).find(
+                ".tippy-help-text"
+            );
             instance.setContent(el[0].dataset.helptext);
         }
     });
 
+    // url validation tooltip
+    tippy(".tippy-url-validation", {
+        theme: "dark",
+        delay: [400, 0],
+        placement: "bottom",
+        content: `Links will attempt to load the url in the background.
+            <ul><li>Valid - The url loaded successfully</li>
+            <li>Invalid - The url could not be loaded but can still be saved 
+            as a bookmark,and may still load for you.</li></ul>
+            Url status should be used as a guide only.`
+    });
 });
