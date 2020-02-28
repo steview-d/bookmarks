@@ -57,7 +57,7 @@
                         <div class="my-4">
                             <img id="img-preview" class="{% if not bookmark.icon %}icon-display-hide{% endif %}"
                                 {% if bookmark.icon %}src="{{ MEDIA_URL }}{{ bookmark.icon }}" {% endif %}>
-                            <div id="generic-icon" class="{% if bookmark.icon %}icon-display-hide{% endif %}">
+                            <div id="default-icon" class="{% if bookmark.icon %}icon-display-hide{% endif %}">
                                 <div class="no-icon" style="
                                 background-color:{{ bookmark.title|icon_color }};">
                                     <span class="icon-text">{{ bookmark.title|icon_letter }}</span>

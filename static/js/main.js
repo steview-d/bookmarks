@@ -319,10 +319,10 @@ $(document).ready(function() {
                 }
                 $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
 
-                // if an image is scraped, hide the generic icon and show scraped image
+                // if an image is scraped, hide the default icon and show scraped image
                 if ($('#edit-bookmark').length && $('#img-preview')[0].src) {
                     $('#img-preview').removeClass('icon-display-hide');
-                    $('#generic-icon').addClass('icon-display-hide');
+                    $('#default-icon').addClass('icon-display-hide');
         }
 
             },
@@ -463,9 +463,9 @@ $(document).ready(function() {
             };
             preview.readAsDataURL(this.files[0]);
 
-            // on file upload hide generic icon and show uploaded icon
+            // on file upload hide default icon and show uploaded icon
             $('#img-preview').removeClass('icon-display-hide');
-            $('#generic-icon').addClass('icon-display-hide');
+            $('#default-icon').addClass('icon-display-hide');
         }
     });
 
@@ -525,9 +525,26 @@ $(document).ready(function() {
 // Create a default icon when displaying icons on add / edit / import page
 $('#use-default-icon').on('click', function () {
     $('#img-preview').addClass('icon-display-hide');
-    $('#generic-icon').removeClass('icon-display-hide');
-    // $("#id_icon").val('');
+    $('#default-icon').removeClass('icon-display-hide');
     $("#id_icon, #scraped_img").val('');
-    // $('#scraped_img').val('');
     $('#use-default').val('true');
 });
+
+
+// ----------------------------- Update letter for default icon on title change
+
+let titleTimer;
+let titleTimerLength = 1000;
+
+// check title timer
+$("#id_title").keyup(function() {
+    clearTimeout(titleTimer);
+    titleTimer = setTimeout(updateIconLetter, titleTimerLength);
+});
+
+function updateIconLetter() {
+    let title = $('#id_title').val();
+    console.log(title);
+    let firstLetter = title.charAt(0);
+    $('#default-icon').find('span').text(firstLetter.toUpperCase());
+}
