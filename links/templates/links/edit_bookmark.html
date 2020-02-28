@@ -7,6 +7,8 @@
 
 {% block content %}
 
+{% load icon_styling %}
+
 <div id="edit-bookmark" class="flex-wrapper">
 
     <!-- Sidebar -->
@@ -24,12 +26,14 @@
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
                     <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
                         <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Edit Bookmark</h4>
-                        <button type="button" id="scrape-url" class="btn--scrape"><i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL</button>
+                        <button type="button" id="scrape-url" class="btn--scrape"><i class="fa fa-magic"
+                                aria-hidden="true"></i>AUTOFILL</button>
                         <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                         {% csrf_token %}
 
                         {% for field in edit_bookmark_form.visible_fields %}
                         <div>{{ field|as_crispy_field }}</div>
+
                         {% if field.label == 'Url' %}
                         <div class="url-validation-wrapper">
                             <small id="url-validation-result" class="">Url status: <span
@@ -40,19 +44,33 @@
                             </span>
                         </div>
                         {% endif %}
+
                         {% endfor %}
-                        <img id="img-preview" class="my-2" src="
-                            {% if bookmark.icon %}
-                            {{ MEDIA_URL }}{{ bookmark.icon }}
-                            {% else %}
-                            {% static 'img/default_bm_icon.png' %}
-                            {% endif %}" alt="preview" />
+
+                        <div class="mt-n3 mb-4">
+                            <small>Upload your own, use autofill to get the site icon directly, or allow
+                                the app to create one for you.</small>
+                        </div>
+
+
+                        <!-- icon display -->
+                        <div class="my-4">
+                            <img id="img-preview" class="{% if not bookmark.icon %}icon-display-hide{% endif %}"
+                                {% if bookmark.icon %}src="{{ MEDIA_URL }}{{ bookmark.icon }}" {% endif %}>
+                            <div id="generic-icon" class="{% if bookmark.icon %}icon-display-hide{% endif %}">
+                                <div class="no-icon" style="
+                                background-color:{{ bookmark.title|icon_color }};">
+                                    <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- hidden field to hold scraped base64 image -->
                         <input type="hidden" id="scraped_img" name="scraped_img" value="">
                         <hr>
 
-                        <input type="submit" value="Submit Changes" name="edit-bm-form" class="btn btn-info">
+                        <input type="submit" value="Update Bookmark" name="edit-bm-form" class="btn--standard">
+                        <a href="{% url 'start_app' %}" class="btn--faded ml-2" role="button"><span>Cancel</span></a>
                     </form>
                 </div>
             </div>

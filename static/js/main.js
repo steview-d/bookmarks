@@ -305,6 +305,7 @@ $(document).ready(function() {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").html(`Autofill result: <strong>` + data.message + `</strong>`);
+                // clear icon field incase of previously selected image
                 $("#id_icon").val('');
 
                 // populate image fields
@@ -317,6 +318,13 @@ $(document).ready(function() {
                     $("#scraped_img").val('');
                 }
                 $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
+
+                // if an image is scraped, hide the generic icon and show scraped image
+                if ($('#edit-bookmark').length && $('#img-preview')[0].src) {
+                    $('#img-preview').removeClass('icon-display-hide');
+                    $('#generic-icon').addClass('icon-display-hide');
+        }
+
             },
             error: function() {
                 $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>Error!');
@@ -453,10 +461,11 @@ $(document).ready(function() {
             preview.onload = function (e) {
                 $('#img-preview').attr('src', e.target.result);
             };
-
-            console.log(this.files);
-
             preview.readAsDataURL(this.files[0]);
+
+            // on file upload hide generic icon and show uploaded icon
+            $('#img-preview').removeClass('icon-display-hide');
+            $('#generic-icon').addClass('icon-display-hide');
         }
     });
 

@@ -132,7 +132,7 @@ a:hover {
   outline: none;
 }
 
-.btn--test {
+.btn--faded {
   /*
     * col1 : background color
     * col2 : font color
@@ -141,9 +141,9 @@ a:hover {
     * col5 : hover font color
     * col6 : hover border color (optional)
     */
-  background-color: #f2ef35;
-  color: #ffffff;
-  border: 1px solid #f2ef35;
+  background-color: transparent;
+  color: #afafaf;
+  border: 1px solid #afafaf;
   border-radius: 0.25rem;
   margin: .25rem 0;
   padding: 0.2rem 0.4rem;
@@ -152,13 +152,13 @@ a:hover {
   transition: 0.25s ease-out;
 }
 
-.btn--test:hover {
-  background-color: #f2ef35;
-  color: #000000;
-  border-color: #f2ef35;
+.btn--faded:hover {
+  background-color: transparent;
+  color: #424242;
+  border-color: #424242;
 }
 
-.btn--test:focus {
+.btn--faded:focus {
   outline: none;
 }
 
@@ -319,8 +319,8 @@ a:hover {
   font-weight: 600;
   width: 130px;
   padding: 0.5rem 0.8rem;
-  -webkit-transition: .2s ease-out;
-  transition: .2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
 }
 
 .btn--scrape i {
@@ -328,7 +328,7 @@ a:hover {
 }
 
 .btn--scrape:hover {
-  background-color: #D4277F;
+  background-color: #d4277f;
 }
 
 .btn--scrape:focus {
@@ -1559,6 +1559,46 @@ h4 > .fa-stop {
 
 .url-validation-wrapper .status-invalid {
   background-color: #e36868;
+}
+
+#edit-bookmark .no-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  font-size: 4.6rem;
+}
+
+#edit-bookmark .no-icon .icon-text {
+  position: relative;
+  top: -4px;
+  color: white;
+}
+
+#div_id_icon .form-control {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+}
+
+#div_id_icon .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.icon-display-hide {
+  display: none;
 }
 
 .result-location {

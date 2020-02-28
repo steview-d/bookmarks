@@ -54,15 +54,14 @@
     );
 }
 
-// remove when done
-.btn--test {
+.btn--faded {
     @include default-button(
-        $test-color,
-        $white,
-        $test-color,
-        $test-color,
-        $black,
-        $test-color
+        transparent,
+        $light-grey,
+        $light-grey,
+        transparent,
+        $dark-grey,
+        $dark-grey
     );
 }
 
@@ -113,18 +112,18 @@
     font-weight: 600;
     width: 130px;
     padding: 0.5rem 0.8rem;
-    transition: .2s ease-out;;
+    transition: 0.2s ease-out;
 
     i {
         margin-right: 0.5rem;
     }
 
     &:hover {
-        background-color: #D4277F;
+        background-color: #d4277f;
     }
 
     &:focus {
-        outline:none
+        outline: none;
     }
 }
 
