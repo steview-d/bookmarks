@@ -304,7 +304,7 @@ $(document).ready(function() {
                 // populate text fields
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
-                $("#scrape-msg").text(data.message);
+                $("#scrape-msg").html(`Autofill result: <strong>` + data.message + `</strong>`);
                 $("#id_icon").val('');
 
                 // populate image fields
@@ -312,15 +312,14 @@ $(document).ready(function() {
                     let base64Str = 'data:image/' + data.image_ext + ';base64,' + data.scraped_image;
                     $("#img-preview").attr('src', base64Str);
                     $("#scraped_img").val(base64Str);
-                    console.log("JKHJK");
                 } else {
                     $("#img-preview").attr('src', '/static/img/no_img_scrape.png');
                     $("#scraped_img").val('');
                 }
-                $("#scrape-url").text('Scrape URL');
+                $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
             },
             error: function() {
-                $("#scrape-url").text('Scrape URL');
+                $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>Error!');
             }
         });
     }

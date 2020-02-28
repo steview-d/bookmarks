@@ -38,7 +38,7 @@ $(document).ready(function() {
         content: `Links will attempt to load the url in the background.
             <ul><li>Valid - The url loaded successfully</li>
             <li>Invalid - The url could not be loaded but can still be saved 
-            as a bookmark,and may still load for you.</li></ul>
+            as a bookmark, and may still load for you.</li></ul>
             Url status should be used as a guide only.`
     });
 });

@@ -33,15 +33,48 @@
 }
 
 .btn--white {
-    @include default-button($white, $dark-grey, $black, transparent, $white, $white);
+    @include default-button(
+        $white,
+        $dark-grey,
+        $black,
+        transparent,
+        $white,
+        $white
+    );
 }
 
 .btn--red {
-    @include default-button($error-red, $white, $error-red, transparent, $black, $black);
+    @include default-button(
+        $error-red,
+        $white,
+        $error-red,
+        transparent,
+        $black,
+        $black
+    );
+}
+
+// remove when done
+.btn--test {
+    @include default-button(
+        $test-color,
+        $white,
+        $test-color,
+        $test-color,
+        $black,
+        $test-color
+    );
 }
 
 .btn--white-hover-white {
-    @include default-button($white, $dark-grey, $white, $white, $dark-grey, $white);
+    @include default-button(
+        $white,
+        $dark-grey,
+        $white,
+        $white,
+        $dark-grey,
+        $white
+    );
 }
 
 .btn--invert {
@@ -61,10 +94,33 @@
     border: 1px solid $white;
     border-radius: 0.25rem;
     background-color: $white;
-    transition: .2s ease-out;
+    transition: 0.2s ease-out;
 
     &:hover i {
         transform: scale(1.1);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn--scrape {
+    background-color: #e3509c;
+    border: none;
+    border-radius: 4px;
+    color: $white;
+    font-weight: 600;
+    width: 130px;
+    padding: 0.5rem 0.8rem;
+    transition: .2s ease-out;;
+
+    i {
+        margin-right: 0.5rem;
+    }
+
+    &:hover {
+        background-color: #D4277F;
     }
 
     &:focus {

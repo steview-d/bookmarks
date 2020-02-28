@@ -3,7 +3,7 @@
 
 {% load crispy_forms_tags %}
 
-{% block page_title %}Arrange{% endblock %}
+{% block page_title %}Edit Bookmark{% endblock %}
 
 {% block content %}
 
@@ -24,7 +24,7 @@
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
                     <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
                         <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Edit Bookmark</h4>
-                        <button type="button" id="scrape-url" class="btn btn-success mt-2">Scrape URL</button>
+                        <button type="button" id="scrape-url" class="btn--scrape"><i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL</button>
                         <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                         {% csrf_token %}
 
