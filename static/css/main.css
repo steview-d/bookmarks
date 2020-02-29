@@ -1584,7 +1584,8 @@ h4 > .fa-stop {
   background-color: #e36868;
 }
 
-#edit-bookmark .no-icon {
+#edit-bookmark .no-icon,
+#add-bookmark .no-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1602,7 +1603,8 @@ h4 > .fa-stop {
   font-size: 4.6rem;
 }
 
-#edit-bookmark .no-icon .icon-text {
+#edit-bookmark .no-icon .icon-text,
+#add-bookmark .no-icon .icon-text {
   position: relative;
   top: -4px;
   color: white;

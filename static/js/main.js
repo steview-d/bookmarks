@@ -320,7 +320,7 @@ $(document).ready(function() {
                 $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
 
                 // if an image is scraped, hide the default icon and show scraped image
-                if ($('#edit-bookmark').length && $('#img-preview')[0].src) {
+                if ($('#edit-bookmark, #add-bookmark').length && $('#img-preview')[0].src) {
                     $('#img-preview').removeClass('icon-display-hide');
                     $('#default-icon').addClass('icon-display-hide');
                     // also clear value inside file upload field
@@ -532,11 +532,20 @@ $('#use-default-icon').on('click', function () {
     $('#use-default').val('true');
     //clear value inside file upload field
     $("#id_icon").next().text('Choose file');
-    updateIconLetter();
+    updateDefaultIcon();
 });
 
 
-// ----------------------------- Update letter for default icon on title change
+// -------------------------- Update letter for default icon on title change //
+
+const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const colorsList = [
+    '#698396',
+    '#a9c8c0',
+    '#dbbc8e',
+    '#ae8a8c',
+    '#f7f6cf',
+    '#e6a57e'];
 
 let titleTimer;
 let titleTimerLength = 1000;
@@ -544,16 +553,24 @@ let titleTimerLength = 1000;
 // check title timer
 $("#id_title").keyup(function() {
     clearTimeout(titleTimer);
-    titleTimer = setTimeout(updateIconLetter, titleTimerLength);
+    titleTimer = setTimeout(updateDefaultIcon, titleTimerLength);
 });
 
-function updateIconLetter() {
+function updateDefaultIcon() {
+
+    // set icon letter for default icon
     let title = $('#id_title').val();
-    let firstLetter = title.charAt(0);
-    $('#default-icon').find('span').text(firstLetter.toUpperCase());
+    let firstLetter = title.charAt(0).toUpperCase();
+    $('#default-icon').find('span').text(firstLetter);
+
+    // set background color for default icon
+    let idx = lettersUpper.indexOf(firstLetter) + 1;
+    let bgColor = colorsList[idx % 6];
+    $('#default-icon').find('.no-icon').css({"background-color": bgColor});
 }
 
-// display selected file in input field
+// ---------------------------- display name of selected file in input field //
+
 $("#id_icon").on("change", function() {
     var fName = $(this).val().split("\\").pop();
     $(this).next().text(fName);
