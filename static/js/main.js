@@ -305,7 +305,7 @@ $(document).ready(function() {
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
                 $("#scrape-msg").html(`Autofill result: <strong>` + data.message + `</strong>`);
-                // clear icon field incase of previously selected image
+                // clear icon field file incase of previously selected image
                 $("#id_icon").val('');
 
                 // populate image fields
@@ -323,6 +323,8 @@ $(document).ready(function() {
                 if ($('#edit-bookmark').length && $('#img-preview')[0].src) {
                     $('#img-preview').removeClass('icon-display-hide');
                     $('#default-icon').addClass('icon-display-hide');
+                    // also clear value inside file upload field
+                    $("#id_icon").next().text('Choose file');
         }
 
             },
@@ -528,6 +530,9 @@ $('#use-default-icon').on('click', function () {
     $('#default-icon').removeClass('icon-display-hide');
     $("#id_icon, #scraped_img").val('');
     $('#use-default').val('true');
+    //clear value inside file upload field
+    $("#id_icon").next().text('Choose file');
+    updateIconLetter();
 });
 
 
@@ -544,7 +549,6 @@ $("#id_title").keyup(function() {
 
 function updateIconLetter() {
     let title = $('#id_title').val();
-    console.log(title);
     let firstLetter = title.charAt(0);
     $('#default-icon').find('span').text(firstLetter.toUpperCase());
 }
