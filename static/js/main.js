@@ -468,8 +468,14 @@ $(document).ready(function() {
             // on file upload hide default icon and show uploaded icon
             $('#img-preview').removeClass('icon-display-hide');
             $('#default-icon').addClass('icon-display-hide');
+            // clear any scraped images if user selects file to upload
+            $("#scraped_img").val('');
+            // display name of selected file in input field
+            var fName = $(this).val().split("\\").pop();
+            $(this).next().text(fName);
         }
     });
+
 
     // nav bar title hide / show on scroll
     function navbarBehaviour () {
@@ -568,10 +574,3 @@ function updateDefaultIcon() {
     let bgColor = colorsList[idx % 6];
     $('#default-icon').find('.no-icon').css({"background-color": bgColor});
 }
-
-// ---------------------------- display name of selected file in input field //
-
-$("#id_icon").on("change", function() {
-    var fName = $(this).val().split("\\").pop();
-    $(this).next().text(fName);
-});

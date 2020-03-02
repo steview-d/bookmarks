@@ -33,25 +33,25 @@
 
                         <!-- render form -->
                         {% for field in edit_bookmark_form.visible_fields %}
-                            {% if field.label != 'Icon' %}
-                                <div>{{ field|as_crispy_field }}</div>
-                                {% if field.label == 'Url' %}
-                                    <div class="url-validation-wrapper">
-                                        <small id="url-validation-result" class="">Url status: <span
-                                                class="status status-valid">Valid</span></small>
-                                        <span class="fa-stack tippy-i tippy-url-validation">
-                                            <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
-                                            <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                {% endif %}
-                            {% else %}
-                                <div class="mb-2">Icon</div>
-                                <div class="custom-file">
-                                    <input type="file" name="icon" class="custom-file-input" accept="image/*" id="id_icon">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            {% endif %}
+                        {% if field.label != 'Icon' %}
+                        <div>{{ field|as_crispy_field }}</div>
+                        {% if field.label == 'Url' %}
+                        <div class="url-validation-wrapper">
+                            <small id="url-validation-result" class="">Url status: <span
+                                    class="status status-valid">Valid</span></small>
+                            <span class="fa-stack tippy-i tippy-url-validation">
+                                <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        <div class="mb-2">Icon</div>
+                        <div class="custom-file">
+                            <input type="file" name="icon" class="custom-file-input" accept="image/*" id="id_icon">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        {% endif %}
                         {% endfor %}
 
                         <div>
@@ -61,7 +61,35 @@
 
 
                         <!-- icon display -->
+
+                        <!--  -->
+                        <!-- MAKE THIS MORE DRY!!!!!! -->
+                        <!--  -->
+
                         <div class="my-4">
+                            {% if edit_bookmark_form.errors %}
+                            <!-- if reloading page with form errors, include previously selected icon image -->
+
+                            {% if temp_img_data  %}
+                            <img id="img-preview" src="{{ temp_img_data }}">
+                            <div id="default-icon" class="icon-display-hide">
+                                <div class="no-icon">
+                                    <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
+                                </div>
+                            </div>
+                            {% else %}
+                            <img id="img-preview" class="icon-display-hide">
+                            <div id="default-icon">
+                                <div class="no-icon" style="
+                                background-color:{{ bookmark.title|icon_color }};">
+                                    <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+
+
+                            {% else %}
+                            <!-- if no form errors, display default icon -->
                             <img id="img-preview" class="{% if not bookmark.icon %}icon-display-hide{% endif %}"
                                 {% if bookmark.icon %}src="{{ MEDIA_URL }}{{ bookmark.icon }}" {% endif %}>
                             <div id="default-icon" class="{% if bookmark.icon %}icon-display-hide{% endif %}">
@@ -70,12 +98,15 @@
                                     <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
+
 
                         <button type="button" id="use-default-icon" class="btn--purple">Use Default Icon</button>
 
                         <!-- hidden field to hold scraped base64 image -->
-                        <input type="hidden" id="scraped_img" name="scraped_img" value="">
+                        <input type="hidden" id="scraped_img" name="scraped_img"
+                            value="{% if edit_bookmark_form.errors %}{{ temp_img_to_return }}{% endif %}">
 
                         <!-- hidden field to show if user has opted to use a default icon -->
                         <input type="hidden" id="use-default" name="use-default" value="">

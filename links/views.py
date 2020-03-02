@@ -6,6 +6,7 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
+import base64
 import itertools
 import json
 import requests as req
@@ -564,12 +565,18 @@ def edit_bookmark(request, page, bookmark):
 
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
+    # TODO better way of initializing these vars...?
+    temp_img_data = None
+
     # handle posted data
     if 'edit-bm-form' in request.POST:
         edit_bookmark_form = EditBookmarkForm(
             request.POST, request.FILES, instance=bookmark_to_edit)
 
         if edit_bookmark_form.is_valid():
+            # TODO
+            # add check here to delete temp session fiel for forms with errors?
+
             # check if scraped file is present
             form = edit_bookmark_form.save(commit=False)
             if not request.FILES and request.POST.get('scraped_img'):
@@ -579,16 +586,34 @@ def edit_bookmark(request, page, bookmark):
             if not request.FILES and \
                     not request.POST.get('scraped_img') and \
                     request.POST.get('use-default'):
-                # need to send something else from frontend that explicity says
-                # to use default icon, otherwise current icon is deleted if
-                # user simply only wanted to, for ex, update the title.
-                # as it stands, if user doesn't scrape or upload an icon, there
-                # is no data for it stored, so when app comes to this part, it
-                # finds nothing and thinks sod it, I'll delete that.
+                # if user has requested to use default icon, delete any stored
+                # icon file
                 form.icon = None
 
             form.save()
             return redirect('links', page=page)
+        else:
+            # if form has errors, preserve file selected by user so it can be
+            # displayed again, and not have to be reselected
+            # works only for
+
+            if request.FILES:
+                print(request.FILES['icon'])
+                data = request.FILES['icon'].read()
+                print(data)
+                img = base64.b64encode(data).decode('utf-8')
+
+                mime = "image/svg;"
+                mime = mime + ";" if mime else ";"
+
+                f = "data:%sbase64,%s" % (mime, img)
+
+                temp_img_data = f
+
+            if request.POST.get('scraped_img'):
+                # save base64
+                temp_img_data = request.POST.get(
+                    'scraped_img')
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
@@ -597,6 +622,7 @@ def edit_bookmark(request, page, bookmark):
                "bookmark": bookmark_to_edit,
                "edit_bookmark_form": edit_bookmark_form,
                "all_page_names": all_pages,
+               "temp_img_data": temp_img_data,
                }
     context = is_premium(request.user, context)
 
