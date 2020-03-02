@@ -3,6 +3,8 @@ from django.core.files.storage import default_storage
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
+from .validators import validate_icon_file_extension, validate_icon_file_size
+
 from PIL import Image
 
 User = settings.AUTH_USER_MODEL
@@ -110,7 +112,8 @@ class Bookmark(models.Model):
         max_length=500, null=True, blank=True
     )
     icon = models.ImageField(
-        upload_to=icon_location, null=True, blank=True
+        upload_to=icon_location, null=True, blank=True,
+        validators=[validate_icon_file_extension, validate_icon_file_size]
     )
     added = models.DateTimeField(
         auto_now_add=True
