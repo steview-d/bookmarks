@@ -76,8 +76,7 @@
                             <img id="img-preview" class="icon-display-hide">
                             {% endif %}
 
-                            <div id="default-icon"
-                                class="{% if saved_icon_data %}icon-display-hide{% endif %}">
+                            <div id="default-icon" class="{% if saved_icon_data %}icon-display-hide{% endif %}">
                                 <div class="no-icon">
                                     <span class="icon-text"></span>
                                 </div>
@@ -88,7 +87,7 @@
 
                         <!-- hidden field to hold scraped base64 image -->
                         <input type="hidden" id="scraped_img" name="scraped_img"
-                            value="{% if import_url_form.errors %}{{ saved_icon_data }}{% endif %}">
+                            value="{% if import_url_form.errors or move_bookmark_form.errors %}{{ saved_icon_data }}{% endif %}">
 
                         <!-- hidden field to show if user has opted to use a default icon -->
                         <input type="hidden" id="use-default" name="use-default"
