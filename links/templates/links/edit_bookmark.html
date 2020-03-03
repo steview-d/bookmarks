@@ -45,11 +45,18 @@
                             </span>
                         </div>
                         {% endif %}
+
                         {% else %}
+                        <!-- render icon field -->
                         <div class="mb-2">Icon</div>
                         <div class="custom-file">
-                            <input type="file" name="icon" class="custom-file-input" accept="image/*" id="id_icon">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <input type="file" accept=".png, .jpg, .jpeg" name="icon" class="custom-file-input"
+                                accept="image/*" id="id_icon">
+                            <label class="custom-file-label" for="customFile"
+                                {% if field.errors %}style="border: 1px solid #dc3545" {% endif %}>Choose file</label>
+                            <div class="list-unstyled d-inline"
+                                style="color: #dc3545; font-size: .8rem; font-weight: 700">{{ field.errors|striptags }}
+                            </div>
                         </div>
                         {% endif %}
                         {% endfor %}
@@ -67,38 +74,23 @@
                         <!--  -->
 
                         <div class="my-4">
-                            {% if edit_bookmark_form.errors %}
-                            <!-- if reloading page with form errors, include previously selected icon image -->
-
-                            {% if temp_img_data  %}
-                            <img id="img-preview" src="{{ temp_img_data }}">
-                            <div id="default-icon" class="icon-display-hide">
-                                <div class="no-icon">
-                                    <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
-                                </div>
-                            </div>
-                            {% else %}
-                            <img id="img-preview" class="icon-display-hide">
-                            <div id="default-icon">
-                                <div class="no-icon" style="
-                                background-color:{{ bookmark.title|icon_color }};">
-                                    <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
-                                </div>
-                            </div>
-                            {% endif %}
-
+                            {% if saved_icon_data %}
+                            <!-- if form has errors  -->
+                            <img id="img-preview" class=""
+                                src="{{ saved_icon_data }}">
 
                             {% else %}
-                            <!-- if no form errors, display default icon -->
+                            <!-- if form has no errors -->
                             <img id="img-preview" class="{% if not bookmark.icon %}icon-display-hide{% endif %}"
                                 {% if bookmark.icon %}src="{{ MEDIA_URL }}{{ bookmark.icon }}" {% endif %}>
-                            <div id="default-icon" class="{% if bookmark.icon %}icon-display-hide{% endif %}">
+                            {% endif %}
+
+                            <div id="default-icon" class="{% if bookmark.icon or saved_icon_data %}icon-display-hide{% endif %}">
                                 <div class="no-icon" style="
                                 background-color:{{ bookmark.title|icon_color }};">
                                     <span class="icon-text">{{ bookmark.title|icon_letter }}</span>
                                 </div>
                             </div>
-                            {% endif %}
                         </div>
 
 
@@ -106,10 +98,11 @@
 
                         <!-- hidden field to hold scraped base64 image -->
                         <input type="hidden" id="scraped_img" name="scraped_img"
-                            value="{% if edit_bookmark_form.errors %}{{ temp_img_to_return }}{% endif %}">
+                            value="{% if edit_bookmark_form.errors %}{{ saved_icon_data }}{% endif %}">
 
                         <!-- hidden field to show if user has opted to use a default icon -->
-                        <input type="hidden" id="use-default" name="use-default" value="">
+                        <input type="hidden" id="use-default" name="use-default" 
+                            value="{% if use_default_icon %}use-default-icon{% endif %}">
                         <hr>
 
                         <input type="submit" value="Update Bookmark" name="edit-bm-form" class="btn--standard">

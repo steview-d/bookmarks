@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 import base64
 import itertools
 import json
+import os
 import requests as req
 
 from premium.utils import is_premium, premium_check
@@ -566,17 +567,16 @@ def edit_bookmark(request, page, bookmark):
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
     # TODO better way of initializing these vars...?
-    temp_img_data = None
+    saved_icon_data = ""
+    use_default_icon = ""
 
     # handle posted data
     if 'edit-bm-form' in request.POST:
+
         edit_bookmark_form = EditBookmarkForm(
             request.POST, request.FILES, instance=bookmark_to_edit)
 
         if edit_bookmark_form.is_valid():
-            # TODO
-            # add check here to delete temp session fiel for forms with errors?
-
             # check if scraped file is present
             form = edit_bookmark_form.save(commit=False)
             if not request.FILES and request.POST.get('scraped_img'):
@@ -593,27 +593,44 @@ def edit_bookmark(request, page, bookmark):
             form.save()
             return redirect('links', page=page)
         else:
-            # if form has errors, preserve file selected by user so it can be
-            # displayed again, and not have to be reselected
-            # works only for
+            # handle errors with icon
 
-            if request.FILES:
-                print(request.FILES['icon'])
-                data = request.FILES['icon'].read()
-                print(data)
-                img = base64.b64encode(data).decode('utf-8')
+            # NOTE if choosing to use default icon, if non icon error
+            # then it is defaulting to stored icon, not the default icon
+            # as chosen by user
 
-                mime = "image/svg;"
-                mime = mime + ";" if mime else ";"
+            if 'icon' in edit_bookmark_form.errors:
+                # override clean method, reset bookmark icon
+                bookmark_to_edit.icon = Bookmark.objects.get(
+                    user=request.user, pk=bookmark).icon
 
-                f = "data:%sbase64,%s" % (mime, img)
+            # handle non icon errors
+            else:
+                if request.POST.get('use-default'):
+                    bookmark_to_edit.icon = None
+                    use_default_icon = "true"
 
-                temp_img_data = f
+                # if a file has been uploaded, save it
+                elif request.FILES:
+                    # create base64 image string to send back and display
+                    f_name = str(request.FILES['icon']).lower()
+                    f_ext = os.path.splitext(f_name)[1]
 
-            if request.POST.get('scraped_img'):
-                # save base64
-                temp_img_data = request.POST.get(
-                    'scraped_img')
+                    data = request.FILES['icon'].read()
+                    img = base64.b64encode(data).decode('utf-8')
+
+                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
+
+                # if a file has been scraped, save it
+                elif request.POST.get('scraped_img'):
+                    # save base64
+                    saved_icon_data = request.POST.get(
+                        'scraped_img')
+
+            messages.error(
+                request, f"There was an error with your form - \
+                    please try again."
+            )
 
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
@@ -622,7 +639,8 @@ def edit_bookmark(request, page, bookmark):
                "bookmark": bookmark_to_edit,
                "edit_bookmark_form": edit_bookmark_form,
                "all_page_names": all_pages,
-               "temp_img_data": temp_img_data,
+               "saved_icon_data": saved_icon_data,
+               "use_default_icon": use_default_icon,
                }
     context = is_premium(request.user, context)
 
