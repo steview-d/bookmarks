@@ -9,11 +9,11 @@ def validate_icon_file_extension(value):
     bookmark icons
     """
     f_ext = os.path.splitext(value.name)[1].lower()
-    allowed_types = ['.png', '.jpg', '.jpeg']
+    allowed_types = ['.png', '.jpg', '.jpeg', '.ico']
 
     if f_ext not in allowed_types:
         raise ValidationError(
-            u'Your file must be either .png or .jpg \
+            u'Your file must be either .png, .jpg, or .ico \
                 - please choose a different file.')
 
 
