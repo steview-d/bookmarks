@@ -566,7 +566,6 @@ def edit_bookmark(request, page, bookmark):
 
     edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
 
-    # TODO better way of initializing these vars...?
     saved_icon_data = ""
     use_default_icon = ""
 
@@ -592,19 +591,15 @@ def edit_bookmark(request, page, bookmark):
 
             form.save()
             return redirect('links', page=page)
+
         else:
-            # handle errors with icon
-
-            # NOTE if choosing to use default icon, if non icon error
-            # then it is defaulting to stored icon, not the default icon
-            # as chosen by user
-
+            # for icon display, handle errors with icon
             if 'icon' in edit_bookmark_form.errors:
                 # override clean method, reset bookmark icon
                 bookmark_to_edit.icon = Bookmark.objects.get(
                     user=request.user, pk=bookmark).icon
 
-            # handle non icon errors
+            # for icon display, handle non icon errors
             else:
                 if request.POST.get('use-default'):
                     bookmark_to_edit.icon = None
@@ -623,7 +618,6 @@ def edit_bookmark(request, page, bookmark):
 
                 # if a file has been scraped, save it
                 elif request.POST.get('scraped_img'):
-                    # save base64
                     saved_icon_data = request.POST.get(
                         'scraped_img')
 
@@ -665,6 +659,9 @@ def add_bookmark(request, page):
 
     collection_count = Collection.objects.filter(user=request.user).count()
 
+    saved_icon_data = ""
+    use_default_icon = ""
+
     # initialize forms
     import_url_form = ImportUrlForm(initial={'url': 'https://'})
     move_bookmark_form = MoveBookmarkForm(
@@ -684,14 +681,42 @@ def add_bookmark(request, page):
 
             return redirect('links', page=page)
 
+        else:
+            if 'icon' not in import_url_form.errors:
+                if request.POST.get('use-default'):
+                    use_default_icon = "true"
+
+                # if a file has been uploaded, save it
+                elif request.FILES:
+                    # create base64 image string to send back and display
+                    f_name = str(request.FILES['icon']).lower()
+                    f_ext = os.path.splitext(f_name)[1]
+
+                    data = request.FILES['icon'].read()
+                    img = base64.b64encode(data).decode('utf-8')
+
+                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
+
+                # if a file has been scraped, save it
+                elif request.POST.get('scraped_img'):
+                    saved_icon_data = request.POST.get(
+                        'scraped_img')
+
+            messages.error(
+                request, f"There was an error with your form - \
+                    please try again."
+            )
+
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
-    context = {'import_url_form': import_url_form,
-               'move_bookmark_form': move_bookmark_form,
-               'collection_count': collection_count,
+    context = {"import_url_form": import_url_form,
+               "move_bookmark_form": move_bookmark_form,
+               "collection_count": collection_count,
                "page": page.name,
                "all_page_names": all_pages,
+               "saved_icon_data": saved_icon_data,
+               "use_default_icon": use_default_icon,
                }
     context = is_premium(request.user, context)
 

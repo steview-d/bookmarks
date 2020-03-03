@@ -574,3 +574,8 @@ function updateDefaultIcon() {
     let bgColor = colorsList[idx % 6];
     $('#default-icon').find('.no-icon').css({"background-color": bgColor});
 }
+
+// update on page load
+if ($('#add-bookmark').length){
+    updateDefaultIcon();
+}

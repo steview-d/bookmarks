@@ -1626,6 +1626,13 @@ h4 > .fa-stop {
   display: none;
 }
 
+.icon-errors {
+  display: inline;
+  color: #dc3545;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
 .result-location {
   font-size: 0.8rem;
   margin-top: 0.35rem;

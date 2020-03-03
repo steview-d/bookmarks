@@ -45,11 +45,17 @@
                             </span>
                         </div>
                         {% endif %}
+
                         {% else %}
+                        <!-- render icon field -->
                         <div class="mb-2">Icon</div>
                         <div class="custom-file">
-                            <input type="file" name="icon" class="custom-file-input" accept="image/*" id="id_icon">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <input type="file" accept=".png, .jpg, .jpeg, .ico" name="icon" class="custom-file-input"
+                                id="id_icon">
+                            <label class="custom-file-label" for="customFile"
+                                {% if field.errors %}style="border: 1px solid #dc3545" {% endif %}>Choose file</label>
+                            <div class="list-unstyled icon-errors">{{ field.errors|striptags }}
+                            </div>
                         </div>
                         {% endif %}
                         {% endfor %}
@@ -62,11 +68,18 @@
 
                         <!-- icon display -->
                         <div class="my-4">
+                            {% if saved_icon_data %}
+                            <!-- if form has non icon errors and previous image has been saved -->
+                            <img id="img-preview" src="{{ saved_icon_data }}">
+
+                            {% else %}
                             <img id="img-preview" class="icon-display-hide">
-                            <div id="default-icon">
-                                <div class="no-icon" style="
-                                background-color:#175c9d">
-                                    <span class="icon-text">.</span>
+                            {% endif %}
+
+                            <div id="default-icon"
+                                class="{% if saved_icon_data %}icon-display-hide{% endif %}">
+                                <div class="no-icon">
+                                    <span class="icon-text"></span>
                                 </div>
                             </div>
                         </div>
@@ -74,11 +87,14 @@
                         <button type="button" id="use-default-icon" class="btn--purple">Use Default Icon</button>
 
                         <!-- hidden field to hold scraped base64 image -->
-                        <input type="hidden" id="scraped_img" name="scraped_img" value="">
+                        <input type="hidden" id="scraped_img" name="scraped_img"
+                            value="{% if import_url_form.errors %}{{ saved_icon_data }}{% endif %}">
 
                         <!-- hidden field to show if user has opted to use a default icon -->
-                        <input type="hidden" id="use-default" name="use-default" value="">
+                        <input type="hidden" id="use-default" name="use-default"
+                            value="{% if use_default_icon %}use-default-icon{% endif %}">
 
+                        <!-- bookmark destination form -->
                         <div class="row mt-3">
                             {% for field in move_bookmark_form %}
                             <div class="col-12 col-xl-6">
@@ -87,10 +103,6 @@
                             {% endfor %}
                         </div>
 
-                        <!-- dislay message if user has no collections to add bookmark to -->
-                        {% if collection_count == 0 %}
-                        {% include 'links/components/no_collections.html' %}
-                        {% endif %}
                         <hr>
                         <input type="submit" value="Add Bookmark" name="add-bm-form" class="btn--standard">
                         <a href="{% url 'start_app' %}" class="btn--faded ml-2" role="button"><span>Cancel</span></a>
