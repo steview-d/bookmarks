@@ -325,6 +325,10 @@ $(document).ready(function() {
                     $('#default-icon').addClass('icon-display-hide');
                     // also clear value inside file upload field
                     $("#id_icon").next().text('Choose file');
+                    // reset use-default value to prevent default icon
+                    // displaying in case of form error
+                    $("#use-default").val('');
+
         }
 
             },
@@ -470,6 +474,9 @@ $(document).ready(function() {
             $('#default-icon').addClass('icon-display-hide');
             // clear any scraped images if user selects file to upload
             $("#scraped_img").val('');
+            // reset use-default value to prevent default icon
+            // displaying in case of form error
+            $("#use-default").val('');
             // display name of selected file in input field
             var fName = $(this).val().split("\\").pop();
             $(this).next().text(fName);
