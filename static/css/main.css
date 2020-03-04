@@ -1585,7 +1585,8 @@ h4 > .fa-stop {
 }
 
 #edit-bookmark .no-icon,
-#add-bookmark .no-icon {
+#add-bookmark .no-icon,
+#import-url .no-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1604,7 +1605,8 @@ h4 > .fa-stop {
 }
 
 #edit-bookmark .no-icon .icon-text,
-#add-bookmark .no-icon .icon-text {
+#add-bookmark .no-icon .icon-text,
+#import-url .no-icon .icon-text {
   position: relative;
   top: -4px;
   color: white;

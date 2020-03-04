@@ -320,7 +320,7 @@ $(document).ready(function() {
                 $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
 
                 // if an image is scraped, hide the default icon and show scraped image
-                if ($('#edit-bookmark, #add-bookmark').length && $('#img-preview')[0].src) {
+                if ($('#edit-bookmark, #add-bookmark, #import-url').length && $('#img-preview')[0].src) {
                     $('#img-preview').removeClass('icon-display-hide');
                     $('#default-icon').addClass('icon-display-hide');
                     // also clear value inside file upload field
@@ -337,6 +337,14 @@ $(document).ready(function() {
             }
         });
     }
+
+    // on import-url page load, auto scrape, once only
+    if ($('#import-url').length) {
+        if ($('#import-url').attr("data-autoscrape") == 'true') {
+            scrapeUrl();
+        }
+    }
+
 
     // ----------------------------- Check URL in '#id_url' is valid //
 
@@ -582,7 +590,7 @@ function updateDefaultIcon() {
     $('#default-icon').find('.no-icon').css({"background-color": bgColor});
 }
 
-// update on page load
-if ($('#add-bookmark').length){
+// update default-icon on page load
+if ($('#add-bookmark, edit-bookmark, #import-url').length){
     updateDefaultIcon();
 }

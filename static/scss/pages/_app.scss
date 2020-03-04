@@ -239,7 +239,8 @@
 
 // displaying default icons
 #edit-bookmark,
-#add-bookmark {
+#add-bookmark,
+#import-url {
     .no-icon {
         display: flex;
         flex-shrink: 0;

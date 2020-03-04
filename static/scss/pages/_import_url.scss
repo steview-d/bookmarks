@@ -1,0 +1,17 @@
+#import-url {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
+
+    .bg-fade {
+        min-height: 100vh;
+        @include background-overlay(0.98);
+    }
+
+    @media (min-width: 768px) {
+        width: calc(100% - 300px);
+    }
+}

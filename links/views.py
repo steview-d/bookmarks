@@ -910,6 +910,9 @@ def import_url(request):
         user=request.user, position=1
     )
 
+    saved_icon_data = ""
+    use_default_icon = ""
+
     # handle posted data
     if 'import-url-form' in request.POST:
         page = Page.objects.get(
@@ -926,31 +929,59 @@ def import_url(request):
             return redirect('import_url_success')
 
         else:
-            context = {'bookmark_form': bookmark_form,
-                       'move_bookmark_form': move_bookmark_form,
-                       'collection_count': collection_count,
+
+            if 'icon' not in bookmark_form.errors:
+                if request.POST.get('use-default'):
+                    use_default_icon = "true"
+
+                # if a file has been uploaded, save it
+                elif request.FILES:
+                    # create base64 image string to send back and display
+                    f_name = str(request.FILES['icon']).lower()
+                    f_ext = os.path.splitext(f_name)[1]
+
+                    data = request.FILES['icon'].read()
+                    img = base64.b64encode(data).decode('utf-8')
+
+                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
+
+                # if a file has been scraped, save it
+                elif request.POST.get('scraped_img'):
+                    saved_icon_data = request.POST.get(
+                        'scraped_img')
+
+            messages.error(
+                request, f"There was an error with your form - \
+                    please try again."
+            )
+
+            context = {"bookmark_form": bookmark_form,
+                       "move_bookmark_form": move_bookmark_form,
+                       "collection_count": collection_count,
+                       "saved_icon_data": saved_icon_data,
+                       "use_default_icon": use_default_icon,
                        }
             context = is_premium(request.user, context)
 
             return render(request, 'links/import_url.html', context)
 
-    # scrape the requested url
-    scrape_data = bookmark_utils.scrape_url(request, url_to_save)
-
     bookmark_form = BookmarkForm(initial={
         'url': url_to_save,
-        'title': scrape_data['title'],
-        'description': scrape_data['description']
     })
+
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={
             'dest_page': page
         })
 
+    # set autoscrape var so on page load, app will scrape the imported url
+    # ensures that on reload due to errors, page will not autoscrape again
+    autoscrape = "true"
+
     context = {'bookmark_form': bookmark_form,
                'move_bookmark_form': move_bookmark_form,
                'collection_count': collection_count,
-               'scraped_icon': scrape_data['scraped_image'],
+               'autoscrape': autoscrape,
                }
     context = is_premium(request.user, context)
 
