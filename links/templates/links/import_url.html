@@ -26,7 +26,7 @@
                             <button type="button" id="scrape-url" class="btn btn-warning mt-2">Scrape URL</button>
                             <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                             {% csrf_token %}
-                            {% for field in import_url_form.visible_fields %}
+                            {% for field in bookmark_form.visible_fields %}
                             <div>{{ field.label }}</div>
                             <div>{{ field.errors }}</div>
                             {% if field.label == 'Url' %}

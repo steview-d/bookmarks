@@ -32,7 +32,7 @@
                         {% csrf_token %}
 
                         <!-- render form -->
-                        {% for field in edit_bookmark_form.visible_fields %}
+                        {% for field in bookmark_form.visible_fields %}
                         {% if field.label != 'Icon' %}
                         <div>{{ field|as_crispy_field }}</div>
                         {% if field.label == 'Url' %}
@@ -68,6 +68,7 @@
 
                         <!-- icon display -->
                         <div class="my-4">
+                            <div class="mb-2">Icon Preview</div>
                             {% if saved_icon_data %}
                             <!-- if form has errors  -->
                             <img id="img-preview" class="" src="{{ saved_icon_data }}">
@@ -91,7 +92,7 @@
 
                         <!-- hidden field to hold scraped base64 image -->
                         <input type="hidden" id="scraped_img" name="scraped_img"
-                            value="{% if edit_bookmark_form.errors %}{{ saved_icon_data }}{% endif %}">
+                            value="{% if bookmark_form.errors %}{{ saved_icon_data }}{% endif %}">
 
                         <!-- hidden field to show if user has opted to use a default icon -->
                         <input type="hidden" id="use-default" name="use-default"

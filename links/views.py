@@ -14,8 +14,8 @@ import requests as req
 
 from premium.utils import is_premium, premium_check
 from .utils import page_utils, collection_utils, bookmark_utils, general_utils
-from .forms import (AddNewPageForm, EditPageForm, EditBookmarkForm,
-                    MoveBookmarkForm, ImportUrlForm)
+from .forms import (AddNewPageForm, EditPageForm,
+                    MoveBookmarkForm, BookmarkForm)
 from .models import Bookmark, Collection, Page
 
 
@@ -564,7 +564,7 @@ def edit_bookmark(request, page, bookmark):
         )
         return redirect('start_app')
 
-    edit_bookmark_form = EditBookmarkForm(instance=bookmark_to_edit)
+    bookmark_form = BookmarkForm(instance=bookmark_to_edit)
 
     saved_icon_data = ""
     use_default_icon = ""
@@ -572,12 +572,12 @@ def edit_bookmark(request, page, bookmark):
     # handle posted data
     if 'edit-bm-form' in request.POST:
 
-        edit_bookmark_form = EditBookmarkForm(
+        bookmark_form = BookmarkForm(
             request.POST, request.FILES, instance=bookmark_to_edit)
 
-        if edit_bookmark_form.is_valid():
+        if bookmark_form.is_valid():
             # check if scraped file is present
-            form = edit_bookmark_form.save(commit=False)
+            form = bookmark_form.save(commit=False)
             if not request.FILES and request.POST.get('scraped_img'):
                 # save image from scraped data
                 form.icon = bookmark_utils.create_img_from_base64_str(request)
@@ -594,7 +594,7 @@ def edit_bookmark(request, page, bookmark):
 
         else:
             # for icon display, handle errors with icon
-            if 'icon' in edit_bookmark_form.errors:
+            if 'icon' in bookmark_form.errors:
                 # override clean method, reset bookmark icon
                 bookmark_to_edit.icon = Bookmark.objects.get(
                     user=request.user, pk=bookmark).icon
@@ -631,7 +631,7 @@ def edit_bookmark(request, page, bookmark):
 
     context = {"page": page.name,
                "bookmark": bookmark_to_edit,
-               "edit_bookmark_form": edit_bookmark_form,
+               "bookmark_form": bookmark_form,
                "all_page_names": all_pages,
                "saved_icon_data": saved_icon_data,
                "use_default_icon": use_default_icon,
@@ -663,7 +663,7 @@ def add_bookmark(request, page):
     use_default_icon = ""
 
     # initialize forms
-    import_url_form = ImportUrlForm(initial={'url': 'https://'})
+    bookmark_form = BookmarkForm(initial={'url': 'https://'})
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
 
@@ -672,17 +672,17 @@ def add_bookmark(request, page):
         page = Page.objects.get(
             user=request.user, pk=request.POST.get('dest_page')
         )
-        import_url_form = ImportUrlForm(request.POST, request.FILES)
+        bookmark_form = BookmarkForm(request.POST, request.FILES)
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
-        if import_url_form.is_valid() and move_bookmark_form.is_valid():
+        if bookmark_form.is_valid() and move_bookmark_form.is_valid():
             # create a new Bookmark object
-            bookmark_utils.add_bookmark_object(request, import_url_form)
+            bookmark_utils.add_bookmark_object(request, bookmark_form)
 
             return redirect('links', page=page)
 
         else:
-            if 'icon' not in import_url_form.errors:
+            if 'icon' not in bookmark_form.errors:
                 if request.POST.get('use-default'):
                     use_default_icon = "true"
 
@@ -710,7 +710,7 @@ def add_bookmark(request, page):
     # get page names for sidebar
     all_pages = Page.objects.filter(user=request.user).order_by('position')
 
-    context = {"import_url_form": import_url_form,
+    context = {"bookmark_form": bookmark_form,
                "move_bookmark_form": move_bookmark_form,
                "collection_count": collection_count,
                "page": page.name,
@@ -915,18 +915,18 @@ def import_url(request):
         page = Page.objects.get(
             user=request.user, pk=request.POST.get('dest_page')
         )
-        import_url_form = ImportUrlForm(request.POST, request.FILES)
+        bookmark_form = BookmarkForm(request.POST, request.FILES)
         move_bookmark_form = MoveBookmarkForm(request.user, page, request.POST)
 
-        if import_url_form.is_valid() and move_bookmark_form.is_valid():
+        if bookmark_form.is_valid() and move_bookmark_form.is_valid():
             # create a new Bookmark object
-            bookmark_utils.add_bookmark_object(request, import_url_form)
+            bookmark_utils.add_bookmark_object(request, bookmark_form)
 
             request.session['imported_url'] = url_to_save
             return redirect('import_url_success')
 
         else:
-            context = {'import_url_form': import_url_form,
+            context = {'bookmark_form': bookmark_form,
                        'move_bookmark_form': move_bookmark_form,
                        'collection_count': collection_count,
                        }
@@ -937,7 +937,7 @@ def import_url(request):
     # scrape the requested url
     scrape_data = bookmark_utils.scrape_url(request, url_to_save)
 
-    import_url_form = ImportUrlForm(initial={
+    bookmark_form = BookmarkForm(initial={
         'url': url_to_save,
         'title': scrape_data['title'],
         'description': scrape_data['description']
@@ -947,7 +947,7 @@ def import_url(request):
             'dest_page': page
         })
 
-    context = {'import_url_form': import_url_form,
+    context = {'bookmark_form': bookmark_form,
                'move_bookmark_form': move_bookmark_form,
                'collection_count': collection_count,
                'scraped_icon': scrape_data['scraped_image'],

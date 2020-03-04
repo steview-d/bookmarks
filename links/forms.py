@@ -68,9 +68,9 @@ class EditPageForm(PageForm):
         self.fields['name'].label = "New Page Name"
 
 
-class EditBookmarkForm(forms.ModelForm):
+class BookmarkForm(forms.ModelForm):
     description = forms.CharField(
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={'rows': 5})
     )
 
     class Meta:
@@ -96,17 +96,3 @@ class MoveBookmarkForm(forms.ModelForm):
             }
         self.fields['dest_page'].label = "Destination Page"
         self.fields['dest_collection'].label = "Destination Collection"
-
-
-class ImportUrlForm(forms.ModelForm):
-    description = forms.CharField(
-        widget=forms.Textarea()
-    )
-
-    class Meta:
-        model = Bookmark
-        fields = ['url', 'title', 'description', 'icon']
-        help_texts = {
-            'icon': 'Upload your own, or accept the scraped icon, \
-                if available.'
-        }

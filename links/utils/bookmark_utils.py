@@ -16,17 +16,17 @@ import requests as req
 import string
 
 
-def add_bookmark_object(request, import_url_form):
+def add_bookmark_object(request, bookmark_form):
     """
     Add a new Bookmark object
 
     Args:
         request (obj): The request object
-        import_url_form (obj): The completed form
+        bookmark_form (obj): The completed form
     """
 
-    print(type(import_url_form))
-    form = import_url_form.save(commit=False)
+    print(type(bookmark_form))
+    form = bookmark_form.save(commit=False)
     form.user = request.user
 
     dest_collection = Collection.objects.get(
