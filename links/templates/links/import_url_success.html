@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block page_title %}Import URL{% endblock %}
+{% block page_title %}Import Success{% endblock %}
 
 {% block content %}
 
-<div class="flex-wrapper">
+<div id="import-url-success" class="icon-tile-bg-wrapper">
+    <div class="bg-fade">
 
-    <!-- Content -->
-    <div id="content">
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="d-inline-block mx-2">
-                    <p>{{ url }}</p>
-                    <p>Has been imported successfully</p>
-                    <p>This page can now be closed</p>
+        <div class="container">
+            <div class="row vh-100">
+                <div class="col-12 col-md-11 col-lg-9 col-xl-8 px-0 mx-auto v-center">
+                    <div class="section-square-wrapper bg-white">
+                        <div class="section-square square-left"><strong>URL<br />Imported Successfully</strong></div>
+                        <div class="import-success-box text-center">
+                            <h4 class="mb-4 px-4 py-2 text-trunc">{{ url }}</h4>
+                            <div class="mt-2 mb-4 w-75 d-inline-block label text-wrap">
+                                <h6 class="m-3">The URL has been added to your account and this page can now be closed.
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>

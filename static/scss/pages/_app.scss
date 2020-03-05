@@ -210,11 +210,10 @@
     text-align: center;
 }
 
-
 // -------------------------------------------------------- add / edit bookmark
 
 .url-validation-wrapper {
-    margin: -.8rem 0 1rem;
+    margin: -0.8rem 0 1rem;
 
     small {
         font-weight: 600;
@@ -222,7 +221,7 @@
 
     .status {
         font-weight: 400;
-        padding: .1rem .4rem .2rem;
+        padding: 0.1rem 0.4rem 0.2rem;
         border-radius: 4px;
         color: $white;
 
@@ -235,7 +234,6 @@
         }
     }
 }
-
 
 // displaying default icons
 #edit-bookmark,
@@ -266,21 +264,53 @@
     padding-left: 0;
 
     &:focus {
-        outline:none;
+        outline: none;
         box-shadow: none;
     }
 }
 
 // used to show / hide bookmark icons on add / edit / import screens
 .icon-display-hide {
-    display: none
+    display: none;
 }
 
 // edit bookmark form
 
 .icon-errors {
-display: inline;
-color: $crispy-red;
-font-size: .8rem;
-font-weight: 700;
+    display: inline;
+    color: $crispy-red;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+// import url
+
+.import-success-box {
+    border: 1px solid red;
+    padding: 4rem 1rem 2rem;
+    border: 2px solid $onyx;
+    border-radius: 3px;
+
+    h4 {
+        font-size: 1rem;
+
+        @media only screen and (min-width: 576px) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+#import-url-success {
+    .v-center {
+        margin: auto;
+
+        .section-square-wrapper {
+            margin: -10% 2rem 0;
+
+            @media only screen and (min-width: 576px) {
+                margin: -20% auto 0;
+
+            }
+        }
+    }
 }

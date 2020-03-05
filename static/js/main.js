@@ -594,3 +594,8 @@ function updateDefaultIcon() {
 if ($('#add-bookmark, edit-bookmark, #import-url').length){
     updateDefaultIcon();
 }
+
+// close window after import
+$('#close-page').on('click', function () {
+    window.close();
+});

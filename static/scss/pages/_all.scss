@@ -48,7 +48,7 @@ h4 > .fa-stop {
     color: $logo-blue;
 }
 
-// settings pages section box with blue square title as header
+// section box with blue square title as header
 .section-square-wrapper {
     position: relative;
 
@@ -106,14 +106,19 @@ h4 > .fa-stop {
     right: 0;
     transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
 
-    .bg-fade {
-        min-height: 100vh;
-        @include background-overlay(0.98);
-    }
+    // .bg-fade {
+    //     min-height: 100vh;
+    //     @include background-overlay(0.98);
+    // }
 
     @media (min-width: 768px) {
         width: calc(100% - 300px);
     }
+}
+
+.bg-fade {
+    min-height: 100vh;
+    @include background-overlay(0.98);
 }
 
 .flex-wrapper {
