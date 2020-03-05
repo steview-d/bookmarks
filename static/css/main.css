@@ -132,6 +132,36 @@ a:hover {
   outline: none;
 }
 
+.btn--delete {
+  /*
+    * col1 : background color
+    * col2 : font color
+    * col3 : border color
+    * col4 : hover background color
+    * col5 : hover font color
+    * col6 : hover border color (optional)
+    */
+  background-color: #e36868;
+  color: #ffffff;
+  border: 1px solid #e36868;
+  border-radius: 0.25rem;
+  margin: .25rem 0;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
+.btn--delete:hover {
+  background-color: transparent;
+  color: #e36868;
+  border-color: #e36868;
+}
+
+.btn--delete:focus {
+  outline: none;
+}
+
 .btn--faded {
   /*
     * col1 : background color
@@ -1664,6 +1694,15 @@ h4 > .fa-stop {
   #import-url-success .v-center .section-square-wrapper {
     margin: -20% auto 0;
   }
+}
+
+.qqq {
+  margin: 0 1.5rem 1rem;
+}
+
+.qqq i {
+  margin-right: .5rem;
+  color: #175c9d;
 }
 
 .result-location {

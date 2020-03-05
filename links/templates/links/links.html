@@ -181,7 +181,7 @@
                                     </div>
                                 </li>
                                 <!-- Bookmark Delete Modal -->
-                                {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk %}
+                                {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk url=item.url %}
                                 {% endfor %}
                             </ul>
                         </div>

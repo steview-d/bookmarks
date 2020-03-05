@@ -54,6 +54,17 @@
     );
 }
 
+.btn--delete {
+    @include default-button(
+        $error-red,
+        $white,
+        $error-red,
+        transparent,
+        $error-red,
+        $error-red
+    );
+}
+
 .btn--faded {
     @include default-button(
         transparent,
