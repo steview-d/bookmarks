@@ -992,18 +992,16 @@ def import_url(request):
 def import_url_success(request):
     """ Confirm URL import was successful """
 
-    # try:
-    #     url = request.session['imported_url']
-    # except KeyError:
-    #     return redirect('start_app')
+    try:
+        url = request.session['imported_url']
+    except KeyError:
+        return redirect('start_app')
 
-    # url = request.session['imported_url']
-    url = "http://sky.com/fxcvhjgxv/fgfgfwerq/werwwg/page"
+    url = request.session['imported_url']
     context = {'url': url}
-    # del request.session['imported_url']
+    del request.session['imported_url']
 
     return render(request, 'links/import_url_success.html', context)
-    # return render(request, 'links/import_url_success.html', context)
 
 
 @login_required
