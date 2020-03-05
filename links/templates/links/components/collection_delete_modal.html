@@ -5,13 +5,15 @@
         <div class="modal-content">
             <form method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Collection: {{collection|title}}</h5>
+                    <h4 class="mb-0"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Delete Collection</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete {{collection|title}}?</p>
+                    <p>Are you sure you want to delete </p>
+                    <h6 class="delete-modal-item text-trunc"><i class="fa fa-dot-circle-o"
+                            aria-hidden="true"></i>{{ collection }}</h6>
                     <p>This action cannot be reversed and you will lose all bookmarks contained within.
                     </p>
                     {% csrf_token %}
@@ -19,8 +21,8 @@
                     <input type="hidden" name="collection" value="{{ collection }}">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="submit" name="delete-collection-form" value="DELETE" class="btn btn-danger">
+                    <button type="button" class="btn--faded" data-dismiss="modal">Cancel</button>
+                    <input type="submit" name="delete-collection-form" value="DELETE" class="btn--delete">
                 </div>
             </form>
         </div>

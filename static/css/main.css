@@ -1696,11 +1696,11 @@ h4 > .fa-stop {
   }
 }
 
-.qqq {
+.delete-modal-item {
   margin: 0 1.5rem 1rem;
 }
 
-.qqq i {
+.delete-modal-item i {
   margin-right: .5rem;
   color: #175c9d;
 }
