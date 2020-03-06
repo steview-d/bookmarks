@@ -19,15 +19,12 @@
                         <h3>Log In To Your Account</h3>
                         <form method="POST" novalidate>
                             {% csrf_token %}
-                            {% for field in form.visible_fields %}
-                            {{ field|as_crispy_field}}
-                            {% if field.label == 'Password' %}
+                            {{ form|crispy }}
+
                             <div class="pw-reset">
                                 <small><a href="{% url 'password_reset' %}">Forgot Your Password?</a></small>
                             </div>
-                            {% endif %}
 
-                            {% endfor %}
                             <div>
                                 <button class="btn--invert" type="submit">Login</button></div>
                             <div>
