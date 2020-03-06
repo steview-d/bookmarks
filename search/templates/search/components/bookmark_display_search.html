@@ -1,3 +1,5 @@
+{% load modal_id_gens %}
+
 <div class="row">
     <div class="col-12">
         <ul class="list-unstyled">
@@ -53,7 +55,9 @@
                     </a>
                 </div>
             </li>
-            {% include 'links/components/bookmark_delete_modal.html' with bookmark=result.pk %}
+            <!-- Bookmark Delete Modal -->
+            {% include 'links/components/delete_modal.html' with id=result.pk|bookmark_id item_to_delete=result.pk object=result.url params=bm_delete_modal %}
+
             <hr>
             {% endfor %}
         </ul>

@@ -44,6 +44,11 @@ def search(request):
     # set page value for default page choice for 'add bookmark' button
     page = set_page_name(request)
 
+    # bookmark paramaters for use with the 'delete_modal' template
+    bm_delete_modal = {"form_name": "delete-bookmark-form",
+                       "object_type": "bookmark",
+                       "text": "the bookmark will be permanently deleted.", }
+
     context = {
         "all_page_names": all_pages,
         "page": page,
@@ -51,6 +56,7 @@ def search(request):
         "search_results": search_results,
         "p": paginator,
         "page_num": results_page,
+        "bm_delete_modal": bm_delete_modal,
     }
     context = is_premium(request.user, context)
 

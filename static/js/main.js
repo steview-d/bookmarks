@@ -27,14 +27,14 @@ $(document).ready(function() {
     });
 
     // submit 'delete page form' from modal
-    $("#delete-page-form").on("click", function() {
-        $(this).submit();
-    });
+    // $("#delete-page-form").on("click", function() {
+    //     $(this).submit();
+    // });
 
     // submit 'delete collection form' from modal
-    $("#delete-collection-form").on("click", function() {
-        $(this).submit();
-    });
+    // $("#delete-collection-form").on("click", function() {
+    //     $(this).submit();
+    // });
 
     // rename collection toggle
     $(".rename-collection").on("click", function() {

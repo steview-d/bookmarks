@@ -7,6 +7,7 @@
 
 {% load replace_space %}
 {% load icon_styling %}
+{% load modal_id_gens %}
 
 <div class="flex-wrapper">
 
@@ -181,13 +182,13 @@
                                     </div>
                                 </li>
                                 <!-- Bookmark Delete Modal -->
-                                {% include 'links/components/bookmark_delete_modal.html' with bookmark=item.pk url=item.url %}
+                                {% include 'links/components/delete_modal.html' with id=item.pk|bookmark_id item_to_delete=item.pk object=item.url params=bm_delete_modal %}
                                 {% endfor %}
                             </ul>
                         </div>
                     </div>
                     <!-- Collection Delete Modal -->
-                    {% include 'links/components/collection_delete_modal.html' with collection=k %}
+                    {% include 'links/components/delete_modal.html' with id=k|collection_id item_to_delete=k object=k params=collection_delete_modal %}
 
                     {% endfor %}
                     {% include 'links/components/add_new_collection.html' with column=forloop.counter %}

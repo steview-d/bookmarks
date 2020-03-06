@@ -179,6 +179,19 @@ def links(request, page):
     # set this page as the last page visited
     request.session['last_page'] = page.name
 
+    # paramaters for use with the 'delete_modal' template
+    bm_delete_modal = {"form_name": "delete-bookmark-form",
+                       "object_type": "bookmark",
+                       "text": "the bookmark will be permanently deleted.", }
+    page_delete_modal = {"form_name": "delete-page-form",
+                         "object_type": "page",
+                         "text": "you will lose all collections and bookmarks \
+                             contained within.", }
+    collection_delete_modal = {"form_name": "delete-collection-form",
+                               "object_type": "collection",
+                               "text": "you will lose all bookmarks contained \
+                                   within.", }
+
     context = {"column_width": 100 / num_of_columns,
                "num_of_columns": num_of_columns,
                "bm_data": bm_data,
@@ -188,7 +201,11 @@ def links(request, page):
                "edit_page_form": edit_page_form,
                "no_collections": no_collections,
                "collection_being_sorted": collection_being_sorted,
-               "page_sort_active": page_sort_active, }
+               "page_sort_active": page_sort_active,
+               "bm_delete_modal": bm_delete_modal,
+               "page_delete_modal": page_delete_modal,
+               "collection_delete_modal": collection_delete_modal,
+               }
     context = is_premium(request.user, context)
 
     return render(request, 'links/links.html', context)
