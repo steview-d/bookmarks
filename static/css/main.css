@@ -561,6 +561,8 @@ a:hover {
   position: fixed;
   z-index: 100;
   width: 100%;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
 }
 
 #topnav .form-control:focus {

@@ -514,6 +514,24 @@ $(document).ready(function() {
     $(window).scroll(navbarBehaviour);
     navbarBehaviour();
 
+    // topnav behavior
+    function topnavBehaviour () {
+        if (window.scrollY > 1) {
+            $('#topnav').css({ 'border-bottom': '1px solid #aaaaaa',
+                               'background-color': 'rgba(250, 250, 250, 0.9)',
+                               'transition': 'all .5s ease'});
+        } else {
+            $('#topnav').css({ 'border-bottom': '1px solid transparent',
+                               'background-color': 'transparent',
+                               'transition': 'all .5s ease'});
+        }
+    }
+
+    // activate on scroll and initial page load
+    $(window).scroll(topnavBehaviour);
+    topnavBehaviour();
+
+
     // on click, toggle 'plus' icon for each entry on faq page
     $(".collapse")
         .on("show.bs.collapse", function() {
