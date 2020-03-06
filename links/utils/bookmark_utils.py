@@ -6,10 +6,12 @@ from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+
 from links.models import Collection, Bookmark
 
 import base64
 import favicon
+import os
 import random
 import re
 import requests as req
@@ -307,3 +309,46 @@ def create_img_from_base64_str(request):
         name='scr_' + file_name + '.' + ext)
 
     return img_file
+
+
+def handle_icon_errors(request, bookmark_form):
+    """
+    Used with forms which add / edit / import Bookmark objects
+
+    Function will generate / preserve an icon submitted by the user
+    so in the event of a form error, the icon can be passed back to
+    the form to avoid the user having to select the icon again.
+
+    Args:
+        request (obj): The request object
+        bookmark_form (obj): The completed form
+
+    Returns:
+        tuple: values for use_default_icon & saved_icon_data
+
+    """
+
+    saved_icon_data = ""
+    use_default_icon = ""
+
+    # if the error is not icon related
+    if 'icon' not in bookmark_form.errors:
+        if request.POST.get('use-default'):
+            use_default_icon = "true"
+
+        # if a file has been uploaded, save it
+        elif request.FILES:
+            # create base64 image string to send back and display
+            f_name = str(request.FILES['icon']).lower()
+            f_ext = os.path.splitext(f_name)[1]
+
+            data = request.FILES['icon'].read()
+            img = base64.b64encode(data).decode('utf-8')
+
+            saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
+
+        # if a file has been scraped, save it
+        elif request.POST.get('scraped_img'):
+            saved_icon_data = request.POST.get('scraped_img')
+
+        return use_default_icon, saved_icon_data

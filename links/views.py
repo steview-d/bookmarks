@@ -6,10 +6,8 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-import base64
 import itertools
 import json
-import os
 import requests as req
 
 from premium.utils import is_premium, premium_check
@@ -618,25 +616,17 @@ def edit_bookmark(request, page, bookmark):
 
             # for icon display, handle non icon errors
             else:
+                icon_errors = bookmark_utils.handle_icon_errors(
+                    request, bookmark_form)
+
                 if request.POST.get('use-default'):
                     bookmark_to_edit.icon = None
-                    use_default_icon = "true"
 
-                # if a file has been uploaded, save it
-                elif request.FILES:
-                    # create base64 image string to send back and display
-                    f_name = str(request.FILES['icon']).lower()
-                    f_ext = os.path.splitext(f_name)[1]
-
-                    data = request.FILES['icon'].read()
-                    img = base64.b64encode(data).decode('utf-8')
-
-                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
-
-                # if a file has been scraped, save it
-                elif request.POST.get('scraped_img'):
-                    saved_icon_data = request.POST.get(
-                        'scraped_img')
+                if icon_errors:
+                    if icon_errors[0]:
+                        use_default_icon = "true"
+                    else:
+                        saved_icon_data = icon_errors[1]
 
             messages.error(
                 request, f"There was an error with your form - \
@@ -676,13 +666,13 @@ def add_bookmark(request, page):
 
     collection_count = Collection.objects.filter(user=request.user).count()
 
-    saved_icon_data = ""
-    use_default_icon = ""
-
     # initialize forms
     bookmark_form = BookmarkForm(initial={'url': 'https://'})
     move_bookmark_form = MoveBookmarkForm(
         request.user, page, initial={'dest_page': page})
+
+    saved_icon_data = ""
+    use_default_icon = ""
 
     # handle posted data
     if 'add-bm-form' in request.POST:
@@ -699,25 +689,14 @@ def add_bookmark(request, page):
             return redirect('links', page=page)
 
         else:
-            if 'icon' not in bookmark_form.errors:
-                if request.POST.get('use-default'):
+            icon_errors = bookmark_utils.handle_icon_errors(
+                request, bookmark_form)
+
+            if icon_errors:
+                if icon_errors[0]:
                     use_default_icon = "true"
-
-                # if a file has been uploaded, save it
-                elif request.FILES:
-                    # create base64 image string to send back and display
-                    f_name = str(request.FILES['icon']).lower()
-                    f_ext = os.path.splitext(f_name)[1]
-
-                    data = request.FILES['icon'].read()
-                    img = base64.b64encode(data).decode('utf-8')
-
-                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
-
-                # if a file has been scraped, save it
-                elif request.POST.get('scraped_img'):
-                    saved_icon_data = request.POST.get(
-                        'scraped_img')
+                else:
+                    saved_icon_data = icon_errors[1]
 
             messages.error(
                 request, f"There was an error with your form - \
@@ -946,26 +925,14 @@ def import_url(request):
             return redirect('import_url_success')
 
         else:
+            icon_errors = bookmark_utils.handle_icon_errors(
+                request, bookmark_form)
 
-            if 'icon' not in bookmark_form.errors:
-                if request.POST.get('use-default'):
+            if icon_errors:
+                if icon_errors[0]:
                     use_default_icon = "true"
-
-                # if a file has been uploaded, save it
-                elif request.FILES:
-                    # create base64 image string to send back and display
-                    f_name = str(request.FILES['icon']).lower()
-                    f_ext = os.path.splitext(f_name)[1]
-
-                    data = request.FILES['icon'].read()
-                    img = base64.b64encode(data).decode('utf-8')
-
-                    saved_icon_data = f"data:image/{f_ext[1:]};base64,{img}"
-
-                # if a file has been scraped, save it
-                elif request.POST.get('scraped_img'):
-                    saved_icon_data = request.POST.get(
-                        'scraped_img')
+                else:
+                    saved_icon_data = icon_errors[1]
 
             messages.error(
                 request, f"There was an error with your form - \
