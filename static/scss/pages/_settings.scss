@@ -29,6 +29,17 @@
     }
 }
 
+.stats-wrapper {
+    margin: 5rem auto 5rem;
+    padding: 3rem 1rem 1rem;
+    border: 2px solid $onyx;
+    border-radius: 3px;
+
+    @media only screen and (min-width: 768px) {
+        padding-top: 2rem;
+    }
+}
+
 .number-box {
     border: 1px solid $logo-blue;
     background-color: $logo-blue;
@@ -44,7 +55,7 @@
 // -------------------------------------------------------------------- support
 
 .premium-tel-box {
-    border: none;
+    // border: none;
     padding: 4rem 1rem 2rem;
     border: 2px solid $onyx;
     border-radius: 3px;
