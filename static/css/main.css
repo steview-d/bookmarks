@@ -578,7 +578,7 @@ a:hover {
 }
 
 .topnav-spacer {
-  height: 90px;
+  height: 68px;
 }
 
 #topnav-icons i {
@@ -1262,7 +1262,7 @@ h4 > .fa-stop {
 }
 
 #premium .set-height {
-  min-height: calc(80vh - 90px);
+  min-height: calc(80vh - 68px);
 }
 
 .premium-features-box {
@@ -1343,6 +1343,10 @@ h4 > .fa-stop {
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.app-min-height {
+  min-height: calc(100vh - 68px - 213px);
 }
 
 .column {

@@ -2,12 +2,11 @@
 {% load staticfiles %}
 
 {% load crispy_forms_tags %}
+{% load icon_styling %}
 
 {% block page_title %}Edit Bookmark{% endblock %}
 
 {% block content %}
-
-{% load icon_styling %}
 
 <div id="edit-bookmark" class="flex-wrapper">
 
@@ -21,7 +20,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container">
+        <div class="container app-min-height">
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
                     <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
@@ -70,7 +69,7 @@
                         <div class="my-4">
                             <div class="mb-2">Icon Preview</div>
                             {% if saved_icon_data %}
-                            <!-- if form has errors  -->
+                            <!-- if form has non icon errors and previous image has been saved -->
                             <img id="img-preview" class="" src="{{ saved_icon_data }}">
 
                             {% else %}

@@ -1,3 +1,9 @@
+// --------------------------------------- set minimum height for all app pages
+
+.app-min-height {
+    min-height: calc(100vh - #{$topnav-spacer-height} - #{$advert-height});
+}
+
 // ------------------------------------------------------------- main links app
 
 .column {

@@ -20,7 +20,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container">
+        <div class="container app-min-height">
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
                     <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
@@ -73,6 +73,7 @@
                             <img id="img-preview" src="{{ saved_icon_data }}">
 
                             {% else %}
+                            <!-- if form has no errors -->
                             <img id="img-preview" class="icon-display-hide">
                             {% endif %}
 
