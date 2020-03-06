@@ -583,12 +583,19 @@ a:hover {
 
 #topnav-icons i {
   font-size: 1.5rem;
+  color: #343a40;
+  -webkit-transition: opacity .2s ease-out;
+  transition: opacity .2s ease-out;
 }
 
 @media (min-width: 576px) {
   #topnav-icons i {
     font-size: 2rem;
   }
+}
+
+#topnav-icons i:hover {
+  opacity: .7;
 }
 
 .dropright .dropdown-menu {

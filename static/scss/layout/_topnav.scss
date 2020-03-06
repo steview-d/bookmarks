@@ -26,9 +26,16 @@
 
 #topnav-icons i {
     font-size: 1.5rem;
+    color: $onyx;
+
+    transition: opacity .2s ease-out;
 
     @media (min-width: 576px) {
         font-size: 2rem;
+    }
+
+    &:hover {
+        opacity: .7;
     }
 }
 
