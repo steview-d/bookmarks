@@ -1,5 +1,14 @@
 // --------------- Settings section styling - about, profile, support & premium
 
+.bg-white-lg-screens {
+    background-color: transparent;
+
+    @media only screen and (min-width: 992px) {
+        background-color: $white;
+
+    }
+}
+
 // ----------------------------------------------------------- settings - about
 
 #about-app {

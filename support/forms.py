@@ -8,3 +8,6 @@ class SupportRequestForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['title', 'message']
+        widgets = {
+            'message': forms.Textarea(attrs={'rows': 4})
+        }
