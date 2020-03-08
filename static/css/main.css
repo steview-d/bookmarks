@@ -843,7 +843,17 @@ h4 > .fa-stop {
 }
 
 #advert-block {
-  margin: 5rem 0 3rem;
+  margin: 3rem 0 1rem;
+}
+
+@media only screen and (min-width: 576px) {
+  #advert-block {
+    margin: 5rem 0 3rem;
+  }
+}
+
+.no-ad-spacer {
+  height: 3rem;
 }
 
 .ajax-progress-hide {
