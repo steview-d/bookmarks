@@ -30,40 +30,8 @@
                         <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                         {% csrf_token %}
 
-                        <!-- render form -->
-                        {% for field in bookmark_form.visible_fields %}
-                        {% if field.label != 'Icon' %}
-                        <div>{{ field|as_crispy_field }}</div>
-                        {% if field.label == 'Url' %}
-                        <div class="url-validation-wrapper">
-                            <small id="url-validation-result" class="">Url status: <span
-                                    class="status status-valid">Valid</span></small>
-                            <span class="fa-stack tippy-i tippy-url-validation">
-                                <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
-                                <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                        {% endif %}
-
-                        {% else %}
-                        <!-- render icon field -->
-                        <div class="mb-2">Icon</div>
-                        <div class="custom-file">
-                            <input type="file" accept=".png, .jpg, .jpeg, .ico" name="icon" class="custom-file-input"
-                                id="id_icon">
-                            <label class="custom-file-label" for="customFile"
-                                {% if field.errors %}style="border: 1px solid #dc3545" {% endif %}>Choose file</label>
-                            <div class="list-unstyled icon-errors">{{ field.errors|striptags }}
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-
-                        <div>
-                            <small>Upload your own, use autofill to get the site icon directly, or allow
-                                the app to create one for you.</small>
-                        </div>
-
+                        <!-- render form & icon field-->
+                        {% include 'links/components/bookmark_form.html' %}
 
                         <!-- icon display -->
                         <div class="my-4">

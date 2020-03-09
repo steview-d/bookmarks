@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+
+<!-- bookmark destination form -->
+<div class="row mt-3">
+    {% for field in move_bookmark_form %}
+    <div class="col-12 col-xl-6">
+        {{ field|as_crispy_field}}
+    </div>
+    {% endfor %}
+</div>
