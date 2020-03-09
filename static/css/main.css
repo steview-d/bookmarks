@@ -431,6 +431,28 @@ a:hover {
   opacity: 1;
 }
 
+.btn--collection-header {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.btn--collection-header i {
+  width: 1rem;
+}
+
+.btn--collection-header:hover i {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.btn--collection-header:focus {
+  outline: none;
+}
+
 .tippy-i .fa-square {
   margin-top: 0.35rem;
   font-size: 1.2rem;
@@ -1410,7 +1432,7 @@ h4 > .fa-stop {
   cursor: default;
   background-color: #eeeeee;
   border-radius: 3px;
-  padding: 0.4rem 0.7rem;
+  padding: .4rem .4rem .4rem .7rem;
 }
 
 .collection-container .collection-title {
@@ -1809,6 +1831,11 @@ h4 > .fa-stop {
 
 #bookmark-sort-options .dropdown-menu {
   padding: 0;
+}
+
+.manual-sort-on {
+  background-color: #76E26A;
+  border: 1px solid #76E26A;
 }
 
 .result-location {

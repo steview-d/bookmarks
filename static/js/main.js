@@ -263,12 +263,9 @@ $(document).ready(function() {
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
     bmSortButtons.forEach((key) => {
         $(key).on('click', function () {
-            $(this).parent().parent().next().find('.bm-handle-container').toggleClass('bm-sort-handle');
-            if($(this).is(':contains("OFF")')) {
-                $(this).text('MANUAL SORT: ON');
-            } else {
-                $(this).text('MANUAL SORT: OFF');
-            }
+            $(this).parent().parent().parent().find('.bm-handle-container')
+                .toggleClass('bm-sort-handle');
+            $(this).toggleClass('manual-sort-on');
         });
     });
 

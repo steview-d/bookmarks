@@ -41,4 +41,13 @@ $(document).ready(function() {
             as a bookmark, and may still load for you.</li></ul>
             Url status should be used as a guide only.`
     });
+
+    // manual bookmark sort tooltip
+    tippy(".tippy-manual-bm-sort", {
+        theme: "dark",
+        delay: [100, 0],
+        // placement: "bottom",
+        content: `Manual sorting of bookmarks is disabled unless<br />
+            <strong>Sort By: Manual Sort</strong><br />has been selected.`
+    });
 });

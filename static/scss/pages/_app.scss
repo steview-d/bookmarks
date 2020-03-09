@@ -49,7 +49,7 @@
     cursor: default;
     background-color: #eeeeee;
     border-radius: 3px;
-    padding: 0.4rem 0.7rem;
+    padding: .4rem .4rem .4rem .7rem;
 
     .collection-title {
         @include container-text-icon-title;
@@ -371,4 +371,11 @@
     .dropdown-menu {
         padding: 0;
     }
+}
+
+// manual collection sort
+
+.manual-sort-on {
+    background-color: $green;
+    border: 1px solid $green;
 }

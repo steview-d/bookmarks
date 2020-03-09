@@ -202,3 +202,23 @@
         }
     }
 }
+
+.btn--collection-header {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    transition: 0.2s ease-out;
+
+    i {
+        width: 1rem;
+    }
+
+    &:hover i {
+        transform: scale(1.1);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
