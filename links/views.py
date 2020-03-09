@@ -624,7 +624,7 @@ def edit_bookmark(request, page, bookmark):
 
                 if icon_errors:
                     if icon_errors[0]:
-                        use_default_icon = "true"
+                        use_default_icon = True
                     else:
                         saved_icon_data = icon_errors[1]
 
@@ -694,7 +694,7 @@ def add_bookmark(request, page):
 
             if icon_errors:
                 if icon_errors[0]:
-                    use_default_icon = "true"
+                    use_default_icon = True
                 else:
                     saved_icon_data = icon_errors[1]
 
@@ -930,7 +930,7 @@ def import_url(request):
 
             if icon_errors:
                 if icon_errors[0]:
-                    use_default_icon = "true"
+                    use_default_icon = True
                 else:
                     saved_icon_data = icon_errors[1]
 

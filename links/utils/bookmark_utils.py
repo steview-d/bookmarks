@@ -27,7 +27,6 @@ def add_bookmark_object(request, bookmark_form):
         bookmark_form (obj): The completed form
     """
 
-    print(type(bookmark_form))
     form = bookmark_form.save(commit=False)
     form.user = request.user
 
@@ -334,7 +333,7 @@ def handle_icon_errors(request, bookmark_form):
     # if the error is not icon related
     if 'icon' not in bookmark_form.errors:
         if request.POST.get('use-default'):
-            use_default_icon = "true"
+            use_default_icon = True
 
         # if a file has been uploaded, save it
         elif request.FILES:
