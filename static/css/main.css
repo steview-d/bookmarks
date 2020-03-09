@@ -453,6 +453,15 @@ a:hover {
   outline: none;
 }
 
+.btn--add-collection {
+  background-color: transparent;
+  border: none;
+}
+
+.btn--add-collection:focus {
+  outline: none;
+}
+
 .tippy-i .fa-square {
   margin-top: 0.35rem;
   font-size: 1.2rem;

@@ -614,3 +614,14 @@ if ($('#add-bookmark, edit-bookmark, #import-url').length){
 $('#close-page').on('click', function () {
     window.close();
 });
+
+// add new collection
+$(".btn--add-collection").on("click", function() {
+    $(this)
+        .parent()
+        .next()
+        .slideToggle(200);
+    $(this)
+        .children()
+        .toggleClass('fa-chevron-circle-down fa-plus-circle');
+});

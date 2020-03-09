@@ -222,3 +222,13 @@
         outline: none;
     }
 }
+
+.btn--add-collection {
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+
+}
