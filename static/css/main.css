@@ -15,6 +15,11 @@ a:hover {
   color: #000000;
 }
 
+input {
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+}
+
 .label {
   padding: 0.2rem 0.4rem;
   margin: 0 0.2rem;
@@ -1845,6 +1850,22 @@ h4 > .fa-stop {
 .manual-sort-on {
   background-color: #76E26A;
   border: 1px solid #76E26A;
+}
+
+.no-collections-box {
+  background-color: rgba(41, 46, 51, 0.99);
+  color: #ffffff;
+  border-radius: .5rem;
+}
+
+.no-collections-box input[type=text] {
+  width: 80%;
+}
+
+@media only screen and (min-width: 576px) {
+  .no-collections-box input[type=text] {
+    width: 50%;
+  }
 }
 
 .result-location {
