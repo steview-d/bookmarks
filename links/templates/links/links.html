@@ -55,6 +55,8 @@
                                 <span class="collection-title-text">{{ k }}</span>
                             </div>
                             <div class="collection-icons">
+                                <span class="mx-0 px-1 cursor-pointer"><i
+                                    class="fa fa-sort" aria-hidden="true"></i></span>
                                 <span class="mx-0 px-1 cursor-pointer"><i class="fa fa-trash-o text-danger"
                                         aria-hidden="true" data-toggle="modal"
                                         data-target="#modal-{{ k|replace_space }}"></i></span>
@@ -86,12 +88,12 @@
                         </div>
 
                         <!-- Bookmark Sort Options -->
-                        <div class="btn-group mt-1" role="group" style="display: inline-block">
+                        <div id ="bookmark-sort-options" class="btn-group mt-1" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Sort By...
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <div class="dropdown-menu dropdown-animation slide-transition" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
                                     href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
                                         class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>

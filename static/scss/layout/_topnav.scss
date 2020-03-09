@@ -27,6 +27,7 @@
 #topnav-icons i {
     font-size: 1.5rem;
     color: $onyx;
+    opacity: .7;
 
     transition: opacity .2s ease-out;
 
@@ -35,7 +36,7 @@
     }
 
     &:hover {
-        opacity: .7;
+        opacity: 1;
     }
 }
 

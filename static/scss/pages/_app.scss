@@ -315,7 +315,6 @@
 
             @media only screen and (min-width: 576px) {
                 margin: -20% auto 0;
-
             }
         }
     }
@@ -327,7 +326,49 @@
     margin: 0 1.5rem 1rem;
 
     i {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
         color: $logo-blue;
+    }
+}
+
+// icon field errors
+
+.icon-field-errors {
+    border: 1px solid #dc3545;
+}
+
+// main app
+
+// dropdown
+
+.dropdown-animation {
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
+}
+
+@keyframes slide-transition {
+    0% {
+        transform: translateY(0rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(2rem);
+        opacity: 1;
+    }
+    0% {
+        transform: translateY(0rem);
+        opacity: 0;
+    }
+}
+
+.slide-transition {
+    animation-name: slide-transition;
+}
+
+#bookmark-sort-options {
+    display: inline-block;
+
+    .dropdown-menu {
+        padding: 0;
     }
 }

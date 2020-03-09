@@ -584,6 +584,7 @@ a:hover {
 #topnav-icons i {
   font-size: 1.5rem;
   color: #343a40;
+  opacity: .7;
   -webkit-transition: opacity .2s ease-out;
   transition: opacity .2s ease-out;
 }
@@ -595,7 +596,7 @@ a:hover {
 }
 
 #topnav-icons i:hover {
-  opacity: .7;
+  opacity: 1;
 }
 
 .dropright .dropdown-menu {
@@ -1746,8 +1747,68 @@ h4 > .fa-stop {
 }
 
 .delete-modal-item i {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   color: #175c9d;
+}
+
+.icon-field-errors {
+  border: 1px solid #dc3545;
+}
+
+.dropdown-animation {
+  -webkit-animation-duration: 0.25s;
+          animation-duration: 0.25s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+@-webkit-keyframes slide-transition {
+  0% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(2rem);
+            transform: translateY(2rem);
+    opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-transition {
+  0% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(2rem);
+            transform: translateY(2rem);
+    opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+    opacity: 0;
+  }
+}
+
+.slide-transition {
+  -webkit-animation-name: slide-transition;
+          animation-name: slide-transition;
+}
+
+#bookmark-sort-options {
+  display: inline-block;
+}
+
+#bookmark-sort-options .dropdown-menu {
+  padding: 0;
 }
 
 .result-location {
