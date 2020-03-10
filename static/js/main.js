@@ -263,8 +263,11 @@ $(document).ready(function() {
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
     bmSortButtons.forEach((key) => {
         $(key).on('click', function () {
-            $(this).parent().parent().parent().find('.bm-handle-container')
+            const qqq = $(this).parent().parent().parent();
+            qqq.find('.bm-handle-container')
                 .toggleClass('bm-sort-handle');
+            qqq.find('.bookmark-styling')
+                .toggleClass('bookmark-border');
             $(this).toggleClass('manual-sort-on');
         });
     });

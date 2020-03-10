@@ -149,7 +149,8 @@
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
-                                <li id="{{item.position}}_." class="bookmark-styling">
+                                <li id="{{item.position}}_." class="bookmark-styling 
+                                        {% if collection_being_sorted != k.name %}bookmark-border{% endif %}">
                                     <div class="bm-handle-container d-flex
                                     {% if collection_being_sorted == k.name %}bm-sort-handle{% endif %}">
                                         <!-- icon image -->

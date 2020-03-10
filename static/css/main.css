@@ -1878,7 +1878,58 @@ h4 > .fa-stop {
 }
 
 .bookmark-styling {
-  margin: 0.5rem 0.5rem 0.5rem 0;
+  padding: .5rem .5rem .5rem 0;
+}
+
+.bookmark-border {
+  border-bottom: 1px solid #afafaf;
+}
+
+.bm-sort-handle {
+  padding: .4rem;
+  margin-right: 1rem;
+  border: 1px dashed #afafaf;
+  background-color: #ffffff;
+  opacity: .9;
+}
+
+.bm-sort-container .ui-sortable-helper {
+  -webkit-animation: wobble .6s ease-out forwards;
+          animation: wobble .6s ease-out forwards;
+}
+
+.bm-sort-container .ui-sortable-helper .bm-sort-handle {
+  border-color: #000000;
+}
+
+@-webkit-keyframes wobble {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  66% {
+    -webkit-transform: rotate(-3grad);
+            transform: rotate(-3grad);
+  }
+  100% {
+    -webkit-transform: rotate(-2grad);
+            transform: rotate(-2grad);
+  }
+}
+
+@keyframes wobble {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  66% {
+    -webkit-transform: rotate(-3grad);
+            transform: rotate(-3grad);
+  }
+  100% {
+    -webkit-transform: rotate(-2grad);
+            transform: rotate(-2grad);
+  }
 }
 
 .result-location {

@@ -406,5 +406,40 @@
 }
 
 .bookmark-styling {
-    margin: 0.5rem 0.5rem 0.5rem 0
+    padding: .5rem .5rem .5rem 0;
+}
+
+.bookmark-border {
+    border-bottom: 1px solid $light-grey;
+}
+
+.bm-sort-handle {
+    // background-color: #eee;
+    padding: .4rem;
+    margin-right: 1rem;
+    // border-radius: 2px;
+    border: 1px dashed $light-grey;
+    background-color: $white;
+    opacity: .9;
+}
+
+.bm-sort-container .ui-sortable-helper {
+    animation: wobble .6s ease-out forwards;
+
+    .bm-sort-handle {
+        border-color: $black;
+    }
+}
+
+@keyframes wobble {
+    0% {
+        transform: rotate(0);
+    }
+    66% {
+        transform: rotate(-3grad);
+    }
+    100% {
+        transform: rotate(-2grad);
+    }
+
 }
