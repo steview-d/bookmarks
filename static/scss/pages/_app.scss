@@ -38,9 +38,9 @@
 
 // ---------------------------------------------------- rename collection forms
 
-.rename-collection-form {
-    display: none;
-}
+// .rename-collection-form {
+//     display: none;
+// }
 
 // ------------------------------------------------------- collection title bar
 
@@ -49,7 +49,7 @@
     cursor: default;
     background-color: #eeeeee;
     border-radius: 3px;
-    padding: .4rem .4rem .4rem .7rem;
+    padding: .4rem .5rem .4rem 1rem;
 
     .collection-title {
         @include container-text-icon-title;
@@ -393,5 +393,12 @@
         @media only screen and (min-width: 576px) {
             width: 50%
         }
+    }
+}
+
+.rename-collection-form {
+    input[type=text] {
+        width: 100%;
+        max-width: 200px;
     }
 }

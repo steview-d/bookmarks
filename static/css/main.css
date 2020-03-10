@@ -1427,10 +1427,6 @@ h4 > .fa-stop {
   width: 100px;
 }
 
-.rename-collection-form {
-  display: none;
-}
-
 .collection-container {
   width: 100%;
   margin: auto;
@@ -1446,7 +1442,7 @@ h4 > .fa-stop {
   cursor: default;
   background-color: #eeeeee;
   border-radius: 3px;
-  padding: .4rem .4rem .4rem .7rem;
+  padding: .4rem .5rem .4rem 1rem;
 }
 
 .collection-container .collection-title {
@@ -1866,6 +1862,11 @@ h4 > .fa-stop {
   .no-collections-box input[type=text] {
     width: 50%;
   }
+}
+
+.rename-collection-form input[type=text] {
+  width: 100%;
+  max-width: 200px;
 }
 
 .result-location {

@@ -58,75 +58,84 @@
                             <div class="collection-icons">
                                 <!-- manual sort button -->
                                 <button id="bm-sort-btn-{{ k.position }}" class="mx-0 cursor-pointer btn--collection-header
-                                        {% if collection_being_sorted == k.name %}manual-sort-on {% endif %}" 
-                                        {% if k.sort_order != 0 %}disabled{% endif %}>
-                                    <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}" aria-hidden="true"></i></button>
+                                        {% if collection_being_sorted == k.name %}manual-sort-on {% endif %}"
+                                    {% if k.sort_order != 0 %}disabled{% endif %}>
+                                    <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}"
+                                        aria-hidden="true"></i></button>
                                 <!-- bookmark options button -->
                                 <button class="mx-0 cursor-pointer btn--collection-header rename-collection">
                                     <i class="fa fa-cog text-dark" aria-hidden="true"></i></button>
                             </div>
                         </div>
 
-                        <!-- Rename Collection Form -->
-                        <form method="POST" class="rename-collection-form">
-                            {% csrf_token %}
-                            <div><small>Rename Collection</small></div>
-                            <input type="text" class="w-100 my-1" name="new-collection-name">
-                            <input type="hidden" name="collection-position" value="{{k.position}}">
-                            <br />
-                            <div class="d-flex justify-content-between">
-                                <input type="submit" name="rename-collection-form"
-                                    class="btn--standard btn-sm mt-1 mr-2">
-                                <input type="button" value="Delete" class="btn--red btn-sm" data-toggle="modal"
-                                    data-target="#modal-{{ k|replace_space }}">
-                            </div>
-                        </form>
+                        <div class="display-toggle">
+                            <div class="pt-2 pb-3 px-3" style="background-color: #eee">
+                                <!-- Bookmark Sort Options -->
+                                <div id="bookmark-sort-options" class="btn-group mt-1" role="group">
+                                    <button id="btnGroupDrop1" type="button"
+                                        class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Sort By...
+                                    </button>
+                                    <div class="dropdown-menu dropdown-animation slide-transition"
+                                        aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
+                                                class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>
+                                        <a class="dropdown-item {% if k.sort_order == 1 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=1 %}"><i
+                                                class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Name</a>
+                                        <a class="dropdown-item {% if k.sort_order == 2 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=2 %}"><i
+                                                class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Name</a>
+                                        <a class="dropdown-item {% if k.sort_order == 3 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=3 %}"><i
+                                                class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date Added</a>
+                                        <a class="dropdown-item {% if k.sort_order == 4 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=4 %}"><i
+                                                class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date
+                                            Added</a>
+                                        <a class="dropdown-item {% if k.sort_order == 5 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=5 %}"><i
+                                                class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date
+                                            Updated</a>
+                                        <a class="dropdown-item {% if k.sort_order == 6 %}active{% endif %}"
+                                            href="{% url 'update_sort_order' page=page collection=k sort=6 %}"><i
+                                                class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date
+                                            Updated</a>
+                                    </div>
+                                </div>
 
-                        <!-- Bookmark Display Options -->
-                        <div class="mt-1">
-                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                {% if k.display_mode == 1 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                data-display-mode="1">Full</button>
-                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                {% if k.display_mode == 2 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                data-display-mode="2">Normal</button>
-                            <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                {% if k.display_mode == 3 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                data-display-mode="3">Minimal</button>
+                                <!-- Bookmark Display Options -->
+                                <div class="mt-1">
+                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                        {% if k.display_mode == 1 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                        data-display-mode="1">Full</button>
+                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                        {% if k.display_mode == 2 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                        data-display-mode="2">Normal</button>
+                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
+                                        {% if k.display_mode == 3 %}disabled{% endif %} data-coll-id="{{ k.id }}"
+                                        data-display-mode="3">Minimal</button>
+                                </div>
+
+                                <!-- Rename Collection Form -->
+                                <form method="POST" class="rename-collection-form">
+                                    {% csrf_token %}
+                                    <div><small>Rename Collection</small></div>
+                                    <input type="text" class="qw-100 my-1" name="new-collection-name">
+                                    <input type="hidden" name="collection-position" value="{{k.position}}">
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <input type="submit" name="rename-collection-form"
+                                            class="btn--standard btn-sm mt-1 mr-2">
+                                        <input type="button" value="Delete" class="btn--red btn-sm" data-toggle="modal"
+                                            data-target="#modal-{{ k|replace_space }}">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
-                        <!-- Bookmark Sort Options -->
-                        <div id="bookmark-sort-options" class="btn-group mt-1" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort By...
-                            </button>
-                            <div class="dropdown-menu dropdown-animation slide-transition"
-                                aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
-                                        class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>
-                                <a class="dropdown-item {% if k.sort_order == 1 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=1 %}"><i
-                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Name</a>
-                                <a class="dropdown-item {% if k.sort_order == 2 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=2 %}"><i
-                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Name</a>
-                                <a class="dropdown-item {% if k.sort_order == 3 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=3 %}"><i
-                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date Added</a>
-                                <a class="dropdown-item {% if k.sort_order == 4 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=4 %}"><i
-                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date Added</a>
-                                <a class="dropdown-item {% if k.sort_order == 5 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=5 %}"><i
-                                        class="fa fa-angle-double-up mr-2" aria-hidden="true"></i>Date Updated</a>
-                                <a class="dropdown-item {% if k.sort_order == 6 %}active{% endif %}"
-                                    href="{% url 'update_sort_order' page=page collection=k sort=6 %}"><i
-                                        class="fa fa-angle-double-down mr-2" aria-hidden="true"></i>Date Updated</a>
-                            </div>
-
-                        </div>
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
