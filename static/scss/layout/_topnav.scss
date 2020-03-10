@@ -48,14 +48,12 @@
         transform-origin: left;
         transform: scale(0, 1);
         display: block;
+        width: 200px;
+        // padding: 0;
     }
     &:hover {
         .dropdown-menu {
             transform: scale(1);
         }
-    }
-    .dropdown-menu {
-        width: 200px;
-        padding: 0;
     }
 }

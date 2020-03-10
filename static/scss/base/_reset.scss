@@ -21,3 +21,14 @@ input {
     border-radius: .25rem;
     border: 1px solid #ced4da;
 }
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: $onyx;
+}

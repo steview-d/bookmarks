@@ -47,8 +47,10 @@
 .collection-container {
     @include container-text-icon;
     cursor: default;
-    background-color: #eeeeee;
-    border-radius: 3px;
+    background-color: $collection-header-bg;
+    color: $white;
+    // border-radius: 3px;
+    border-radius: 5px 5px 0 0;
     padding: .4rem .5rem .4rem 1rem;
 
     .collection-title {
@@ -63,6 +65,10 @@
     .collection-icons {
         @include flex-none;
         font-size: 1.2rem;
+        
+        i {
+            color: $white;
+        }
     }
 }
 
@@ -348,29 +354,21 @@
 
 @keyframes slide-transition {
     0% {
-        transform: translateY(0rem);
+        transform: translate(0);
         opacity: 0;
     }
     100% {
-        transform: translateY(2rem);
+        transform: translate(-1px, 2rem);
         opacity: 1;
     }
     0% {
-        transform: translateY(0rem);
+        transform: translate(0);
         opacity: 0;
     }
 }
 
 .slide-transition {
     animation-name: slide-transition;
-}
-
-#bookmark-sort-options {
-    display: inline-block;
-
-    .dropdown-menu {
-        padding: 0;
-    }
 }
 
 // manual collection sort
@@ -401,4 +399,12 @@
         width: 100%;
         max-width: 200px;
     }
+}
+
+.collection-options {
+    border: 1px solid $onyx;
+}
+
+.bookmark-styling {
+    margin: 0.5rem 0.5rem 0.5rem 0
 }

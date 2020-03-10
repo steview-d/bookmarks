@@ -49,7 +49,7 @@
                     {% for k, v in column.items %}
 
                     <!-- Render Collection Title & Options -->
-                    <div id="{{ k }}" class="collection-name" style="padding: 1rem">
+                    <div id="{{ k }}" class="collection-name p-3">
 
                         <div class="collection-container">
                             <div class="collection-title">
@@ -63,17 +63,17 @@
                                     <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}"
                                         aria-hidden="true"></i></button>
                                 <!-- bookmark options button -->
-                                <button class="mx-0 cursor-pointer btn--collection-header rename-collection">
-                                    <i class="fa fa-cog text-dark" aria-hidden="true"></i></button>
+                                <button class="mx-0 cursor-pointer btn--collection-header btn--collection-options">
+                                    <i class="fa fa-cog" aria-hidden="true"></i></button>
                             </div>
                         </div>
 
                         <div class="display-toggle">
-                            <div class="pt-2 pb-3 px-3" style="background-color: #eee">
+                            <div class="pt-2 pb-3 px-3 text-center collection-options">
                                 <!-- Bookmark Sort Options -->
-                                <div id="bookmark-sort-options" class="btn-group mt-1" role="group">
+                                <div id="bookmark-sort-options" class="btn-group mt-2 mx-1" role="group">
                                     <button id="btnGroupDrop1" type="button"
-                                        class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                        class="btn--standard btn-sm dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         Sort By...
                                     </button>
@@ -107,31 +107,40 @@
                                 </div>
 
                                 <!-- Bookmark Display Options -->
-                                <div class="mt-1">
-                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                        {% if k.display_mode == 1 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                        data-display-mode="1">Full</button>
-                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                        {% if k.display_mode == 2 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                        data-display-mode="2">Normal</button>
-                                    <button type="button" class="coll-display-btn btn btn-sm btn-primary"
-                                        {% if k.display_mode == 3 %}disabled{% endif %} data-coll-id="{{ k.id }}"
-                                        data-display-mode="3">Minimal</button>
+                                <div id="bookmark-display-options" class="btn-group mt-2 mx-1" role="group">
+                                    <button id="btnGroupDrop2" type="button"
+                                        class="btn--standard btn-sm dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Display As...
+                                    </button>
+                                    <div class="dropdown-menu dropdown-animation slide-transition"
+                                        aria-labelledby="btnGroupDrop2">
+                                        <button
+                                            class="dropdown-item coll-display-btn {% if k.display_mode == 1 %}active{% endif %}"
+                                            data-coll-id="{{ k.id }}" data-display-mode="1">Full</button>
+                                        <button
+                                            class="dropdown-item coll-display-btn {% if k.display_mode == 2 %}active{% endif %}"
+                                            data-coll-id="{{ k.id }}" data-display-mode="2">Normal</button>
+                                        <button
+                                            class="dropdown-item coll-display-btn {% if k.display_mode == 3 %}active{% endif %}"
+                                            data-coll-id="{{ k.id }}" data-display-mode="3">Minimal</button>
+
+
+                                    </div>
                                 </div>
+                                <!-- <hr class="w-25 my-2"> -->
 
                                 <!-- Rename Collection Form -->
-                                <form method="POST" class="rename-collection-form">
+                                <form method="POST" class="rename-collection-form mt-3">
                                     {% csrf_token %}
                                     <div><small>Rename Collection</small></div>
-                                    <input type="text" class="qw-100 my-1" name="new-collection-name">
+                                    <input type="text" class="qw-100 mb-1" name="new-collection-name">
                                     <input type="hidden" name="collection-position" value="{{k.position}}">
                                     <br />
-                                    <div class="d-flex justify-content-between">
-                                        <input type="submit" name="rename-collection-form"
-                                            class="btn--standard btn-sm mt-1 mr-2">
-                                        <input type="button" value="Delete" class="btn--red btn-sm" data-toggle="modal"
-                                            data-target="#modal-{{ k|replace_space }}">
-                                    </div>
+                                    <input type="submit" name="rename-collection-form"
+                                        class="btn--standard btn-sm mt-1 mr-2">
+                                    <input type="button" value="Delete" class="btn--red btn-sm" data-toggle="modal"
+                                        data-target="#modal-{{ k|replace_space }}">
                                 </form>
                             </div>
                         </div>
@@ -140,7 +149,7 @@
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">
                                 <!-- Render Individual Bookmarks -->
                                 {% for item in v %}
-                                <li id="{{item.position}}_." style="margin: 0.5rem 0.5rem 0.5rem 0;">
+                                <li id="{{item.position}}_." class="bookmark-styling">
                                     <div class="bm-handle-container d-flex
                                     {% if collection_being_sorted == k.name %}bm-sort-handle{% endif %}">
                                         <!-- icon image -->

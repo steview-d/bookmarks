@@ -37,7 +37,7 @@ $(document).ready(function() {
     // });
 
     // rename collection toggle
-    $(".rename-collection").on("click", function() {
+    $(".btn--collection-options").on("click", function() {
         $(this)
             .parent()
             .parent()
