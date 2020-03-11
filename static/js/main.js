@@ -270,7 +270,21 @@ $(document).ready(function() {
                 .toggleClass('bm-sort-handle');
             el.find('.bookmark-styling')
                 .toggleClass('bookmark-border');
+            el.find('.bm-options-icon')
+                .toggleClass('display-toggle');
             $(this).toggleClass('manual-sort-on');
+
+            // check if single column, and add scroll space
+            if (typeof num_columns !== 'undefined') {
+                if (num_columns == 1) {
+                    $(this)
+                        .parent()
+                        .parent()
+                        .parent()
+                        .find('.bm-handle-container')
+                        .toggleClass('add-scroll-space');
+                }
+            }
         });
     });
 

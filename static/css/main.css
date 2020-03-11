@@ -1873,7 +1873,7 @@ h4 > .fa-stop {
 }
 
 .bookmark-styling {
-  padding: .5rem .5rem .5rem 0;
+  padding: .5rem .2rem .5rem 0;
 }
 
 .bookmark-border {
@@ -1882,10 +1882,13 @@ h4 > .fa-stop {
 
 .bm-sort-handle {
   padding: .4rem;
-  margin-right: 1rem;
   border: 1px dashed #afafaf;
   background-color: #ffffff;
   opacity: .9;
+}
+
+.add-scroll-space {
+  margin-right: 3rem;
 }
 
 .bm-sort-container .ui-sortable-helper {

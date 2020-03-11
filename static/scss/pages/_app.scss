@@ -410,7 +410,7 @@
 }
 
 .bookmark-styling {
-    padding: .5rem .5rem .5rem 0;
+    padding: .5rem .2rem .5rem 0;
 }
 
 .bookmark-border {
@@ -420,11 +420,17 @@
 .bm-sort-handle {
     // background-color: #eee;
     padding: .4rem;
-    margin-right: 1rem;
+    // margin-right: 1rem;
     // border-radius: 2px;
     border: 1px dashed $light-grey;
     background-color: $white;
     opacity: .9;
+}
+
+// on 1 column displays, add a space to the right to allow
+// for scrolling on devices
+.add-scroll-space {
+    margin-right: 3rem;
 }
 
 .bm-sort-container .ui-sortable-helper {

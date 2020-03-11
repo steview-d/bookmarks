@@ -151,8 +151,9 @@
                                 {% for item in v %}
                                 <li id="{{item.position}}_." class="bookmark-styling 
                                         {% if collection_being_sorted != k.name %}bookmark-border{% endif %}">
-                                    <div class="bm-handle-container d-flex
-                                    {% if collection_being_sorted == k.name %}bm-sort-handle{% endif %}">
+                                    <div class="bm-handle-container d-flex 
+                                    {% if collection_being_sorted == k.name %}bm-sort-handle {% endif %}
+                                    {% if collection_being_sorted == k.name and num_of_columns == 1 %}add-scroll-space{% endif %}">
                                         <!-- icon image -->
                                         <a href="{{ item }}" target="_blank"
                                             class="bm-link text-decoration-none d-flex">
@@ -194,7 +195,7 @@
                                         </div>
 
                                         <!-- bookmark options dropdown -->
-                                        <div class="bm-options-icon">
+                                        <div class="bm-options-icon {% if collection_being_sorted == k.name %}display-toggle{% endif %}">
                                             <div id="bookmark-options" class="qbtn-group">
                                                 <div id="dropdown-bm-options" type="button" class="bm-options bm-options-{{ k.display_mode }}"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
