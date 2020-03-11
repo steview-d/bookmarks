@@ -83,12 +83,12 @@
         .bm-title-text {
             @include container-title-text;
         }
-        .bm-options-icon {
-            @include flex-none;
-            margin-left: 0.5rem;
-            font-size: 0.7rem;
-            padding: 0 0.25rem;
-        }
+        // .bm-options-icon {
+        //     @include flex-none;
+        //     margin-left: 0.5rem;
+        //     font-size: 0.7rem;
+        //     padding: 0 0.25rem;
+        // }
     }
 }
 
@@ -107,6 +107,10 @@
             border-radius: 5px;
         }
     }
+}
+
+.bm-options-icon {
+    margin-left: auto;
 }
 
 // ----------------------------------------------------------- bookmark styling
@@ -442,4 +446,36 @@
         transform: rotate(-2grad);
     }
 
+}
+
+#bookmark-options {
+    .dropdown-item:focus, .dropdown-item:hover {
+        color: $white;
+        text-decoration: none;
+        background-color: $onyx;
+    }
+}
+
+.bm-options {
+    color: $black;
+    // opacity: .7;
+
+    transition: opacity .2s ease-out;
+
+    &:hover {
+        // color: $light-grey;
+        opacity: .6;
+    }
+}
+
+.bm-options-1 {
+    font-size: 1.3rem;
+}
+
+.bm-options-2 {
+    font-size: 1.2rem;
+}
+
+.bm-options-3 {
+    margin-top: -.1rem;
 }

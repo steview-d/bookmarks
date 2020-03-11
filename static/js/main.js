@@ -46,6 +46,8 @@ $(document).ready(function() {
     });
 
     // bookmark options menu
+    // can likely delete if not in use
+    // used in 2 places - main app display & search page
     $(".bm-icon-toggle").on("click", function(e) {
         e.preventDefault();
         $(this)
@@ -263,10 +265,10 @@ $(document).ready(function() {
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
     bmSortButtons.forEach((key) => {
         $(key).on('click', function () {
-            const qqq = $(this).parent().parent().parent();
-            qqq.find('.bm-handle-container')
+            const el = $(this).parent().parent().parent();
+            el.find('.bm-handle-container')
                 .toggleClass('bm-sort-handle');
-            qqq.find('.bookmark-styling')
+            el.find('.bookmark-styling')
                 .toggleClass('bookmark-border');
             $(this).toggleClass('manual-sort-on');
         });
@@ -561,70 +563,77 @@ $(document).ready(function() {
         }
     });
 
-});
-
-// Create a default icon when displaying icons on add / edit / import page
-$('#use-default-icon').on('click', function () {
-    $('#img-preview').addClass('icon-display-hide');
-    $('#default-icon').removeClass('icon-display-hide');
-    $("#id_icon, #scraped_img").val('');
-    $('#use-default').val('true');
-    //clear value inside file upload field
-    $("#id_icon").next().text('Choose file');
-    updateDefaultIcon();
-});
 
 
-// -------------------------- Update letter for default icon on title change //
+    // Create a default icon when displaying icons on add / edit / import page
+    $('#use-default-icon').on('click', function () {
+        $('#img-preview').addClass('icon-display-hide');
+        $('#default-icon').removeClass('icon-display-hide');
+        $("#id_icon, #scraped_img").val('');
+        $('#use-default').val('true');
+        //clear value inside file upload field
+        $("#id_icon").next().text('Choose file');
+        updateDefaultIcon();
+    });
 
-const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const colorsList = [
-    '#698396',
-    '#a9c8c0',
-    '#dbbc8e',
-    '#ae8a8c',
-    '#f7f6cf',
-    '#e6a57e'];
 
-let titleTimer;
-let titleTimerLength = 1000;
+    // -------------------------- Update letter for default icon on title change //
 
-// check title timer
-$("#id_title").keyup(function() {
-    clearTimeout(titleTimer);
-    titleTimer = setTimeout(updateDefaultIcon, titleTimerLength);
-});
+    const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const colorsList = [
+        '#698396',
+        '#a9c8c0',
+        '#dbbc8e',
+        '#ae8a8c',
+        '#f7f6cf',
+        '#e6a57e'];
 
-function updateDefaultIcon() {
+    let titleTimer;
+    let titleTimerLength = 1000;
 
-    // set icon letter for default icon
-    let title = $('#id_title').val();
-    let firstLetter = title.charAt(0).toUpperCase();
-    $('#default-icon').find('span').text(firstLetter);
+    // check title timer
+    $("#id_title").keyup(function() {
+        clearTimeout(titleTimer);
+        titleTimer = setTimeout(updateDefaultIcon, titleTimerLength);
+    });
 
-    // set background color for default icon
-    let idx = lettersUpper.indexOf(firstLetter) + 1;
-    let bgColor = colorsList[idx % 6];
-    $('#default-icon').find('.no-icon').css({"background-color": bgColor});
-}
+    function updateDefaultIcon() {
 
-// update default-icon on page load
-if ($('#add-bookmark, edit-bookmark, #import-url').length){
-    updateDefaultIcon();
-}
+        // set icon letter for default icon
+        let title = $('#id_title').val();
+        let firstLetter = title.charAt(0).toUpperCase();
+        $('#default-icon').find('span').text(firstLetter);
 
-// close window after import
-$('#close-page').on('click', function () {
-    window.close();
-});
+        // set background color for default icon
+        let idx = lettersUpper.indexOf(firstLetter) + 1;
+        let bgColor = colorsList[idx % 6];
+        $('#default-icon').find('.no-icon').css({"background-color": bgColor});
+    }
 
-// add new collection
-$(".btn--add-collection").on("click", function() {
-    $(this)
-        .parent()
-        .next()
-        .slideToggle(200);
-    $(this)
-        .children()
-        .toggleClass('fa-chevron-circle-down fa-plus-circle');
+    // update default-icon on page load
+    if ($('#add-bookmark, edit-bookmark, #import-url').length){
+        updateDefaultIcon();
+    }
+
+    // close window after import
+    $('#close-page').on('click', function () {
+        window.close();
+    });
+
+    // add new collection
+    $(".btn--add-collection").on("click", function() {
+        $(this)
+            .parent()
+            .next()
+            .slideToggle(200);
+        $(this)
+            .children()
+            .toggleClass('fa-chevron-circle-down fa-plus-circle');
+    });
+
+    // testing
+    if (typeof num_columns !== 'undefined') {
+        console.log(num_columns);
+    }
+
 });

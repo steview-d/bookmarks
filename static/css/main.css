@@ -1519,15 +1519,6 @@ h4 > .fa-stop {
   text-overflow: ellipsis;
 }
 
-.bm-container .bm-title .bm-options-icon {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
-  margin-left: 0.5rem;
-  font-size: 0.7rem;
-  padding: 0 0.25rem;
-}
-
 .bm-icons-show-hide {
   display: none;
 }
@@ -1550,6 +1541,10 @@ h4 > .fa-stop {
   margin: 0.15rem 0.25rem 0.15rem 0;
   padding: 0.2rem 0.4rem;
   border-radius: 5px;
+}
+
+.bm-options-icon {
+  margin-left: auto;
 }
 
 .bm-text-container {
@@ -1930,6 +1925,34 @@ h4 > .fa-stop {
     -webkit-transform: rotate(-2grad);
             transform: rotate(-2grad);
   }
+}
+
+#bookmark-options .dropdown-item:focus, #bookmark-options .dropdown-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #343a40;
+}
+
+.bm-options {
+  color: #000000;
+  -webkit-transition: opacity .2s ease-out;
+  transition: opacity .2s ease-out;
+}
+
+.bm-options:hover {
+  opacity: .6;
+}
+
+.bm-options-1 {
+  font-size: 1.3rem;
+}
+
+.bm-options-2 {
+  font-size: 1.2rem;
+}
+
+.bm-options-3 {
+  margin-top: -.1rem;
 }
 
 .result-location {

@@ -173,23 +173,14 @@
                                             {% endif %}
                                         </a>
 
-                                        <div class="bm-text-container">
+                                        <div class="bm-text-container mr-3">
                                             <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
                                                 <div class="bm-container">
                                                     <div class="bm-title">
                                                         <span class="bm-title-text">{{ item.title }}</span>
-                                                        <span
-                                                            class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                                            role="button">
-                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                                            <small>Options</small>
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </a>
-
-                                            <!-- Bookmark Icons -->
-                                            {% include 'links/components/bookmark_option_icons.html' %}
 
                                             {% if k.display_mode != 3 %}
                                             <a href="{{ item }}" target="_blank" class="bm-link text-decoration-none">
@@ -201,6 +192,33 @@
                                             </a>
                                             {% endif %}
                                         </div>
+
+                                        <!-- bookmark options dropdown -->
+                                        <div class="bm-options-icon">
+                                            <div id="bookmark-options" class="qbtn-group">
+                                                <div id="dropdown-bm-options" type="button" class="bm-options bm-options-{{ k.display_mode }}"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                                </div>
+                                                <!-- dropdown choices -->
+                                                <div class="dropdown-menu dropdown-menu-right"
+                                                    aria-labelledby="dropdown-bm-options">
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'edit_bookmark' page=page bookmark=item.pk %}"><i
+                                                            class="fa fa-pencil-square-o mr-2"
+                                                            aria-hidden="true"></i>Edit</a>
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'move_bookmark' page=page bookmark=item.pk %}"><i
+                                                            class="fa fa-arrows-alt mr-2"
+                                                            aria-hidden="true"></i>Move</a>
+                                                    <button class="dropdown-item" data-toggle="modal"
+                                                        data-target="#modal-bm-{{ item.pk }}"><i
+                                                            class="fa fa-trash mr-2"
+                                                            aria-hidden="true"></i>Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </li>
                                 <!-- Bookmark Delete Modal -->
@@ -245,6 +263,12 @@
 
     </div>
 </div>
+
+<script>
+    // pass value for number of columns being displayed to js as ui differs based on
+    // if user has selected 1 column or > 1
+    var num_columns = "{{ num_of_columns }}"
+</script>
 
 {% endblock %}
 
