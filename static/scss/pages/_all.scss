@@ -71,6 +71,10 @@ h4 > .fa-stop {
     }
 }
 
+.display-toggle {
+    display: none;
+}
+
 
 // --------------------------------------------------------------------- advert
 
@@ -86,23 +90,6 @@ h4 > .fa-stop {
 .no-ad-spacer {
     height: 3rem;
 }
-
-// -------------------------------------------------------------- ajax progress
-// -------------------------------- here for .js to use as required, to control
-// -------------------------------------the display of ajax progress indicators
-
-.ajax-progress-hide {
-    display: none;
-}
-
-.ajax-progress-show {
-    display: inline-block;
-}
-
-.display-toggle {
-    display: none;
-}
-
 
 // ---------------------------------------------------------- main content area
 // ------------------------------------- applies to main app and settings pages

@@ -1020,6 +1020,10 @@ h4 > .fa-stop {
   left: 8%;
 }
 
+.display-toggle {
+  display: none;
+}
+
 #advert-block {
   margin: 3rem 0 1rem;
 }
@@ -1032,18 +1036,6 @@ h4 > .fa-stop {
 
 .no-ad-spacer {
   height: 3rem;
-}
-
-.ajax-progress-hide {
-  display: none;
-}
-
-.ajax-progress-show {
-  display: inline-block;
-}
-
-.display-toggle {
-  display: none;
 }
 
 #content {
@@ -2281,7 +2273,7 @@ h4 > .fa-stop {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
   z-index: 2000;
 }
 /*# sourceMappingURL=main.css.map */

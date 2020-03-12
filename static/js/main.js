@@ -94,7 +94,8 @@ $(document).ready(function() {
             postData = newOrder.join(",");
 
             // turn on spinner
-            $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+            // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+            $('#ajax-progress-spinner').toggleClass("display-toggle");
 
             $.ajax({
                 type: "POST",
@@ -106,7 +107,8 @@ $(document).ready(function() {
                 success: function(data) {
                     if (data.success) {
                         // turn off spinner
-                        $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+                        // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
+                        $('#ajax-progress-spinner').toggleClass("display-toggle");
                         location.reload();
                     }
                 }
@@ -175,7 +177,8 @@ $(document).ready(function() {
                 let postData = JSON.stringify(new_collection_order);
 
                 // turn on spinner
-                $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
+                // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
+                $('#ajax-progress-spinner').toggleClass("display-toggle");
 
                 $.ajax({
                     type: "POST",
@@ -188,7 +191,8 @@ $(document).ready(function() {
                     success: function(data) {
                         if (data.success) {
                             // turn off spinner
-                            $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
+                            // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
+                            $('#ajax-progress-spinner').toggleClass("display-toggle");
                             location.reload();
                         }
                     }
@@ -235,7 +239,7 @@ $(document).ready(function() {
                 postData = newOrder.join(",");
 
                 // turn on spinner
-                $('#ajax-progress-bookmark').toggleClass("display-toggle");
+                $('#ajax-progress-spinner').toggleClass("display-toggle");
 
                 $.ajax({
                     type: "POST",
@@ -251,7 +255,7 @@ $(document).ready(function() {
                     success: function(data) {
                         if (data.success) {
                             // turn off spinner
-                            $('#ajax-progress-bookmark').toggleClass("display-toggle");
+                            $('#ajax-progress-spinner').toggleClass("display-toggle");
                             location.reload();
                         }
                     }
