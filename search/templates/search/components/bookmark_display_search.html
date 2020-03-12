@@ -1,64 +1,78 @@
+{% load icon_styling %}
 {% load modal_id_gens %}
 
 <div class="row">
     <div class="col-12 col-md-11 col-lg-9 col-xl-8 mx-auto p-3">
         <ul class="list-unstyled">
+
             {% for result in search_results %}
-            <li id="{{result.position}}_." style="margin: 0.5rem">
-                <!-- Bookmark title & options -->
-                <div class="col-12">
-                    <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
-                        <div class="bm-container">
-                            <div class="bm-title">
-                                <span class="bm-title-text">{{ result.title }}</span>
-                                <span class="btn btn-sm btn-outline-secondary bm-options-icon bm-icon-toggle"
-                                    role="button">
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                    <small>Options</small>
-                                </span>
+
+            <li id="{{result.position}}_." class="bookmark-styling bookmark-border">
+                <div class="d-flex">
+                    <!-- icon image -->
+                    <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none d-flex">
+                        {% if result.icon %}
+                        <img src="{{ MEDIA_URL }}{{ result.icon }}" alt="icon" class="my-auto" style="
+                        width: 54px;
+                        height: 54px;
+                        flex-shrink: 0;">
+                        {% else %}
+                        <div class="default-icon my-auto" style="
+                        width: 54px;
+                        height: 54px;
+                        background-color:{{ result.title|icon_color }};
+                        font-size: 36px;
+                        ">
+                            <span class="icon-text">{{ result.title|icon_letter }}</span>
+                        </div>
+                        {% endif %}
+                    </a>
+
+                    <div class="bm-text-container mr-3">
+                        <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
+                            <div class="bm-container">
+                                <div class="bm-title">
+                                    <span class="bm-title-text">{{ result.title }}</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
+                            <div class="link-desc text-trunc tippy-desc">{{ result.description }}
+                            </div>
+                            <div class="link-url text-trunc">{{ result }}</div>
+                        </a>
+                    </div>
+
+                    <!-- bookmark options dropdown -->
+                    <div class="bm-options-icon">
+                        <div id="bookmark-options">
+                            <div id="dropdown-bm-search-options" role="button"
+                                class="bm-options bm-options-1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                            </div>
+                            <!-- dropdown choices -->
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-bm-search-options">
+                                <a class="dropdown-item"
+                                    href="{% url 'edit_bookmark' page=page bookmark=result.pk %}"><i
+                                        class="fa fa-pencil-square-o mr-2" aria-hidden="true"></i>Edit</a>
+                                <a class="dropdown-item"
+                                    href="{% url 'move_bookmark' page=page bookmark=result.pk %}"><i
+                                        class="fa fa-arrows-alt mr-2" aria-hidden="true"></i>Move</a>
+                                <button class="dropdown-item" data-toggle="modal"
+                                    data-target="#modal-bm-{{ result.pk }}"><i class="fa fa-trash mr-2"
+                                        aria-hidden="true"></i>Delete</button>
                             </div>
                         </div>
-                    </a>
-                    <!-- Bookmark Option Icons -->
-                    <div class="bm-icons-show-hide">
-                        <div class="bm-icons-container">
-                            <a href="{% url 'edit_bookmark' page=page bookmark=result.pk %}"
-                                class="btn btn-outline-secondary bm-icon" role="button">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                <small class="ml-1">Edit</small>
-                            </a>
-                            <a href="{% url 'move_bookmark' page=page bookmark=result.pk %}"
-                                class="btn btn-outline-secondary bm-icon" role="button">
-                                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                <small class="ml-1">Move</small>
-                            </a>
-                            <button class="btn btn-outline-secondary bm-icon" data-toggle="modal"
-                                data-target="#modal-bm-{{ result.pk }}"><i class="fa fa-trash"
-                                    aria-hidden="true"></i><small class="ml-1">Delete</small></button>
-                        </div>
                     </div>
-                </div>
-                <!-- Bookmark Description & Link -->
-                <div class="col-12">
-                    <a href="{{ result }}" target="_blank" class="bm-link text-decoration-none">
-                        <div class="link-desc text-trunc">{{ result.description }}</div>
-                        <div class="link-url text-trunc">{{ result }}</div>
-                    </a>
-                </div>
-                <!-- Bookmark Location -->
-                <div class="col-12">
-                    <a href="{% url 'links' page=result.bookmark_page %}"
-                        class="btn btn-outline-secondary result-location">
-                        <span><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></span>
-                        <span class="page">Page: {{ result.bookmark_page }}.</span>
-                        <span class="collection">Collection: {{ result.collection }}.</span>
-                    </a>
+
                 </div>
             </li>
+
             <!-- Bookmark Delete Modal -->
             {% include 'links/components/delete_modal.html' with id=result.pk|bookmark_id item_to_delete=result.pk object=result.url params=bm_delete_modal %}
 
-            <hr>
             {% endfor %}
         </ul>
     </div>

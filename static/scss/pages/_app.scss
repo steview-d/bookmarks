@@ -455,6 +455,7 @@
 }
 
 #bookmark-options {
+
     .dropdown-item:focus, .dropdown-item:hover {
         color: $white;
         text-decoration: none;
@@ -464,12 +465,10 @@
 
 .bm-options {
     color: $black;
-    // opacity: .7;
 
     transition: opacity .2s ease-out;
 
     &:hover {
-        // color: $light-grey;
         opacity: .6;
     }
 }

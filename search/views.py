@@ -22,6 +22,8 @@ def search(request):
     q = request.GET.get('q')
     q = "" if q is None else q
 
+    results_per_page = 10
+
     # find bookmarks based on search query
     search_qs = Bookmark.objects.filter(
         user=request.user, title__icontains=q
@@ -30,7 +32,7 @@ def search(request):
     # pagination
     results_page = request.GET.get('rpage', 1)
 
-    paginator = Paginator(search_qs, 5)
+    paginator = Paginator(search_qs, results_per_page)
     try:
         search_results = paginator.page(results_page)
     except PageNotAnInteger:

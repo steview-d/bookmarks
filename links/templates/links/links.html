@@ -152,8 +152,8 @@
                                 <li id="{{item.position}}_." class="bookmark-styling 
                                         {% if collection_being_sorted != k.name %}bookmark-border{% endif %}">
                                     <div class="bm-handle-container d-flex 
-                                    {% if collection_being_sorted == k.name %}bm-sort-handle {% endif %}
-                                    {% if collection_being_sorted == k.name and num_of_columns == 1 %}add-scroll-space{% endif %}">
+                                            {% if collection_being_sorted == k.name %}bm-sort-handle {% endif %}
+                                            {% if collection_being_sorted == k.name and num_of_columns == 1 %}add-scroll-space{% endif %}">
                                         <!-- icon image -->
                                         <a href="{{ item }}" target="_blank"
                                             class="bm-link text-decoration-none d-flex">
