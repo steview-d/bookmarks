@@ -947,6 +947,7 @@ input {
   padding: 0.5rem;
   font-size: 1.75rem;
   color: #ffffff;
+  border-radius: 3px;
   -webkit-transition: 0.5s ease-out;
   transition: 0.5s ease-out;
 }
