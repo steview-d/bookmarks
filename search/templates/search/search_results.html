@@ -8,7 +8,7 @@
 <!-- check if needed? -->
 {% load replace_space %}
 
-<div class="flex-wrapper">
+<div is="search-results" class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -20,28 +20,29 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container-fluid">
+        <div class="container app-min-height">
+            <!-- page heading -->
             <div class="row">
-                <div class="col-12">
-                    <h3>Showing results of your search for '{{ q }}'.</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
+                    <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Search Results</h4>
+                    <h6 class="text-center">You searched for <span class="label">
+                        {% if q != "" %} {{ q }} {% else %}ALL BOOKMARKS{% endif %}</span></h6>
+
                     <!-- Results Summary -->
-                    <p>Showing {{ search_results.start_index }} - {{ search_results.end_index }} of {{ p.count }}
+                    <p class="text-center mt-4">Showing {{ search_results.start_index }} -
+                        {{ search_results.end_index }} of {{ p.count }}
                         bookmarks</p>
+                    <hr class="w-50">
                     <!-- Pagination -->
                     {% include 'search/components/pagination.html' %}
                 </div>
             </div>
+
             <!-- Bookmark Display -->
             {% include 'search/components/bookmark_display_search.html' %}
 
             <!-- Pagination -->
             {% include 'search/components/pagination.html' %}
-
-
 
         </div>
         <!-- banner ad -->
