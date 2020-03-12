@@ -1954,6 +1954,7 @@ h4 > .fa-stop {
   }
 }
 
+.add-collection input[type=text],
 .rename-collection-form input[type=text] {
   width: 100%;
   max-width: 200px;

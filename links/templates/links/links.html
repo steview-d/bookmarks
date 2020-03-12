@@ -134,7 +134,7 @@
                                 <form method="POST" class="rename-collection-form mt-3">
                                     {% csrf_token %}
                                     <div><small>Rename Collection</small></div>
-                                    <input type="text" class="qw-100 mb-1" name="new-collection-name">
+                                    <input type="text" class="mb-1" name="new-collection-name">
                                     <input type="hidden" name="collection-position" value="{{k.position}}">
                                     <br />
                                     <input type="submit" name="rename-collection-form"
