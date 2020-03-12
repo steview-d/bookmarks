@@ -351,28 +351,8 @@
 
 // dropdown
 
-.dropdown-animation {
-    animation-duration: 0.25s;
-    animation-fill-mode: both;
-}
-
-@keyframes slide-transition {
-    0% {
-        transform: translate(0);
-        opacity: 0;
-    }
-    100% {
-        transform: translate(-1px, 2rem);
-        opacity: 1;
-    }
-    0% {
-        transform: translate(0);
-        opacity: 0;
-    }
-}
-
-.slide-transition {
-    animation-name: slide-transition;
+.dropdown-slide-effect {
+    animation: dropdown-slide-effect .25s both;
 }
 
 // manual collection sort
@@ -434,27 +414,16 @@
 }
 
 .bm-sort-container .ui-sortable-helper {
-    animation: wobble .6s ease-out forwards;
+    animation: wobble-effect .4s ease-out forwards;
 
     .bm-sort-handle {
         border-color: $black;
     }
 }
 
-@keyframes wobble {
-    0% {
-        transform: rotate(0);
-    }
-    50% {
-        transform: rotate(-3grad);
-    }
-    100% {
-        transform: rotate(-2grad);
-    }
-
-}
-
 #bookmark-options {
+
+    position: relative;
 
     .dropdown-item:focus, .dropdown-item:hover {
         color: $white;
@@ -483,4 +452,17 @@
 
 .bm-options-3 {
     margin-top: -.1rem;
+}
+
+// bookmark icon dropdown effect
+.bookmark-options-effect-1 {
+    animation: bookmark-options-effect-1 .25s forwards;
+}
+
+.bookmark-options-effect-2 {
+    animation: bookmark-options-effect-2 .25s forwards;
+}
+
+.bookmark-options-effect-3 {
+    animation: bookmark-options-effect-3 .25s forwards;
 }

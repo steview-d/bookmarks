@@ -1,0 +1,61 @@
+// slide effect for some dropdown menus
+@keyframes dropdown-slide-effect {
+    0% {
+        transform: translate(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-1px, 2rem);
+        opacity: 1;
+    }
+}
+
+// effect used with bookmark options dropdown
+// x offset differs slightly depending on display type due to
+// differences in icon width.
+@keyframes bookmark-options-effect-1 {
+    0% {
+        transform: translate(-8.5rem, -.5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-8.5rem, 2px);
+        opacity: 1;
+    }
+}
+
+@keyframes bookmark-options-effect-2 {
+    0% {
+        transform: translate(-8.6rem, -.5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-8.6rem, 2px);
+        opacity: 1;
+    }
+}
+
+@keyframes bookmark-options-effect-3 {
+    0% {
+        transform: translate(-8.8rem, -.5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-8.8rem, 2px);
+        opacity: 1;
+    }
+}
+
+// wobble animation when user grabs a bookmark during sort
+@keyframes wobble-effect {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(-3grad);
+    }
+    100% {
+        transform: rotate(-2grad);
+    }
+
+}

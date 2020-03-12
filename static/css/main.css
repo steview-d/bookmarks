@@ -31,6 +31,140 @@ input {
   background-color: #343a40;
 }
 
+@-webkit-keyframes dropdown-slide-effect {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-1px, 2rem);
+            transform: translate(-1px, 2rem);
+    opacity: 1;
+  }
+}
+
+@keyframes dropdown-slide-effect {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-1px, 2rem);
+            transform: translate(-1px, 2rem);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes bookmark-options-effect-1 {
+  0% {
+    -webkit-transform: translate(-8.5rem, -0.5rem);
+            transform: translate(-8.5rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.5rem, 2px);
+            transform: translate(-8.5rem, 2px);
+    opacity: 1;
+  }
+}
+
+@keyframes bookmark-options-effect-1 {
+  0% {
+    -webkit-transform: translate(-8.5rem, -0.5rem);
+            transform: translate(-8.5rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.5rem, 2px);
+            transform: translate(-8.5rem, 2px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes bookmark-options-effect-2 {
+  0% {
+    -webkit-transform: translate(-8.6rem, -0.5rem);
+            transform: translate(-8.6rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.6rem, 2px);
+            transform: translate(-8.6rem, 2px);
+    opacity: 1;
+  }
+}
+
+@keyframes bookmark-options-effect-2 {
+  0% {
+    -webkit-transform: translate(-8.6rem, -0.5rem);
+            transform: translate(-8.6rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.6rem, 2px);
+            transform: translate(-8.6rem, 2px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes bookmark-options-effect-3 {
+  0% {
+    -webkit-transform: translate(-8.8rem, -0.5rem);
+            transform: translate(-8.8rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.8rem, 2px);
+            transform: translate(-8.8rem, 2px);
+    opacity: 1;
+  }
+}
+
+@keyframes bookmark-options-effect-3 {
+  0% {
+    -webkit-transform: translate(-8.8rem, -0.5rem);
+            transform: translate(-8.8rem, -0.5rem);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(-8.8rem, 2px);
+            transform: translate(-8.8rem, 2px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes wobble-effect {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(-3grad);
+            transform: rotate(-3grad);
+  }
+  100% {
+    -webkit-transform: rotate(-2grad);
+            transform: rotate(-2grad);
+  }
+}
+
+@keyframes wobble-effect {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(-3grad);
+            transform: rotate(-3grad);
+  }
+  100% {
+    -webkit-transform: rotate(-2grad);
+            transform: rotate(-2grad);
+  }
+}
+
 .label {
   padding: 0.2rem 0.4rem;
   margin: 0 0.2rem;
@@ -1794,52 +1928,9 @@ h4 > .fa-stop {
   border: 1px solid #dc3545;
 }
 
-.dropdown-animation {
-  -webkit-animation-duration: 0.25s;
-          animation-duration: 0.25s;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-
-@-webkit-keyframes slide-transition {
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translate(-1px, 2rem);
-            transform: translate(-1px, 2rem);
-    opacity: 1;
-  }
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-transition {
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translate(-1px, 2rem);
-            transform: translate(-1px, 2rem);
-    opacity: 1;
-  }
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-    opacity: 0;
-  }
-}
-
-.slide-transition {
-  -webkit-animation-name: slide-transition;
-          animation-name: slide-transition;
+.dropdown-slide-effect {
+  -webkit-animation: dropdown-slide-effect .25s both;
+          animation: dropdown-slide-effect .25s both;
 }
 
 .manual-sort-on {
@@ -1892,42 +1983,16 @@ h4 > .fa-stop {
 }
 
 .bm-sort-container .ui-sortable-helper {
-  -webkit-animation: wobble .6s ease-out forwards;
-          animation: wobble .6s ease-out forwards;
+  -webkit-animation: wobble-effect .4s ease-out forwards;
+          animation: wobble-effect .4s ease-out forwards;
 }
 
 .bm-sort-container .ui-sortable-helper .bm-sort-handle {
   border-color: #000000;
 }
 
-@-webkit-keyframes wobble {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  50% {
-    -webkit-transform: rotate(-3grad);
-            transform: rotate(-3grad);
-  }
-  100% {
-    -webkit-transform: rotate(-2grad);
-            transform: rotate(-2grad);
-  }
-}
-
-@keyframes wobble {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  50% {
-    -webkit-transform: rotate(-3grad);
-            transform: rotate(-3grad);
-  }
-  100% {
-    -webkit-transform: rotate(-2grad);
-            transform: rotate(-2grad);
-  }
+#bookmark-options {
+  position: relative;
 }
 
 #bookmark-options .dropdown-item:focus, #bookmark-options .dropdown-item:hover {
@@ -1958,6 +2023,21 @@ h4 > .fa-stop {
   margin-top: -.1rem;
 }
 
+.bookmark-options-effect-1 {
+  -webkit-animation: bookmark-options-effect-1 .25s forwards;
+          animation: bookmark-options-effect-1 .25s forwards;
+}
+
+.bookmark-options-effect-2 {
+  -webkit-animation: bookmark-options-effect-2 .25s forwards;
+          animation: bookmark-options-effect-2 .25s forwards;
+}
+
+.bookmark-options-effect-3 {
+  -webkit-animation: bookmark-options-effect-3 .25s forwards;
+          animation: bookmark-options-effect-3 .25s forwards;
+}
+
 .result-location {
   font-size: 0.8rem;
   margin-top: 0.35rem;
@@ -1979,6 +2059,11 @@ h4 > .fa-stop {
   background-color: #343a40;
   color: #ffffff;
   border-color: #343a40;
+}
+
+.dropdown-search-effect {
+  -webkit-animation: bookmark-options-effect .25s forwards;
+          animation: bookmark-options-effect .25s forwards;
 }
 
 .spinner {
