@@ -14,6 +14,7 @@ $(document).ready(function() {
         allowHTML: false,
         delay: 700,
         theme: "dark",
+        touch: false,
         onShow(instance) {
             instance.setContent(instance.reference.innerText);
         }
