@@ -466,3 +466,11 @@
 .bookmark-options-effect-3 {
     animation: bookmark-options-effect-3 .25s forwards;
 }
+
+#bookmark-display-options {
+
+    button:focus {
+        outline: none;
+    }
+    
+}

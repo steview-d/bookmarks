@@ -1,10 +1,10 @@
 // --------------------------------------------------------------------- search
 
-.result-location {
-    font-size: 0.8rem;
-    margin-top: 0.35rem;
-    padding: 0.15rem 0.25rem;
-}
+// .result-location {
+//     font-size: 0.8rem;
+//     margin-top: 0.35rem;
+//     padding: 0.15rem 0.25rem;
+// }
 
 .page-link {
     border-color: $light-grey;
@@ -14,7 +14,10 @@
         background-color: $onyx;
         color: $white;
         border-color: $onyx;
+    }
 
+    &:focus {
+    box-shadow: none;
     }
 }
 
@@ -22,8 +25,4 @@
     background-color: $onyx;
     color: $white;
     border-color: $onyx;
-}
-
-.dropdown-search-effect {
-    animation: bookmark-options-effect .25s forwards;
 }

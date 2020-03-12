@@ -2038,10 +2038,8 @@ h4 > .fa-stop {
           animation: bookmark-options-effect-3 .25s forwards;
 }
 
-.result-location {
-  font-size: 0.8rem;
-  margin-top: 0.35rem;
-  padding: 0.15rem 0.25rem;
+#bookmark-display-options button:focus {
+  outline: none;
 }
 
 .page-link {
@@ -2055,15 +2053,15 @@ h4 > .fa-stop {
   border-color: #343a40;
 }
 
+.page-link:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .page-item.active .page-link {
   background-color: #343a40;
   color: #ffffff;
   border-color: #343a40;
-}
-
-.dropdown-search-effect {
-  -webkit-animation: bookmark-options-effect .25s forwards;
-          animation: bookmark-options-effect .25s forwards;
 }
 
 .spinner {
