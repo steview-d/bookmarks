@@ -429,12 +429,16 @@ input {
 }
 
 .btn--square:hover {
-  background-color: #175c9d;
+  background-color: #343a40;
   color: #ffffff;
 }
 
 .btn--square:focus {
   outline: none;
+}
+
+.btn--square:hover {
+  opacity: .8;
 }
 
 .btn--square-invert {
@@ -465,12 +469,16 @@ input {
 }
 
 .btn--square-invert:hover {
-  background-color: #175c9d;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .btn--square-invert:focus {
   outline: none;
+}
+
+.btn--square-invert:hover {
+  opacity: .8;
 }
 
 .btn--page-options {

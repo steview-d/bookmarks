@@ -92,11 +92,19 @@
 }
 
 .btn--square {
-    @include square-button($dark-grey, $white, $logo-blue, $white);
+    @include square-button($dark-grey, $white, $onyx, $white);
+
+    &:hover {
+        opacity: .8;
+    }
 }
 
 .btn--square-invert {
-    @include square-button($white, $black, $logo-blue, $white);
+    @include square-button($white, $black, $white, $black);
+
+        &:hover {
+            opacity: .8;
+        }
 }
 
 .btn--page-options {
