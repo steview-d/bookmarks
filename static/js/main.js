@@ -658,8 +658,51 @@ $(document).ready(function() {
     });
 
     // testing
-    if (typeof num_columns !== 'undefined') {
-        console.log(num_columns);
+    // if (typeof num_columns !== 'undefined') {
+    //     console.log(num_columns);
+    // }
+
+
+    // mobile responsiveness - making it work on small views
+
+    $(window).on('resize', function() {
+        currentWidth = window.innerWidth;
+
+        switch (parseInt(num_columns)) {
+            case 2:
+                if (currentWidth < 576) {
+                    width_warning();
+                }
+                break;
+            case 3:
+                if (currentWidth < 992) {
+                    width_warning();
+                }
+                break;
+            case 4:
+                if (currentWidth < 992) {
+                    width_warning();
+                }
+                break;
+            case 5:
+                if (currentWidth < 1200) {
+                    width_warning();
+                }
+                break;
+        }
+
+
+
+    });
+
+    // function to populate width_warning.html
+    function width_warning () {
+
+    }
+
+
+    if ($('#app').length) {
+        // stuff
     }
 
 });
