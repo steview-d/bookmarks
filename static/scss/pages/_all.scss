@@ -2,6 +2,10 @@
 
 // ----------------------------------------------------------------- re-usables
 
+.default-bg-color {
+    background-color: #fafafa;
+}
+
 .border {
     @include black-border;
 }

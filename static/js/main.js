@@ -519,12 +519,20 @@ $(document).ready(function() {
             $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600, function () {
                 $('#pages-nav').addClass('nav-border');
             });
+            if ($('#login, #register, .pw-control').length) {
+                $('#pages-nav').css({ 'background-color': 'rgba(250, 250, 250, 0.9)',
+                    transition: 'background-color 1s'});
+            }
             
         } else {
             $('.navbar-title').css({ opacity: 1}).slideDown(600);
             $('.mobile-menu').css({ opacity: 1}).slideDown(600);
             if (!window.location.href.includes('accounts')) {
                 $('#pages-nav').removeClass('nav-border');
+            }
+            if ($('#login, #register, .pw-control').length) {
+                $('#pages-nav').css({ 'background-color': 'rgba(250, 250, 250, 1)',
+                transition: 'background-color 1s'});
             }
 
         }

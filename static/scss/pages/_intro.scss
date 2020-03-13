@@ -8,7 +8,7 @@
 }
 
 #headline-section {
-    @include background-overlay(0.98);
+    @include default-bg-color
 }
 
 // 4x4 icon grid
@@ -37,7 +37,8 @@
 }
 
 #features-section {
-    background-color: $gunmetal-alpha;
+    // background-color: $gunmetal-alpha;
+    background-color: #292e33;
     color: white;
 
     img {
@@ -70,7 +71,8 @@
 }
 
 #testimonials-section {
-    background-color: $dark-blue-alpha;
+    // background-color: $dark-blue-alpha;
+    background-color: $dark-blue;
     color: $white;
 
     h1 {
@@ -148,7 +150,7 @@
 }
 
 #pricing-text-section {
-    @include background-overlay(0.98);
+    @include default-bg-color;
 
     img {
         width: 80%;
@@ -160,7 +162,8 @@
 }
 
 #pricing-table-section {
-    background-color: $gunmetal-alpha;
+    // background-color: $gunmetal-alpha;
+    background-color: $gunmetal;
 
     table {
         background-color: transparent;
@@ -182,7 +185,8 @@
 }
 
 #faq-section {
-    @include background-overlay(0.98);
+    // @include background-overlay(0.98);
+    @include default-bg-color;
 
     h2 {
         display: inline-block;
@@ -208,7 +212,8 @@
 
     .card {
         border-width: 0;
-        background-color: rgba(255, 255, 255, 0.8);
+        // background-color: rgba(255, 255, 255, 0.8);
+        @include default-bg-color;
 
         .card-header {
             display: flex;
@@ -238,7 +243,8 @@
 }
 
 #contact-form-section {
-    background-color: $dark-blue-alpha;
+    // background-color: $dark-blue-alpha;
+    background-color: $dark-blue;
     color: $white;
 
     .form-container {

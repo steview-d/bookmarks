@@ -2,7 +2,7 @@
 
 <!-- nav bar -->
 <nav id="pages-nav" class="container-fluid
-    {% if 'accounts' in request.path %} nav-border{% endif %}">
+    {% if 'accounts' in request.path %} nav-border nav-bg-accounts{% else %} nav-bg{% endif %}">
     <!-- navbar title -->
     <div class="navbar-title display-4">Links</div>
 
@@ -26,7 +26,6 @@
     </div>
     <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{% url 'register' %}">Register</a>
     </div>
 

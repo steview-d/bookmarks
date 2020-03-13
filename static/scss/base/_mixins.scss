@@ -1,5 +1,9 @@
 // --------------------------------------------------------------------- mixins
 
+@mixin default-bg-color {
+    background-color: #fafafa;
+}
+
 @mixin black-border {
     border: 1px solid $black;
 }
