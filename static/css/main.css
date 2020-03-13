@@ -1601,7 +1601,7 @@ h4 > .fa-stop {
   background-color: #343a40;
   color: #ffffff;
   border-radius: 5px 5px 0 0;
-  padding: .4rem .5rem .4rem 1rem;
+  padding: 0.4rem 0.5rem 0.4rem 1rem;
 }
 
 .collection-container .collection-title {
@@ -1946,8 +1946,8 @@ h4 > .fa-stop {
 }
 
 .dropdown-slide-effect {
-  -webkit-animation: dropdown-slide-effect .25s both;
-          animation: dropdown-slide-effect .25s both;
+  -webkit-animation: dropdown-slide-effect 0.25s both;
+          animation: dropdown-slide-effect 0.25s both;
 }
 
 .manual-sort-on {
@@ -1958,21 +1958,21 @@ h4 > .fa-stop {
 .no-collections-box {
   background-color: rgba(41, 46, 51, 0.99);
   color: #ffffff;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
-.no-collections-box input[type=text] {
+.no-collections-box input[type="text"] {
   width: 80%;
 }
 
 @media only screen and (min-width: 576px) {
-  .no-collections-box input[type=text] {
+  .no-collections-box input[type="text"] {
     width: 50%;
   }
 }
 
-.add-collection input[type=text],
-.rename-collection-form input[type=text] {
+.add-collection input[type="text"],
+.rename-collection-form input[type="text"] {
   width: 100%;
   max-width: 200px;
 }
@@ -1982,7 +1982,7 @@ h4 > .fa-stop {
 }
 
 .bookmark-styling {
-  padding: .5rem .2rem .5rem 0;
+  padding: 0.5rem 0.2rem 0.5rem 0;
 }
 
 .bookmark-border {
@@ -1990,10 +1990,10 @@ h4 > .fa-stop {
 }
 
 .bm-sort-handle {
-  padding: .4rem;
+  padding: 0.4rem;
   border: 1px dashed #afafaf;
   background-color: #ffffff;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .add-scroll-space {
@@ -2001,8 +2001,8 @@ h4 > .fa-stop {
 }
 
 .bm-sort-container .ui-sortable-helper {
-  -webkit-animation: wobble-effect .4s ease-out forwards;
-          animation: wobble-effect .4s ease-out forwards;
+  -webkit-animation: wobble-effect 0.4s ease-out forwards;
+          animation: wobble-effect 0.4s ease-out forwards;
 }
 
 .bm-sort-container .ui-sortable-helper .bm-sort-handle {
@@ -2013,7 +2013,8 @@ h4 > .fa-stop {
   position: relative;
 }
 
-#bookmark-options .dropdown-item:focus, #bookmark-options .dropdown-item:hover {
+#bookmark-options .dropdown-item:focus,
+#bookmark-options .dropdown-item:hover {
   color: #ffffff;
   text-decoration: none;
   background-color: #343a40;
@@ -2021,12 +2022,12 @@ h4 > .fa-stop {
 
 .bm-options {
   color: #000000;
-  -webkit-transition: opacity .2s ease-out;
-  transition: opacity .2s ease-out;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 
 .bm-options:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .bm-options-1 {
@@ -2038,26 +2039,55 @@ h4 > .fa-stop {
 }
 
 .bm-options-3 {
-  margin-top: -.1rem;
+  margin-top: -0.1rem;
 }
 
 .bookmark-options-effect-1 {
-  -webkit-animation: bookmark-options-effect-1 .25s forwards;
-          animation: bookmark-options-effect-1 .25s forwards;
+  -webkit-animation: bookmark-options-effect-1 0.25s forwards;
+          animation: bookmark-options-effect-1 0.25s forwards;
 }
 
 .bookmark-options-effect-2 {
-  -webkit-animation: bookmark-options-effect-2 .25s forwards;
-          animation: bookmark-options-effect-2 .25s forwards;
+  -webkit-animation: bookmark-options-effect-2 0.25s forwards;
+          animation: bookmark-options-effect-2 0.25s forwards;
 }
 
 .bookmark-options-effect-3 {
-  -webkit-animation: bookmark-options-effect-3 .25s forwards;
-          animation: bookmark-options-effect-3 .25s forwards;
+  -webkit-animation: bookmark-options-effect-3 0.25s forwards;
+          animation: bookmark-options-effect-3 0.25s forwards;
 }
 
 #bookmark-display-options button:focus {
   outline: none;
+}
+
+#overlay-width-warning {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, 0.5);
+  z-index: 2000;
+}
+
+.hv-center {
+  width: 90px;
+  height: 90px;
+  left: 35%;
+  top: 35%;
+  position: absolute;
+  z-index: 3000;
+}
+
+.warning-box {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 30vh;
+  min-width: 30vw;
 }
 
 .page-link {
@@ -2292,7 +2322,7 @@ h4 > .fa-stop {
   }
 }
 
-#overlay {
+#overlay-spinner {
   position: fixed;
   width: 100%;
   height: 100%;

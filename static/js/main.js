@@ -279,8 +279,8 @@ $(document).ready(function() {
             $(this).toggleClass('manual-sort-on');
 
             // check if single column, and add scroll space
-            if (typeof num_columns !== 'undefined') {
-                if (num_columns == 1) {
+            if (typeof numColumns !== 'undefined') {
+                if (numColumns == 1) {
                     $(this)
                         .parent()
                         .parent()
@@ -658,8 +658,8 @@ $(document).ready(function() {
     });
 
     // testing
-    // if (typeof num_columns !== 'undefined') {
-    //     console.log(num_columns);
+    // if (typeof numColumns !== 'undefined') {
+    //     console.log(numColumns);
     // }
 
 
@@ -668,25 +668,26 @@ $(document).ready(function() {
     $(window).on('resize', function() {
         currentWidth = window.innerWidth;
 
-        switch (parseInt(num_columns)) {
+        // put this into a func so can also be run on page load
+        switch (parseInt(numColumns)) {
             case 2:
                 if (currentWidth < 576) {
-                    width_warning();
+                    width_warning(numColumns, 1, pageName);
                 }
                 break;
             case 3:
                 if (currentWidth < 992) {
-                    width_warning();
+                    width_warning(numColumns, 2, pageName);
                 }
                 break;
             case 4:
                 if (currentWidth < 992) {
-                    width_warning();
+                    width_warning(numColumns, 2, pageName);
                 }
                 break;
             case 5:
                 if (currentWidth < 1200) {
-                    width_warning();
+                    width_warning(numColumns, 4, pageName);
                 }
                 break;
         }
@@ -696,13 +697,24 @@ $(document).ready(function() {
     });
 
     // function to populate width_warning.html
-    function width_warning () {
-
+    function width_warning (currentColumns, recMaxColumns, pageName) {
+        $('#width-warning').removeClass('display-toggle');
+        $('.actual-columns').text(currentColumns);
+        $('.rec-columns').text(recMaxColumns);
+        changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
+        $('#width-warning-change').attr('href', changeColumnsUrl);
     }
 
 
     if ($('#app').length) {
         // stuff
     }
+
+    // dismiss width warning
+    $('#width-warning-dismiss').on('click', function() {
+        $('#width-warning').addClass('display-toggle');
+    });
+
+    // change columns based on width warning advice
 
 });

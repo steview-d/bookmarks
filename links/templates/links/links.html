@@ -10,7 +10,7 @@
 {% load icon_styling %}
 {% load modal_id_gens %}
 
-<div class="flex-wrapper">
+<div id="app" class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -266,12 +266,17 @@
 </div>
 
 <script>
-    // pass value for number of columns being displayed to js as ui differs based on
-    // if user has selected 1 column or > 1
-    var num_columns = "{{ num_of_columns }}"
+    // pass value for number of columns being displayed & page name to js as
+    // ui differs based on if user has selected 1 column or > 1
+    var numColumns = "{{ num_of_columns }}"
+    var pageName = "{{ page }}"
 </script>
 
 {% endblock %}
+
+{% block screen_width %}
+{% include 'components/width_warning.html' %}
+{% endblock screen_width %}
 
 {% block tippy_js %}
 <script src="https://unpkg.com/tippy.js@5"></script>

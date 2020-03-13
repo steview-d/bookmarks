@@ -51,7 +51,7 @@
     color: $white;
     // border-radius: 3px;
     border-radius: 5px 5px 0 0;
-    padding: .4rem .5rem .4rem 1rem;
+    padding: 0.4rem 0.5rem 0.4rem 1rem;
 
     .collection-title {
         @include container-text-icon-title;
@@ -65,7 +65,7 @@
     .collection-icons {
         @include flex-none;
         font-size: 1.2rem;
-        
+
         i {
             color: $white;
         }
@@ -352,7 +352,7 @@
 // dropdown
 
 .dropdown-slide-effect {
-    animation: dropdown-slide-effect .25s both;
+    animation: dropdown-slide-effect 0.25s both;
 }
 
 // manual collection sort
@@ -367,20 +367,20 @@
 .no-collections-box {
     background-color: $gunmetal-alpha;
     color: $white;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 
-    input[type=text] {
+    input[type="text"] {
         width: 80%;
 
         @media only screen and (min-width: 576px) {
-            width: 50%
+            width: 50%;
         }
     }
 }
 
 .add-collection,
 .rename-collection-form {
-    input[type=text] {
+    input[type="text"] {
         width: 100%;
         max-width: 200px;
     }
@@ -391,7 +391,7 @@
 }
 
 .bookmark-styling {
-    padding: .5rem .2rem .5rem 0;
+    padding: 0.5rem 0.2rem 0.5rem 0;
 }
 
 .bookmark-border {
@@ -400,12 +400,12 @@
 
 .bm-sort-handle {
     // background-color: #eee;
-    padding: .4rem;
+    padding: 0.4rem;
     // margin-right: 1rem;
     // border-radius: 2px;
     border: 1px dashed $light-grey;
     background-color: $white;
-    opacity: .9;
+    opacity: 0.9;
 }
 
 // on 1 column displays, add a space to the right to allow
@@ -415,7 +415,7 @@
 }
 
 .bm-sort-container .ui-sortable-helper {
-    animation: wobble-effect .4s ease-out forwards;
+    animation: wobble-effect 0.4s ease-out forwards;
 
     .bm-sort-handle {
         border-color: $black;
@@ -423,10 +423,10 @@
 }
 
 #bookmark-options {
-
     position: relative;
 
-    .dropdown-item:focus, .dropdown-item:hover {
+    .dropdown-item:focus,
+    .dropdown-item:hover {
         color: $white;
         text-decoration: none;
         background-color: $onyx;
@@ -436,10 +436,10 @@
 .bm-options {
     color: $black;
 
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
 
     &:hover {
-        opacity: .6;
+        opacity: 0.6;
     }
 }
 
@@ -452,26 +452,55 @@
 }
 
 .bm-options-3 {
-    margin-top: -.1rem;
+    margin-top: -0.1rem;
 }
 
 // bookmark icon dropdown effect
 .bookmark-options-effect-1 {
-    animation: bookmark-options-effect-1 .25s forwards;
+    animation: bookmark-options-effect-1 0.25s forwards;
 }
 
 .bookmark-options-effect-2 {
-    animation: bookmark-options-effect-2 .25s forwards;
+    animation: bookmark-options-effect-2 0.25s forwards;
 }
 
 .bookmark-options-effect-3 {
-    animation: bookmark-options-effect-3 .25s forwards;
+    animation: bookmark-options-effect-3 0.25s forwards;
 }
 
 #bookmark-display-options {
-
     button:focus {
         outline: none;
     }
-    
+}
+
+// width warning
+
+#overlay-width-warning {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(50, 50, 50, 0.5); 
+    z-index: 2000;
+}
+
+.hv-center {
+    width: 90px;
+    height: 90px;
+    left: 35%;
+    top: 35%;
+    position: absolute;
+    z-index: 3000;
+}
+
+.warning-box {
+    background-color: $white;
+    color: $black;
+    border: 1px solid $black;
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 30vh;
+    min-width: 30vw;
 }
