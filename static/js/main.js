@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     // --------------------------------------------------- Buttons & Toggles //
 
     // sidebar toggler
@@ -16,8 +15,8 @@ $(document).ready(function() {
             .children()
             .slideToggle(200);
         $(this)
-            .children('i')
-            .toggleClass('fa-plus fa-chevron-down');
+            .children("i")
+            .toggleClass("fa-plus fa-chevron-down");
         // $('#page-titles').toggleClass('display-toggle');
     });
 
@@ -64,7 +63,6 @@ $(document).ready(function() {
     // Scrape Url button
     $("#scrape-url").on("click", scrapeUrl);
 
-
     // ---------------------------------------------------------------- Page //
 
     /*
@@ -95,7 +93,7 @@ $(document).ready(function() {
 
             // turn on spinner
             // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
-            $('#ajax-progress-spinner').toggleClass("display-toggle");
+            $("#ajax-progress-spinner").toggleClass("display-toggle");
 
             $.ajax({
                 type: "POST",
@@ -108,7 +106,9 @@ $(document).ready(function() {
                     if (data.success) {
                         // turn off spinner
                         // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
-                        $('#ajax-progress-spinner').toggleClass("display-toggle");
+                        $("#ajax-progress-spinner").toggleClass(
+                            "display-toggle"
+                        );
                         location.reload();
                     }
                 }
@@ -117,13 +117,12 @@ $(document).ready(function() {
     });
 
     // When the 'Page Sort' button is toggled, toggle the 'page-sort-handle' class required
-    // by sortable to allow sorting of pages. 
-    $('#page-sort-btn').on('click', function () {
-        $('.page-sort-icon-container').toggleClass('hide-page-sort-icon');
-        $('.page-sort-handle-container').toggleClass('page-sort-handle');
-        $(this).toggleClass('page-sort-active');
+    // by sortable to allow sorting of pages.
+    $("#page-sort-btn").on("click", function() {
+        $(".page-sort-icon-container").toggleClass("hide-page-sort-icon");
+        $(".page-sort-handle-container").toggleClass("page-sort-handle");
+        $(this).toggleClass("page-sort-active");
     });
-
 
     // ---------------------------------------------------------- Collection //
 
@@ -178,7 +177,7 @@ $(document).ready(function() {
 
                 // turn on spinner
                 // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
-                $('#ajax-progress-spinner').toggleClass("display-toggle");
+                $("#ajax-progress-spinner").toggleClass("display-toggle");
 
                 $.ajax({
                     type: "POST",
@@ -192,7 +191,9 @@ $(document).ready(function() {
                         if (data.success) {
                             // turn off spinner
                             // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
-                            $('#ajax-progress-spinner').toggleClass("display-toggle");
+                            $("#ajax-progress-spinner").toggleClass(
+                                "display-toggle"
+                            );
                             location.reload();
                         }
                     }
@@ -200,7 +201,6 @@ $(document).ready(function() {
             }
         });
     });
-
 
     // ------------------------------------------------------------ Bookmark //
 
@@ -223,7 +223,9 @@ $(document).ready(function() {
         handle: ".bm-sort-handle",
         stop: function(event, ui) {
             if ($(this).hasClass("no-manual-sort")) {
-                let page = $(this).closest("div.page-name").attr("id");
+                let page = $(this)
+                    .closest("div.page-name")
+                    .attr("id");
                 let message = `Bookmark sorting is disabled 
                     when not in 'Manual Sort' mode.`;
                 window.location = page + "/custom_message/" + message;
@@ -239,7 +241,7 @@ $(document).ready(function() {
                 postData = newOrder.join(",");
 
                 // turn on spinner
-                $('#ajax-progress-spinner').toggleClass("display-toggle");
+                $("#ajax-progress-spinner").toggleClass("display-toggle");
 
                 $.ajax({
                     type: "POST",
@@ -255,7 +257,9 @@ $(document).ready(function() {
                     success: function(data) {
                         if (data.success) {
                             // turn off spinner
-                            $('#ajax-progress-spinner').toggleClass("display-toggle");
+                            $("#ajax-progress-spinner").toggleClass(
+                                "display-toggle"
+                            );
                             location.reload();
                         }
                     }
@@ -265,28 +269,28 @@ $(document).ready(function() {
     });
 
     // When the 'Bookmark Sort' button is toggled, toggle the 'bm-sort-handle' class required
-    // by sortable to allow sorting of bookmarks. 
+    // by sortable to allow sorting of bookmarks.
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
-    bmSortButtons.forEach((key) => {
-        $(key).on('click', function () {
-            const el = $(this).parent().parent().parent();
-            el.find('.bm-handle-container')
-                .toggleClass('bm-sort-handle');
-            el.find('.bookmark-styling')
-                .toggleClass('bookmark-border');
-            el.find('.bm-options-icon')
-                .toggleClass('display-toggle');
-            $(this).toggleClass('manual-sort-on');
+    bmSortButtons.forEach(key => {
+        $(key).on("click", function() {
+            const el = $(this)
+                .parent()
+                .parent()
+                .parent();
+            el.find(".bm-handle-container").toggleClass("bm-sort-handle");
+            el.find(".bookmark-styling").toggleClass("bookmark-border");
+            el.find(".bm-options-icon").toggleClass("display-toggle");
+            $(this).toggleClass("manual-sort-on");
 
             // check if single column, and add scroll space
-            if (typeof numColumns !== 'undefined') {
+            if (typeof numColumns !== "undefined") {
                 if (numColumns == 1) {
                     $(this)
                         .parent()
                         .parent()
                         .parent()
-                        .find('.bm-handle-container')
-                        .toggleClass('add-scroll-space');
+                        .find(".bm-handle-container")
+                        .toggleClass("add-scroll-space");
                 }
             }
         });
@@ -304,15 +308,15 @@ $(document).ready(function() {
         let urlToScrape = $("#id_url").val();
 
         // if url doesn't begin with http(s), prepend it
-        let httpRe = new RegExp('^https?://');
+        let httpRe = new RegExp("^https?://");
         let match = httpRe.test(urlToScrape);
         if (!match) {
-            urlToScrape = 'https://' + urlToScrape;
+            urlToScrape = "https://" + urlToScrape;
             $("#id_url").val(urlToScrape);
         }
 
-        $("#scrape-url").text('SCRAPING..');
-        
+        $("#scrape-url").text("SCRAPING..");
+
         $.ajax({
             type: "POST",
             data: {
@@ -324,47 +328,62 @@ $(document).ready(function() {
                 // populate text fields
                 $("#id_title").val(data.title);
                 $("#id_description").val(data.description);
-                $("#scrape-msg").html(`Autofill result: <strong>` + data.message + `</strong>`);
+                $("#scrape-msg").html(
+                    `Autofill result: <strong>` + data.message + `</strong>`
+                );
                 // clear icon field file incase of previously selected image
-                $("#id_icon").val('');
+                $("#id_icon").val("");
 
                 // populate image fields
                 if (data.scraped_image) {
-                    let base64Str = 'data:image/' + data.image_ext + ';base64,' + data.scraped_image;
-                    $("#img-preview").attr('src', base64Str);
+                    let base64Str =
+                        "data:image/" +
+                        data.image_ext +
+                        ";base64," +
+                        data.scraped_image;
+                    $("#img-preview").attr("src", base64Str);
                     $("#scraped_img").val(base64Str);
                 } else {
-                    $("#img-preview").attr('src', '/static/img/no_img_scrape.png');
-                    $("#scraped_img").val('');
+                    $("#img-preview").attr(
+                        "src",
+                        "/static/img/no_img_scrape.png"
+                    );
+                    $("#scraped_img").val("");
                 }
-                $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL');
+                $("#scrape-url").html(
+                    '<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL'
+                );
 
                 // if an image is scraped, hide the default icon and show scraped image
-                if ($('#edit-bookmark, #add-bookmark, #import-url').length && $('#img-preview')[0].src) {
-                    $('#img-preview').removeClass('icon-display-hide');
-                    $('#default-icon').addClass('icon-display-hide');
+                if (
+                    $("#edit-bookmark, #add-bookmark, #import-url").length &&
+                    $("#img-preview")[0].src
+                ) {
+                    $("#img-preview").removeClass("icon-display-hide");
+                    $("#default-icon").addClass("icon-display-hide");
                     // also clear value inside file upload field
-                    $("#id_icon").next().text('Choose file');
+                    $("#id_icon")
+                        .next()
+                        .text("Choose file");
                     // reset use-default value to prevent default icon
                     // displaying in case of form error
-                    $("#use-default").val('');
-
-        }
-
+                    $("#use-default").val("");
+                }
             },
             error: function() {
-                $("#scrape-url").html('<i class="fa fa-magic" aria-hidden="true"></i>Error!');
+                $("#scrape-url").html(
+                    '<i class="fa fa-magic" aria-hidden="true"></i>Error!'
+                );
             }
         });
     }
 
     // on import-url page load, auto scrape, once only
-    if ($('#import-url').length) {
-        if ($('#import-url').attr("data-autoscrape") == 'true') {
+    if ($("#import-url").length) {
+        if ($("#import-url").attr("data-autoscrape") == "true") {
             scrapeUrl();
         }
     }
-
 
     // ----------------------------- Check URL in '#id_url' is valid //
 
@@ -386,17 +405,17 @@ $(document).ready(function() {
     });
 
     // Run checkUrl function on page load
-    if ($('#edit-bookmark').length){
-            checkURL();
+    if ($("#edit-bookmark").length) {
+        checkURL();
     }
 
     function checkURL() {
         let urlToCheck = $("#id_url").val();
 
-        let httpRe = new RegExp('^https?://');
+        let httpRe = new RegExp("^https?://");
         let match = httpRe.test(urlToCheck);
         if (!match && urlToCheck) {
-            urlToCheck = 'https://' + urlToCheck;
+            urlToCheck = "https://" + urlToCheck;
         }
 
         $.ajax({
@@ -411,7 +430,7 @@ $(document).ready(function() {
                     case true:
                         // $("#url-validation-result").text("Url status: Valid");
                         $("#url-validation-result").html(
-                        "Url status: <span class='status status-valid'>Valid</span>"
+                            "Url status: <span class='status status-valid'>Valid</span>"
                         );
 
                         break;
@@ -419,7 +438,7 @@ $(document).ready(function() {
                         // $("#url-validation-result").text("Url status: Invalid");
                         $("#url-validation-result").html(
                             "Url status: <span class='status status-invalid'>Invalid</span>"
-                            );
+                        );
                         break;
                     default:
                         $("#url-validation-result").text(
@@ -429,7 +448,6 @@ $(document).ready(function() {
             }
         });
     }
-
 
     // --------------------------------------------------------------- Other //
 
@@ -488,53 +506,67 @@ $(document).ready(function() {
     Listens for a change to the file input element, and when a change is
     registered, a preview of the uploaded file is displayed
     */
-    $('#id_icon').change(function () {
+    $("#id_icon").change(function() {
         if (this.files && this.files[0]) {
             let preview = new FileReader();
 
-            preview.onload = function (e) {
-                $('#img-preview').attr('src', e.target.result);
+            preview.onload = function(e) {
+                $("#img-preview").attr("src", e.target.result);
             };
             preview.readAsDataURL(this.files[0]);
 
             // on file upload hide default icon and show uploaded icon
-            $('#img-preview').removeClass('icon-display-hide');
-            $('#default-icon').addClass('icon-display-hide');
+            $("#img-preview").removeClass("icon-display-hide");
+            $("#default-icon").addClass("icon-display-hide");
             // clear any scraped images if user selects file to upload
-            $("#scraped_img").val('');
+            $("#scraped_img").val("");
             // reset use-default value to prevent default icon
             // displaying in case of form error
-            $("#use-default").val('');
+            $("#use-default").val("");
             // display name of selected file in input field
-            var fName = $(this).val().split("\\").pop();
-            $(this).next().text(fName);
+            var fName = $(this)
+                .val()
+                .split("\\")
+                .pop();
+            $(this)
+                .next()
+                .text(fName);
         }
     });
 
-
     // nav bar title hide / show on scroll
-    function navbarBehaviour () {
+    function navbarBehaviour() {
         if (window.scrollY > 1) {
-            $('.navbar-title').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600);
-            $('.mobile-menu').css({ opacity: 0, transition: 'opacity 0.5s' }).slideUp(600, function () {
-                $('#pages-nav').addClass('nav-border');
-            });
-            if ($('#login, #register, .pw-control').length) {
-                $('#pages-nav').css({ 'background-color': 'rgba(250, 250, 250, 0.9)',
-                    transition: 'background-color 1s'});
+            $(".navbar-title")
+                .css({ opacity: 0, transition: "opacity 0.5s" })
+                .slideUp(600);
+            $(".mobile-menu")
+                .css({ opacity: 0, transition: "opacity 0.5s" })
+                .slideUp(600, function() {
+                    $("#pages-nav").addClass("nav-border");
+                });
+            if ($("#login, #register, .pw-control").length) {
+                $("#pages-nav").css({
+                    "background-color": "rgba(250, 250, 250, 0.9)",
+                    transition: "background-color 1s"
+                });
             }
-            
         } else {
-            $('.navbar-title').css({ opacity: 1}).slideDown(600);
-            $('.mobile-menu').css({ opacity: 1}).slideDown(600);
-            if (!window.location.href.includes('accounts')) {
-                $('#pages-nav').removeClass('nav-border');
+            $(".navbar-title")
+                .css({ opacity: 1 })
+                .slideDown(600);
+            $(".mobile-menu")
+                .css({ opacity: 1 })
+                .slideDown(600);
+            if (!window.location.href.includes("accounts")) {
+                $("#pages-nav").removeClass("nav-border");
             }
-            if ($('#login, #register, .pw-control').length) {
-                $('#pages-nav').css({ 'background-color': 'rgba(250, 250, 250, 1)',
-                transition: 'background-color 1s'});
+            if ($("#login, #register, .pw-control").length) {
+                $("#pages-nav").css({
+                    "background-color": "rgba(250, 250, 250, 1)",
+                    transition: "background-color 1s"
+                });
             }
-
         }
     }
 
@@ -543,15 +575,19 @@ $(document).ready(function() {
     navbarBehaviour();
 
     // topnav behavior
-    function topnavBehaviour () {
+    function topnavBehaviour() {
         if (window.scrollY > 1) {
-            $('#topnav').css({ 'border-bottom': '1px solid #aaaaaa',
-                               'background-color': 'rgba(250, 250, 250, 0.9)',
-                               'transition': 'all .5s ease'});
+            $("#topnav").css({
+                "border-bottom": "1px solid #aaaaaa",
+                "background-color": "rgba(250, 250, 250, 0.9)",
+                transition: "all .5s ease"
+            });
         } else {
-            $('#topnav').css({ 'border-bottom': '1px solid transparent',
-                               'background-color': 'transparent',
-                               'transition': 'all .5s ease'});
+            $("#topnav").css({
+                "border-bottom": "1px solid transparent",
+                "background-color": "transparent",
+                transition: "all .5s ease"
+            });
         }
     }
 
@@ -559,60 +595,58 @@ $(document).ready(function() {
     $(window).scroll(topnavBehaviour);
     topnavBehaviour();
 
-
     // on click, toggle 'plus' icon for each entry on faq page
     $(".collapse")
         .on("show.bs.collapse", function() {
             $(this)
                 .parent()
                 .find(".fa-plus-square-o")
-                .toggleClass('fa-plus-square-o fa-plus-square');
+                .toggleClass("fa-plus-square-o fa-plus-square");
         })
         .on("hide.bs.collapse", function() {
             $(this)
                 .parent()
                 .find(".fa-plus-square")
-                .toggleClass('fa-plus-square-o fa-plus-square');
-
+                .toggleClass("fa-plus-square-o fa-plus-square");
         });
 
     // reset contact form button
-    $('#contact-form-reset').on('click', function() {
-        $('#id_name, #id_email, #id_message').val('');
+    $("#contact-form-reset").on("click", function() {
+        $("#id_name, #id_email, #id_message").val("");
     });
 
     // close sidebar on swipe - uses third party swipe.js script
-    $('#sidebar').onSwipe((result)=>{
-        if(result.left == true && window.innerWidth <= 767) {
+    $("#sidebar").onSwipe(result => {
+        if (result.left == true && window.innerWidth <= 767) {
             $("#sidebar, #content").toggleClass("display-switch");
             $("#content").toggleClass("no-scroll");
         }
     });
 
-
-
     // Create a default icon when displaying icons on add / edit / import page
-    $('#use-default-icon').on('click', function () {
-        $('#img-preview').addClass('icon-display-hide');
-        $('#default-icon').removeClass('icon-display-hide');
-        $("#id_icon, #scraped_img").val('');
-        $('#use-default').val('true');
+    $("#use-default-icon").on("click", function() {
+        $("#img-preview").addClass("icon-display-hide");
+        $("#default-icon").removeClass("icon-display-hide");
+        $("#id_icon, #scraped_img").val("");
+        $("#use-default").val("true");
         //clear value inside file upload field
-        $("#id_icon").next().text('Choose file');
+        $("#id_icon")
+            .next()
+            .text("Choose file");
         updateDefaultIcon();
     });
-
 
     // -------------------------- Update letter for default icon on title change //
 
     const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const colorsList = [
-        '#698396',
-        '#a9c8c0',
-        '#dbbc8e',
-        '#ae8a8c',
-        '#f7f6cf',
-        '#e6a57e'];
+        "#698396",
+        "#a9c8c0",
+        "#dbbc8e",
+        "#ae8a8c",
+        "#f7f6cf",
+        "#e6a57e"
+    ];
 
     let titleTimer;
     let titleTimerLength = 1000;
@@ -624,25 +658,28 @@ $(document).ready(function() {
     });
 
     function updateDefaultIcon() {
-
         // set icon letter for default icon
-        let title = $('#id_title').val();
+        let title = $("#id_title").val();
         let firstLetter = title.charAt(0).toUpperCase();
-        $('#default-icon').find('span').text(firstLetter);
+        $("#default-icon")
+            .find("span")
+            .text(firstLetter);
 
         // set background color for default icon
         let idx = lettersUpper.indexOf(firstLetter) + 1;
         let bgColor = colorsList[idx % 6];
-        $('#default-icon').find('.no-icon').css({"background-color": bgColor});
+        $("#default-icon")
+            .find(".no-icon")
+            .css({ "background-color": bgColor });
     }
 
     // update default-icon on page load
-    if ($('#add-bookmark, edit-bookmark, #import-url').length){
+    if ($("#add-bookmark, edit-bookmark, #import-url").length) {
         updateDefaultIcon();
     }
 
     // close window after import
-    $('#close-page').on('click', function () {
+    $("#close-page").on("click", function() {
         window.close();
     });
 
@@ -654,7 +691,7 @@ $(document).ready(function() {
             .slideToggle(200);
         $(this)
             .children()
-            .toggleClass('fa-chevron-circle-down fa-plus-circle');
+            .toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
 
     // testing
@@ -662,59 +699,46 @@ $(document).ready(function() {
     //     console.log(numColumns);
     // }
 
-
     // mobile responsiveness - making it work on small views
-
-    $(window).on('resize', function() {
-        currentWidth = window.innerWidth;
-
-        // put this into a func so can also be run on page load
-        switch (parseInt(numColumns)) {
-            case 2:
-                if (currentWidth < 576) {
-                    width_warning(numColumns, 1, pageName);
-                }
-                break;
-            case 3:
-                if (currentWidth < 992) {
-                    width_warning(numColumns, 2, pageName);
-                }
-                break;
-            case 4:
-                if (currentWidth < 992) {
-                    width_warning(numColumns, 2, pageName);
-                }
-                break;
-            case 5:
-                if (currentWidth < 1200) {
-                    width_warning(numColumns, 4, pageName);
-                }
-                break;
-        }
-
-
-
+    $(window).on("resize", function() {
+        let currentWidth = window.innerWidth;
+        widthToColumns(currentWidth);
     });
 
-    // function to populate width_warning.html
-    function width_warning (currentColumns, recMaxColumns, pageName) {
-        $('#width-warning').removeClass('display-toggle');
-        $('.actual-columns').text(currentColumns);
-        $('.rec-columns').text(recMaxColumns);
-        changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
-        $('#width-warning-change').attr('href', changeColumnsUrl);
+    // also check on page load
+    if ($("#app").length) {
+        widthToColumns(window.innerWidth);
     }
 
+    function widthToColumns(currentWidth) {
+        let c = parseInt(numColumns);
+        let w = parseInt(currentWidth);
+        switch (true) {
+            case (w < 576 && c > 1):
+                width_warning(numColumns, 1, pageName);
+                break;
+            case (w >= 576 && w < 992 && c > 2):
+                width_warning(numColumns, 2, pageName);
+                break;
+            case (w >= 992 && w < 1200 && c > 4):
+                width_warning(numColumns, 4, pageName);
+                break;
+        }
+    }
 
-    if ($('#app').length) {
-        // stuff
+    // function to populate width_warning.html
+    function width_warning(currentColumns, recMaxColumns, pageName) {
+        $("#width-warning").removeClass("display-toggle");
+        $(".actual-columns").text(currentColumns);
+        $(".rec-columns").text(recMaxColumns);
+        changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
+        $("#width-warning-change").attr("href", changeColumnsUrl);
     }
 
     // dismiss width warning
-    $('#width-warning-dismiss').on('click', function() {
-        $('#width-warning').addClass('display-toggle');
+    $("#width-warning-dismiss").on("click", function() {
+        $("#width-warning").addClass("display-toggle");
     });
 
     // change columns based on width warning advice
-
 });
