@@ -487,9 +487,10 @@
 }
 
 .hv-center {
-    width: 90px;
+    // width: 90px;
     height: 90px;
-    left: 35%;
+    left: 50%;
+    transform: translateX(-50%);
     top: 35%;
     position: absolute;
     z-index: 3000;
@@ -499,8 +500,22 @@
     background-color: $white;
     color: $black;
     border: 1px solid $black;
-    border-radius: 4px;
+    border-radius: 5px;
     padding: 1rem;
     min-height: 30vh;
-    min-width: 30vw;
+    width: 80vw;
+
+    h6 {
+        margin: 1rem auto;
+    }
+
+    @media only screen and (min-width: 576px) {
+        width: 60vw;
+    }
+    @media only screen and (min-width: 768px) {
+        width: 50vw;
+    }
+    @media only screen and (min-width: 992px) {
+        width: 40vw;
+    }
 }
