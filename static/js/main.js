@@ -694,15 +694,17 @@ $(document).ready(function() {
             .toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
 
-    // testing
-    // if (typeof numColumns !== 'undefined') {
-    //     console.log(numColumns);
-    // }
+
+    // store initial width on window on page load
+    var initialWidth = window.innerWidth;
 
     // mobile responsiveness - making it work on small views
     $(window).on("resize", function() {
-        let currentWidth = window.innerWidth;
-        widthToColumns(currentWidth);
+        // check width vs initialWidth to avoid false triggers on height with
+        // some mobile browsers
+        if (initialWidth != window.innerWidth) {
+            widthToColumns(window.innerWidth);
+        }
     });
 
     // also check on page load
@@ -711,26 +713,37 @@ $(document).ready(function() {
     }
 
     function widthToColumns(currentWidth) {
-        let c = parseInt(numColumns);
-        let w = parseInt(currentWidth);
-        switch (true) {
-            case (w < 576 && c > 1):
-                width_warning(numColumns, 1, pageName);
-                break;
-            case (w >= 576 && w < 992 && c > 2):
-                width_warning(numColumns, 2, pageName);
-                break;
-            case (w >= 992 && w < 1200 && c > 4):
-                width_warning(numColumns, 4, pageName);
-                break;
+        // check local storage....
+        if (localStorage.getItem("widthWarning") === null) {
+            let c = parseInt(numColumns);
+            let w = parseInt(currentWidth);
+            switch (true) {
+                case w < 576 && c > 1:
+                    width_warning(numColumns, 1, pageName);
+                    break;
+                case w >= 576 && w < 992 && c > 2:
+                    width_warning(numColumns, 2, pageName);
+                    break;
+                case w >= 992 && w < 1200 && c > 4:
+                    width_warning(numColumns, 4, pageName);
+                    break;
+            }
         }
     }
 
     // function to populate width_warning.html
     function width_warning(currentColumns, recMaxColumns, pageName) {
+        /*
+        Update width_warning.html with values for current
+        and recommended number of columns.
+        */
+
         $("#width-warning").removeClass("display-toggle");
         $(".actual-columns").text(currentColumns);
-        $(".rec-columns").text(recMaxColumns);
+
+        var columnPlural = recMaxColumns == 1 ? " column." : " columns.";
+        $(".rec-columns").text(recMaxColumns + columnPlural);
+
         changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
         $("#width-warning-change").attr("href", changeColumnsUrl);
     }
@@ -738,7 +751,7 @@ $(document).ready(function() {
     // dismiss width warning
     $("#width-warning-dismiss").on("click", function() {
         $("#width-warning").addClass("display-toggle");
+        // add item to local storage to signal user wants no further warnings
+        localStorage.setItem("widthWarning", "ignore");
     });
-
-    // change columns based on width warning advice
 });
