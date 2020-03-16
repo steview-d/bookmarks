@@ -702,7 +702,7 @@ $(document).ready(function() {
     $(window).on("resize", function() {
         // check width vs initialWidth to avoid false triggers on height with
         // some mobile browsers
-        if (initialWidth != window.innerWidth) {
+        if ($('#app').length && initialWidth != window.innerWidth) {
             widthToColumns(window.innerWidth);
         }
     });
@@ -753,5 +753,23 @@ $(document).ready(function() {
         $("#width-warning").addClass("display-toggle");
         // add item to local storage to signal user wants no further warnings
         localStorage.setItem("widthWarning", "ignore");
+    });
+
+    // width warning setting checkbox
+    if (localStorage.getItem("widthWarning") === null) {
+        $('#widthWarningCheck').prop('checked', true);
+    } else {
+        $('#widthWarningCheck').prop('checked', false);
+    }
+
+    // update on checkbox change
+    $('#widthWarningCheck').change(function() {
+        if(this.checked) {
+            localStorage.removeItem("widthWarning");
+            // $('#widthWarningCheck').prop('checked', false);
+        } else {
+            localStorage.setItem("widthWarning", "ignore");
+            // $('#widthWarningCheck').prop('checked', true);
+        }
     });
 });
