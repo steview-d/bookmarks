@@ -531,3 +531,13 @@
 .custom-control-input:focus ~ .custom-control-label::before {
     box-shadow: none;
 }
+
+//
+
+.columns-badge {
+    border: 1px solid $black;
+    border-radius: 4px;
+    background-color: $white;
+    color: $black;
+    padding: 2px .5rem 4px;
+}

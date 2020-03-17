@@ -23,28 +23,6 @@
         {% include 'components/messages.html' %}
 
         <div class="container-fluid pt-4 app-min-height">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                        <div class="mx-4">
-                            <a href="{% url 'arrange_collections' page=page %}" class="btn--standard btn-sm"
-                                role="button">Arrange Collections</a>
-                        </div>
-                        <!-- section to choose number of columns - temp -->
-                        <div class="mx-4">
-                            <span class="">Columns:</span>
-                            {% with ''|center:5 as range %}
-                            {% for _ in range %}
-                            <a class="btn-sm {% if forloop.counter == num_of_columns %}btn--white{% else %}btn--standard{% endif %}"
-                                href="{% url 'change_num_columns' page=page num=forloop.counter %}"
-                                role="button">{{ forloop.counter }}</a>
-                            {% endfor %}
-                            {% endwith %}
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div id="{{ page }}" class="row page-name">
                 {% for column in bm_data %}
                 <div class="column" style="width: {{ column_width }}%">

@@ -67,13 +67,11 @@
                             {% endif %}></i>
                     </div>
                     <!-- page title & icons -->
-                    <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
+                    <a class="nav-link float-left page-name" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
                         {% if bm_data %}
                         <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark page-options-btn"
                                 aria-hidden="true"></i></a>
-                        <!-- <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
-                                aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a> -->
                         {% endif %}
                         {% endif %}
                     </a>
@@ -82,12 +80,31 @@
                 <!-- edit page form -->
                 {% if name.name == page %}
                 <div id="page-display-options" {% if edit_page_form.errors %} style="display: block;" {% endif %}>
+                    <div class="d-flex flex-column mt-3 mb-4">
+                        <div class="ml-3 mb-1">
+                            <a href="{% url 'arrange_collections' page=page %}" class="btn--standard btn-sm"
+                                role="button">Arrange Collections</a>
+                        </div>
+                        <!-- section to choose number of columns - temp -->
+                        <div class="ml-3">
+                            <span class="columns-badge">Columns:</span>
+                            {% with ''|center:5 as range %}
+                            {% for _ in range %}
+                            <a class="{% if forloop.counter == num_of_columns %}btn--white{% else %}btn--standard{% endif %} btn-sm"
+                                href="{% url 'change_num_columns' page=page num=forloop.counter %}"
+                                role="button">{{ forloop.counter }}</a>
+                            {% endfor %}
+                            {% endwith %}
+                        </div>
+                    </div>
                     <form method="POST" class="edit-page-form px-3 pb-3" novalidate>
                         {% csrf_token %}
                         {{ edit_page_form|crispy}}
-                        <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">
-                        <input type="button" value="Delete" class="btn--red ml-2 float-right" data-toggle="modal"
-                            data-target="#page-delete-modal">
+                        <div class="mt-n2">
+                            <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">
+                            <input type="button" value="Delete" class="btn--red ml-2 float-right" data-toggle="modal"
+                                data-target="#page-delete-modal">
+                        </div>
                     </form>
                 </div>
 
