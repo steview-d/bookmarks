@@ -243,13 +243,17 @@ input {
 }
 
 .btn--white:hover {
-  background-color: transparent;
-  color: #ffffff;
-  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #424242;
+  border-color: #000000;
 }
 
 .btn--white:focus {
   outline: none;
+}
+
+.btn--white:hover {
+  opacity: .8;
 }
 
 .btn--red {
@@ -779,7 +783,7 @@ input {
 }
 
 .topnav-spacer {
-  height: 68px;
+  height: 60px;
 }
 
 #topnav-icons i {
@@ -817,8 +821,8 @@ input {
           transform: scale(1);
 }
 
+#page-display-options,
 .add-page-form,
-.edit-page-form,
 .hide-page-sort-icon {
   display: none;
 }
@@ -890,6 +894,11 @@ input {
   height: 0;
 }
 
+.add-bm-btn-sidebar {
+  -webkit-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+
 .add-bm-btn-sidebar h4 {
   display: inline-block;
   background-color: white;
@@ -902,6 +911,10 @@ input {
 .add-bm-btn-sidebar h4 i {
   margin-right: 0.5rem;
   color: #000000;
+}
+
+.add-bm-btn-sidebar:hover {
+  opacity: .8;
 }
 
 .display-switch {
@@ -1467,7 +1480,7 @@ h4 > .fa-stop {
 }
 
 #premium .set-height {
-  min-height: calc(80vh - 68px);
+  min-height: calc(80vh - 60px);
 }
 
 .premium-features-box {
@@ -1551,7 +1564,7 @@ h4 > .fa-stop {
 }
 
 .app-min-height {
-  min-height: calc(100vh - 68px - 213px);
+  min-height: calc(100vh - 60px - 213px);
 }
 
 .column {

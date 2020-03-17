@@ -37,10 +37,14 @@
         $white,
         $dark-grey,
         $black,
-        transparent,
         $white,
-        $white
+        $dark-grey,
+        $black,
     );
+
+    &:hover {
+        opacity: .8;
+    }
 }
 
 .btn--red {

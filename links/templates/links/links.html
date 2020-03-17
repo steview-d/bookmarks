@@ -24,22 +24,25 @@
 
         <div class="container-fluid pt-4 app-min-height">
             <div class="row">
-                <!-- section to choose number of columns - temp -->
-                <div class="d-inline-block mx-2">
-                    <span>
-                        Columns:
-                        {% with ''|center:5 as range %}
-                        {% for _ in range %}
-                        <a class="btn btn-sm btn-primary {% if forloop.counter == num_of_columns %}active{% endif %}"
-                            href="{% url 'change_num_columns' page=page num=forloop.counter %}"
-                            role="button">{{ forloop.counter }}</a>
-                        {% endfor %}
-                        {% endwith %}
-                    </span>
-                    <span class="ml-5">
-                        <a href="{% url 'arrange_collections' page=page %}" class="btn btn-sm btn-info"
-                            role="button">Arrange Collections</a>
-                    </span>
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="mx-4">
+                            <a href="{% url 'arrange_collections' page=page %}" class="btn--standard btn-sm"
+                                role="button">Arrange Collections</a>
+                        </div>
+                        <!-- section to choose number of columns - temp -->
+                        <div class="mx-4">
+                            <span class="">Columns:</span>
+                            {% with ''|center:5 as range %}
+                            {% for _ in range %}
+                            <a class="btn-sm {% if forloop.counter == num_of_columns %}btn--white{% else %}btn--standard{% endif %}"
+                                href="{% url 'change_num_columns' page=page num=forloop.counter %}"
+                                role="button">{{ forloop.counter }}</a>
+                            {% endfor %}
+                            {% endwith %}
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div id="{{ page }}" class="row page-name">
@@ -77,8 +80,7 @@
                                         aria-haspopup="true" aria-expanded="false">
                                         Sort By...
                                     </button>
-                                    <div class="dropdown-menu dropdown-slide-effect"
-                                        aria-labelledby="btnGroupDrop1">
+                                    <div class="dropdown-menu dropdown-slide-effect" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
                                             href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
                                                 class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>
@@ -113,8 +115,7 @@
                                         aria-haspopup="true" aria-expanded="false">
                                         Display As...
                                     </button>
-                                    <div class="dropdown-menu dropdown-slide-effect"
-                                        aria-labelledby="btnGroupDrop2">
+                                    <div class="dropdown-menu dropdown-slide-effect" aria-labelledby="btnGroupDrop2">
                                         <button
                                             class="dropdown-item coll-display-btn {% if k.display_mode == 1 %}active{% endif %}"
                                             data-coll-id="{{ k.id }}" data-display-mode="1">Full</button>
@@ -151,7 +152,8 @@
                                 {% for item in v %}
                                 <li id="{{item.position}}_." class="bookmark-styling 
                                         {% if collection_being_sorted != k.name %}bookmark-border{% endif %}">
-                                    <div class="bm-handle-container d-flex 
+                                    <div
+                                        class="bm-handle-container d-flex 
                                             {% if collection_being_sorted == k.name %}bm-sort-handle {% endif %}
                                             {% if collection_being_sorted == k.name and num_of_columns == 1 %}add-scroll-space{% endif %}">
                                         <!-- icon image -->
@@ -195,9 +197,11 @@
                                         </div>
 
                                         <!-- bookmark options dropdown -->
-                                        <div class="bm-options-icon {% if collection_being_sorted == k.name %}display-toggle{% endif %}">
+                                        <div
+                                            class="bm-options-icon {% if collection_being_sorted == k.name %}display-toggle{% endif %}">
                                             <div id="bookmark-options" class="qbtn-group">
-                                                <div id="dropdown-bm-options" type="button" class="bm-options bm-options-{{ k.display_mode }}"
+                                                <div id="dropdown-bm-options" type="button"
+                                                    class="bm-options bm-options-{{ k.display_mode }}"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-list-ul" aria-hidden="true"></i>
                                                 </div>

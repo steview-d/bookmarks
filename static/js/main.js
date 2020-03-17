@@ -21,8 +21,8 @@ $(document).ready(function() {
     });
 
     // 'edit page' form toggle
-    $(".edit-page-btn").on("click", function() {
-        $(".edit-page-form").slideToggle(200);
+    $(".page-options-btn").on("click", function() {
+        $("#page-display-options").slideToggle(200);
     });
 
     // submit 'delete page form' from modal

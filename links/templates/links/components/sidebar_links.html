@@ -70,7 +70,7 @@
                     <a class="nav-link float-left" href="{% url 'links' page=name %}">{{name}}
                         {% if name.name == page %}
                         {% if bm_data %}
-                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark edit-page-btn"
+                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark page-options-btn"
                                 aria-hidden="true"></i></a>
                         <!-- <a href="#" class="float-right my-2 mr-3"><i class="fa fa-trash-o text-danger"
                                 aria-hidden="true" data-toggle="modal" data-target="#page-delete-modal"></i></a> -->
@@ -81,14 +81,15 @@
 
                 <!-- edit page form -->
                 {% if name.name == page %}
-                <form method="POST" class="edit-page-form px-3 pb-3" {% if edit_page_form.errors %}
-                    style="display: block;" {% endif %} novalidate>
-                    {% csrf_token %}
-                    {{ edit_page_form|crispy}}
-                    <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">
-                    <input type="button" value="Delete" class="btn--red ml-2 float-right" data-toggle="modal"
-                        data-target="#page-delete-modal">
-                </form>
+                <div id="page-display-options" {% if edit_page_form.errors %} style="display: block;" {% endif %}>
+                    <form method="POST" class="edit-page-form px-3 pb-3" novalidate>
+                        {% csrf_token %}
+                        {{ edit_page_form|crispy}}
+                        <input type="submit" value="Rename" name="edit-page-form" class="btn--standard">
+                        <input type="button" value="Delete" class="btn--red ml-2 float-right" data-toggle="modal"
+                            data-target="#page-delete-modal">
+                    </form>
+                </div>
 
                 {% endif %}
             </li>

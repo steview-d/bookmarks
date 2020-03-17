@@ -1,7 +1,9 @@
 // ------------------------------------------------------- form display classes
 
+#page-display-options,
 .add-page-form,
-.edit-page-form,
+// .edit-page-form,
+
 .hide-page-sort-icon {
     display: none;
 }
@@ -90,6 +92,12 @@
             margin-right: 0.5rem;
             color: $black;
         }
+    }
+
+    transition: 0.25s ease-out;
+
+    &:hover {
+        opacity: .8;
     }
 }
 
