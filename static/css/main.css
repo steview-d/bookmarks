@@ -779,7 +779,7 @@ input {
 }
 
 .topnav-spacer {
-  height: 46px;
+  height: 68px;
 }
 
 #topnav-icons i {
@@ -1476,7 +1476,7 @@ h4 > .fa-stop {
 }
 
 #premium .set-height {
-  min-height: calc(80vh - 46px);
+  min-height: calc(80vh - 68px);
 }
 
 .premium-features-box {
@@ -1560,7 +1560,7 @@ h4 > .fa-stop {
 }
 
 .app-min-height {
-  min-height: calc(100vh - 46px - 213px);
+  min-height: calc(100vh - 68px - 213px);
 }
 
 .column {
@@ -1803,7 +1803,7 @@ h4 > .fa-stop {
   margin-top: 0.5rem;
   padding: 1.3rem 1.5rem 1.5rem;
   display: inline-block;
-  background-color: #52BD97;
+  background-color: #343a40;
   color: #ffffff;
   font-weight: 600;
 }
