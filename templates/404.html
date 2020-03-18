@@ -4,6 +4,21 @@
 
 {% block content %}
 
-<h1>404</h1>
+<p id="error-code" class="text-center">Sorry!</p>
+
+<div id="error-text" class="row">
+    <div class="col-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-center">
+        <h1 class="mb-4">404 - Page Not Found</h1>
+        <h6>The page you are looking for could not be found. It might have been removed, changed, or is just
+            unavailable at
+            this time.</h6>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-10 col-md-8 col-lg-6 col-xl-4 mx-auto text-center">
+        <a href="{% url 'start_app' %}" class="btn--round"><span>HOME</span></a>
+    </div>
+</div>
 
 {% endblock %}

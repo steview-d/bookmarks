@@ -4,6 +4,19 @@
 
 {% block content %}
 
-<h1>500</h1>
+<p id="error-code" class="text-center">Sorry!</p>
+
+<div id="error-text" class="row">
+    <div class="col-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-center">
+        <h1 class="mb-4">500 - Internal Server Error</h1>
+        <h6>Something has gone wrong. If the problem persists, please raise a support ticket.</h6>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-10 col-md-8 col-lg-6 col-xl-4 mx-auto text-center">
+        <a href="{% url 'start_app' %}" class="btn--round"><span>HOME</span></a>
+    </div>
+</div>
 
 {% endblock %}

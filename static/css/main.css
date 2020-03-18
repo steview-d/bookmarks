@@ -438,7 +438,7 @@ input {
 }
 
 .btn--square:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .btn--square-invert {
@@ -478,7 +478,7 @@ input {
 }
 
 .btn--square-invert:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .btn--page-options {
@@ -618,6 +618,38 @@ input {
 
 .btn--add-collection:focus {
   outline: none;
+}
+
+.btn--round {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #343a40;
+  border: 4px solid #343a40;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 100px;
+  height: 100px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--round:hover {
+  border: 4px solid #afafaf;
+  background-color: #727272;
+  color: #ffffff;
 }
 
 .tippy-i .fa-square {
@@ -2161,6 +2193,57 @@ h4 > .fa-stop {
   background-color: #343a40;
   color: #ffffff;
   border-color: #343a40;
+}
+
+#error-code {
+  background: -webkit-gradient(linear, left top, left bottom, from(0), color-stop(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("/static/img/bg/icon_tile.png") center;
+  background: linear-gradient(0, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/static/img/bg/icon_tile.png") center;
+  background-size: 650px 400px;
+  font-size: 5rem;
+  font-weight: 800;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@media only screen and (min-width: 576px) {
+  #error-code {
+    font-size: 8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #error-code {
+    font-size: 11rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #error-code {
+    font-size: 15rem;
+  }
+}
+
+#error-text h1 {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 576px) {
+  #error-text h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #error-text h1 {
+    font-size: 2.1rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #error-text h1 {
+    font-size: 2.5rem;
+  }
 }
 
 .spinner {

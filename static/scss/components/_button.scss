@@ -39,9 +39,8 @@
         $black,
         $white,
         $dark-grey,
-        $black,
+        $black
     );
-
 }
 
 .btn--red {
@@ -96,16 +95,16 @@
     @include square-button($dark-grey, $white, $onyx, $white);
 
     &:hover {
-        opacity: .8;
+        opacity: 0.8;
     }
 }
 
 .btn--square-invert {
     @include square-button($white, $black, $white, $black);
 
-        &:hover {
-            opacity: .8;
-        }
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .btn--page-options {
@@ -239,5 +238,26 @@
     &:focus {
         outline: none;
     }
+}
 
+.btn--round {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $onyx;
+    border: 4px solid $onyx;
+    border-radius: 50%;
+    color: $white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 100px;
+    height: 100px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        border: 4px solid $light-grey;
+        background-color: $medium-grey;
+        color: $white;
+    }
 }
