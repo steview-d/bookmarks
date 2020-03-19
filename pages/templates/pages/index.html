@@ -35,10 +35,10 @@
                         <h2 class="text-left mb-3 d-none d-lg-block">Your new favorite bookmarking app</h2>
                         <h6 class="my-4">Never forget another page again!</h6>
                         <div class="text-justify">
+                            <p>Links is a full featured bookmarking app that stores all your data in the cloud, meaning
+                                you can
+                                access your bookmarks wherever you are.</p>
                             <p>All your bookmarks, in one place, organised how you choose, just a few clicks away.</p>
-                            <p>Another paragraph here, and it should be better than the 2 above whuch will need
-                                replacing /
-                                improving</p>
                         </div>
                         <div class="mt-5">
                             <a href="{% url 'register' %}" class="btn--square mt-1"><span><small>Create
@@ -55,31 +55,40 @@
     </section>
 
     <section id="features-section" class="container-fluid">
-        <div class="container">
-            <h2 class="text-center d-block d-lg-none mt-n5 mb-5">Features</h2>
+        <div class="container text-center">
+            <h2 class="qmt-n5 mb-5">Features</h2>
             <div class="row">
-                <div class="col-12 col-lg-6 col-xl-5 qmt-n3 mb-4 mt-lg-2">
-                    <img src="{% static 'img/pages/about/screen1.png' %}" alt="free" class="img-fluid d-block mx-auto">
-                </div>
-                <div class="col-12 col-lg-6 col-xl-7">
-                    <div class="vertical-bar-right pl-3 pl-lg-4">
-                        <h2 class="mb-3 d-none d-lg-block text-right">Features</h2>
-                        <div class="my-4 text-justify">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto
-                                neque,
-                                doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
-                                magnam hic commodi nemo laborum!&lrm;</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt illo vel ab iusto
-                                neque,
-                                doloremque earum! Enim nostrum laboriosam eius, odio accusantium numquam ab voluptatem
-                                magnam hic commodi nemo laborum!&lrm;</p>
-                        </div>
-                        <div class="text-right mt-5">
-                            <a href="{% url 'pricing_page' %}" class="btn--square-invert mt-1"><span><small>Compare
-                                        Features</small></span></a>
-                        </div>
+                <div class="col-12 col-lg-6 features-box">
+                    <h5>Custom Display Options</h5>
+                    <div class="features-text">
+                        <p>Choose how to display your bookmarks. Large, small, title only, or a full description -
+                            it's up to you!</p>
+                        <p>Use icons from the site itself, upload your own, or let us create one
+                            for you.</p>
                     </div>
                 </div>
+                <div class="col-12 col-lg-6 features-box">
+                    <h5>Extensive Sort Options</h5>
+                    <div class="features-text">
+                        <p>Sort bookmarks by name, date added, date updated, or even manually in an order of your
+                            choosing with our simple drag and drop interface.</p>
+                        <p>Easily arrange your collections on the page, in any order you want. Choose how many columns
+                            to use for each page, from between 1 and 5.</p>
+                        <p>Change the order of the pages, place your most used pages at the top for easier
+                            access.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 features-box">
+                    <h5></h5>
+                </div>
+                <div class="col-12 col-lg-6 features-box">
+                    <h5></h5>
+                </div>
+            </div>
+            <div class="text-center">
+                <h6>And many more....</h6>
+                <a href="{% url 'pricing_page' %}" class="btn--square-invert mt-3"><span><small>Compare
+                            Features</small></span></a>
             </div>
         </div>
     </section>
@@ -98,13 +107,11 @@
                     <div class="vertical-bar-left pr-3 pr-lg-4">
                         <h2 class="mb-3 d-none d-lg-block">Chrome Browser Extension</h2>
                         <div class="my-4 text-justify">
-                            <p>Eos praesentium, beatae vel quam eaque veniam harum, ab ratione
-                                temporibus aliquam ex!.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate animi sunt, cum
-                                corrupti
-                                reiciendis veniam iure aut.</p>
-                            <p>Another paragraph here, and it should be better than the 2 above whuch will need
-                                replacing / improving</p>
+                            <p>Import your favorite webistes even easier with our dedicated Chrome extension, available
+                                directly from the Chrome Web Store.</p>
+                            <p>One click is all it takes to import a website to your collection.</p>
+                            <p>Best of all, it's completely free to use for all members, and because it's hosted on the
+                                Chrome Web Store, you can be sure it's 100% safe for you to use.</p>
                         </div>
                         <div class="mt-5">
                             <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
@@ -122,7 +129,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 content text-center">
-                    <h1 class="text-center mb-5">Testimonials</h1>
+                    <h2 class="mb-5">Testimonials</h2>
                     <div class="row">
 
                         <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
@@ -136,11 +143,10 @@
                                         <img src="{% static 'img/pages/about/female_head2.png' %}" alt="face"
                                             class="img-fluid">
                                     </div>
-                                    <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
-                                        Distinctio,
-                                        repudiandae!</p>
-
+                                    <p class="quote">Links is so easy to use, even for someone like me who tends to
+                                        break anything I touch! Everything seems to be where you would expect to find
+                                        it and it's all so intuitive.
+                                    </p>
                                     <hr>
                                     <p class="quote_by"><b>Stevie Nicks</b>, <span class="text-nowrap">CEO of FM
                                             Inc</span></p>
@@ -151,10 +157,10 @@
                                         <img src="{% static 'img/pages/about/female_head3.png' %}" alt="face"
                                             class="img-fluid">
                                     </div>
-                                    <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
-                                        Distinctio,
-                                        repudiandae!</p>
+                                    <p class="quote">The support is great. I had an idea for a feature so I contacted
+                                        support and they got back to me straight away thanking me for my suggestion and
+                                        promising to add it as soon as they can!
+                                    </p>
 
                                     <hr>
                                     <p class="quote_by"><b>Suzi Gardner</b>, <span
@@ -167,10 +173,10 @@
                                         <img src="{% static 'img/pages/about/male_head1.png' %}" alt="face"
                                             class="img-fluid">
                                     </div>
-                                    <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Im
-                                        nemo culpa qui excepturi totam quaerat cum, necessitatibus ullam?
-                                        Distinctio,
-                                        repudiandae!</p>
+                                    <p class="quote">I was a free member for about a week before I decided to try
+                                        Premium and I'm so glad I did. Now I can have as many bookmarks as I like, and
+                                        it's great to know if I do have a problem, a solution is only a quick telephone
+                                        call away.</p>
 
                                     <hr>
                                     <p class="quote_by"><b>Joe Lally</b>, <span class="text-nowrap">Student</span>

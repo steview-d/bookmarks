@@ -41,6 +41,12 @@
     background-color: #292e33;
     color: white;
 
+    h2 {
+        display: inline-block;
+        border: 1px solid $white;
+        padding: 1rem 1.25rem;
+    }
+
     img {
         width: 50%;
 
@@ -48,9 +54,19 @@
             width: 80%;
         }
     }
+}
 
-    p {
-        direction: rtl;
+.features-box {
+
+}
+
+.features-text {
+    padding: .5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+
+    @media only screen and (min-width: 992px) {
+        padding: 2rem;
     }
 }
 
@@ -75,7 +91,7 @@
     background-color: $dark-blue;
     color: $white;
 
-    h1 {
+    h2 {
         display: inline-block;
         border: 1px solid $white;
         padding: 1rem 1.25rem;
@@ -237,7 +253,9 @@
 
         .card-body {
             text-align: justify;
+            // firefox only, currently
             text-justify: inter-word;
+            padding-bottom: 0;
         }
     }
 }

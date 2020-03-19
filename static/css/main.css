@@ -1181,6 +1181,12 @@ h4 > .fa-stop {
   color: white;
 }
 
+#features-section h2 {
+  display: inline-block;
+  border: 1px solid #ffffff;
+  padding: 1rem 1.25rem;
+}
+
 #features-section img {
   width: 50%;
 }
@@ -1191,8 +1197,16 @@ h4 > .fa-stop {
   }
 }
 
-#features-section p {
-  direction: rtl;
+.features-text {
+  padding: .5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .features-text {
+    padding: 2rem;
+  }
 }
 
 #chrome-ext-section {
@@ -1220,7 +1234,7 @@ h4 > .fa-stop {
   color: #ffffff;
 }
 
-#testimonials-section h1 {
+#testimonials-section h2 {
   display: inline-block;
   border: 1px solid #ffffff;
   padding: 1rem 1.25rem;
@@ -1386,6 +1400,7 @@ h4 > .fa-stop {
 #faq-accordion .card .card-body {
   text-align: justify;
   text-justify: inter-word;
+  padding-bottom: 0;
 }
 
 #contact-form-section {
