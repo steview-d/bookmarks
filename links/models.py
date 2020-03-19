@@ -106,7 +106,7 @@ class Bookmark(models.Model):
         null=False, blank=False
     )
     title = models.CharField(
-        max_length=100, null=False, blank=False
+        max_length=255, null=False, blank=False
     )
     description = models.CharField(
         max_length=500, null=True, blank=True
