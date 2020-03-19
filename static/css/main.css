@@ -892,7 +892,8 @@ input {
   margin: 0 1rem 3rem;
 }
 
-#sidebar ul li .page-name {
+#sidebar ul li .page-name,
+#sidebar ul li .nav-link {
   color: #ffffff;
   text-decoration: none;
 }
@@ -902,7 +903,8 @@ input {
   background-color: #ffffff;
 }
 
-#sidebar ul .active .page-name {
+#sidebar ul .active .page-name,
+#sidebar ul .active .nav-link {
   color: #000000;
 }
 
