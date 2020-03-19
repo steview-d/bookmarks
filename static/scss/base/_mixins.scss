@@ -77,6 +77,9 @@
     display: inline-block;
     transition: 0.2s ease-out;
 
+    font-family: $text-button;
+    font-size: .8rem;
+
     span {
         position: absolute;
         bottom: 2px;
@@ -110,10 +113,13 @@
     border: 1px solid $col3;
     border-radius: 0.25rem;
     margin: .25rem 0;
-    padding: 0.2rem 0.4rem;
-    
+    padding: 0.25rem 0.5rem;
+
     display: inline-block;
     transition: 0.25s ease-out;
+
+    font-family: $text-button;
+    font-size: .8rem;
 
     &:hover {
         background-color: $col4;

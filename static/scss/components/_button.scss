@@ -129,9 +129,11 @@
     border-radius: 4px;
     color: $white;
     font-weight: 600;
-    width: 130px;
+    width: 150px;
     padding: 0.5rem 0.8rem;
     transition: 0.2s ease-out;
+
+    font-family: $text-button;
 
     i {
         margin-right: 0.5rem;
@@ -146,18 +148,17 @@
     }
 }
 
-.btn--purple {
+.btn--default-icon {
     background-color: $purple;
     border: none;
     border-radius: 4px;
     color: $white;
-    font-weight: 600;
-    padding: 0.5rem 0.8rem;
+    // font-weight: 600;
+    font-size: .7rem;
+    padding: 0.4rem 0.6rem;
     transition: 0.2s ease-out;
 
-    i {
-        margin-right: 0.5rem;
-    }
+    font-family: $text-button;
 
     &:hover {
         background-color: $purple-dimmed;
@@ -165,49 +166,6 @@
 
     &:focus {
         outline: none;
-    }
-}
-
-// not currently in use - delete if not required
-.btn--slide {
-    padding: 0.2rem 0.4rem;
-    font-size: 1rem;
-    position: relative;
-    border: 1px solid $black;
-    color: $black;
-    background-color: transparent;
-    white-space: nowrap;
-
-    span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: inherit;
-        opacity: 0;
-        color: $white;
-        transition: 0.2s ease-out;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        background-color: $logo-blue;
-        transition: 0.3s ease-out;
-    }
-
-    &:hover {
-        &:before {
-            width: 100%;
-        }
-        span {
-            opacity: 1;
-        }
     }
 }
 
@@ -254,6 +212,8 @@
     width: 100px;
     height: 100px;
     transition: all 0.3s ease-in-out;
+
+    font-family: $text-button;
 
     &:hover {
         border: 4px solid $light-grey;

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Delius+Unicase&family=Muli:wght@300&display=swap");
 html {
   scroll-behavior: smooth;
 }
@@ -207,10 +208,12 @@ input {
   border: 1px solid #000000;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--standard:hover {
@@ -236,10 +239,12 @@ input {
   border: 1px solid #000000;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--white:hover {
@@ -266,10 +271,12 @@ input {
   border: 1px solid #e36868;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--red:hover {
@@ -296,10 +303,12 @@ input {
   border: 1px solid #e36868;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--delete:hover {
@@ -326,10 +335,12 @@ input {
   border: 1px solid #afafaf;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--faded:hover {
@@ -356,10 +367,12 @@ input {
   border: 1px solid #ffffff;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--white-hover-white:hover {
@@ -386,10 +399,12 @@ input {
   border: 1px solid #000000;
   border-radius: 0.25rem;
   margin: .25rem 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   display: inline-block;
   -webkit-transition: 0.25s ease-out;
   transition: 0.25s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--invert:hover {
@@ -417,6 +432,8 @@ input {
   display: inline-block;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--square span {
@@ -457,6 +474,8 @@ input {
   display: inline-block;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
+  font-family: "Delius Unicase", cursive;
+  font-size: .8rem;
 }
 
 .btn--square-invert span {
@@ -505,10 +524,11 @@ input {
   border-radius: 4px;
   color: #ffffff;
   font-weight: 600;
-  width: 130px;
+  width: 150px;
   padding: 0.5rem 0.8rem;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
+  font-family: "Delius Unicase", cursive;
 }
 
 .btn--autofill i {
@@ -523,70 +543,24 @@ input {
   outline: none;
 }
 
-.btn--purple {
+.btn--default-icon {
   background-color: #6c3af1;
   border: none;
   border-radius: 4px;
   color: #ffffff;
-  font-weight: 600;
-  padding: 0.5rem 0.8rem;
+  font-size: .7rem;
+  padding: 0.4rem 0.6rem;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
+  font-family: "Delius Unicase", cursive;
 }
 
-.btn--purple i {
-  margin-right: 0.5rem;
-}
-
-.btn--purple:hover {
+.btn--default-icon:hover {
   background-color: #491EBD;
 }
 
-.btn--purple:focus {
+.btn--default-icon:focus {
   outline: none;
-}
-
-.btn--slide {
-  padding: 0.2rem 0.4rem;
-  font-size: 1rem;
-  position: relative;
-  border: 1px solid #000000;
-  color: #000000;
-  background-color: transparent;
-  white-space: nowrap;
-}
-
-.btn--slide span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: inherit;
-  opacity: 0;
-  color: #ffffff;
-  -webkit-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
-}
-
-.btn--slide::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #175c9d;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
-}
-
-.btn--slide:hover:before {
-  width: 100%;
-}
-
-.btn--slide:hover span {
-  opacity: 1;
 }
 
 .btn--collection-header {
@@ -644,6 +618,7 @@ input {
   height: 100px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  font-family: "Delius Unicase", cursive;
 }
 
 .btn--round:hover {

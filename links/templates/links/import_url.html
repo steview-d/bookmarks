@@ -19,7 +19,7 @@
                 <form method="POST" enctype="multipart/form-data" class="p-2 mt-3" novalidate>
                     <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Import url</h4>
                     <button type="button" id="scrape-url" class="btn--autofill"><i class="fa fa-magic"
-                            aria-hidden="true"></i>AUTOFILL</button>
+                            aria-hidden="true"></i>Autofill</button>
                     <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                     {% csrf_token %}
 
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <button type="button" id="use-default-icon" class="btn--purple">Use Default Icon</button>
+                    <button type="button" id="use-default-icon" class="btn--default-icon">Use Default Icon</button>
 
                     <!-- hidden field to hold scraped base64 image -->
                     <input type="hidden" id="scraped_img" name="scraped_img"

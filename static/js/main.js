@@ -351,7 +351,7 @@ $(document).ready(function() {
                     $("#scraped_img").val("");
                 }
                 $("#scrape-url").html(
-                    '<i class="fa fa-magic" aria-hidden="true"></i>AUTOFILL'
+                    '<i class="fa fa-magic" aria-hidden="true"></i>Autofill'
                 );
 
                 // if an image is scraped, hide the default icon and show scraped image
