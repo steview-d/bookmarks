@@ -12,6 +12,11 @@
 // ----------------------------------------------------------- settings - about
 
 #about-app {
+
+    h3, h4 {
+        font-family: $text-general;
+    }
+
     .logo-img {
         height: 186px;
         width: 186px;
@@ -31,6 +36,17 @@
 
 
 // --------------------------------------------------------- settings - profile
+
+.user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5em;
+
+    @media only screen and (min-width: 576px) {
+        font-size: 2.5rem;
+    }
+}
 
 .profile-forms {
     @media only screen and (min-width: 992px) {

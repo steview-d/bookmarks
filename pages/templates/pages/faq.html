@@ -17,9 +17,8 @@
     <section id="faq-section" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="text-center mt-n5 mt-lg-n3">
+                <div class="text-center mt-n5 mt-lg-n3 px-md-5">
                     <h2>Get answers to some of the most commonly asked questions</h2>
-                    <!-- <p>Get answers to some of the most commonly asked questions</p> -->
                     <div class="other-questions text-center">
                         <h5>Have a different question? That's ok too!</h5>
                         <a href="#contact-form-section" class="btn--square mt-3"><span><small>Contact
@@ -142,7 +141,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-10 col-md-7 col-lg-6 col-xl-5 form-container">
-                    <h1 class="mb-4 text-center">Get In Touch</h1>
+                    <h2 class="mb-4 text-center">Get In Touch</h2>
                     <form method="POST" novalidate>
                         {% csrf_token %}
                         {{ contact_form|crispy }}

@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Delius+Unicase&family=Muli:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase&family=Muli:wght@300&display=swap");
 html {
   scroll-behavior: smooth;
 }
 
 body {
   background-color: rgba(250, 250, 250, 0.9);
+  font-family: "Muli", sans-serif;
 }
 
 a {
@@ -17,8 +18,15 @@ a:hover {
 }
 
 input {
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: 1px solid #ced4da;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Delius Unicase", sans-serif;
 }
 
 .dropdown-menu {
@@ -27,7 +35,7 @@ input {
 
 .dropdown-item.active,
 .dropdown-item:active {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   background-color: #343a40;
 }
@@ -684,6 +692,7 @@ input {
 }
 
 #pages-nav .navbar-title {
+  font-family: "Delius Unicase", sans-serif;
   text-align: center;
   margin-top: 1rem;
 }
@@ -904,16 +913,18 @@ input {
   transition: 0.25s ease-out;
 }
 
-.add-bm-btn-sidebar h4 {
+.add-bm-btn-sidebar h5 {
   display: inline-block;
   background-color: white;
   color: #343a40;
   padding: 1rem;
   border-radius: 5px;
   border: 1px solid #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.add-bm-btn-sidebar h4 i {
+.add-bm-btn-sidebar h5 i {
   margin-right: 0.5rem;
   color: #000000;
 }
@@ -1411,7 +1422,7 @@ h4 > .fa-stop {
   padding: 1.5rem;
 }
 
-.user-auth-container h3 {
+.user-auth-container h4 {
   text-align: center;
 }
 
@@ -1449,6 +1460,10 @@ h4 > .fa-stop {
   }
 }
 
+#about-app h3, #about-app h4 {
+  font-family: "Muli", sans-serif;
+}
+
 #about-app .logo-img {
   height: 186px;
   width: 186px;
@@ -1465,6 +1480,19 @@ h4 > .fa-stop {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   color: #175c9d;
+}
+
+.user-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5em;
+}
+
+@media only screen and (min-width: 576px) {
+  .user-name {
+    font-size: 2.5rem;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -1768,6 +1796,8 @@ h4 > .fa-stop {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  background-color: #ffffff;
+  border-radius: 4px;
 }
 
 #move-bm-detail .icon {
@@ -2159,14 +2189,6 @@ h4 > .fa-stop {
 .custom-control-input:focus ~ .custom-control-label::before {
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-
-.columns-badge {
-  border: 1px solid #000000;
-  border-radius: 4px;
-  background-color: #ffffff;
-  color: #000000;
-  padding: 2px .5rem 4px;
 }
 
 .page-link {

@@ -20,7 +20,7 @@
 
                 <div class="row">
                     <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
-                        <h3>Create Your New Account</h3>
+                        <h4>Create Your New Account</h4>
                         <form method="POST" novalidate>
                             {% csrf_token %}
 
@@ -37,7 +37,7 @@
                             </div>
                             {% endfor %}
 
-                            <button class="btn--invert" type="submit">Create Account</button>
+                            <button class="btn--standard" type="submit">Create Account</button>
                             <div>
                                 <small>Already have an account? Log in <a href="{% url 'login' %}"
                                         class="label label-small">here</a></small>

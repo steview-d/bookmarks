@@ -6,6 +6,7 @@ html {
 
 body {
     background-color: rgba(250, 250, 250, 0.9);
+    font-family: $text-general;
 }
 
 a {
@@ -18,8 +19,15 @@ a {
 }
 
 input {
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #ced4da;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: $text-heading;
 }
 
 .dropdown-menu {
@@ -28,7 +36,8 @@ input {
 
 .dropdown-item.active,
 .dropdown-item:active {
-    color: #fff;
+    color: $white;
     text-decoration: none;
     background-color: $onyx;
 }
+

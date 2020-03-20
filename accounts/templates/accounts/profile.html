@@ -22,7 +22,7 @@
             <div class="container">
                 <!-- user info -->
                 <div class="mt-2 mb-5 text-center">
-                    <div class="display-4">{{ user }}</div>
+                    <h1 class="user-name">{{ user }}</h1>
                     <hr class="w-25">
 
                     {% if is_premium %}
@@ -111,8 +111,8 @@
                         <div class="row align-items-center h-100">
                             <div class="col-12 text-center">
                                 <div>
-                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span>Go
-                                            Premium</span></a>
+                                    <a href="{% url 'premium' %}" class="btn--square mt-1"><span><small>Go
+                                            Premium</small></span></a>
                                 </div>
                                 <p class="mx-auto mt-1 w-50">Get unlimited bookmarks, and more, with a Premium account.
                                 </p>
