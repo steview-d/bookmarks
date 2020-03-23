@@ -5,15 +5,14 @@
 
     @media only screen and (min-width: 992px) {
         background-color: $white;
-
     }
 }
 
 // ----------------------------------------------------------- settings - about
 
 #about-app {
-
-    h3, h4 {
+    h3,
+    h4 {
         font-family: $text-general;
     }
 
@@ -76,7 +75,6 @@
     border-radius: 4px;
 }
 
-
 // -------------------------------------------------------------------- support
 
 .premium-tel-box {
@@ -85,7 +83,6 @@
     border: 2px solid $onyx;
     border-radius: 3px;
 }
-
 
 // -------------------------------------------------------------------- premium
 

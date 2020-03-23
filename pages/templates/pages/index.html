@@ -57,18 +57,10 @@
     <section id="features-section" class="container-fluid">
         <div class="container text-center">
             <h2 class="qmt-n5 mb-5">Features</h2>
-            <div class="row">
-                <div class="col-12 col-lg-6 features-box">
-                    <h5>Custom Display Options</h5>
-                    <div class="features-text">
-                        <p>Choose how to display your bookmarks. Large, small, title only, or a full description -
-                            it's up to you!</p>
-                        <p>Use icons from the site itself, upload your own, or let us create one
-                            for you.</p>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 features-box">
-                    <h5>Extensive Sort Options</h5>
+
+            <div class="row mt-lg-5 mb-5">
+                <div class="col-12 col-lg-6">
+                    <h4>Extensive Sort Options</h4>
                     <div class="features-text">
                         <p>Sort bookmarks by name, date added, date updated, or even manually in an order of your
                             choosing with our simple drag and drop interface.</p>
@@ -78,16 +70,34 @@
                             access.</p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 features-box">
-                    <h5></h5>
-                </div>
-                <div class="col-12 col-lg-6 features-box">
-                    <h5></h5>
+                <div class="col-12 col-lg-6 mb-5">
+                    <div class="text-center">
+                        <img src="{% static 'img/pages/about/drag_drop_off.png' %}" class="img-fluid drag-drop-gif">
+                    </div>
                 </div>
             </div>
+
+            <div class="row mt-5 mb-5">
+                <div class="col-12 col-lg-6 order-lg-last">
+                    <h4>Custom Display Options</h4>
+                    <div class="features-text">
+                        <p>Choose how to display your bookmarks. Large, small, title only, or a full description -
+                            it's up to you!</p>
+                        <p>Use icons from the site itself, upload your own, or let us create one
+                            for you.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 mb-5">
+                    <div class="text-center www">
+                        <img src="{% static 'img/pages/about/display_as_off.png' %}" class="img-fluid display-as-gif">
+                    </div>
+                    <!-- <small class="text-light">(Hover To Play)</small> -->
+                </div>
+            </div>
+
             <div class="text-center">
                 <h6>And many more....</h6>
-                <a href="{% url 'pricing_page' %}" class="btn--square-invert mt-3"><span><small>Compare
+                <a href="{% url 'pricing_page' %}#pricing-table-section" class="btn--square-invert mt-3"><span><small>Compare
                             Features</small></span></a>
             </div>
         </div>
@@ -207,6 +217,12 @@
             </div>
         </div>
     </section>
+
+    <!-- preload features gifs -->
+    <div id="preload">
+        <img src="{% static 'img/pages/about/drag_drop_on.gif' %}">
+        <img src="{% static 'img/pages/about/display_as_on.gif' %}">
+    </div>
 
     <!-- get started -->
     {% include 'pages/components/create_account.html' %}

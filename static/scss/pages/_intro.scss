@@ -8,7 +8,7 @@
 }
 
 #headline-section {
-    @include default-bg-color
+    @include default-bg-color;
 }
 
 // 4x4 icon grid
@@ -36,6 +36,11 @@
     }
 }
 
+.gif-wrapper img {
+    width: 80%;
+    height: auto;
+}
+
 #features-section {
     // background-color: $gunmetal-alpha;
     background-color: #292e33;
@@ -47,21 +52,18 @@
         padding: 1rem 1.25rem;
     }
 
-    img {
-        width: 50%;
+    // img {
+    //     width: 50%;
 
-        @media only screen and (min-width: 992px) {
-            width: 80%;
-        }
-    }
-}
-
-.features-box {
-
+    //     @media only screen and (min-width: 992px) {
+    //         width: 80%;
+    //     }
+    // }
 }
 
 .features-text {
-    padding: .5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
     text-align: left;
     margin-bottom: 2rem;
 
@@ -108,7 +110,6 @@
             .img-container {
                 text-align: center;
                 margin-bottom: 3rem;
-                
 
                 img {
                     box-shadow: inset 0px 0px 0px 10px $white;
@@ -162,7 +163,6 @@
     }
 }
 
-
 // -------------------------------------------------------------------- pricing
 
 #pricing-page section {
@@ -196,7 +196,6 @@
         border-radius: 8px;
     }
 }
-
 
 // ----------------------------------------------------------------------- faqs
 

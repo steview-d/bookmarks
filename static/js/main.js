@@ -257,10 +257,10 @@ $(document).ready(function() {
                     success: function(data) {
                         if (data.success) {
                             // turn off spinner
-                            $("#ajax-progress-spinner").toggleClass(
-                                "display-toggle"
-                            );
-                            location.reload();
+                            // $("#ajax-progress-spinner").toggleClass(
+                            //     "display-toggle"
+                            // );
+                            location.reload(false);
                         }
                     }
                 });
@@ -694,7 +694,6 @@ $(document).ready(function() {
             .toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
 
-
     // store initial width on window on page load
     var initialWidth = window.innerWidth;
 
@@ -702,7 +701,7 @@ $(document).ready(function() {
     $(window).on("resize", function() {
         // check width vs initialWidth to avoid false triggers on height with
         // some mobile browsers
-        if ($('#app').length && initialWidth != window.innerWidth) {
+        if ($("#app").length && initialWidth != window.innerWidth) {
             widthToColumns(window.innerWidth);
         }
     });
@@ -757,19 +756,61 @@ $(document).ready(function() {
 
     // width warning setting checkbox
     if (localStorage.getItem("widthWarning") === null) {
-        $('#widthWarningCheck').prop('checked', true);
+        $("#widthWarningCheck").prop("checked", true);
     } else {
-        $('#widthWarningCheck').prop('checked', false);
+        $("#widthWarningCheck").prop("checked", false);
     }
 
     // update on checkbox change
-    $('#widthWarningCheck').change(function() {
-        if(this.checked) {
+    $("#widthWarningCheck").change(function() {
+        if (this.checked) {
             localStorage.removeItem("widthWarning");
             // $('#widthWarningCheck').prop('checked', false);
         } else {
             localStorage.setItem("widthWarning", "ignore");
             // $('#widthWarningCheck').prop('checked', true);
+        }
+    });
+
+    // gif playback desktop
+    const ddGifPath = "/static/img/pages/about/drag_drop_";
+    const daGifPath = "/static/img/pages/about/display_as_";
+
+    // for Each here will DRY it
+
+    // gif playback desktop - hover
+    $(".drag-drop-gif").hover(
+        function() {
+            $(this).attr("src", `${ddGifPath}on.gif`);
+        },
+        function() {
+            $(this).attr("src", `${ddGifPath}off.png`);
+        }
+    );
+
+    $(".display-as-gif").hover(
+        function() {
+            $(this).attr("src", `${daGifPath}on.gif`);
+        },
+        function() {
+            $(this).attr("src", `${daGifPath}off.png`);
+        }
+    );
+
+    // gif playback touchscreen - click
+    $(".drag-drop-gif").on("touchstart", function() {
+        if ($(this).attr("src") == `${ddGifPath}on.gif`) {
+            $(this).attr("src", `${ddGifPath}off.png`);
+        } else {
+            $(this).attr("src", `${ddGifPath}on.gif`);
+        }
+    });
+
+    $(".display-as-gif").on("touchstart", function() {
+        if ($(this).attr("src") == `${daGifPath}on.gif`) {
+            $(this).attr("src", `${daGifPath}off.png`);
+        } else {
+            $(this).attr("src", `${daGifPath}on.gif`);
         }
     });
 });

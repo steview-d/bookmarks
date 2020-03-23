@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase&family=Muli:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase&family=Muli:wght@300");
 html {
   scroll-behavior: smooth;
 }
@@ -27,6 +27,10 @@ h2,
 h3,
 h4 {
   font-family: "Delius Unicase", sans-serif;
+}
+
+div#preload {
+  display: none;
 }
 
 .dropdown-menu {
@@ -1164,6 +1168,11 @@ h4 > .fa-stop {
   border-radius: 8px;
 }
 
+.gif-wrapper img {
+  width: 80%;
+  height: auto;
+}
+
 #features-section {
   background-color: #292e33;
   color: white;
@@ -1175,18 +1184,9 @@ h4 > .fa-stop {
   padding: 1rem 1.25rem;
 }
 
-#features-section img {
-  width: 50%;
-}
-
-@media only screen and (min-width: 992px) {
-  #features-section img {
-    width: 80%;
-  }
-}
-
 .features-text {
-  padding: .5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
   text-align: left;
   margin-bottom: 2rem;
 }
@@ -1460,7 +1460,8 @@ h4 > .fa-stop {
   }
 }
 
-#about-app h3, #about-app h4 {
+#about-app h3,
+#about-app h4 {
   font-family: "Muli", sans-serif;
 }
 
