@@ -106,9 +106,9 @@ $(document).ready(function() {
                     if (data.success) {
                         // turn off spinner
                         // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
-                        $("#ajax-progress-spinner").toggleClass(
-                            "display-toggle"
-                        );
+                        // $("#ajax-progress-spinner").toggleClass(
+                        //     "display-toggle"
+                        // );
                         location.reload();
                     }
                 }
@@ -191,9 +191,9 @@ $(document).ready(function() {
                         if (data.success) {
                             // turn off spinner
                             // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
-                            $("#ajax-progress-spinner").toggleClass(
-                                "display-toggle"
-                            );
+                            // $("#ajax-progress-spinner").toggleClass(
+                            //     "display-toggle"
+                            // );
                             location.reload();
                         }
                     }
