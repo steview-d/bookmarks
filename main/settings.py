@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import sys  # heroku logging
+
 import os
 import dj_database_url
 
@@ -29,6 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') else False
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.66', '192.168.1.94',
                  'links-sw.herokuapp.com']
@@ -200,3 +203,15 @@ STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# heroku logging and troubleshooting
+LOGGING = {
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'strm': sys.stdout
+        },
+    }
+}
