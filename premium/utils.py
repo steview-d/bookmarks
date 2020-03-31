@@ -30,6 +30,7 @@ def premium_check(request, model, settings_value):
     Args:
         request : request.user
         model : The model being checked against
+                - Bookmark, Collection or Page
         settings_value : The settings value to check against
 
     Returns:
