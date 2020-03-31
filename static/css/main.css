@@ -1785,6 +1785,7 @@ h4 > .fa-stop {
 }
 
 .default-icon .icon-text {
+  font-family: "Delius Unicase", sans-serif;
   color: white;
 }
 
@@ -1827,6 +1828,7 @@ h4 > .fa-stop {
 }
 
 #move-bm-detail .no-icon .icon-text {
+  font-family: "Delius Unicase", sans-serif;
   position: relative;
   top: -1px;
   color: white;
@@ -1941,6 +1943,7 @@ h4 > .fa-stop {
 #edit-bookmark .no-icon .icon-text,
 #add-bookmark .no-icon .icon-text,
 #import-url .no-icon .icon-text {
+  font-family: "Delius Unicase", sans-serif;
   position: relative;
   top: -4px;
   color: white;
