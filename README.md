@@ -222,10 +222,11 @@ The individual ticket display has been customised to separate the ticket data in
 
 #### Messages System
 The app makes use of the built in messages framework that comes with Django. Any time the app needs to communicate an important event to the user, such as confirmation of an actions success or failure, the message is flashed at top of the screen, just below the top navigation bar.
+
 ![](https://i.imgur.com/gstGn6j.png)
 ![](https://i.imgur.com/XNjnHAP.png)
 
-The message tag is used to set the bootstrap color class (success green, orange warning) and so on so the user can immediately tell what type of message it is. Messages can be manually closed, or they will disappear on a new page load / refresh.
+The message tag is used to set the bootstrap color class (success green, orange warning, and so on) so the user can immediately tell what type of message it is. Messages can be manually closed, or they will disappear on a new page load / refresh.
 
 #### Built In Support Ticket System
 Registered users can open a support ticket to help with anything related to the app. The form is simple, requiring only a title and message, and the ticket will be opened and viewable from within the admin panel. Details of how an admin would manage this ticket can be found in the previous section on the admin backend, specifically [this section on tickets](#tickets).
@@ -236,31 +237,183 @@ From a user perspective, once the form is submitted, they will recieve an email 
 	<summary>Example Support Ticket Email</summary>
 
 ![](https://i.imgur.com/XZSWbtS.png)
-<details>
+</details>
+
+#### Upgrade to Premium Tier
+Users can upgrade to the Premium tier from the Premium page in the Settings section. The page is designed to first show visitors what Premium gives them over the free tier and then follows it up with the limited lifetime offer to further incentivise the purchase.
+
+When the user is ready to upgrade, a simple form is available for their payment details. Only limited information is collected, just their card details and basic identifying information (name and postcode).
+
+<img src="https://i.imgur.com/uY1GGkK.png" height=300>
+
+This form connects to the Stripe API to process a users card details. No card details are stored locally or on the server, they are only sent to Stripe and then discarded.
+
+Payments (and Premium functionality) can be tested by upgrading to Premium using Stripes basic test card numbers, which are the following
+- Card Number - 4242 4242 4242 4242
+- Expiry - Any future date
+- CVC - Any 3 digits
+
+On successful completion a PremiumPurchase object is created to record the event and the user is added to the 'Premium' group. This group has no special permissions, and is used only to differentiate between Free & Premium users.
 
 #### Premium Functionality for Paying Users
+Premium users can do things that users on the free tier can't, such as access telephone support, remove ads, and have more bookmarks, collections, and pages.
+
+There are 2 functions used to check if a user is a Premium member, and the function used depends on which part of the app needs to know, ie the back-end logic, or the front-end templating.
+
+##### is_premium
+Updates the context dictionary with a key value pair of ``is_premium: (Boolean)`` and is used the by templating language when deciding which content to display
+##### premium_check
+Returns a Boolean. When a user tries to perform an action that has the potential to be limited by them being on the Free tier, for example adding a Page, this function checks if this action would cause the user to exceed the limits imposed by the Free tier.
+
+If the check passes, nothing happens and the app works as normal, leaving the user oblivious to the the fact a check took place.
+
+If the check fails, the user is informed of this, advised this is due to them being on the Free tier, and is then redirected to the Premium page to encourage them to convert to Premium.
+
+![](https://i.imgur.com/IDpUnEj.png)
+
+
 #### User Profile Page
-#### Side Navigation Bar
+The user profile page allows the user to update their email address and password, using 2 separate forms. It's as straight-forward as entering the required information and pressing submit. Providing the form passes the validation checks, the update is immediate.
+
+This page also contains a ``user preferences`` section. Currently this only consists of one entry - an option to set / reset the display warnings when there are too many columns - but this can be expanded as and when more functionality is added.
+
+The final section provides basic data on how many bookmarks, collections, and pages the user has currently. This can eventually be expanded into it's own section for [Detailed User Statistics](#detailed-user-statistics)
+
 #### Top Navigation Bar
+When logged in, the top navigation bar allows the user to move between different sections of the app (bookmarks, options, log out) and also search their entire collection.
+
+<img src="https://i.imgur.com/mhxYtY0.png" height=50>
+
+The element is fully responsive and adjusts to the current screen width. On widths < 768px the sidebar is hidden from view so the app adds the burger icon / 3 horizontal lines to the left to show the user it can be expanded back out.
+
+Additionally, the ``+ Add Bookmark`` from the sidebar button is no longer visible so the top navigation bar adds a ``+`` icon to allow the user to still easily add a bookmark without having to manually open the sidebar.
+
+<img src="https://i.imgur.com/ii7L9Gm.png" height=50>
+
+On widths < 576px the search bar is replaced by a search icon, again to save space, and when clicked it expands into a search box allowing the user to type in their search query.
+
+<img src="https://i.imgur.com/AXVGTG0.png" height=50> <img src="https://i.imgur.com/qYc40r8.png" height=50>
+
+#### Side Navigation Bar
+The side navigation bar takes 2 forms depending on whether the user is within the bookmarks or settings section.
+
+##### Bookmarks
+Whilst managing bookmarks, the sidebar will contain a list of the  pages.
+
+![](https://i.imgur.com/UOflZRJ.png)
+
+There is a lot of functionality built in to this section, allowing a user to:
+- Navigate to a different page
+- Add a new page <img src="https://i.imgur.com/cvP9EP3.png" height=20>
+- Reorder their existing pages <img src="https://i.imgur.com/x3QhD6M.png" height=20>
+- Edit the current pages' settings <img src="https://i.imgur.com/X3oiz08.png" height=20>
+	- Rearrange the collections on the current page
+	- Change the number of columns displayed on the current page
+	- Rename the current page
+
+##### Settings
+A simple list allowing the user to navigate between the different settings pages.
+
+##### Both Sections
+Regardless of section, the top of the sidebar will always contain the app logo and ``+ Add Bookmark`` button
+
 #### Search Functionality
+Using the search bar at the top of the page, a user can search their entire collection by title, and view all the results in one place.
+
+![](https://i.imgur.com/VUI9XWm.png)
+
+The individual bookmarks are displayed in ``full`` mode (See [Bookmark Display Options](dookmark-display-options) for more detail on this) and have the same actions available (Edit, Move & Delete) as when viewing from within their respective collections and pages.
+
+Up to 10 results will be displayed per page, and in the event of there being more than 10 results, they will be spread over multiple pages for the user to browse through.
+
+![](https://i.imgur.com/gvU5JKz.png)
+
+Results are displayed in ``date added``  order, earliest first. At a later date, this would be fleshed out more to give the user more control over the search results, in the form of configurable sort orders and more pagination options.
+
+If a user searches with a blank search term, the app will return all bookmarks.
+
 #### Add Bookmark
-#### Automatic Scraping of Pages for Bookmark Data
+Adding a bookmark is as straightforward as filling out a form and clicking the ``Add Bookmark`` button.
+
+The user has complete control over this and can enter the information manually, or click ``Autofill`` and let the app try and populate the fields itself. The same applies for the bookmark icon; the user can upload their own, scrape the web page, or let the app generate it's own
+
+The user should also tell the app where to store the bookmark - the page and collection. The default page is the currently selected page, and the default collection is the first collection on this page. If a user comes from, or chooses, a page that currently has no collections, the destination page drop-down will reflect this by being empty. If the user tries to submit to an empty collection an error message will tell them to choose a page with at least 1 collection
+
 #### URL Validation
-#### Edit Bookmark
-#### Move Bookmark
-#### Delete Bookmark
+
+![](https://i.imgur.com/thSI2fC.png) ![](https://i.imgur.com/6vvhABb.png)
+
+When adding a bookmark, just underneath the ``url`` field is a ``url status`` checker. The purpose of this is to provide real-time feedback on if the url being entered is valid or not. Using ajax the app will send the url to the ``check_valid_url`` function and using the Python requests library it will return a Boolean result.
+
+To keep requests at a reasonable level, the function is called only after 1 second has elapsed since the last key release within the url field.
+
+#### Automatic Scraping of Pages for Bookmark Data
+
+A user can choose to allow the app to scrape the address in the ``url`` field by clicking the ``Autofill`` button and have the ``title`` and ``description`` field filled in automatically. Where no data can be scraped, the text fields will be filled with a message stating this.
+
+Additionally, ``Autofill`` will also attempt to get the sites icon and if successful this will show in the ``Icon Preview`` area.
+
+After `Autofill` has run, a message just below the button will be displayed to let the user know if it has been successful. Success is determined by the app being able to connect to the site and attempt to scrape, not by what it returns.
+
+<img src="https://i.imgur.com/KbaXYUp.png" height=93>
+
+#### Bookmark Icons
+When it comes to storing an icon to go alongside the bookmark, users have 3 options
+1. Scrape the site with ``Autofill`` and use whatever image is returned
+2. Upload their own
+3. Let the app create one
+
+Each time one of the above operations is successful, a preview of the result will be displayed in the `icon preview` section. No further action is required by the user to select this image - the contents of this preview will be saved with the bookmark when the form is submitted.
+
+If a user chooses to let the app create a bookmark for them, nothing is actually created, and the app doesn't store anything in the icon field. Instead, every time the app needs to display a bookmark icon, if it finds an empty field, it then generates the bookmark there and then.
+
+The generated icon is the capitalised first letter in the bookmark title on a colored tile. This is taken care of by the filters contained with `icon_styling.py`. The filters set the size of the icon and text, based on the chosen display option. The tile color is decided by the position of the letter in the alphabet. This way, tile colors and letters are consistent across the entire app.
+<p align="center">
+  <img src="https://i.imgur.com/wwb33jN.png">
+</p>
+
+#### Bookmark Options
+Every bookmark has an icon to its right that when clicked, provides a number of bookmark specific options.
+
+<img src="https://i.imgur.com/HKkvEbb.png" height=300>
+
+##### Edit Bookmark
+The `Edit Bookmark` page is very similar to the `Add Bookmark` page in both style and functionality. The only differences are
+- The form is already filled in with data for that particular bookmark
+- The `Destination Page` & `Destination Collection` drop-downs are not shown as the Bookmark isn't moving anywhere.
+
+##### Move Bookmark
+The `Move Bookmark` page is almost the opposite of the `Edit Bookmark` page. The only fields are drop-downs for `Destination Page` & `Destination Collection` so the user can choose where to move the bookmark to.
+
+The Bookmark itself is displayed so the user can see at a glance which bookmark is being moved, but there is no option to edit the details.
+
+##### Delete Bookmark
+When a user selects the `Delete Bookmark` option, a modal appears asking for confirmation. The user can either choose to delete the Bookmark, or cancel the request. All deletions are permanent.
+
+#### Add a New Collection
+On any given page, a user has the option to add a new Collection. If the page is currently empty there is just 1 large box directing the user to create a collection.
+
+<img src="https://i.imgur.com/1qmqVyr.png" height=300>
+
+This is placed prominently as the user can do little else until a page has at least one collection. If a page contains 1 or more collections, the option to add another is still present, but is located a little more discretely and is positioned after the last collection in each column. 
+
+#### Reorder Bookmarks, Collections, and Pages
+
 #### Browser Extension for Easy Importing of Bookmarks
 #### Bookmark Display Options
 #### Bookmark Sort Options
 
 ### Planned Features
 Even though the app already contains a lot of functionality, there are still things I would like to add at a later date. The list is huge, but these are the 3 I'd prioritise first.
+
 #### Recurring Subscriptions
 Once a solid user base had been built, with a not insignificant number of Premium members, I'd switch the payment model to a monthly / annual subscription format instead of the current one-off lifetime membership system.
+
 #### Detailed User Statistics
 Everyone loves a bar chart, right? The profile page can be expanded so instead of just totalling the users bookmarks, pages & collections, there could be more detailed stats at the user level and site wide statistics too.
+
 #### Bookmark Sharing
-This was actually planned from the beginning and whilst it would have been relatively simple to add, time just ran out. Users would be able to mark individual collections and / or pages as public and each user would have their own public link, along the lines of `/users/[username]`. Users could share this url with others, including non-users, and make their bookmark collections publically available.
+This was actually planned from the beginning and whilst it would have been relatively simple to add, time just ran out. Users would be able to mark individual collections and / or pages as public and each user would have their own public link, along the lines of `/users/[username]`. Users could share this url with others, including non-users, and make their bookmark collections publicly available.
 
 ## Technologies Used
 ### Languages
@@ -282,7 +435,7 @@ This was actually planned from the beginning and whilst it would have been relat
 <details>
 	<summary>Python Libraries - click to view</summary>
 	
-Packages that are only dependancies of others are not included. The full list can be found in the requirements folder.
+Packages that are only dependencies of others are not included. The full list can be found in the requirements folder.
 
 Package|Version|Description
 ---|---|---
