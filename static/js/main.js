@@ -539,9 +539,7 @@ $(document).ready(function() {
         if (window.scrollY > 1) {
             $(".navbar-title")
                 .css({ opacity: 0, transition: "opacity 0.5s" })
-                .slideUp(600);
-            $(".mobile-menu")
-                .css({ opacity: 0, transition: "opacity 0.5s" })
+                // .slideUp(600);
                 .slideUp(600, function() {
                     $("#pages-nav").addClass("nav-border");
                 });
@@ -553,9 +551,6 @@ $(document).ready(function() {
             }
         } else {
             $(".navbar-title")
-                .css({ opacity: 1 })
-                .slideDown(600);
-            $(".mobile-menu")
                 .css({ opacity: 1 })
                 .slideDown(600);
             if (!window.location.href.includes("accounts")) {
