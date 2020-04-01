@@ -4,9 +4,8 @@
 <nav id="pages-nav" class="container-fluid
     {% if 'accounts' in request.path %} nav-border nav-bg-accounts{% else %} nav-bg{% endif %}">
     <!-- navbar title -->
-    <!-- <div class="navbar-title display-4">Links</div> -->
     <div class="navbar-title text-center">
-        <img src="{% static 'img/logo/logo_main.png' %}" alt="logo">
+        <img src="{% static 'img/logo/logo_main.png' %}" alt="logo" class="img-fluid">
     </div>
 
 
@@ -23,17 +22,18 @@
         <li
             class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
             <a href="{% url 'register' %}">Register</a></li>
+        <li>
+            <!-- login / register dropdown for small screens -->
+            <div class="d-sm-none mobile-menu" data-toggle="dropdown">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+            </div>
+
+        </li>
     </ul>
-
-    <!-- login / register dropdown for small screens -->
-    <div class="d-sm-none mobile-menu" data-toggle="dropdown">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-    </div>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-    </div>
-
 </nav>
 
 <div class="navbar-spacer"></div>

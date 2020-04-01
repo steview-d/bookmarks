@@ -698,7 +698,13 @@ div#preload {
 #pages-nav .navbar-title {
   font-family: "Delius Unicase", sans-serif;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem 4rem 0;
+}
+
+@media only screen and (min-width: 576px) {
+  #pages-nav .navbar-title {
+    margin: 1rem 0 0;
+  }
 }
 
 #pages-nav .navbar-items {
@@ -756,9 +762,13 @@ div#preload {
 
 .mobile-menu {
   position: absolute;
-  top: 2vw;
-  left: 5vw;
-  font-size: 1.8rem;
+  left: 2vw;
+  font-size: 1.6rem;
+  margin: 0 1rem;
+}
+
+.mobile-menu i {
+  margin-top: .6rem;
 }
 
 .nav-border {
@@ -1463,13 +1473,6 @@ h4 > .fa-stop {
 #about-app h3,
 #about-app h4 {
   font-family: "Muli", sans-serif;
-}
-
-#about-app .logo-img {
-  height: 186px;
-  width: 186px;
-  border: 14px solid #175c9d;
-  border-radius: 50%;
 }
 
 #about-app i {
