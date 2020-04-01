@@ -1,5 +1,9 @@
 #### WIP - Still needs spellchecking, amongst other things.....
 
+<p align="center">
+  <img src="https://i.imgur.com/wwb33jN.png">
+</p>
+
 # Links
 
 Links is a bookmarking app built using Pythons Django framework, and hosted with Heroku.
@@ -292,7 +296,7 @@ Additionally, the ``+ Add Bookmark`` from the sidebar button is no longer visibl
 
 On widths < 576px the search bar is replaced by a search icon, again to save space, and when clicked it expands into a search box allowing the user to type in their search query.
 
-<img src="https://i.imgur.com/AXVGTG0.png" height=50> <img src="https://i.imgur.com/qYc40r8.png" height=50>
+<img src="https://i.imgur.com/AXVGTG0.png" height=50> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://i.imgur.com/qYc40r8.png" height=50>
 
 #### Side Navigation Bar
 The side navigation bar takes 2 forms depending on whether the user is within the bookmarks or settings section.
@@ -305,7 +309,7 @@ Whilst managing bookmarks, the sidebar will contain a list of the  pages.
 There is a lot of functionality built in to this section, allowing a user to:
 - Navigate to a different page
 - Add a new page <img src="https://i.imgur.com/cvP9EP3.png" height=20>
-- Reorder their existing pages <img src="https://i.imgur.com/x3QhD6M.png" height=20>
+- Reorder existing pages <img src="https://i.imgur.com/x3QhD6M.png" height=20>
 - Edit the current pages' settings <img src="https://i.imgur.com/X3oiz08.png" height=20>
 	- Rearrange the collections on the current page
 	- Change the number of columns displayed on the current page
@@ -320,7 +324,7 @@ Regardless of section, the top of the sidebar will always contain the app logo a
 #### Search Functionality
 Using the search bar at the top of the page, a user can search their entire collection by title, and view all the results in one place.
 
-![](https://i.imgur.com/VUI9XWm.png)
+<img src="https://i.imgur.com/VUI9XWm.png" height=400>
 
 The individual bookmarks are displayed in ``full`` mode (See [Bookmark Display Options](dookmark-display-options) for more detail on this) and have the same actions available (Edit, Move & Delete) as when viewing from within their respective collections and pages.
 
@@ -341,7 +345,7 @@ The user should also tell the app where to store the bookmark - the page and col
 
 #### URL Validation
 
-![](https://i.imgur.com/thSI2fC.png) ![](https://i.imgur.com/6vvhABb.png)
+![](https://i.imgur.com/thSI2fC.png) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://i.imgur.com/6vvhABb.png)
 
 When adding a bookmark, just underneath the ``url`` field is a ``url status`` checker. The purpose of this is to provide real-time feedback on if the url being entered is valid or not. Using ajax the app will send the url to the ``check_valid_url`` function and using the Python requests library it will return a Boolean result.
 
@@ -397,11 +401,106 @@ On any given page, a user has the option to add a new Collection. If the page is
 
 This is placed prominently as the user can do little else until a page has at least one collection. If a page contains 1 or more collections, the option to add another is still present, but is located a little more discretely and is positioned after the last collection in each column. 
 
-#### Reorder Bookmarks, Collections, and Pages
-
 #### Browser Extension for Easy Importing of Bookmarks
+Whilst not part of the project submission, a Chrome extension was created to improve the overall UX when adding bookmarks. The repo can be found [here](https://github.com/steview-d/links-ext) and the extension itself is hosted on the [Chrome Web Store](https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp).
+
+Adding bookmarks is easy enough when just copy / pasting a url into the url field of the `Add Bookmark` page but I realised early into the project it just wasn't convenient. Users aren't expected to spend a lot of time in the app itself, rather just use it for reference when looking for a particular site or page. It ended up being a real chore using the app if every time you want to save a page for later you had to open a new tab, load the app, select `Add Bookmark` and so on.
+
+This extension streamlines the process massively. Now, users only need to click the extensions icon and it will open the app in a new tab, with the page they were on now in the url field and the app will also automatically start a scrape to give the user some data to get started with. In many cases, this will be enough and allows a user to save a bookmark and get back to where they were in 3 steps:
+
+	1. Click on the extension icon
+	2. Click 'Add Bookmark'
+	3. Close the tab once the 'import successful' message is displayed
+
+The `Import Url` page is identical to the `Add Bookmark` page in almost every way, the only differences being:
+- The name
+- No sidebar or top navigation as the tab is designed to closed as soon as the import is complete
+
+There is currently 1 unresolved bug with the extension. When the Chrome browser is opened for the first time, the first click of the extension does nothing. All subsequent clicks work as expected. If another new window is opened, the click works first time too.
+
+Since discovering this, I haven't yet investigated. It might be an easy fix. It might not. It's likely somewhere in between but it's not a priority as it doesn't affect the app so for now it's on hold.
+
+#### Arrange Collections
+Bookmarks are grouped together inside of their own containers, which are called `collections`. These collections can be moved around the page as the user sees fit.
+
+Users can access this functionality from the `Arrange Collections` button, located in the sidebar by clicking the cog icon next to the current page name.
+
+<img src="https://i.imgur.com/YUp7qj8.png" height=400>
+
+Collections are arranged using a drag & drop system and the number of columns being arranged is dependent on the current column setting. The app ensures that when a user rearranges a collection, that arrangement carries over to all column variations. So, if a user makes a change whilst using 5 columns on screen at once, but then decides to switch to a 3 column view, those changes will be represented when switching. It's not perfect, but it's close, and definitely better than forcing the user to have to rearrange their collections manually every time they adjust the number of columns.
+
 #### Bookmark Display Options
+The user can choose from 3 different display styles, on a per collection basis.
+
+<img src="https://i.imgur.com/p604zHG.png" height=250>
+
+##### Full
+![](https://i.imgur.com/aA6ZPAn.png)
+On `Full` all 3 information fields are displayed; `Url`, `Title` & `Description`. More often than not, the description contains more text than can be comfortably displayed, so if a users hovers over this area, a tool-tip will display showing the full text.
+
+<img src="https://i.imgur.com/ddVy3aJ.png" height=80>
+
+These tool-tips only display on devices with a pointer. I considered adding another icon to allow users to click and view the tool-tip but felt this added too much clutter to the UI.
+
+###### Normal
+![](https://i.imgur.com/Md2GN8Z.png)
+`Normal` removes the `Description` (and therefore the tool-tip), but still keeps the `Title` & `Url`.
+
+##### Minimal
+![](https://i.imgur.com/JORLLPz.png)
+`Minimal` displays the `Title` only. Users can still see at a glance exactly what this bookmark is, with the advantage of its small size making it ideal for small screens and collections with a lot of bookmarks.
+
+Regardless of how the user chooses to display their bookmarks, the bookmark and options icons are always visible.
+
 #### Bookmark Sort Options
+The user can choose to sort and order their bookmarks in a number of different ways, on a per collection basis.
+
+<img src="https://i.imgur.com/Yg3eBpt.png" height=300>
+
+##### Predefined Sort Orders
+
+These are `Name`, `Date Added` and `Date Updated` and the user can choose to sort these by ascending or descending. When sorting in one of these modes, manual sorting is disabled. The `Manual Sort` button  <img src="https://i.imgur.com/ErRZuXF.png" height="20"> at the top of the collection is disabled, and a tool-tip added to let the user know they need to re-enable manual sort to use this feature.
+
+##### Manual Sorting
+If a user prefers to sort their bookmarks in a particular way (for example, most used first) they can do this. Once the `Manual Sort` button is clicked, the bookmark style changes to show the mode is active.
+
+<img src="https://i.imgur.com/1p48nHg.png" height=160>
+
+Users can then order the bookmarks as they please using drag & drop, and turn it off once complete. On smaller displays, the width of the bookmark in sort mode is reduced to leave a gap to the right so users can scroll up and down the screen without accidently grabbing a bookmark. This is especially useful for large collections.
+
+#### Multiple Columns & Small Width Displays
+Quite soon into development it became apparent this type of app was definitely more suited to desktops and generally the wider the display, the better the experience. This was an issue as the app needed to function well on displays of all sizes, but I didn't want to compromise the UX on medium and large displays, just to make it serviceable on smaller screens.
+
+The main issue was that of multiple columns on small width displays. Taking mobiles as an example, anything more than 1 column looked a mess and in some cases rendered the app useless. It still worked, but from a users perspective, it was more trouble than it was worth.
+
+The final solution, I believe, manages to keep the UX consistent across all screens and works as follows.
+
+For each display width, there is a maximum number of columns at which the app displays well, and choosing to use more columns than this recommendation would impact the overall UX, usually by making elements unreadable due to being squashed on screen.
+
+Min Display Width|Max Display Width|Max Columns
+---|---|---
+0px|575px|1
+576px|991px|2
+992px|1199px|3
+1200px| Any|5
+
+If the app detects a width and column combination outside of these recommended limits, a warning is displayed, advising the current settings may not provide the best experience.
+
+<img src="https://i.imgur.com/upQISXg.png" height=250>
+
+The user can then choose to either change to the recommended number of columns, or dismiss the warning.
+
+If the user opts to change the number of columns, it is assumed the user wants to continue using the app within the recommended limits, and therefore any future width adjustments will trigger a similar warning.
+
+However, the one of the key goals of this app has always been to give the user a choice in how they use it. If they want to display more columns than recommended, they can. If they click to dismiss this warning, all future warnings will also be suppressed.
+
+If the user changes their mind and decides they want the warnings back, this can be adjusted from the `settings > profile > user preferences` section of the site.
+
+Additionally, this preference is stored using local storage so if a user chooses to dismiss warnings on desktop, but then accesses the app via their mobile device, they will still continue to receive display warnings, until dismissed.
+
+Another, lesser issue, was that of the sidebar taking up too much space on smaller widths. This was fixed early into development by having the sidebar hide when below a certain width and making it toggleable instead.
+
+
 
 ### Planned Features
 Even though the app already contains a lot of functionality, there are still things I would like to add at a later date. The list is huge, but these are the 3 I'd prioritise first.
