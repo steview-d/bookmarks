@@ -4,7 +4,11 @@
 <nav id="pages-nav" class="container-fluid
     {% if 'accounts' in request.path %} nav-border nav-bg-accounts{% else %} nav-bg{% endif %}">
     <!-- navbar title -->
-    <div class="navbar-title display-4">Links</div>
+    <!-- <div class="navbar-title display-4">Links</div> -->
+    <div class="navbar-title text-center">
+        <img src="{% static 'img/logo/logo_main.png' %}" alt="logo">
+    </div>
+
 
     <!-- navbar items -->
     <ul class="navbar-items">
@@ -16,7 +20,8 @@
             <a href="{% url 'faq_page' %}">FAQ</a></li>
         <li class="navbar-link {% if 'login' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
             <a href="{% url 'login' %}">Login</a></li>
-        <li class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
+        <li
+            class="navbar-link {% if 'register' in request.resolver_match.url_name %}active{% endif %} d-none d-sm-block">
             <a href="{% url 'register' %}">Register</a></li>
     </ul>
 
