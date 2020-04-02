@@ -416,7 +416,7 @@ The `Import Url` page is identical to the `Add Bookmark` page in almost every wa
 - The name
 - No sidebar or top navigation as the tab is designed to closed as soon as the import is complete
 
-There is currently 1 unresolved bug with the extension. When the Chrome browser is opened for the first time, the first click of the extension does nothing. All subsequent clicks work as expected. If another new window is opened, the click works first time too.
+There is currently 1 unresolved bug with the extension. When the Chrome browser is opened for the first time, the first click of the extension does nothing. All subsequent clicks work as expected. If another new window is opened, the click works first time.
 
 Since discovering this, I haven't yet investigated. It might be an easy fix. It might not. It's likely somewhere in between but it's not a priority as it doesn't affect the app so for now it's on hold.
 
@@ -582,7 +582,87 @@ For testing, refer to the [testing document](test.md).
 
 ## Deployment
 ### Local Deployment
+The following instructions are based on the user running VSCode on Windows 10. If your IDE / OS is different, your commands may differ slightly, but the process remains the same.
+
+You will need [Python 3](https://www.python.org/downloads/) (ideally the latest version, but 3.5 as a minimum) installed on your machine. You will also need [PIP](https://pypi.org/project/pip/) which comes preinstalled with Python versions 3.4 and later. Having [Git](https://git-scm.com/) is also highly recommended.
+
+The following steps will allow you to deploy locally:
+- Save a copy of the repo on your local machine or use ``git clone https://github.com/steview-d/bookmarks.git`` and cd into the correct folder using the terminal.
+- Create a virtual environment, using ``python -m venv .venv`` where ``.venv`` is the environment name.
+- Activate the virtual environment with ``.venv\Scripts\activate ``
+- Install any required modules with ``pip install -r requirements.txt``
+- Create a file called `env.py` in the project root and set up the required local environment variables, like below
+```
+import os
+
+os.environ.setdefault("SECRET_KEY", "<Enter Your Django Secret Key here")
+os.environ.setdefault("DEBUG", "1")
+
+# email
+os.environ.setdefault("EMAIL_ADDRESS", "<Email Address App Will Use To Send Emails")
+os.environ.setdefault("EMAIL_PASSWORD", "<Password For Above Email Address>")
+
+# stripe keys
+os.environ.setdefault("STRIPE_PUBLISHABLE", "<Enter Your STRIPE_PUBLISHABLE value here>")
+os.environ.setdefault("STRIPE_SECRET", "<Enter Your STRIPE_SECRET value here>")
+```
+```
+NOTE: When deploying locally, there is no need to set up AWS S3 buckets as all media files are served locally
+```
+- 
+- Run `python manage.py runserver` in the terminal. This will create a local sqlite3.db file for us to use.
+- Once this has run, close the server with `CTRL + C`
+- In the terminal, run `python manage.py migrate` to set up the database. There is no need to `make migrations` as the migration files are already present.
+- Create a superuser using `python manage.py createsuperuser` - you will need to enter a username, email address and password (twice).
+- Start the server up again with `python manage.py runserver`
+- Open the app in a browser window by navigating to `http://127.0.0.1:8000/accounts/login` and login with your newly created superuser.
+- Once logged in, navigate to the admin panel at `http://127.0.0.1:8000/admin` and click on `groups`.
+- Click `Add Group` (top right corner) and in the first field (`Name`) enter `Premium` (case-sensitive), and press `Save`.
+- You will likely want your user to have access to Premium features, and you can do this in one of 2 ways
+	- Add them to the `Premium` group from the Admin panel by selecting `Users > 'Your User' > Groups > Premium`. Once Premium has been added to the `Chosen groups` column, just click `Save`.
+	- Or sign up for Premium using the Premium upgrade form within `Settings > Premium`. You can use the Stripe test card details found [here](#upgrade-to-premium-tier).
+
+Once these steps have been completed, the site will be up and running on your machine.
+
 ### Deploying To Heroku
+
+These instructions make the following assumptions
+
+- The app has been deployed locally, following the above steps, and then pushed to your own GitHub account.
+- Note: The env.py should be added to your .gitignore
+- You have created and configured an [AWS S3 Bucket](https://aws.amazon.com/s3/) for serving the media files
+- You have a [Stripe](https://stripe.com) account
+
+Once all the above is in place, the instructions below will enable you to deploy to Heroku.
+
+- Go to [heroku.com](https://heroku.com). Log in or create an account and open your dashboard.
+- On the `resources` tab, from within the `addons` input field start typing `post` until you can select `Heroku Postgres`, and select it.
+- In the plan box that pops up, select `Hobby Dev - Free`, then click `Provision`.
+- Once set up, click the Postgres database, select the `settings` tab and make a note of the `URI` value, you will need it later. It will start with `postgres://...`
+- From the `Setttings` tab, click the `Reveal Config Vars` button and the following key / value pairs
+	- `EMAIL_ADDRESS` - The email address you want the app to send emails from
+	- `EMAIL_PASSWORD` - The password for above email address
+	- `EMAIL_HOST` - The Outgoing Mail Server for your email, for example `smtp.gmail.com`
+	- `SECRET_KEY` - Use a Django Secret Key Gen, for example [this one]([https://miniwebtool.com/django-secret-key-generator/](https://miniwebtool.com/django-secret-key-generator/)).
+	- `STRIPE_PUBLISHABLE` - Your Stripe API `Publishable key`
+	- `STRIPE_SECRET` - Your Stripe API `Secret key`
+	- `DATABASE_URL` - This should already be here after you created the Postgres db, but if not, it's the Postgres URI you made a note of earlier.
+	- `AWS_ACCESS_KEY` - Your AWS Access Key
+	- `AWS_SECRET_ACCESS_KEY` - Your AWS Secret Access Key
+	- `AWS_STORAGE_BUCKET_NAME` - The name of the Bucket being used for this app
+- Prepare the new Postgres db, by following these steps
+	- Add the following entry to your local env.py file. (The `postgres//....` value can be copied from the Heroku config vars) and restart your IDE to allow the new environment variable for the database to take effect.
+		```
+		os.environ.setdefault(
+			"DATABASE_URL",
+			"postgres://<your value here>"
+		)
+		```
+	- Your local deployment should now be connected to the remote Postgres db so you can run:
+		- `python manage.py migrate` to set up the database
+		- `python manage.py createsuperuser` to set up your admin account.
+- Delete / comment out the `DATABASE_URL` entry in your env.py file. 
+
 
 ## Credits
 ### Content
