@@ -146,7 +146,10 @@ def scrape_url(request, url):
         metas = soup.find_all('meta')
         for m in metas:
             if 'name' in m.attrs and m.attrs['name'] == 'description':
-                scraped_description = m.attrs['content']
+                try:
+                    scraped_description = m.attrs['content']
+                except KeyError:
+                    scraped_description = "Sorry, no description found."
 
         # provide default response for when no metadata available
         try:
