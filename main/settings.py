@@ -189,7 +189,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'start_app'
 
 # SMTP config
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
