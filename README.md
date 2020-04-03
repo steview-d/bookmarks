@@ -596,6 +596,7 @@ The following steps will allow you to deploy locally:
 import os
 
 os.environ.setdefault("SECRET_KEY", "<Enter Your Django Secret Key here")
+os.environ.setdefault("HOST_NAME", "127.0.0.1")
 os.environ.setdefault("DEBUG", "1")
 
 # email
@@ -633,17 +634,24 @@ These instructions make the following assumptions
 - You have created and configured an [AWS S3 Bucket](https://aws.amazon.com/s3/) for serving the media files
 - You have a [Stripe](https://stripe.com) account
 
+```
+There should be no reason to create a Procfile or requirements.txt file.
+These files should already be present in the cloned respository.
+```
+
 Once all the above is in place, the instructions below will enable you to deploy to Heroku.
 
-- Go to [heroku.com](https://heroku.com). Log in or create an account and open your dashboard.
-- On the `resources` tab, from within the `addons` input field start typing `post` until you can select `Heroku Postgres`, and select it.
+- Go to [heroku.com](https://heroku.com) and log in or create an account.
+- Add a new app, give it a name, choose a region and click `Create app`.
+- On the dashboard, click the `resources` tab. From within the `addons` input field start typing `post` until you can select `Heroku Postgres`, and select it.
 - In the plan box that pops up, select `Hobby Dev - Free`, then click `Provision`.
-- Once set up, click the Postgres database, select the `settings` tab and make a note of the `URI` value, you will need it later. It will start with `postgres://...`
-- From the `Setttings` tab, click the `Reveal Config Vars` button and the following key / value pairs
+- Once set up, click the Postgres database, select the `settings` tab and `Database Credentials` heading. Make a note of the `URI` value, you will need it later. It will start with `postgres://...`
+- Go back to the Dashboard, and from the `Setttings` tab, click the `Reveal Config Vars` button and add the following key / value pairs
 	- `EMAIL_ADDRESS` - The email address you want the app to send emails from
 	- `EMAIL_PASSWORD` - The password for above email address
 	- `EMAIL_HOST` - The Outgoing Mail Server for your email, for example `smtp.gmail.com`
 	- `SECRET_KEY` - Use a Django Secret Key Gen, for example [this one]([https://miniwebtool.com/django-secret-key-generator/](https://miniwebtool.com/django-secret-key-generator/)).
+	- `HOST_NAME` - The url you are deploying to, for example `links-sw.herokuapp.com`
 	- `STRIPE_PUBLISHABLE` - Your Stripe API `Publishable key`
 	- `STRIPE_SECRET` - Your Stripe API `Secret key`
 	- `DATABASE_URL` - This should already be here after you created the Postgres db, but if not, it's the Postgres URI you made a note of earlier.
@@ -651,7 +659,7 @@ Once all the above is in place, the instructions below will enable you to deploy
 	- `AWS_SECRET_ACCESS_KEY` - Your AWS Secret Access Key
 	- `AWS_STORAGE_BUCKET_NAME` - The name of the Bucket being used for this app
 - Prepare the new Postgres db, by following these steps
-	- Add the following entry to your local env.py file. (The `postgres//....` value can be copied from the Heroku config vars) and restart your IDE to allow the new environment variable for the database to take effect.
+	- From your local IDE, add the following entry to your env.py file. (The `postgres//....` value can be copied from the Heroku config vars) and restart your IDE to allow the new environment variable for the database to take effect.
 		```
 		os.environ.setdefault(
 			"DATABASE_URL",
@@ -661,11 +669,45 @@ Once all the above is in place, the instructions below will enable you to deploy
 	- Your local deployment should now be connected to the remote Postgres db so you can run:
 		- `python manage.py migrate` to set up the database
 		- `python manage.py createsuperuser` to set up your admin account.
-- Delete / comment out the `DATABASE_URL` entry in your env.py file. 
-
+	- Delete / comment out the `DATABASE_URL` entry in your env.py file.
+- Back in the Heroku Dashboard, click the `Deploy` tab and scroll down to `Deployment Method`. Select `GitHub` and link your account and repository.
+- Scroll down further to `Manual Deploy`, choose the branch you wish to deploy and click `Deploy Branch`
+- Wait for the app to build, and once complete, click `view` to launch your app in the browser.
+- Log in with the superuser details you created and navigate to the admin panel at `your-deployment-url/admin`
+- Repeat the instructions from [Local Deployment](#local-deployment) to add the `Premium` group and give access to your superuser:
+	- Click on `Groups` then `Add Group` (top right corner) and in the first field (`Name`) enter `Premium` (case-sensitive), and press `Save`.
+	- You will likely want your superuser to have access to Premium features, and you can do this by adding it to the `Premium` group from the Admin panel by selecting `Users > 'Your User' > Groups > Premium`. Once Premium has been added to the `Chosen groups` column, just click `Save`.
+		
 
 ## Credits
 ### Content
+
+All content, words, and design are my own, unless otherwise stated below.
+
 ### Media
+The original bookmark icon was sourced from [iconarchive]([http://www.iconarchive.com/show/windows-8-icons-by-icons8/Very-Basic-Bookmark-icon.html](http://www.iconarchive.com/show/windows-8-icons-by-icons8/Very-Basic-Bookmark-icon.html)).
+
+The icons in the 4x4 grid on the index were all scraped from their own sites, using this app. The tiled background image used in areas of the app was put together using icons.
+
+The portrait images for the `user reviews` section were used with permission from [Vecteezy]([https://www.vecteezy.com/vector-art/138266-free-headshot-vector](https://www.vecteezy.com/vector-art/138266-free-headshot-vector))
+
+The `FREE` .png image file used on the pricing page was sourced usingGoogle image search.
+
 ### Code
+
+##### csrf.js
+Used to pull Django csrf tokens from the page for use with ajax requests.
+Code sourced from Emad Mokhtar @ [stackoverflow](https://stackoverflow.com/questions/35112451/forbidden-csrf-token-missing-or-incorrect-django-error/35113457)
+
+
+##### _spinner.scss
+Spinner used when processing ajax requests sourced from [https://tobiasahlin.com/spinkit/](https://tobiasahlin.com/spinkit/) and used with minor modifications.
+
+All other code, outside of frameworks and libraries, is my own.
+
 ### Acknowledgements
+Vitor  Freitas at [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) - outside of Stack Overflow, this was usually the place that helped me solve some of the bigger problems I encountered. Some great articles that cover key concepts in an easy to understand way.
+
+The [Try Django 2.2](https://www.codingforentrepreneurs.com/projects/try-django-2-2) mini-project is a free step-by-step guide to building a blog with Django, and even though Django blog tutorials are ten a penny, this one is highly recommended.
+
+Thanks to [Attila Szaloki]([https://github.com/aticodein](https://github.com/aticodein)) for help with testing and feedback.
