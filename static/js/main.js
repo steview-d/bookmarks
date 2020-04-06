@@ -1,12 +1,6 @@
 $(document).ready(function () {
     // --------------------------------------------------- Buttons & Toggles //
 
-    // sidebar toggler
-    $(".sidebarToggle").on("click", function () {
-        $("#sidebar, #content").toggleClass("display-switch");
-        $("#content").toggleClass("no-scroll");
-    });
-
     // 'add new page' icon - toggle form
     $("#add-page-btn").on("click", function () {
         $(this).parent().next().children().slideToggle(200);
@@ -31,6 +25,100 @@ $(document).ready(function () {
         $(this).parent().next().slideToggle(200);
         $(this).children().toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
+
+    // clear values inside contact form if users clicks the reset button
+    $("#contact-form-reset").on("click", function () {
+        $("#id_name, #id_email, #id_message").val("");
+    });
+
+    // FAQ '+' icon toggle
+    $(".collapse")
+        .on("show.bs.collapse", function () {
+            $(this)
+                .parent()
+                .find(".fa-plus-square-o")
+                .toggleClass("fa-plus-square-o fa-plus-square");
+        })
+        .on("hide.bs.collapse", function () {
+            $(this)
+                .parent()
+                .find(".fa-plus-square")
+                .toggleClass("fa-plus-square-o fa-plus-square");
+        });
+
+    // sidebar toggler
+    $(".sidebarToggle").on("click", function () {
+        $("#sidebar, #content").toggleClass("display-switch");
+        $("#content").toggleClass("no-scroll");
+    });
+
+    // close sidebar on swipe - uses third party swipe.js script
+    $("#sidebar").onSwipe((result) => {
+        if (result.left == true && window.innerWidth <= 767) {
+            $("#sidebar, #content").toggleClass("display-switch");
+            $("#content").toggleClass("no-scroll");
+        }
+    });
+
+    // ------------------------------------- Navbar Behaviour on Page Scroll //
+
+    // Intro Pages - About, Pricing, FAQ & User Auth
+    function navbarBehaviour() {
+        if (window.scrollY > 1) {
+            $(".navbar-title")
+                .css({ opacity: 0, transition: "opacity 0.5s" })
+                .slideUp(600, function () {
+                    $("#pages-nav").addClass("nav-border");
+                });
+            if ($("#login, #register, .pw-control").length) {
+                $("#pages-nav").css({
+                    "background-color": "rgba(250, 250, 250, 0.9)",
+                    transition: "background-color 1s",
+                });
+            }
+        } else {
+            $(".navbar-title").css({ opacity: 1 }).slideDown(600);
+            if (!window.location.href.includes("accounts")) {
+                $("#pages-nav").removeClass("nav-border");
+            }
+            if ($("#login, #register, .pw-control").length) {
+                $("#pages-nav").css({
+                    "background-color": "rgba(250, 250, 250, 1)",
+                    transition: "background-color 1s",
+                });
+            }
+        }
+    }
+
+    // activate on scroll...
+    $(window).scroll(navbarBehaviour);
+    // and initial page load
+    if ($(".navbar-title").length) {
+        navbarBehaviour();
+    }
+
+    // Main App & Settings
+    function topnavBehaviour() {
+        if (window.scrollY > 1) {
+            $("#topnav").css({
+                "border-bottom": "1px solid #aaaaaa",
+                "background-color": "rgba(250, 250, 250, 0.9)",
+                transition: "all .5s ease",
+            });
+        } else {
+            $("#topnav").css({
+                "border-bottom": "1px solid transparent",
+                "background-color": "transparent",
+                transition: "all .5s ease",
+            });
+        }
+    }
+
+    // activate on scroll...
+    $(window).scroll(topnavBehaviour);
+    // and initial page load
+    topnavBehaviour();
+
 
     // -------------------------------------------------------- Page Sorting //
 
@@ -110,7 +198,7 @@ $(document).ready(function () {
         return;
     }
 
-    let column_list = [
+    const column_list = [
         "#column-1",
         "#column-2",
         "#column-3",
@@ -122,13 +210,7 @@ $(document).ready(function () {
         $(key).sortable({
             containment: "#collections-container",
             cursor: "grabbing",
-            connectWith: [
-                "#column-1",
-                "#column-2",
-                "#column-3",
-                "#column-4",
-                "#column-5",
-            ],
+            connectWith: column_list,
             deactivate: function () {
                 let data = $(this).sortable("serialize");
                 data = data.split("[]=.");
@@ -406,7 +488,7 @@ $(document).ready(function () {
 
                     // also clear value inside file upload field
                     $("#id_icon").next().text("Choose file");
-                    
+
                     // reset use-default value to prevent default icon
                     // displaying in case of form error
                     $("#use-default").val("");
@@ -427,7 +509,7 @@ $(document).ready(function () {
         }
     }
 
-    // --------------------------------------------------------------- Other //
+    // ------------------------------------- Destination Collecion Drop Down //
 
     /*
     Listen for changes on the page choice dropdown input. When a change is
@@ -453,14 +535,16 @@ $(document).ready(function () {
         });
     });
 
-    // Collection Display Mode ajax control
+
+    // --------------------------------------------- Collection Display Mode //
 
     /*
     Listens for a click on the bookmark display mode buttons. When clicked,
     ajax posts the clicked collection and requested display mode to the server.
 
-    On a successful return, the page is update to show the new display mode.
+    On a successful return, the page is updated to show the new display mode.
     */
+
     $(".coll-display-btn").click(function () {
         let collection = $(this).data("coll-id");
         let mode = $(this).data("display-mode");
@@ -478,12 +562,14 @@ $(document).ready(function () {
         });
     });
 
-    // Image Upload Preview
+
+    // -------------------------------------------------Image Upload Preview //
 
     /*
     Listens for a change to the file input element, and when a change is
     registered, a preview of the uploaded file is displayed
     */
+
     $("#id_icon").change(function () {
         if (this.files && this.files[0]) {
             let preview = new FileReader();
@@ -496,111 +582,46 @@ $(document).ready(function () {
             // on file upload hide default icon and show uploaded icon
             $("#img-preview").removeClass("icon-display-hide");
             $("#default-icon").addClass("icon-display-hide");
+
             // clear any scraped images if user selects file to upload
             $("#scraped_img").val("");
+
             // reset use-default value to prevent default icon
             // displaying in case of form error
             $("#use-default").val("");
+
             // display name of selected file in input field
             var fName = $(this).val().split("\\").pop();
             $(this).next().text(fName);
         }
     });
 
-    // nav bar title hide / show on scroll
-    function navbarBehaviour() {
-        if (window.scrollY > 1) {
-            $(".navbar-title")
-                .css({ opacity: 0, transition: "opacity 0.5s" })
-                // .slideUp(600);
-                .slideUp(600, function () {
-                    $("#pages-nav").addClass("nav-border");
-                });
-            if ($("#login, #register, .pw-control").length) {
-                $("#pages-nav").css({
-                    "background-color": "rgba(250, 250, 250, 0.9)",
-                    transition: "background-color 1s",
-                });
-            }
-        } else {
-            $(".navbar-title").css({ opacity: 1 }).slideDown(600);
-            if (!window.location.href.includes("accounts")) {
-                $("#pages-nav").removeClass("nav-border");
-            }
-            if ($("#login, #register, .pw-control").length) {
-                $("#pages-nav").css({
-                    "background-color": "rgba(250, 250, 250, 1)",
-                    transition: "background-color 1s",
-                });
-            }
-        }
-    }
-
-    // activate on scroll and initial page load
-    $(window).scroll(navbarBehaviour);
-    navbarBehaviour();
-
-    // topnav behavior
-    function topnavBehaviour() {
-        if (window.scrollY > 1) {
-            $("#topnav").css({
-                "border-bottom": "1px solid #aaaaaa",
-                "background-color": "rgba(250, 250, 250, 0.9)",
-                transition: "all .5s ease",
-            });
-        } else {
-            $("#topnav").css({
-                "border-bottom": "1px solid transparent",
-                "background-color": "transparent",
-                transition: "all .5s ease",
-            });
-        }
-    }
-
-    // activate on scroll and initial page load
-    $(window).scroll(topnavBehaviour);
-    topnavBehaviour();
-
-    // on click, toggle 'plus' icon for each entry on faq page
-    $(".collapse")
-        .on("show.bs.collapse", function () {
-            $(this)
-                .parent()
-                .find(".fa-plus-square-o")
-                .toggleClass("fa-plus-square-o fa-plus-square");
-        })
-        .on("hide.bs.collapse", function () {
-            $(this)
-                .parent()
-                .find(".fa-plus-square")
-                .toggleClass("fa-plus-square-o fa-plus-square");
-        });
-
-    // reset contact form button
-    $("#contact-form-reset").on("click", function () {
-        $("#id_name, #id_email, #id_message").val("");
-    });
-
-    // close sidebar on swipe - uses third party swipe.js script
-    $("#sidebar").onSwipe((result) => {
-        if (result.left == true && window.innerWidth <= 767) {
-            $("#sidebar, #content").toggleClass("display-switch");
-            $("#content").toggleClass("no-scroll");
-        }
-    });
 
     // Create a default icon when displaying icons on add / edit / import page
     $("#use-default-icon").on("click", function () {
+        $("#use-default").val("true");
+
+        // hide the current image preview & show the default icon
         $("#img-preview").addClass("icon-display-hide");
         $("#default-icon").removeClass("icon-display-hide");
+
+        // remove any stored values for previous images
         $("#id_icon, #scraped_img").val("");
-        $("#use-default").val("true");
+
         //clear value inside file upload field
         $("#id_icon").next().text("Choose file");
         updateDefaultIcon();
     });
 
-    // -------------------------- Update letter for default icon on title change //
+
+    // --------- Update icon letter for default icons when the title changes //
+
+    /*
+    For default icons, the icon is a colored tile with the first letter from 
+    the title in the middle.
+    When a user is updating the title field, the default icon should update
+    once the user has finished typing.
+    */
 
     const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const colorsList = [
@@ -613,13 +634,19 @@ $(document).ready(function () {
     ];
 
     let titleTimer;
-    let titleTimerLength = 1000;
+    // time in ms to wait from last key release to updating of default icon
+    let titleTimerLength = 500;
 
     // check title timer
     $("#id_title").keyup(function () {
         clearTimeout(titleTimer);
         titleTimer = setTimeout(updateDefaultIcon, titleTimerLength);
     });
+
+    // update default-icon on page load
+    if ($("#add-bookmark, edit-bookmark, #import-url").length) {
+        updateDefaultIcon();
+    }
 
     function updateDefaultIcon() {
         // set icon letter for default icon
@@ -635,15 +662,8 @@ $(document).ready(function () {
             .css({ "background-color": bgColor });
     }
 
-    // update default-icon on page load
-    if ($("#add-bookmark, edit-bookmark, #import-url").length) {
-        updateDefaultIcon();
-    }
 
-    // close window after import
-    $("#close-page").on("click", function () {
-        window.close();
-    });
+    // -------------------------- Monitor Display Width vs Number of Columns //
 
     /*
     Warn user when page width is too small for the current number of
@@ -736,7 +756,9 @@ $(document).ready(function () {
         }
     });
 
-    //
+
+    // -------------------------------------------------------- Gif Playback //
+    
     /*
     About Page - Features : gif playback
     Short animated gifs that show certain features in action
