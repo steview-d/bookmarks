@@ -47,7 +47,6 @@ $(document).ready(function() {
     tippy(".tippy-manual-bm-sort", {
         theme: "dark",
         delay: [100, 0],
-        // placement: "bottom",
         content: `Manual sorting of bookmarks is disabled unless<br />
             <strong>Sort By: Manual Sort</strong><br />has been selected.`
     });
