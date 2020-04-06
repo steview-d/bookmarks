@@ -64,11 +64,3 @@ def faq(request):
     context = {"contact_form": contact_form, }
 
     return render(request, "pages/faq.html", context)
-
-
-def e404(request):
-    return render(request, "404.html")
-
-
-def e500(request):
-    return render(request, "500.html")

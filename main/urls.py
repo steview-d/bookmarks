@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from pages.views import about, pricing, faq, e404, e500
+from pages.views import about, pricing, faq
 
 urlpatterns = [
     # paths for pages
@@ -34,10 +34,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     # paths for admin
     path('admin/', admin.site.urls),
-    # temp 404/500 testing
-    path('404', e404, name="page_404"),
-    path('500', e500, name="page_500"),
-
 ]
 
 if settings.DEBUG:
