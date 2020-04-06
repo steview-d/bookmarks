@@ -7,7 +7,7 @@ $(document).ready(function() {
         $("#content").toggleClass("no-scroll");
     });
 
-    // 'add new page' form toggle
+    // 'add new page' icon - toggle form
     $("#add-page-btn").on("click", function() {
         $(this)
             .parent()
@@ -17,25 +17,14 @@ $(document).ready(function() {
         $(this)
             .children("i")
             .toggleClass("fa-plus fa-chevron-down");
-        // $('#page-titles').toggleClass('display-toggle');
     });
 
-    // 'edit page' form toggle
+    // 'edit page' icon - form toggle
     $(".page-options-btn").on("click", function() {
         $("#page-display-options").slideToggle(200);
     });
 
-    // submit 'delete page form' from modal
-    // $("#delete-page-form").on("click", function() {
-    //     $(this).submit();
-    // });
-
-    // submit 'delete collection form' from modal
-    // $("#delete-collection-form").on("click", function() {
-    //     $(this).submit();
-    // });
-
-    // rename collection toggle
+    // 'collection options' icon - toggle
     $(".btn--collection-options").on("click", function() {
         $(this)
             .parent()
@@ -44,26 +33,22 @@ $(document).ready(function() {
             .slideToggle(200);
     });
 
-    // bookmark options menu
-    // can likely delete if not in use
-    // used in 2 places - main app display & search page
-    $(".bm-icon-toggle").on("click", function(e) {
-        e.preventDefault();
-        $(this)
-            .children(":first")
-            .toggleClass("fa-caret-down fa-caret-up");
-        $(this)
-            .parent()
-            .parent()
-            .parent()
-            .next()
-            .slideToggle();
-    });
-
-    // Scrape Url button
+    // 'autofill' button
     $("#scrape-url").on("click", scrapeUrl);
 
-    // ---------------------------------------------------------------- Page //
+    // 'add new collection' icon - toggle form
+    $(".btn--add-collection").on("click", function() {
+        $(this)
+            .parent()
+            .next()
+            .slideToggle(200);
+        $(this)
+            .children()
+            .toggleClass("fa-chevron-circle-down fa-plus-circle");
+    });
+
+    
+    // -------------------------------------------------------- Page Sorting //
 
     /*
     Use jQueryUI 'sortable' to sort elements containing page names. When a page
@@ -91,8 +76,6 @@ $(document).ready(function() {
 
             postData = newOrder.join(",");
 
-            // turn on spinner
-            // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
             $("#ajax-progress-spinner").toggleClass("display-toggle");
 
             $.ajax({
@@ -104,11 +87,6 @@ $(document).ready(function() {
                 url: "/app/_page_sort",
                 success: function(data) {
                     if (data.success) {
-                        // turn off spinner
-                        // $('#ajax-progress-page').toggleClass("ajax-progress-hide ajax-progress-show");
-                        // $("#ajax-progress-spinner").toggleClass(
-                        //     "display-toggle"
-                        // );
                         location.reload();
                     }
                 }
@@ -116,15 +94,22 @@ $(document).ready(function() {
         }
     });
 
-    // When the 'Page Sort' button is toggled, toggle the 'page-sort-handle' class required
-    // by sortable to allow sorting of pages.
+    /*
+    To prevent pages being moved by accident, for example if a user is trying
+    to scroll through a long list of pages names, the app requires the user to
+    'turn on' page sorting.
+    The 'Page Sort' button toggles the 'page-sort-handle' class, which is the
+    handle required by .sortable for sorting pages.
+    */
+
     $("#page-sort-btn").on("click", function() {
         $(".page-sort-icon-container").toggleClass("hide-page-sort-icon");
         $(".page-sort-handle-container").toggleClass("page-sort-handle");
         $(this).toggleClass("page-sort-active");
     });
 
-    // ---------------------------------------------------------- Collection //
+
+    // -------------------------------------------------- Collection Sorting //
 
     /*
     Using jQueryUI sortable, multiple columns are linked together and when the
@@ -175,8 +160,6 @@ $(document).ready(function() {
             stop: function(event, ui) {
                 let postData = JSON.stringify(new_collection_order);
 
-                // turn on spinner
-                // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
                 $("#ajax-progress-spinner").toggleClass("display-toggle");
 
                 $.ajax({
@@ -189,11 +172,6 @@ $(document).ready(function() {
                     url: "collection-sort",
                     success: function(data) {
                         if (data.success) {
-                            // turn off spinner
-                            // $('#ajax-progress-arrange').toggleClass("ajax-progress-hide ajax-progress-show");
-                            // $("#ajax-progress-spinner").toggleClass(
-                            //     "display-toggle"
-                            // );
                             location.reload();
                         }
                     }
@@ -202,7 +180,7 @@ $(document).ready(function() {
         });
     });
 
-    // ------------------------------------------------------------ Bookmark //
+    // ---------------------------------------------------- Bookmark Sorting //
 
     /*
     Use jQueryUI 'sortable' to sort bookmark elements within a collection.
@@ -240,7 +218,6 @@ $(document).ready(function() {
 
                 postData = newOrder.join(",");
 
-                // turn on spinner
                 $("#ajax-progress-spinner").toggleClass("display-toggle");
 
                 $.ajax({
@@ -256,10 +233,6 @@ $(document).ready(function() {
                     url: "_bookmark_sort_manual",
                     success: function(data) {
                         if (data.success) {
-                            // turn off spinner
-                            // $("#ajax-progress-spinner").toggleClass(
-                            //     "display-toggle"
-                            // );
                             location.reload(false);
                         }
                     }
@@ -268,8 +241,14 @@ $(document).ready(function() {
         }
     });
 
-    // When the 'Bookmark Sort' button is toggled, toggle the 'bm-sort-handle' class required
-    // by sortable to allow sorting of bookmarks.
+    /*
+    To prevent bookmarks being moved by accident, for example if a user is
+    trying to scroll through a long list of bookmarks, the app requires the
+    user to 'turn on' bookmark sorting.
+    The 'Bookmark Sort' button toggles the 'bm-sort-handle' class, which is the
+    handle required by .sortable for sorting bookmarks.
+    */
+
     const bmSortButtons = document.querySelectorAll("[id^='bm-sort-btn-']");
     bmSortButtons.forEach(key => {
         $(key).on("click", function() {
@@ -282,7 +261,18 @@ $(document).ready(function() {
             el.find(".bm-options-icon").toggleClass("display-toggle");
             $(this).toggleClass("manual-sort-on");
 
-            // check if single column, and add scroll space
+            /*
+            When in sort mode on smaller display widths where only 1 column is
+            displayed, this usually means the user is using a touch device.
+            This makes it difficult to scroll through large lists of bookmarks
+            without accidently dragging a bookmark instead.
+
+            To fix this, when in sort mode and only 1 column is displayed,
+            the width of the bookmark is reduced and blank space is added to
+            the right, creating a space for the user to scroll up and down the
+            list.
+            */
+
             if (typeof numColumns !== "undefined") {
                 if (numColumns == 1) {
                     $(this)
@@ -296,6 +286,7 @@ $(document).ready(function() {
         });
     });
 
+    
     // -------------------------------------------------------- Url Scraping //
 
     /*
@@ -631,6 +622,7 @@ $(document).ready(function() {
         updateDefaultIcon();
     });
 
+
     // -------------------------- Update letter for default icon on title change //
 
     const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -676,17 +668,6 @@ $(document).ready(function() {
     // close window after import
     $("#close-page").on("click", function() {
         window.close();
-    });
-
-    // add new collection
-    $(".btn--add-collection").on("click", function() {
-        $(this)
-            .parent()
-            .next()
-            .slideToggle(200);
-        $(this)
-            .children()
-            .toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
 
 
