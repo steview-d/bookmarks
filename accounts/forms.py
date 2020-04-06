@@ -26,6 +26,15 @@ class RegisterAccountForm(UserCreationForm):
                     'data-helptext': help_text
                     })
 
+    def clean_email(self):
+        """ check the email address is unique """
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email):
+            raise forms.ValidationError(
+                u'An account with this email address already exists. \
+                    Please choose another, or log in')
+        return email
+
 
 class UpdateUserEmailForm(forms.ModelForm):
     """ form to allow users to change their email address """
