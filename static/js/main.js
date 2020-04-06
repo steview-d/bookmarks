@@ -119,7 +119,6 @@ $(document).ready(function () {
     // and initial page load
     topnavBehaviour();
 
-
     // -------------------------------------------------------- Page Sorting //
 
     /*
@@ -394,13 +393,15 @@ $(document).ready(function () {
                 switch (data.result) {
                     case true:
                         $("#url-validation-result").html(
-                            "Url status: <span class='status status-valid'>Valid</span>"
+                            `Url status: <span class='status status-valid'>
+                                Valid</span>`
                         );
 
                         break;
                     case false:
                         $("#url-validation-result").html(
-                            "Url status: <span class='status status-invalid'>Invalid</span>"
+                            `Url status: <span class='status status-invalid'>
+                                Invalid</span>`
                         );
                         break;
                     default:
@@ -475,10 +476,11 @@ $(document).ready(function () {
                 }
 
                 $("#scrape-url").html(
-                    '<i class="fa fa-magic" aria-hidden="true"></i>Autofill'
+                    "<i class='fa fa-magic' aria-hidden='true'></i>Autofill"
                 );
 
-                // if an image is scraped, hide the default icon and show scraped image
+                // if an image is scraped, hide the default icon and
+                // show scraped image
                 if (
                     $("#edit-bookmark, #add-bookmark, #import-url").length &&
                     $("#img-preview")[0].src
@@ -496,7 +498,7 @@ $(document).ready(function () {
             },
             error: function () {
                 $("#scrape-url").html(
-                    '<i class="fa fa-magic" aria-hidden="true"></i>Error!'
+                    "<i class='fa fa-magic' aria-hidden='true'></i>Error!"
                 );
             },
         });
@@ -535,7 +537,6 @@ $(document).ready(function () {
         });
     });
 
-
     // --------------------------------------------- Collection Display Mode //
 
     /*
@@ -561,7 +562,6 @@ $(document).ready(function () {
             },
         });
     });
-
 
     // -------------------------------------------------Image Upload Preview //
 
@@ -596,8 +596,9 @@ $(document).ready(function () {
         }
     });
 
+    // ------------------------- Create a default icon when displaying icons //
+    // ----------------------------------------- on add / edit / import page //
 
-    // Create a default icon when displaying icons on add / edit / import page
     $("#use-default-icon").on("click", function () {
         $("#use-default").val("true");
 
@@ -612,7 +613,6 @@ $(document).ready(function () {
         $("#id_icon").next().text("Choose file");
         updateDefaultIcon();
     });
-
 
     // --------- Update icon letter for default icons when the title changes //
 
@@ -661,7 +661,6 @@ $(document).ready(function () {
             .find(".no-icon")
             .css({ "background-color": bgColor });
     }
-
 
     // -------------------------- Monitor Display Width vs Number of Columns //
 
@@ -729,7 +728,8 @@ $(document).ready(function () {
         $(".rec-columns").text(recMaxColumns + columnPlural);
 
         // generate link to 'change_num_columns' view
-        changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
+        changeColumnsUrl =
+            `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
         $("#width-warning-change").attr("href", changeColumnsUrl);
     }
 
@@ -756,9 +756,8 @@ $(document).ready(function () {
         }
     });
 
-
     // -------------------------------------------------------- Gif Playback //
-    
+
     /*
     About Page - Features : gif playback
     Short animated gifs that show certain features in action
