@@ -689,25 +689,40 @@ $(document).ready(function() {
             .toggleClass("fa-chevron-circle-down fa-plus-circle");
     });
 
-    // store initial width on window on page load
+
+    /*
+    Warn user when page width is too small for the current number of
+    columns being displayed.
+    Give user option to change the number of columns or dismiss this,
+    and all future warnings.
+    */
+
+    // store initial width of window on page load
     var initialWidth = window.innerWidth;
 
-    // mobile responsiveness - making it work on small views
+    // on resize, check width to columns
     $(window).on("resize", function() {
-        // check width vs initialWidth to avoid false triggers on height with
-        // some mobile browsers
+        /*
+        Some mobile browsers, when scrolling, adjust the screen height.
+        The resize event picks up on this so to avoid false positives, need
+        to check current width vs original width and make sure it differs.
+        */
         if ($("#app").length && initialWidth != window.innerWidth) {
             widthToColumns(window.innerWidth);
         }
     });
 
-    // also check on page load
+    // also check width on page load
     if ($("#app").length) {
         widthToColumns(window.innerWidth);
     }
 
-    function widthToColumns(currentWidth) {
-        // check local storage....
+    // function to check width is suitable for current number of columns
+    function widthToColumns(currentWidth) { 
+        /*
+        if local storage contains 'widthWarning', do not check as user
+        has requested to dismiss warnings of this type.
+        */
         if (localStorage.getItem("widthWarning") === null) {
             let c = parseInt(numColumns);
             let w = parseInt(currentWidth);
@@ -738,6 +753,7 @@ $(document).ready(function() {
         var columnPlural = recMaxColumns == 1 ? " column." : " columns.";
         $(".rec-columns").text(recMaxColumns + columnPlural);
 
+        // generate link to 'change_num_columns' view
         changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
         $("#width-warning-change").attr("href", changeColumnsUrl);
     }
@@ -749,31 +765,35 @@ $(document).ready(function() {
         localStorage.setItem("widthWarning", "ignore");
     });
 
-    // width warning setting checkbox
+    // Settings > Profile > Preferences: Width Warning checkbox - Set value
     if (localStorage.getItem("widthWarning") === null) {
         $("#widthWarningCheck").prop("checked", true);
     } else {
         $("#widthWarningCheck").prop("checked", false);
     }
 
-    // update on checkbox change
+    // Update local storage value on Width Warning checkbox change
     $("#widthWarningCheck").change(function() {
         if (this.checked) {
             localStorage.removeItem("widthWarning");
-            // $('#widthWarningCheck').prop('checked', false);
         } else {
             localStorage.setItem("widthWarning", "ignore");
-            // $('#widthWarningCheck').prop('checked', true);
         }
     });
 
-    // gif playback desktop
+
+    /*
+    About Page - Features : gif playback
+    Short animated gifs that show certain features in action
+    Behaviour is dependant on device:
+        Touch :     Click to start/stop gif
+        Pointer :   Hover to start/stop gif
+    */
+    
     const ddGifPath = "/static/img/pages/about/drag_drop_";
     const daGifPath = "/static/img/pages/about/display_as_";
 
-    // for Each here will DRY it
-
-    // gif playback desktop - hover
+    // Hover
     $(".drag-drop-gif").hover(
         function() {
             $(this).attr("src", `${ddGifPath}on.gif`);
@@ -792,7 +812,7 @@ $(document).ready(function() {
         }
     );
 
-    // gif playback touchscreen - click
+    // Touch
     $(".drag-drop-gif").on("touchstart", function() {
         if ($(this).attr("src") == `${ddGifPath}on.gif`) {
             $(this).attr("src", `${ddGifPath}off.png`);
