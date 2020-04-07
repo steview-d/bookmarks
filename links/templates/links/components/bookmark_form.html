@@ -19,7 +19,7 @@
         <div class="mb-2">Icon</div>
         <div class="custom-file">
             <input type="file" accept=".png, .jpg, .jpeg, .ico" name="icon" class="custom-file-input" id="id_icon">
-            <label class="custom-file-label {% if field.errors %}icon-field-errors{% endif %}" for="customFile">Choose file</label>
+            <label class="custom-file-label {% if field.errors %}icon-field-errors{% endif %}" for="id_icon">Choose file</label>
             <div class="list-unstyled icon-errors">{{ field.errors|striptags }}
             </div>
         </div>

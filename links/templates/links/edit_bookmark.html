@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div id="edit-bookmark" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -20,7 +20,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container app-min-height">
+        <section id="edit-bookmark" class="container app-min-height">
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3">
                     <form method="POST" enctype="multipart/form-data" novalidate>
@@ -72,7 +72,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- banner ad -->
         {% include 'components/advert.html' %}
 

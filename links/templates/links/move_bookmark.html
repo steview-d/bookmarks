@@ -9,7 +9,7 @@
 
 {% load icon_styling %}
 
-<div id="move-bookmark-form" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -21,7 +21,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container app-min-height">
+        <section id="move-bookmark" class="container app-min-height">
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3">
                     <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Move Bookmark</h4>
@@ -61,7 +61,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- banner ad -->
         {% include 'components/advert.html' %}

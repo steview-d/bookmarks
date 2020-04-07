@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div id="import-url" {% if autoscrape %}data-autoscrape="true" {% endif %}>
+<section id="import-url" {% if autoscrape %}data-autoscrape="true" {% endif %}>
 
     <!-- messages -->
     {% include 'components/messages.html' %}
@@ -66,9 +66,10 @@
             </div>
         </div>
     </div>
+    
     <!-- banner ad -->
     {% include 'components/advert.html' %}
-</div>
+</section>
 
 
 {% endblock %}

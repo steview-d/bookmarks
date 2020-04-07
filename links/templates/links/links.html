@@ -10,7 +10,7 @@
 {% load icon_styling %}
 {% load modal_id_gens %}
 
-<div id="app" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -22,7 +22,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container-fluid app-min-height">
+        <section id="app" class="container-fluid app-min-height">
             <div id="{{ page }}" class="row page-name">
                 {% for column in bm_data %}
                 <div class="column" style="width: {{ column_width }}%">
@@ -239,7 +239,8 @@
                 </div>
             </div>
             {% endif %}
-        </div>
+        </section>
+
         <!-- banner ad -->
         {% include 'components/advert.html' %}
 

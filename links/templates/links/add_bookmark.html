@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div id="add-bookmark" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -20,7 +20,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container app-min-height">
+        <section id="add-bookmark" class="container app-min-height">
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3">
                     <form method="POST" enctype="multipart/form-data" novalidate>
@@ -30,7 +30,7 @@
                         <div class="mb-2"><small id="scrape-msg">&nbsp;</small></div>
                         {% csrf_token %}
 
-                        <!-- render form & icon field-->
+                        <!-- render form & icon field -->
                         {% include 'links/components/bookmark_form.html' %}
 
                         <!-- icon display -->
@@ -38,11 +38,11 @@
                             <div class="mb-2">Icon Preview</div>
                             {% if saved_icon_data %}
                             <!-- if form has non icon errors and previous image has been saved -->
-                            <img id="img-preview" src="{{ saved_icon_data }}">
+                            <img id="img-preview" src="{{ saved_icon_data }}" alt="icon preview">
 
                             {% else %}
                             <!-- if form has no errors -->
-                            <img id="img-preview" class="icon-display-hide">
+                            <img id="img-preview" src="" alt="icon preview" class="icon-display-hide">
                             {% endif %}
 
                             <div id="default-icon" class="{% if saved_icon_data %}icon-display-hide{% endif %}">
@@ -72,7 +72,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- banner ad -->
         {% include 'components/advert.html' %}
 

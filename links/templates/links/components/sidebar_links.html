@@ -32,10 +32,10 @@
             <div class="float-right">
                 <!-- display page sort button if on main app page - ie not arrange, add, edit, etc -->
                 <button id="page-sort-btn"
-                    class="btn--page-options mr-2 {% if page_sort_active %}page-sort-active{% endif %}" role="button"><i
+                    class="btn--page-options mr-2 {% if page_sort_active %}page-sort-active{% endif %}"><i
                         class="fa fa-sort" aria-hidden="true"></i></button>
                 <!-- add new page button -->
-                <button id="add-page-btn" class="btn--page-options mr-4" role="button"><i class="fa fa-plus"
+                <button id="add-page-btn" class="btn--page-options mr-4"><i class="fa fa-plus"
                         aria-hidden="true"></i></button>
             </div>
             <!-- add new page form -->
@@ -67,14 +67,15 @@
                             {% endif %}></i>
                     </div>
                     <!-- page title & icons -->
-                    <a class="nav-link float-left page-name" href="{% url 'links' page=name %}">{{name}}
-                        {% if name.name == page %}
+                    <a class="nav-link float-left page-name" href="{% url 'links' page=name %}">{{name}}</a>
+                    {% if name.name == page %}
                         {% if bm_data %}
-                        <a href="#" class="float-right my-2 mr-3"><i class="fa fa-cog text-dark page-options-btn"
-                                aria-hidden="true"></i></a>
+                        <div class="float-right my-2 mr-3">
+                            <a href="#"><i class="fa fa-cog text-dark page-options-btn" aria-hidden="true"></i></a>
+                        </div>
                         {% endif %}
-                        {% endif %}
-                    </a>
+                    {% endif %}
+
                 </div>
 
                 <!-- edit page form -->
