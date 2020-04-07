@@ -147,6 +147,7 @@
 }
 
 #credit-card-errors {
+    display: none;
     background-color: $error-red;
     color: $white;
     margin: 0.75rem 0;

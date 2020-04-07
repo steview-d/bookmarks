@@ -1609,6 +1609,7 @@ h4 > .fa-stop {
 }
 
 #credit-card-errors {
+  display: none;
   background-color: #e36868;
   color: #ffffff;
   margin: 0.75rem 0;
@@ -1790,6 +1791,14 @@ h4 > .fa-stop {
 .default-icon .icon-text {
   font-family: "Delius Unicase", sans-serif;
   color: white;
+}
+
+.icon-style-search {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  font-size: 36px;
 }
 
 #move-bm-detail {
