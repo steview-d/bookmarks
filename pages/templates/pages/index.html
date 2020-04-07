@@ -22,8 +22,7 @@
                             <div class="display-icon-grid">
                                 {% for icon in display_icons %}
                                 <div class="icon-grid-item">
-                                    <img src="{% static 'img/icons/grid/'%}{{ icon }}.png" alt="icon"
-                                        class="img-fluid">
+                                    <img src="{% static 'img/icons/grid/'%}{{ icon }}.png" alt="icon" class="img-fluid">
                                 </div>
                                 {% endfor %}
                             </div>
@@ -64,7 +63,8 @@
                     <div class="features-text">
                         <p>Sort bookmarks by name, date added, date updated, or even manually in an order of your
                             choosing with our simple drag and drop interface.</p>
-                        <p>Easily arrange your collections on the page, in any order you want. You can also choose how many columns
+                        <p>Easily arrange your collections on the page, in any order you want. You can also choose how
+                            many columns
                             to use for each page, for even greater flexibility.</p>
                         <p>Change the order of the pages, place your most used pages at the top for easier
                             access.</p>
@@ -72,7 +72,8 @@
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <div class="text-center">
-                        <img src="{% static 'img/pages/about/drag_drop_off.png' %}" class="img-fluid drag-drop-gif">
+                        <img src="{% static 'img/pages/about/drag_drop_off.png' %}" alt="feature animation"
+                            class="img-fluid drag-drop-gif">
                     </div>
                 </div>
             </div>
@@ -89,14 +90,16 @@
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <div class="text-center www">
-                        <img src="{% static 'img/pages/about/display_as_off.png' %}" class="img-fluid display-as-gif">
+                        <img src="{% static 'img/pages/about/display_as_off.png' %}" alt="feature animation"
+                            class="img-fluid display-as-gif">
                     </div>
                 </div>
             </div>
 
             <div class="text-center">
                 <h6>And loads more....</h6>
-                <a href="{% url 'pricing_page' %}#pricing-table-section" class="btn--square-invert mt-3"><span><small>Compare
+                <a href="{% url 'pricing_page' %}#pricing-table-section"
+                    class="btn--square-invert mt-3"><span><small>Compare
                             Features</small></span></a>
             </div>
         </div>
@@ -219,12 +222,13 @@
 
     <!-- preload features gifs -->
     <div id="preload">
-        <img src="{% static 'img/pages/about/drag_drop_on.gif' %}">
-        <img src="{% static 'img/pages/about/display_as_on.gif' %}">
+        <img src="{% static 'img/pages/about/drag_drop_on.gif' %}" alt="preload">
+        <img src="{% static 'img/pages/about/display_as_on.gif' %}" alt="preload">
     </div>
 
     <!-- get started -->
     {% include 'pages/components/create_account.html' %}
+
 </div>
 
 <!-- Footer -->

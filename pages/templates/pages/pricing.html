@@ -33,81 +33,83 @@
                                         Features</small></span></a>
                         </div>
                         <div class="d-block d-lg-none">
-                        <p>As a free member, you can still add, edit, organise and delete all your bookmarks in exactly
-                            the
-                            same
-                            way as a Premium member.</p>
-                        <p>Our Chrome browser extension is free to use for all members too, and free technical support
-                            is
-                            available, should you need it.</p>
-                        <div class="mt-5">
-                            <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
-                                target="_blank" class="btn--square mt-1"><span><small>Install
-                                        Extension</small></span></a>
+                            <p>As a free member, you can still add, edit, organise and delete all your bookmarks in
+                                exactly
+                                the
+                                same
+                                way as a Premium member.</p>
+                            <p>Our Chrome browser extension is free to use for all members too, and free technical
+                                support
+                                is
+                                available, should you need it.</p>
+                            <div class="mt-5">
+                                <a href="https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp"
+                                    target="_blank" class="btn--square mt-1"><span><small>Install
+                                            Extension</small></span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
-</section>
+    </section>
 
 
-<!-- pricing table -->
-<section id="pricing-table-section" class="container-fluid">
-    <div class="container">
+
+    <!-- pricing table -->
+    <section id="pricing-table-section" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-12 col-md-9">
+                    <table class="table table-dark">
+                        {% for i in table_data %}
+                        {% if forloop.first %}
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">{{i.0}}</th>
+                                <th scope="col">{{i.1}}</th>
+                                <th scope="col">{{i.2}}</th>
+                            </tr>
+                        </thead>
+                        {% else %}
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{ i.0 }}</th>
+                                <td>{{ i.1 }}</td>
+                                <td>{{ i.2 }}</td>
+                            </tr>
+                        </tbody>
+                        {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <!-- launch offer -->
         <div class="row">
-            <div class="col"></div>
-            <div class="col-12 col-md-9">
-                <table class="table table-dark">
-                    {% for i in table_data %}
-                    {% if forloop.first %}
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">{{i.0}}</th>
-                            <th scope="col">{{i.1}}</th>
-                            <th scope="col">{{i.2}}</th>
-                        </tr>
-                    </thead>
-                    {% else %}
-                    <tbody>
-                        <tr>
-                            <th scope="row">{{ i.0 }}</th>
-                            <td>{{ i.1 }}</td>
-                            <td>{{ i.2 }}</td>
-                        </tr>
-                    </tbody>
-                    {% endif %}
-                    {% endfor %}
-                </table>
-            </div>
-            <div class="col"></div>
-        </div>
-    </div>
+            <div class="p-4 mt-5 text-center mx-auto offer-box">
+                <h2>Launch Offer</h2>
+                <div class="mt-n2">
+                    <small>Limited to the first 1000 users</small>
+                </div>
 
-    <!-- launch offer -->
-    <div class="row">
-        <div class="p-4 mt-5 text-center mx-auto offer-box">
-            <h2>Launch Offer</h2>
-            <div class="mt-n2">
-                <small>Limited to the first 1000 users</small>
-            </div>
+                <h5 class="my-3">Lifetime Premium Membership</h5>
 
-            <h5 class="my-3">Lifetime Premium Membership</h5>
-            
-            <h2><span class="badge badge-dark">£20</span></h2>
-            <hr class="w-25">
-            <div class="mt-n2">
-                <small>Normally £20/yr</small>
+                <h2><span class="badge badge-dark">£20</span></h2>
+                <hr class="w-25">
+                <div class="mt-n2">
+                    <small>Normally £20/yr</small>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
-<!-- get started -->
-{% include 'pages/components/create_account.html' %}
-
+    <!-- get started -->
+    {% include 'pages/components/create_account.html' %}
 
 </div>
 
