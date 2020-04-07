@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section id="premium" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
@@ -20,114 +20,118 @@
             <!-- messages -->
             {% include 'components/messages.html' %}
 
-            {% if is_premium %}
-            <!-- thanks -->
-            <div class="container">
-                <div class="row set-height">
-                    <div class="align-self-center">
-                        <div class="display-4 px-5 text-center">Thanks for being a
-                            <span class="badge badge-dark m-2 p-2">PREMIUM</span>
-                            member!
+            <section id="premium">
+                {% if is_premium %}
+                <!-- thanks -->
+                <div class="container">
+                    <div class="row set-height">
+                        <div class="align-self-center">
+                            <div class="display-4 px-5 text-center">Thanks for being a
+                                <span class="badge badge-dark m-2 p-2">PREMIUM</span>
+                                member!
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {% else %}
-            <!-- premum pitch -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
-                        <div class="section-square-wrapper mb-4 bg-white">
-                            <div class="section-square square-left"><strong>Premium<br>Gives You<br>All This</strong>
+                {% else %}
+                <!-- premum pitch -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
+                            <div class="section-square-wrapper mb-4 bg-white">
+                                <div class="section-square square-left"><strong>Premium<br>Gives You<br>All
+                                        This</strong>
+                                </div>
+                                <ul class="row my-5 mx-0 premium-features-box list-unstyled">
+                                    <li class="col-6 col-lg-4"><i class="fa fa-bookmark fa-lg" aria-hidden="true"></i>
+                                        <strong>Unlimited Bookmarks</strong></li>
+                                    <li class="col-6 col-lg-4"><i class="fa fa-folder-open fa-lg"
+                                            aria-hidden="true"></i>
+                                        <strong>Unlimited Collections</strong></li>
+                                    <li class="col-6 col-lg-4"><i class="fa fa-columns fa-lg" aria-hidden="true"></i>
+                                        <strong>Unlimited Pages</strong></li>
+                                    <li class="col-6 col-lg-4"><i class="fa fa-ban fa-lg" aria-hidden="true"></i>
+                                        <strong>No More Adverts</strong></li>
+                                    <li class="col-6 col-lg-4"><i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                        <strong>Telephone Support</strong></li>
+                                    <li class="col-6 col-lg-4"><i class="fa fa-unlock fa-lg" aria-hidden="true"></i>
+                                        <strong>New Features, First</strong></li>
+                                </ul>
                             </div>
-                            <ul class="row my-5 mx-0 premium-features-box list-unstyled">
-                                <li class="col-6 col-lg-4"><i class="fa fa-bookmark fa-lg" aria-hidden="true"></i>
-                                    <strong>Unlimited Bookmarks</strong></li>
-                                <li class="col-6 col-lg-4"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>
-                                    <strong>Unlimited Collections</strong></li>
-                                <li class="col-6 col-lg-4"><i class="fa fa-columns fa-lg" aria-hidden="true"></i>
-                                    <strong>Unlimited Pages</strong></li>
-                                <li class="col-6 col-lg-4"><i class="fa fa-ban fa-lg" aria-hidden="true"></i>
-                                    <strong>No More Adverts</strong></li>
-                                <li class="col-6 col-lg-4"><i class="fa fa-phone fa-lg" aria-hidden="true"></i>
-                                    <strong>Telephone Support</strong></li>
-                                <li class="col-6 col-lg-4"><i class="fa fa-unlock fa-lg" aria-hidden="true"></i>
-                                    <strong>New Features, First</strong></li>
-                            </ul>
-                        </div>
 
-                        <div class="col-12 text-center price-block">
-                            <h5>Get Lifetime Access</h5>
-                            <div class="btn btn-light my-3 price"><strong>£20</strong></div>
-                            <div><small>Limited to the first 1000 members</small>
+                            <div class="col-12 text-center price-block">
+                                <h5>Get Lifetime Access</h5>
+                                <div class="btn btn-light my-3 price"><strong>£20</strong></div>
+                                <div><small>Limited to the first 1000 members</small>
+                                </div>
+                                <div><small>After this, a monthly / annual fee will apply</small></div>
                             </div>
-                            <div><small>After this, a monthly / annual fee will apply</small></div>
-                        </div>
 
-                        <!-- premium sign up form -->
-                        <div class="p-2 p-lg-4 mb-5 profile-forms bg-white-lg-screens">
-                            <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Payment Details</h4>
-                            <form method="POST" id="payment-form" class="mt-3" novalidate>
-                                <div id="credit-card-errors">
-                                    <div class="alert-message block-message error" id="stripe-error-message"></div>
-                                </div>
+                            <!-- premium sign up form -->
+                            <div class="p-2 p-lg-4 mb-5 profile-forms bg-white-lg-screens">
+                                <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Payment Details</h4>
+                                <form method="POST" id="payment-form" class="mt-3" novalidate>
+                                    <div id="credit-card-errors">
+                                        <div class="alert-message block-message error" id="stripe-error-message"></div>
+                                    </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-7 mb-0">
-                                        {{ purchase_premium_form.full_name|as_crispy_field }}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7 mb-0">
+                                            {{ purchase_premium_form.full_name|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-5 mb-0">
+                                            {{ purchase_premium_form.postcode|as_crispy_field }}
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-5 mb-0">
-                                        {{ purchase_premium_form.postcode|as_crispy_field }}
-                                    </div>
-                                </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-7 mb-0">
-                                        {{ payment_form.credit_card_number|as_crispy_field }}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7 mb-0">
+                                            {{ payment_form.credit_card_number|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-5 mb-0">
+                                            {{ payment_form.cvv|as_crispy_field }}
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-5 mb-0">
-                                        {{ payment_form.cvv|as_crispy_field }}
-                                    </div>
-                                </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-6 mb-0">
-                                        {{ payment_form.expiry_month|as_crispy_field }}
+                                    <div class="form-row">
+                                        <div class="form-group col-6 mb-0">
+                                            {{ payment_form.expiry_month|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-6 mb-0">
+                                            {{ payment_form.expiry_year|as_crispy_field }}
+                                        </div>
                                     </div>
-                                    <div class="form-group col-6 mb-0">
-                                        {{ payment_form.expiry_year|as_crispy_field }}
-                                    </div>
-                                </div>
 
-                                {{ payment_form.stripe_id }}
+                                    {{ payment_form.stripe_id }}
 
-                                {% csrf_token %}
-                                <input class="btn--standard mt-2" id="submit_payment_btn" name="commit" type="submit"
-                                    value="Make Payment">
-                                <div class="row">
-                                    <small class="ml-3 mt-1">How is my data processed?</small>
-                                    <span class="fa-stack tippy-i payment-tooltip"
-                                        data-tippy-content="<ul><li>No payment details are stored on our servers.</li>
+                                    {% csrf_token %}
+                                    <input class="btn--standard mt-2" id="submit_payment_btn" name="commit"
+                                        type="submit" value="Make Payment">
+                                    <div class="row">
+                                        <small class="ml-3 mt-1">How is my data processed?</small>
+                                        <span class="fa-stack tippy-i payment-tooltip"
+                                            data-tippy-content="<ul><li>No payment details are stored on our servers.</li>
                                                             <li>The only information we retain is your name and postcode.</li>
                                                             <li>These are kept for payment verification and account support purposes only.</li></ul>">
-                                        <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
-                                        <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                                    </span>
+                                            <i class="fa fa-square fa-stack-2x" aria-hidden="true"></i>
+                                            <i class="fa fa-info fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                        </span>
 
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% endif %}
+                {% endif %}
+            </section>
 
             <!-- banner ad -->
             {% include 'components/advert.html' %}
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
 
 {% block tippy_js %}

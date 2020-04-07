@@ -7,14 +7,14 @@
 {% block content %}
 
 <div class="icon-tile-bg-wrapper">
-    <section id="login" class="set-min-height">
+    <div class="set-min-height bg-overlay">
         {% include 'pages/components/nav.html' %}
         <div class="container-fluid">
             <div class="container">
                 <!-- messages -->
                 {% include 'components/messages.html' %}
 
-                <div class="row">
+                <section id="login" class="row">
                     <div class="col-10 col-md-7 col-lg-6 col-xl-5 user-auth-container">
                         <h4>Log In To Your Account</h4>
                         <form method="POST" novalidate>
@@ -33,10 +33,10 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 
 <!-- Footer -->

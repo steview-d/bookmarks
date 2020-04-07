@@ -5,13 +5,13 @@
 
 {% block content %}
 
-<div id="about-app" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
 
     <!-- Content -->
-    <section id="content" class="icon-tile-bg-wrapper">
+    <div id="content" class="icon-tile-bg-wrapper">
         <div class="bg-fade">
             <!-- top navigation -->
             {% include 'components/top-nav.html' %}
@@ -19,7 +19,7 @@
             <!-- messages -->
             {% include 'components/messages.html' %}
 
-            <div class="row mx-auto text-center">
+            <section id="about-app" class="row mx-auto text-center">
                 <img src="{% static 'img/logo/logo_main.png' %}" alt="logo" class="img-fluid mx-auto mt-5 px-3">
                 <div class="col-12 mt-3">
                     <h6 class="mt-n3">v{{ app_version }}</h6>
@@ -59,8 +59,8 @@
                         </a>
                     </h6>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </div>
 </div>
 {% endblock %}

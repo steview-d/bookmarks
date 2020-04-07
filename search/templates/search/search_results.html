@@ -7,7 +7,7 @@
 
 {% load replace_space %}
 
-<section is="search-results" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'links/components/sidebar_links.html' %}
@@ -19,7 +19,7 @@
         <!-- messages -->
         {% include 'components/messages.html' %}
 
-        <div class="container app-min-height">
+        <section id="search-results" class="container app-min-height">
             <!-- page heading -->
             <div class="row">
                 <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto p-3 mt-3">
@@ -43,12 +43,12 @@
             <!-- Pagination -->
             {% include 'search/components/pagination.html' %}
 
-        </div>
+        </section>
         <!-- banner ad -->
         {% include 'components/advert.html' %}
 
     </div>
-</section>
+</div>
 
 
 {% endblock %}

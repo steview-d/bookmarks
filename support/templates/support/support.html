@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section id="support" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
@@ -21,12 +21,12 @@
             {% include 'components/messages.html' %}
 
             <!-- main content -->
-            <div class="container app-min-height">
+            <section id="support" class="container app-min-height">
                 <div class="row">
                     <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
 
                         <!-- premium support -->
-                        <div class="section-square-wrapper bg-white mb-4">
+                        <section class="section-square-wrapper bg-white mb-4">
                             <div class="section-square square-left"><strong>Premium Member Benefit</strong></div>
                             <div class="my-5 premium-tel-box text-center">
                                 <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Priority Telephone
@@ -45,11 +45,11 @@
                                 {% endif %}
 
                             </div>
-                        </div>
+                        </section>
 
 
                         <!-- support form -->
-                        <div class="p-2 p-lg-4 mb-5 profile-forms bg-white-lg-screens">
+                        <section class="p-2 p-lg-4 mb-5 profile-forms bg-white-lg-screens">
                             <h4 class="pt-1"><i class="fa fa-stop mr-2" aria-hidden="true"></i>Support Request
                                 Form</h4>
                             <form method="POST" novalidate>
@@ -61,16 +61,16 @@
                                         {{ user.email }}</small>
                                 </div>
                             </form>
-                        </div>
+                        </section>
 
                     </div>
                 </div>
-            </div>
+            </section>
             <!-- banner ad -->
             {% include 'components/advert.html' %}
 
         </div>
     </div>
-</section>
+</div>
 
 {% endblock %}

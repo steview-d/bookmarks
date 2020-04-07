@@ -1,7 +1,6 @@
 // --------------------- user_auth pages - login, register, reset password, etc
 
-#login,
-#register,
+.bg-overlay,
 .pw-control {
     @include background-overlay(0.6);
 }

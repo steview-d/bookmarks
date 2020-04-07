@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section id="profile" class="flex-wrapper">
+<div class="flex-wrapper">
 
     <!-- Sidebar -->
     {% include 'accounts/components/sidebar_settings.html' %}
@@ -19,7 +19,8 @@
 
             <!-- messages -->
             {% include 'components/messages.html' %}
-            <div class="container">
+
+            <section id="profile" class="container">
                 <!-- user info -->
                 <div class="mt-2 mb-5 text-center">
                     <h1 class="user-name">{{ user }}</h1>
@@ -121,13 +122,13 @@
                 </div>
                 {% endif %}
 
-            </div>
+            </section>
 
             <!-- banner ad -->
             {% include 'components/advert.html' %}
         </div>
     </div>
-</section>
+</div>
 
 {% endblock %}
 
