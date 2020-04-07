@@ -8,9 +8,10 @@
     </ul>
     <div class="navbar-collapse collapse justify-content-end">
         <!-- topnav search bar -->
-        <form action= "{% url 'search' %}" method="GET" class="mx-2 my-auto d-none d-sm-inline w-100">
+        <form action="{% url 'search' %}" method="GET" class="mx-2 my-auto d-none d-sm-inline w-100">
             <div class="input-group">
-                <input type="text" class="form-control qborder border-right-0" name="q" placeholder="Search Bookmarks...">
+                <input type="text" class="form-control border-right-0" name="q"
+                    placeholder="Search Bookmarks...">
                 <span class="input-group-append">
                     <button class="btn btn-outline-secondary border border-left-0" type="submit">
                         <i class="fa fa-search"></i>
@@ -22,14 +23,15 @@
         <ul id="topnav-icons" class="navbar-nav">
             <!-- search button & dropdown - xs only -->
             <li class="nav-item px-2 d-inline d-sm-none dropright">
-                <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                <div class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <i class="fa fa-search"></i>
-                </a>
+                </div>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <form action= "{% url 'search' %}" method="GET">
+                    <form action="{% url 'search' %}" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control border border-right-0" name="q" placeholder="Search Bookmarks...">
+                            <input type="text" class="form-control border border-right-0" name="q"
+                                placeholder="Search Bookmarks...">
                         </div>
                         <button hidden type="submit"></button>
                     </form>
@@ -37,7 +39,8 @@
             </li>
             <!-- add bm, main app, settings, and log out buttons -->
             <li class="nav-item px-2 d-inline d-md-none">
-                <a href="{% url 'add_bookmark' page=page %}" class="nav-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                <a href="{% url 'add_bookmark' page=page %}" class="nav-link"><i class="fa fa-plus"
+                        aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
                 <a class="nav-link" href="{% url 'start_app' %}"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
@@ -46,8 +49,7 @@
                 <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-cog" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item px-2">
-                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"
-                        aria-hidden="true"></i></a>
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>
