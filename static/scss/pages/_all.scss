@@ -47,7 +47,7 @@
     @include background-overlay(0.96);
 }
 
-// settings pages header icon before
+// settings pages square header icon
 h4 > .fa-stop {
     color: $logo-blue;
 }
@@ -59,7 +59,6 @@ h4 > .fa-stop {
     .section-square {
         position: absolute;
         top: -44px;
-        // left: 8%;
         width: 90px;
         height: 90px;
         padding-top: 0.7rem;
@@ -106,11 +105,6 @@ h4 > .fa-stop {
     right: 0;
     transition: all 0.7s cubic-bezier(0.21, 0.885, 0.38, 0.96);
 
-    // .bg-fade {
-    //     min-height: 100vh;
-    //     @include background-overlay(0.98);
-    // }
-
     @media (min-width: 768px) {
         width: calc(100% - 300px);
     }
@@ -125,8 +119,8 @@ h4 > .fa-stop {
     display: flex;
     width: 100%;
 
-    // -------------.no-scroll prevents #content from scrolling when sidebar is
-    // ----------------------active on small screens - ref: .js sidebar toggler
+    // ------------- no-scroll prevents #content from scrolling when sidebar is
+    // --------------------- active on small screens - ref: .js sidebar toggler
     .no-scroll {
         overflow: hidden;
         height: 100%;

@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------- mixins
 
 @mixin default-bg-color {
-    background-color: #fafafa;
+    background-color: $white-dimmed;
 }
 
 @mixin black-border {
@@ -50,11 +50,11 @@
 }
 
 @mixin faded-link {
-    color: #888888;
+    color: $medium-grey;
     transition: 0.3s ease-out;
 
     &:hover {
-        color: #222222;
+        color: $gunmetal;
     }
 }
 

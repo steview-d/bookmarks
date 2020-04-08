@@ -36,14 +36,8 @@
     }
 }
 
-.gif-wrapper img {
-    width: 80%;
-    height: auto;
-}
-
 #features-section {
-    // background-color: $gunmetal-alpha;
-    background-color: #292e33;
+    background-color: $gunmetal;
     color: white;
 
     h2 {
@@ -51,14 +45,6 @@
         border: 1px solid $white;
         padding: 1rem 1.25rem;
     }
-
-    // img {
-    //     width: 50%;
-
-    //     @media only screen and (min-width: 992px) {
-    //         width: 80%;
-    //     }
-    // }
 }
 
 .features-text {
@@ -89,7 +75,6 @@
 }
 
 #testimonials-section {
-    // background-color: $dark-blue-alpha;
     background-color: $dark-blue;
     color: $white;
 
@@ -182,7 +167,6 @@
 }
 
 #pricing-table-section {
-    // background-color: $gunmetal-alpha;
     background-color: $gunmetal;
 
     table {
@@ -204,7 +188,6 @@
 }
 
 #faq-section {
-    // @include background-overlay(0.98);
     @include default-bg-color;
 
     h2 {
@@ -231,7 +214,6 @@
 
     .card {
         border-width: 0;
-        // background-color: rgba(255, 255, 255, 0.8);
         @include default-bg-color;
 
         .card-header {
@@ -264,7 +246,6 @@
 }
 
 #contact-form-section {
-    // background-color: $dark-blue-alpha;
     background-color: $dark-blue;
     color: $white;
 

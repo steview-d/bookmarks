@@ -1,22 +1,22 @@
 // import font families
-// @import url('https://fonts.googleapis.com/css2?family=Delius+Unicase&family=Muli:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Delius+Unicase&family=Muli:wght@300');
 
 // ------------------------------------------------------------------ variables
 
 // - fonts - //
-
-$text-heading: 'Delius Unicase', sans-serif;
+$text-heading: 'Delius Unicase', cursive;
 $text-general: 'Muli', sans-serif;
 $text-button: 'Delius Unicase', cursive;
-$icon-font: 'Delius Unicase', sans-serif;
+$icon-font: 'Delius Unicase', cursive;
 
 // - colors - solid - //
 $white: #ffffff;
+$white-dimmed: #fafafa;
 $black: #000000;
 $dark-grey: #424242;
 $medium-grey: #727272;
 $light-grey: #afafaf;
+$link-grey: #616161;
 $logo-blue: #175c9d;
 $dark-blue: #242535;
 $onyx: #343a40;
@@ -29,15 +29,10 @@ $pink: #e3509c;
 $pink-dimmed: #d4277f;
 $purple: #6c3af1;
 $purple-dimmed: #491EBD;
-$test-color: #f2ef35;
 
 // - colors - alpha - //
 $gunmetal-alpha: rgba(41, 46, 51, 0.99);
 $dark-blue-alpha: rgba(36, 37, 53, 0.98);
-
-// - colors - sections - //
-
-$collection-header-bg: $onyx;
 
 // - spacing - //
 $topnav-spacer-height: 68px;

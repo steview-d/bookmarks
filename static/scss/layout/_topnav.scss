@@ -1,7 +1,6 @@
 // --------------------------------- top navbar for main app and settings pages
 
 #topnav {
-    // background-color: rgba(250, 250, 250, 0.9);
     position: fixed;
     z-index: 100;
     width: 100%;
@@ -10,7 +9,6 @@
     background-color: transparent;
 
     .form-control:focus {
-        // outline: none;
         box-shadow: none;
         border-color: #ced4da;
     }
@@ -49,8 +47,8 @@
         transform: scale(0, 1);
         display: block;
         width: 200px;
-        // padding: 0;
     }
+
     &:hover {
         .dropdown-menu {
             transform: scale(1);

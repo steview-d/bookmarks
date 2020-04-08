@@ -1,11 +1,11 @@
 // show icon tile background behind error code
+
 #error-code {
     background: linear-gradient(0, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
         url("/static/img/bg/icon_tile.png") center;
     background-size: 650px 400px;
     font-size: 5rem;
     font-weight: 800;
-    // letter-spacing: -1.4rem;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;

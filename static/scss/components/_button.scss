@@ -1,4 +1,4 @@
-// -------------------------------------------------------------------- buttons
+// ----------------------------------------------------------- buttons & labels
 
 .label {
     padding: 0.2rem 0.4rem;
@@ -43,17 +43,6 @@
     );
 }
 
-.btn--red {
-    @include default-button(
-        $error-red,
-        $white,
-        $error-red,
-        transparent,
-        $black,
-        $black
-    );
-}
-
 .btn--delete {
     @include default-button(
         $error-red,
@@ -73,17 +62,6 @@
         transparent,
         $dark-grey,
         $dark-grey
-    );
-}
-
-.btn--white-hover-white {
-    @include default-button(
-        $white,
-        $dark-grey,
-        $white,
-        $white,
-        $dark-grey,
-        $white
     );
 }
 
@@ -154,7 +132,7 @@
     border-radius: 4px;
     color: $white;
     // font-weight: 600;
-    font-size: .7rem;
+    font-size: 0.7rem;
     padding: 0.4rem 0.6rem;
     transition: 0.2s ease-out;
 

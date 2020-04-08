@@ -8,6 +8,13 @@ body {
   font-family: "Muli", sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Delius Unicase", cursive;
+}
+
 a {
   color: #000000;
 }
@@ -20,13 +27,6 @@ a:hover {
 input {
   border-radius: 0.25rem;
   border: 1px solid #ced4da;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Delius Unicase", sans-serif;
 }
 
 div#preload {
@@ -269,38 +269,6 @@ div#preload {
   outline: none;
 }
 
-.btn--red {
-  /*
-    * col1 : background color
-    * col2 : font color
-    * col3 : border color
-    * col4 : hover background color
-    * col5 : hover font color
-    * col6 : hover border color (optional)
-    */
-  background-color: #e36868;
-  color: #ffffff;
-  border: 1px solid #e36868;
-  border-radius: 0.25rem;
-  margin: .25rem 0;
-  padding: 0.25rem 0.5rem;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-  font-family: "Delius Unicase", cursive;
-  font-size: .8rem;
-}
-
-.btn--red:hover {
-  background-color: transparent;
-  color: #000000;
-  border-color: #000000;
-}
-
-.btn--red:focus {
-  outline: none;
-}
-
 .btn--delete {
   /*
     * col1 : background color
@@ -362,38 +330,6 @@ div#preload {
 }
 
 .btn--faded:focus {
-  outline: none;
-}
-
-.btn--white-hover-white {
-  /*
-    * col1 : background color
-    * col2 : font color
-    * col3 : border color
-    * col4 : hover background color
-    * col5 : hover font color
-    * col6 : hover border color (optional)
-    */
-  background-color: #ffffff;
-  color: #424242;
-  border: 1px solid #ffffff;
-  border-radius: 0.25rem;
-  margin: .25rem 0;
-  padding: 0.25rem 0.5rem;
-  display: inline-block;
-  -webkit-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
-  font-family: "Delius Unicase", cursive;
-  font-size: .8rem;
-}
-
-.btn--white-hover-white:hover {
-  background-color: #ffffff;
-  color: #424242;
-  border-color: #ffffff;
-}
-
-.btn--white-hover-white:focus {
   outline: none;
 }
 
@@ -560,7 +496,7 @@ div#preload {
   border: none;
   border-radius: 4px;
   color: #ffffff;
-  font-size: .7rem;
+  font-size: 0.7rem;
   padding: 0.4rem 0.6rem;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
@@ -696,7 +632,7 @@ div#preload {
 }
 
 #pages-nav .navbar-title {
-  font-family: "Delius Unicase", sans-serif;
+  font-family: "Delius Unicase", cursive;
   text-align: center;
   margin: 1rem 4rem 0;
 }
@@ -772,7 +708,7 @@ div#preload {
 }
 
 .nav-border {
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid #afafaf;
 }
 
 .navbar-spacer {
@@ -780,12 +716,12 @@ div#preload {
   background-color: transparent;
 }
 
-.nav-bg-accounts {
-  background-color: #fafafa;
-}
-
 .nav-bg {
   background-color: rgba(250, 250, 250, 0.9);
+}
+
+.nav-bg-accounts {
+  background-color: #fafafa;
 }
 
 #topnav {
@@ -1041,13 +977,13 @@ div#preload {
 }
 
 .or-log-in a {
-  color: #888888;
+  color: #727272;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
 .or-log-in a:hover {
-  color: #222222;
+  color: #292e33;
 }
 
 .icon-tile-bg-wrapper {
@@ -1176,11 +1112,6 @@ h4 > .fa-stop {
   -webkit-transform: scale(1.15);
           transform: scale(1.15);
   border-radius: 8px;
-}
-
-.gif-wrapper img {
-  width: 80%;
-  height: auto;
 }
 
 #features-section {
@@ -1425,7 +1356,7 @@ h4 > .fa-stop {
 
 .user-auth-container {
   background-color: #ffffff;
-  border: 2px solid #888888;
+  border: 2px solid #727272;
   border-radius: 5px;
   margin: 3rem auto 2rem;
   padding: 1.5rem;
@@ -1445,13 +1376,13 @@ h4 > .fa-stop {
 }
 
 .user-auth-container form .pw-reset a {
-  color: #888888;
+  color: #727272;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
 .user-auth-container form .pw-reset a:hover {
-  color: #222222;
+  color: #292e33;
 }
 
 .user-auth-container button {
@@ -1624,7 +1555,7 @@ h4 > .fa-stop {
 }
 
 .column {
-  color: black;
+  color: #000000;
 }
 
 .link-desc {
@@ -1705,6 +1636,32 @@ h4 > .fa-stop {
   color: #ffffff;
 }
 
+.no-collections-box {
+  background-color: rgba(41, 46, 51, 0.99);
+  color: #ffffff;
+  border-radius: 0.5rem;
+}
+
+.no-collections-box input[type="text"] {
+  width: 80%;
+}
+
+@media only screen and (min-width: 576px) {
+  .no-collections-box input[type="text"] {
+    width: 50%;
+  }
+}
+
+.add-collection input[type="text"],
+.rename-collection-form input[type="text"] {
+  width: 100%;
+  max-width: 200px;
+}
+
+.collection-options {
+  border: 1px solid #343a40;
+}
+
 .bm-container {
   width: 100%;
   margin: auto;
@@ -1739,34 +1696,6 @@ h4 > .fa-stop {
   text-overflow: ellipsis;
 }
 
-.bm-icons-show-hide {
-  display: none;
-}
-
-.bm-icons-show-hide .bm-icons-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.bm-icons-show-hide .bm-icons-container .bm-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 0.15rem 0.25rem 0.15rem 0;
-  padding: 0.2rem 0.4rem;
-  border-radius: 5px;
-}
-
-.bm-options-icon {
-  margin-left: auto;
-}
-
 .bm-text-container {
   margin-left: 0.3rem;
   min-width: 0;
@@ -1788,8 +1717,36 @@ h4 > .fa-stop {
 }
 
 .default-icon .icon-text {
-  font-family: "Delius Unicase", sans-serif;
+  font-family: "Delius Unicase", cursive;
   color: white;
+}
+
+.bookmark-styling {
+  padding: 0.5rem 0.2rem 0.5rem 0;
+}
+
+.bookmark-border {
+  border-bottom: 1px solid #afafaf;
+}
+
+.bm-sort-handle {
+  padding: 0.4rem;
+  border: 1px dashed #afafaf;
+  background-color: #ffffff;
+  opacity: 0.9;
+}
+
+.add-scroll-space {
+  margin-right: 3rem;
+}
+
+.bm-sort-container .ui-sortable-helper {
+  -webkit-animation: wobble-effect 0.4s ease-out forwards;
+          animation: wobble-effect 0.4s ease-out forwards;
+}
+
+.bm-sort-container .ui-sortable-helper .bm-sort-handle {
+  border-color: #000000;
 }
 
 .icon-style-search {
@@ -1798,6 +1755,72 @@ h4 > .fa-stop {
   width: 54px;
   height: 54px;
   font-size: 36px;
+}
+
+#bookmark-options {
+  position: relative;
+}
+
+#bookmark-options .dropdown-item:focus,
+#bookmark-options .dropdown-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #343a40;
+}
+
+.bm-options {
+  color: #000000;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+.bm-options:hover {
+  opacity: 0.6;
+}
+
+.bm-options-1 {
+  font-size: 1.3rem;
+}
+
+.bm-options-2 {
+  font-size: 1.2rem;
+}
+
+.bm-options-3 {
+  margin-top: -0.1rem;
+}
+
+.bookmark-options-effect-1 {
+  -webkit-animation: bookmark-options-effect-1 0.25s forwards;
+          animation: bookmark-options-effect-1 0.25s forwards;
+}
+
+.bookmark-options-effect-2 {
+  -webkit-animation: bookmark-options-effect-2 0.25s forwards;
+          animation: bookmark-options-effect-2 0.25s forwards;
+}
+
+.bookmark-options-effect-3 {
+  -webkit-animation: bookmark-options-effect-3 0.25s forwards;
+          animation: bookmark-options-effect-3 0.25s forwards;
+}
+
+#bookmark-display-options button:focus {
+  outline: none;
+}
+
+.bm-options-icon {
+  margin-left: auto;
+}
+
+.dropdown-slide-effect {
+  -webkit-animation: dropdown-slide-effect 0.25s both;
+          animation: dropdown-slide-effect 0.25s both;
+}
+
+.manual-sort-on {
+  background-color: #76E26A;
+  border: 1px solid #76E26A;
 }
 
 #move-bm-detail {
@@ -1839,7 +1862,7 @@ h4 > .fa-stop {
 }
 
 #move-bm-detail .no-icon .icon-text {
-  font-family: "Delius Unicase", sans-serif;
+  font-family: "Delius Unicase", cursive;
   position: relative;
   top: -1px;
   color: white;
@@ -1954,7 +1977,7 @@ h4 > .fa-stop {
 #edit-bookmark .no-icon .icon-text,
 #add-bookmark .no-icon .icon-text,
 #import-url .no-icon .icon-text {
-  font-family: "Delius Unicase", sans-serif;
+  font-family: "Delius Unicase", cursive;
   position: relative;
   top: -4px;
   color: white;
@@ -1981,6 +2004,10 @@ h4 > .fa-stop {
   color: #dc3545;
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.icon-field-errors {
+  border: 1px solid #dc3545;
 }
 
 .import-success-box {
@@ -2021,126 +2048,6 @@ h4 > .fa-stop {
 .delete-modal-item i {
   margin-right: 0.5rem;
   color: #175c9d;
-}
-
-.icon-field-errors {
-  border: 1px solid #dc3545;
-}
-
-.dropdown-slide-effect {
-  -webkit-animation: dropdown-slide-effect 0.25s both;
-          animation: dropdown-slide-effect 0.25s both;
-}
-
-.manual-sort-on {
-  background-color: #76E26A;
-  border: 1px solid #76E26A;
-}
-
-.no-collections-box {
-  background-color: rgba(41, 46, 51, 0.99);
-  color: #ffffff;
-  border-radius: 0.5rem;
-}
-
-.no-collections-box input[type="text"] {
-  width: 80%;
-}
-
-@media only screen and (min-width: 576px) {
-  .no-collections-box input[type="text"] {
-    width: 50%;
-  }
-}
-
-.add-collection input[type="text"],
-.rename-collection-form input[type="text"] {
-  width: 100%;
-  max-width: 200px;
-}
-
-.collection-options {
-  border: 1px solid #343a40;
-}
-
-.bookmark-styling {
-  padding: 0.5rem 0.2rem 0.5rem 0;
-}
-
-.bookmark-border {
-  border-bottom: 1px solid #afafaf;
-}
-
-.bm-sort-handle {
-  padding: 0.4rem;
-  border: 1px dashed #afafaf;
-  background-color: #ffffff;
-  opacity: 0.9;
-}
-
-.add-scroll-space {
-  margin-right: 3rem;
-}
-
-.bm-sort-container .ui-sortable-helper {
-  -webkit-animation: wobble-effect 0.4s ease-out forwards;
-          animation: wobble-effect 0.4s ease-out forwards;
-}
-
-.bm-sort-container .ui-sortable-helper .bm-sort-handle {
-  border-color: #000000;
-}
-
-#bookmark-options {
-  position: relative;
-}
-
-#bookmark-options .dropdown-item:focus,
-#bookmark-options .dropdown-item:hover {
-  color: #ffffff;
-  text-decoration: none;
-  background-color: #343a40;
-}
-
-.bm-options {
-  color: #000000;
-  -webkit-transition: opacity 0.2s ease-out;
-  transition: opacity 0.2s ease-out;
-}
-
-.bm-options:hover {
-  opacity: 0.6;
-}
-
-.bm-options-1 {
-  font-size: 1.3rem;
-}
-
-.bm-options-2 {
-  font-size: 1.2rem;
-}
-
-.bm-options-3 {
-  margin-top: -0.1rem;
-}
-
-.bookmark-options-effect-1 {
-  -webkit-animation: bookmark-options-effect-1 0.25s forwards;
-          animation: bookmark-options-effect-1 0.25s forwards;
-}
-
-.bookmark-options-effect-2 {
-  -webkit-animation: bookmark-options-effect-2 0.25s forwards;
-          animation: bookmark-options-effect-2 0.25s forwards;
-}
-
-.bookmark-options-effect-3 {
-  -webkit-animation: bookmark-options-effect-3 0.25s forwards;
-          animation: bookmark-options-effect-3 0.25s forwards;
-}
-
-#bookmark-display-options button:focus {
-  outline: none;
 }
 
 #overlay-width-warning {
@@ -2196,7 +2103,7 @@ h4 > .fa-stop {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: #fff;
+  color: #ffffff;
   border-color: #175c9d;
   background-color: #175c9d;
 }

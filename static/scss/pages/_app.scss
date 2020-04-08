@@ -7,7 +7,7 @@
 // ------------------------------------------------------------- main links app
 
 .column {
-    color: black; // temp placeholder
+    color: $black;
 }
 
 .link-desc {
@@ -25,9 +25,9 @@
 }
 
 .bm-link {
-    color: #616161;
+    color: $link-grey;
     &:hover {
-        color: #616161;
+        color: $link-grey;
     }
 }
 
@@ -36,20 +36,13 @@
     width: 100px;
 }
 
-// ---------------------------------------------------- rename collection forms
-
-// .rename-collection-form {
-//     display: none;
-// }
-
-// ------------------------------------------------------- collection title bar
+// ---------------------------------------------------------------- collections
 
 .collection-container {
     @include container-text-icon;
     cursor: default;
-    background-color: $collection-header-bg;
+    background-color: $onyx;
     color: $white;
-    // border-radius: 3px;
     border-radius: 5px 5px 0 0;
     padding: 0.4rem 0.5rem 0.4rem 1rem;
 
@@ -72,7 +65,35 @@
     }
 }
 
-// ----------------------------------------------------------- bookmark options
+// no-collections container
+.no-collections-box {
+    background-color: $gunmetal-alpha;
+    color: $white;
+    border-radius: 0.5rem;
+
+    input[type="text"] {
+        width: 80%;
+
+        @media only screen and (min-width: 576px) {
+            width: 50%;
+        }
+    }
+}
+
+// collection name, input field width
+.add-collection,
+.rename-collection-form {
+    input[type="text"] {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+.collection-options {
+    border: 1px solid $onyx;
+}
+
+// ----------------------------------------------------------- bookmark styling
 
 .bm-container {
     @include container-text-icon;
@@ -83,37 +104,8 @@
         .bm-title-text {
             @include container-title-text;
         }
-        // .bm-options-icon {
-        //     @include flex-none;
-        //     margin-left: 0.5rem;
-        //     font-size: 0.7rem;
-        //     padding: 0 0.25rem;
-        // }
     }
 }
-
-.bm-icons-show-hide {
-    display: none;
-
-    .bm-icons-container {
-        display: flex;
-        flex-wrap: wrap;
-
-        .bm-icon {
-            display: flex;
-            align-items: center;
-            margin: 0.15rem 0.25rem 0.15rem 0;
-            padding: 0.2rem 0.4rem;
-            border-radius: 5px;
-        }
-    }
-}
-
-.bm-options-icon {
-    margin-left: auto;
-}
-
-// ----------------------------------------------------------- bookmark styling
 
 .bm-text-container {
     margin-left: 0.3rem;
@@ -133,11 +125,110 @@
     }
 }
 
+.bookmark-styling {
+    padding: 0.5rem 0.2rem 0.5rem 0;
+}
+
+.bookmark-border {
+    border-bottom: 1px solid $light-grey;
+}
+
+.bm-sort-handle {
+    padding: 0.4rem;
+    border: 1px dashed $light-grey;
+    background-color: $white;
+    opacity: 0.9;
+}
+
+// on 1 column displays, add a space to the right to allow
+// for scrolling on touch devices
+.add-scroll-space {
+    margin-right: 3rem;
+}
+
+.bm-sort-container .ui-sortable-helper {
+    animation: wobble-effect 0.4s ease-out forwards;
+
+    .bm-sort-handle {
+        border-color: $black;
+    }
+}
+
+// icon style for search results
 .icon-style-search {
     flex-shrink: 0;
     width: 54px;
     height: 54px;
     font-size: 36px;
+}
+
+// ----------------------------------------------------------- bookmark options
+
+#bookmark-options {
+    position: relative;
+
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+        color: $white;
+        text-decoration: none;
+        background-color: $onyx;
+    }
+}
+
+.bm-options {
+    color: $black;
+
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.bm-options-1 {
+    font-size: 1.3rem;
+}
+
+.bm-options-2 {
+    font-size: 1.2rem;
+}
+
+.bm-options-3 {
+    margin-top: -0.1rem;
+}
+
+// bookmark icon dropdown effect
+.bookmark-options-effect-1 {
+    animation: bookmark-options-effect-1 0.25s forwards;
+}
+
+.bookmark-options-effect-2 {
+    animation: bookmark-options-effect-2 0.25s forwards;
+}
+
+.bookmark-options-effect-3 {
+    animation: bookmark-options-effect-3 0.25s forwards;
+}
+
+#bookmark-display-options {
+    button:focus {
+        outline: none;
+    }
+}
+
+.bm-options-icon {
+    margin-left: auto;
+}
+
+// bookmark options dropdown effect
+.dropdown-slide-effect {
+    animation: dropdown-slide-effect 0.25s both;
+}
+
+// manual bookmark sort button
+.manual-sort-on {
+    background-color: $green;
+    border: 1px solid $green;
 }
 
 // --------------------------------------------------------- move bookmark page
@@ -237,7 +328,7 @@
     text-align: center;
 }
 
-// -------------------------------------------------------- add / edit bookmark
+// ----------------------------------------------- add / edit / import bookmark
 
 .url-validation-wrapper {
     margin: -0.8rem 0 1rem;
@@ -275,7 +366,6 @@
         height: 100px;
         border-radius: 6px;
         font-size: 4.6rem;
-        // margin: 0 auto;
 
         .icon-text {
             font-family: $icon-font;
@@ -286,7 +376,6 @@
     }
 }
 
-// USED ANYWHERE?????
 #div_id_icon .form-control {
     background-color: transparent;
     border: none;
@@ -298,13 +387,12 @@
     }
 }
 
-// used to show / hide bookmark icons on add / edit / import screens
+// show / hide bookmark icons on add / edit / import screens
 .icon-display-hide {
     display: none;
 }
 
-// edit bookmark form
-
+// edit bookmark form icon errors
 .icon-errors {
     display: inline;
     color: $crispy-red;
@@ -312,7 +400,12 @@
     font-weight: 700;
 }
 
-// import url
+// icon field errors
+.icon-field-errors {
+    border: 1px solid $crispy-red;
+}
+
+// --------------------------------------------------------- import url success
 
 .import-success-box {
     border: 1px solid red;
@@ -343,7 +436,7 @@
     }
 }
 
-// modal - delete bookmark
+// --------------------------------------------------------------- delete modal
 
 .delete-modal-item {
     margin: 0 1.5rem 1rem;
@@ -354,140 +447,7 @@
     }
 }
 
-// icon field errors
-
-.icon-field-errors {
-    border: 1px solid #dc3545;
-}
-
-// main app
-
-// dropdown
-
-.dropdown-slide-effect {
-    animation: dropdown-slide-effect 0.25s both;
-}
-
-// manual collection sort
-
-.manual-sort-on {
-    background-color: $green;
-    border: 1px solid $green;
-}
-
-// no collections
-
-.no-collections-box {
-    background-color: $gunmetal-alpha;
-    color: $white;
-    border-radius: 0.5rem;
-
-    input[type="text"] {
-        width: 80%;
-
-        @media only screen and (min-width: 576px) {
-            width: 50%;
-        }
-    }
-}
-
-.add-collection,
-.rename-collection-form {
-    input[type="text"] {
-        width: 100%;
-        max-width: 200px;
-    }
-}
-
-.collection-options {
-    border: 1px solid $onyx;
-}
-
-.bookmark-styling {
-    padding: 0.5rem 0.2rem 0.5rem 0;
-}
-
-.bookmark-border {
-    border-bottom: 1px solid $light-grey;
-}
-
-.bm-sort-handle {
-    // background-color: #eee;
-    padding: 0.4rem;
-    // margin-right: 1rem;
-    // border-radius: 2px;
-    border: 1px dashed $light-grey;
-    background-color: $white;
-    opacity: 0.9;
-}
-
-// on 1 column displays, add a space to the right to allow
-// for scrolling on devices
-.add-scroll-space {
-    margin-right: 3rem;
-}
-
-.bm-sort-container .ui-sortable-helper {
-    animation: wobble-effect 0.4s ease-out forwards;
-
-    .bm-sort-handle {
-        border-color: $black;
-    }
-}
-
-#bookmark-options {
-    position: relative;
-
-    .dropdown-item:focus,
-    .dropdown-item:hover {
-        color: $white;
-        text-decoration: none;
-        background-color: $onyx;
-    }
-}
-
-.bm-options {
-    color: $black;
-
-    transition: opacity 0.2s ease-out;
-
-    &:hover {
-        opacity: 0.6;
-    }
-}
-
-.bm-options-1 {
-    font-size: 1.3rem;
-}
-
-.bm-options-2 {
-    font-size: 1.2rem;
-}
-
-.bm-options-3 {
-    margin-top: -0.1rem;
-}
-
-// bookmark icon dropdown effect
-.bookmark-options-effect-1 {
-    animation: bookmark-options-effect-1 0.25s forwards;
-}
-
-.bookmark-options-effect-2 {
-    animation: bookmark-options-effect-2 0.25s forwards;
-}
-
-.bookmark-options-effect-3 {
-    animation: bookmark-options-effect-3 0.25s forwards;
-}
-
-#bookmark-display-options {
-    button:focus {
-        outline: none;
-    }
-}
-
-// width warning
+// -------------------------------------------------------------- width warning
 
 #overlay-width-warning {
     position: fixed;
@@ -500,7 +460,6 @@
 }
 
 .hv-center {
-    // width: 90px;
     height: 90px;
     left: 50%;
     transform: translateX(-50%);
@@ -534,9 +493,10 @@
 }
 
 
-// profile page warning width checkbox
+// ---------------------------------------- profile page warning width checkbox
+
 .custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
+    color: $white;
     border-color: $logo-blue;
     background-color: $logo-blue;
 }

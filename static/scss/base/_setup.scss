@@ -9,6 +9,13 @@ body {
     font-family: $text-general;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    font-family: $text-heading;
+}
+
 a {
     color: $black;
 
@@ -21,13 +28,6 @@ a {
 input {
     border-radius: 0.25rem;
     border: 1px solid #ced4da;
-}
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: $text-heading;
 }
 
 div#preload {
