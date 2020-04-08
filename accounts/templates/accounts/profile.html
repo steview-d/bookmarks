@@ -22,7 +22,7 @@
 
             <section id="profile" class="container">
                 <!-- user info -->
-                <div class="mt-2 mb-5 text-center">
+                <header class="mt-2 mb-5 text-center">
                     <h1 class="user-name">{{ user }}</h1>
                     <hr class="w-25">
 
@@ -30,9 +30,9 @@
                     <h4><span class="badge badge-dark">PREMIUM MEMBER</span></h4>
                     {% endif %}
                     <h6>Member since {{ user.date_joined|date:"d M Y" }}</h6>
-                </div>
+                </header>
 
-                <div class="row">
+                <section class="row">
                     <!-- update email address form -->
                     <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
                         <form method="POST" class="p-2 p-lg-4 mt-3 profile-forms bg-white-lg-screens" novalidate>
@@ -44,9 +44,9 @@
                             <input type="submit" value="Update" name="email-btn" class="btn--standard">
                         </form>
                     </div>
-                </div>
+                </section>
 
-                <div class="row">
+                <section class="row">
                     <!-- change password form -->
                     <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-4 mx-auto">
                         <form method="POST" class="p-2 p-lg-4 mt-3 profile-forms bg-white-lg-screens" novalidate>
@@ -69,9 +69,9 @@
                             <input type="submit" value="Change" name="pw-btn" class="btn--standard">
                         </form>
                     </div>
-                </div>
+                </section>
 
-                <div class="row">
+                <section class="row">
                     <!-- user preferences -->
                     <div class="col-12 col-md-11 col-lg-9 col-xl-8 mt-5 mx-auto">
                         <h4 class="mb-4"><i class="fa fa-stop mr-2" aria-hidden="true"></i>User Preferences</h4>
@@ -81,7 +81,7 @@
                                 are being displayed for the current screen width</label>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <div class="row">
                     <!-- stats -->

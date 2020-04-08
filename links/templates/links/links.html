@@ -58,7 +58,8 @@
                                         aria-haspopup="true" aria-expanded="false">
                                         Sort By...
                                     </button>
-                                    <div class="dropdown-menu dropdown-slide-effect" aria-labelledby="dropdown-sort-options">
+                                    <div class="dropdown-menu dropdown-slide-effect"
+                                        aria-labelledby="dropdown-sort-options">
                                         <a class="dropdown-item {% if k.sort_order == 0 %}active{% endif %}"
                                             href="{% url 'update_sort_order' page=page collection=k sort=0 %}"><i
                                                 class="fa fa-sort mr-2" aria-hidden="true"></i>Manual Sort</a>
@@ -93,7 +94,8 @@
                                         aria-haspopup="true" aria-expanded="false">
                                         Display As...
                                     </button>
-                                    <div class="dropdown-menu dropdown-slide-effect" aria-labelledby="dropdown-display-options">
+                                    <div class="dropdown-menu dropdown-slide-effect"
+                                        aria-labelledby="dropdown-display-options">
                                         <button
                                             class="dropdown-item coll-display-btn {% if k.display_mode == 1 %}active{% endif %}"
                                             data-coll-id="{{ k.id }}" data-display-mode="1">Full</button>
@@ -177,7 +179,7 @@
                                         <div
                                             class="bm-options-icon {% if collection_being_sorted == k.name %}display-toggle{% endif %}">
                                             <div id="bookmark-options">
-                                                <div id="dropdown-bm-options" type="button"
+                                                <div id="dropdown-bm-options" role="button"
                                                     class="bm-options bm-options-{{ k.display_mode }}"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-list-ul" aria-hidden="true"></i>

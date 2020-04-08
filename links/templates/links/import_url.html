@@ -31,11 +31,11 @@
                         <div class="mb-2">Icon Preview</div>
                         {% if saved_icon_data %}
                         <!-- if form has non icon errors and previous image has been saved -->
-                        <img id="img-preview" src="{{ saved_icon_data }}">
+                        <img id="img-preview" src="{{ saved_icon_data }}" alt="icon preview">
 
                         {% else %}
                         <!-- if form has no errors -->
-                        <img id="img-preview" class="icon-display-hide">
+                        <img id="img-preview" class="icon-display-hide" alt="icon preview">
                         {% endif %}
 
                         <div id="default-icon" class="{% if saved_icon_data %}icon-display-hide{% endif %}">
