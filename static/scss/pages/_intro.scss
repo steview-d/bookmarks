@@ -4,7 +4,6 @@
 
 #index-page section {
     @include section-padding;
-    border-bottom: 2px solid #aaaaaa;
 }
 
 #headline-section {
@@ -138,7 +137,7 @@
         height: 10px;
         border-radius: 50%;
         margin: 0 0.5rem;
-        background: #eeeeee;
+        background: $white-dimmed;
         border: 4px solid $white;
     }
     .carousel-indicators li.active {
