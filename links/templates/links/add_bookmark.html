@@ -42,7 +42,8 @@
 
                             {% else %}
                             <!-- if form has no errors -->
-                            <img id="img-preview" alt="icon preview" class="icon-display-hide">
+                            <!-- src attr added by .js on successful scrape -->
+                            <img id="img-preview" src="" class="icon-display-hide" alt="icon preview" >
                             {% endif %}
 
                             <div id="default-icon" class="{% if saved_icon_data %}icon-display-hide{% endif %}">
