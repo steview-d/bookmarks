@@ -4,7 +4,6 @@ from django.contrib import admin
 from .models import Bookmark, Collection, Page
 
 
-# Register your models here.
 class PageAdmin(admin.ModelAdmin):
     list_display = (
         'name',
@@ -15,7 +14,6 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class CollectionAdmin(admin.ModelAdmin):
-
     list_display = (
         'collection_name',
         'position',
@@ -25,7 +23,6 @@ class CollectionAdmin(admin.ModelAdmin):
 
 
 class BookmarkAdmin(admin.ModelAdmin):
-
     # force admin form to use Textarea to display description
     def get_form(self, request, obj=None, **kwargs):
         kwargs['widgets'] = {'description': forms.Textarea(

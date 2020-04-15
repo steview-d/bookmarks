@@ -140,10 +140,11 @@ def add_collection(request, page):
     currently displayed are updated by inserting the new collection
     value in the list, in a place the function determines as best.
 
-    The function will always try to group collections in a similar fashion
-    across all column layout options. Even though it isn't expected that a user
-    will regularly switch between layout options on the same screen display,
-    when they do, the order will be preserved as best it can.
+    The function will always try to group collections in a similar
+    fashion across all column layout options. Even though it isn't
+    expected that a user will regularly switch between layout options
+    on the same screen display, when they do, the order will be
+    preserved as best it can.
 
     Args:
         request (obj): The request object

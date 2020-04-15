@@ -178,7 +178,7 @@ def scrape_url(request, url):
                     )
                 q.raise_for_status()
             except req.exceptions.RequestException:
-                # if url won't resolve, can pass as 'scraped_image' and
+                # if url won't resolve, using pass as 'scraped_image' and
                 # 'image_ext' already set to ''
                 pass
             else:
@@ -266,7 +266,7 @@ def get_site_icon(url):
                     continue
                 break
 
-        # last resort, any image it can find! first ico, then png
+        # last resort, any image it can find! first ico, png, then jpg
         if not chosen_icon:
             ext_order = ['ico', 'png', 'jpg']
             for ext in ext_order:

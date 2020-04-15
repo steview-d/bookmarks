@@ -415,7 +415,7 @@ def collection_sort(request, page):
 
         new_collection_orders.append(collection_order)
 
-    # # save new page collection orders to db
+    # save new page collection orders to db
     page.collection_order_2 = new_collection_orders[0]
     page.collection_order_3 = new_collection_orders[1]
     page.collection_order_4 = new_collection_orders[2]
@@ -729,7 +729,7 @@ def move_bookmark(request, page, bookmark):
     destination collection.
     """
 
-    # check start page exists, and redirect if not.
+    # check destination page exists, and redirect if not.
     try:
         page = Page.objects.get(user=request.user, name=page)
     except ObjectDoesNotExist:

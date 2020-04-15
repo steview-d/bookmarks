@@ -6,6 +6,7 @@ import re
 
 
 class PageForm(forms.ModelForm):
+    """ PageForm template, can be subclassed by other page forms """
     class Meta:
         model = Page
         fields = ['name']
@@ -40,7 +41,9 @@ class PageForm(forms.ModelForm):
 
 
 class AddNewPageForm(PageForm):
+    """ Form for adding a new page """
 
+    # user choices for how many columns a new page should start with
     NUM_COLUMN_CHOICES = (
         (1, 1),
         (2, 2),
@@ -59,6 +62,7 @@ class AddNewPageForm(PageForm):
 
 
 class EditPageForm(PageForm):
+    """ Form used to edit an existing page """
     class Meta:
         model = Page
         fields = ['name']
@@ -69,6 +73,8 @@ class EditPageForm(PageForm):
 
 
 class BookmarkForm(forms.ModelForm):
+    """ Form for creating a new Bookmark object """
+
     description = forms.CharField(
         widget=forms.Textarea(attrs={'rows': 5})
     )
@@ -79,6 +85,7 @@ class BookmarkForm(forms.ModelForm):
 
 
 class MoveBookmarkForm(forms.ModelForm):
+    """ Form used to move a bookmark to a new page / collection """
 
     class Meta:
         model = MoveBookmark

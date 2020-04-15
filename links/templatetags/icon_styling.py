@@ -15,18 +15,23 @@ def icon_size(value):
 
 @register.filter
 def icon_font_size(value):
-    # custom filter to calculate icon size based
+    # custom filter to calculate icon font size based
     # on the value of display_mode
     return (48-((value-1)*16))*0.75
 
 
 @register.filter
 def icon_letter(value):
+    # uppercase and return the first letter in the passed string
     return value[0].upper()
 
 
 @register.filter
 def icon_color(value):
+    """
+    set the icon color based on the position of the bookmark titles
+    first letter within the alphabet.
+    """
     colors_list = ['#698396',
                    '#a9c8c0',
                    '#dbbc8e',

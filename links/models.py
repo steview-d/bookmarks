@@ -12,9 +12,9 @@ User = settings.AUTH_USER_MODEL
 
 class Page(models.Model):
     """
-    A page is a single view for the user than contains a number of collections.
-    Initially, only 1 page per user, and can be used to store settings for
+    A page is a single view for the user that contains a number of
     collections.
+    Stores settings for how those collections should be displayed.
     """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
@@ -52,6 +52,11 @@ class Page(models.Model):
 
 
 class Collection(models.Model):
+    """
+    A collection is a grouping of Bookmark objects.
+    The collection will store data on its position within the page and
+    also on how the bookmarks within should be displayed.
+    """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
     )
@@ -94,6 +99,12 @@ def icon_location(instance, filename):
 
 
 class Bookmark(models.Model):
+    """
+    A Bookmark is a object that stores data for a single Bookmark
+    entity.
+    As well as basic data such as name, title, icon etc, it will also
+    keep track of its position within its parent Collection.
+    """
     user = models.ForeignKey(
         User, default=1, null=False, on_delete=models.CASCADE
     )
@@ -156,6 +167,10 @@ class Bookmark(models.Model):
 
 
 class MoveBookmark(models.Model):
+    """
+    Used with MoveBookmarkForm to allow the user to choose the
+    destination Page / Collection when moving Bookmark objects.
+    """
     dest_page = models.ForeignKey(
         Page,
         default=1, null=False, blank=False, on_delete=models.CASCADE
