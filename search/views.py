@@ -9,12 +9,10 @@ from links.models import Page, Bookmark
 from links.utils.general_utils import set_page_name
 
 
-# Create your views here.
-
 @login_required
 def search(request):
 
-    # delete bookmark
+    # if user is deleting a bookmark from search results
     if 'delete-bookmark-form' in request.POST:
         bookmark_utils.delete_bookmark(request)
 

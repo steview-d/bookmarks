@@ -1,11 +1,9 @@
 from django.contrib import messages
 
-# from links.models import Page, Collection, Bookmark
-
 
 def is_premium(request, context):
     """
-    checks if the passed user is a member of the 'Premium' group
+    Checks if the passed user is a member of the 'Premium' group
     if so, {'is_premium': True} is added to the 'context' dict
 
     Args:

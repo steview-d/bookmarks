@@ -3,7 +3,6 @@ from django.contrib import admin
 from .models import Ticket
 
 
-# Register your models here.
 def close_tickets(modeladmin, request, queryset):
     for ticket in queryset:
         ticket.status = "CLOSED"

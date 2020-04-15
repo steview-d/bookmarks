@@ -5,7 +5,6 @@ from django.db import models
 User = settings.AUTH_USER_MODEL
 
 
-# Create your models here.
 class Ticket(models.Model):
 
     STATUS_CHOICE = (

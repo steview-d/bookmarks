@@ -35,4 +35,3 @@ class TestPremiumView(TestCase):
     def test_premium_loads_correct_template(self):
         page = self.c.get(reverse('premium'))
         self.assertTemplateUsed(page, 'premium/premium.html')
-

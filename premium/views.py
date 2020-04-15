@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect, render, reverse
+
 import stripe
 
 from .forms import PremiumPurchaseForm, PaymentForm
@@ -16,7 +17,7 @@ stripe.api_key = settings.STRIPE_SECRET
 # set the current price a user will pay for premium access
 premium_cost = 20
 
-# Create your views here.
+
 @login_required
 def premium(request):
     if request.method == "POST":
@@ -44,11 +45,13 @@ def premium(request):
                 messages.success(
                     request, f"Your payment of £{premium_cost} \
                         has been recieved. Thank you.")
+
                 # update and save form
                 purchase_premium = purchase_premium_form.save(commit=False)
                 purchase_premium.user = request.user
                 purchase_premium.payment_amount = premium_cost
                 purchase_premium.save()
+
                 # add user to premium group
                 premium_group = Group.objects.get(name='Premium')
                 user = User.objects.get(email=request.user.email)

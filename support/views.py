@@ -10,13 +10,13 @@ from links.utils.general_utils import set_page_name
 from premium.utils import is_premium
 
 
-# Create your views here.
 @login_required
 def support(request):
-
+    # if support form has been posted
     if request.method == "POST":
         form_data = SupportRequestForm(request.POST)
         if form_data.is_valid():
+            # save support form to db
             form = form_data.save(commit=False)
             form.username = request.user
             form.email = request.user.email
@@ -29,6 +29,7 @@ def support(request):
                  'username': form.username})
             plain_message = strip_tags(html_message)
 
+            # email user a copy of their support form
             send_mail(form.title,
                       plain_message,
                       'Bookmark Team',

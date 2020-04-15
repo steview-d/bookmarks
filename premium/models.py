@@ -7,6 +7,8 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class PremiumPurchase(models.Model):
+    """ stores details of each user upgrading to Premium"""
+
     user = models.OneToOneField(
         User, default=1, null=False, on_delete=models.CASCADE
     )

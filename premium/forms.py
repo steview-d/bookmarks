@@ -4,6 +4,7 @@ from .models import PremiumPurchase
 
 
 class PremiumPurchaseForm(forms.ModelForm):
+    """ form to store details for when a user upgrades to premium"""
 
     class Meta:
         model = PremiumPurchase
@@ -11,6 +12,7 @@ class PremiumPurchaseForm(forms.ModelForm):
 
 
 class PaymentForm(forms.Form):
+    """ payment data to send to stripe for processing """
 
     MONTH_CHOICES = [(i, i) for i in range(1, 13)]
     YEAR_CHOICES = [(i, i) for i in range(2020, 2030)]
