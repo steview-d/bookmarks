@@ -15,7 +15,7 @@ import dj_database_url
 
 # import local env vars if in local dev environment
 if os.path.exists('env.py'):
-    import env  # noqa
+    import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +29,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') else False
-# DEBUG = False
 
 ALLOWED_HOSTS = [os.environ.get('HOST_NAME')]
 
@@ -93,9 +92,6 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-USE_REMOTE_DB = True
-
-# if USE_REMOTE_DB:
 if 'DATABASE_URL' in os.environ:
     # postgres on heroku
     DATABASES = {
@@ -157,7 +153,7 @@ STATICFILES_DIRS = (
     )
 
 
-# AWS S3
+# AWS S3 config
 # Allow caching of static files
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=94608000', }
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
@@ -170,7 +166,6 @@ AWS_DEFAULT_ACL = None
 # Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# if USE_REMOTE_DB:
 if 'DATABASE_URL' in os.environ:
     # postgres on heroku
     MEDIAFILES_LOCATION = 'media'
@@ -189,7 +184,7 @@ LOGIN_REDIRECT_URL = 'start_app'
 
 # SMTP config
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = 587
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT"))
 EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_USE_TLS = True
