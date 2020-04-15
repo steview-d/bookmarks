@@ -5,7 +5,6 @@ from .forms import ContactForm
 import random
 
 
-# Create your views here.
 def about(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
@@ -48,7 +47,7 @@ def faq(request):
     # initialize contact form
     contact_form = ContactForm()
 
-    # check for contact form
+    # check for contact form data
     if 'contact-form' in request.POST:
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():

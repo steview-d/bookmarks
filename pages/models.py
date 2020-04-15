@@ -3,8 +3,9 @@ from django.db import models
 
 class Contact(models.Model):
     """
-    ...
+    Used with ContactForm, for logged out / non-registered users
     """
+
     name = models.CharField(
         max_length=30, null=False, blank=False
     )
