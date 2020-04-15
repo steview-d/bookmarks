@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
 
+from links.models import Page
 from .forms import UpdateUserEmailForm
 
 
@@ -78,6 +79,8 @@ class TestRegisterView(TestCase):
         User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page",
+                            position=1, )
         response = self.c.get(reverse('register'))
         self.assertRedirects(response, reverse('profile'), 302, 200)
 
@@ -89,6 +92,8 @@ class TestAboutView(TestCase):
         self.user = User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page",
+                            position=1, )
 
     def test_login_view(self):
         response = self.c.get(reverse('about'))
@@ -112,6 +117,8 @@ class TestProfileView(TestCase):
         self.user = User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page",
+                            position=1, )
 
     def test_update_email_form_updates_email(self):
         response = self.c.post(

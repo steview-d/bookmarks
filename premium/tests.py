@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from django.conf import settings
 
-# from .forms import PaymentForm, PremiumPurchaseForm
+from links.models import Page
 from .models import PremiumPurchase
 
 
@@ -27,6 +27,8 @@ class TestPremiumView(TestCase):
         self.user = User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page",
+                            position=1, )
 
     def test_premium_view(self):
         response = self.c.get(reverse('premium'))

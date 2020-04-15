@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
 
+from links.models import Page
 from .forms import SupportRequestForm
 from .models import Ticket
 
@@ -32,6 +33,8 @@ class TestSupportView(TestCase):
         self.user = User.objects.create_user(
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page",
+                            position=1, )
 
     def test_sending_support_email_to_user(self):
         mail.send_mail('test subject', 'test message',
