@@ -16,7 +16,6 @@ from premium.utils import is_premium
 def register(request):
     # redirect if a user is already logged in
     if request.user.is_authenticated:
-        # eventually will be main app page
         return redirect(reverse('profile'))
 
     # handle posted form data

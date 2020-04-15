@@ -16,7 +16,7 @@ urlpatterns = [
     path('register/', register, name="register"),
     # password reset urls
     path('', include(urls_pw_reset)),
-    # user account info
+    # user account info / settings
     path('premium/', premium, name='premium'),
     path('profile/', profile, name='profile'),
     path('support/', support, name='support'),
