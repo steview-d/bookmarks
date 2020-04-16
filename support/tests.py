@@ -65,3 +65,24 @@ class TestSupportView(TestCase):
         self.assertEqual(
             form_data.errors['title'], ['This field is required.'])
         self.assertFalse(form_data.is_valid())
+
+
+# --------------------- FORMS ---------------------
+
+class TestSupportForm(TestCase):
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user(
+            'test_user', 'a@b.com', 'test_password')
+        self.c.login(username='test_user', password='test_password')
+        Page.objects.create(name="test_page", position=1, )
+
+    def test_support_form_can_be_posted(self):
+        self.c.post(
+            "/accounts/support/",
+            {'title': ['support request test'],
+             'message': ['content of message'],
+             'support-form': ['']}
+        )
+        new_ticket = Ticket.objects.get(title="support request test")
+        self.assertEqual("support request test", new_ticket.title)
