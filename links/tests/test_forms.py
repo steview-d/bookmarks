@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import Client
 
-from links.models import Page
+from links.models import Page, Collection
 
-from .setup import create_test_page
+from .setup import create_test_page, create_test_collection
 
 
 # --------------------- FORMS ---------------------
@@ -60,3 +60,47 @@ class TestCollectionForms(TestCase):
             'test_user', 'a@b.com', 'test_password')
         self.c.login(username='test_user', password='test_password')
         create_test_page()
+
+    def test_add_a_new_collection_to_empty_page(self):
+        self.c.post(
+            "/app/test_page",
+            {'collection_name': ['new collection test'],
+             'column': 1,
+             'is_empty': ['yes'],
+             'new_page-num_of_columns': 2,
+             'add-collection': ['Add Collection']}
+        )
+        self.assertTrue(Collection.objects.filter(
+            name="new collection test").exists())
+
+    def test_add_a_new_collection_to_an_existing_page(self):
+        self.c.post(
+            "/app/test_page",
+            {'collection_name': ['new collection test'],
+             'column': 1,
+             'new_page-num_of_columns': 2,
+             'add-collection': ['Add Collection']}
+        )
+        self.assertTrue(Collection.objects.filter(
+            name="new collection test").exists())
+
+    def test_renaming_a_collection(self):
+        create_test_collection()
+        self.c.post(
+            "/app/test_page",
+            {'new-collection-name': ['collection rename test'],
+             'collection-position': 1,
+             'rename-collection-form': ['Submit']}
+        )
+        self.assertTrue(Collection.objects.filter(
+            name="collection rename test").exists())
+
+    def test_deleting_a_collection(self):
+        create_test_collection()
+        self.c.post(
+            "/app/test_page",
+            {'collection': ['test_collection'],
+             'delete-collection-form': ['DELETE']}
+        )
+        self.assertFalse(Collection.objects.filter(
+            name="test_collection").exists())
