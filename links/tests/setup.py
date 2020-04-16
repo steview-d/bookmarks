@@ -24,7 +24,7 @@ def create_test_collection():
 
 def create_test_bookmark():
     Bookmark.objects.create(
-        url="http://www.google.com",
+        url="https://www.google.com",
         title="Google",
         description="Search & Stuff",
         position=1,
