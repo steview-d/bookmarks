@@ -20,28 +20,27 @@ The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herok
 	- [Wireframes](#wireframes)
 
 2. [Features](#features)
-- [Current Features](#current-features)
-- [Planned Features](#planned-features)
+	- [Current Features](#current-features)
+	- [Planned Features](#planned-features)
 
 3. [Technologies Used](#technologies-used)
-- [Languages](#languages)
-- [Libraries](#libraries)
-- [Tools](#tools)
-- [Hosting](#hosting)
+	- [Languages](#languages)
+	- [Libraries](#libraries)
+	- [Tools](#tools)
+	- [Hosting](#hosting)
 
 4. [Testing](#testing)
-- For testing, refer to the [testing document](TESTING.md).
+	- For testing, refer to the [testing document](TESTING.md).
 
 5. [Deployment](#deployment)
-- [Local Deployment](#local-deployment)
-- [Deploying To Heroku](#deploying-to-heroku)
-
+	- [Local Deployment](#local-deployment)
+	- [Deploying To Heroku](#deploying-to-heroku)
 
 6. [Credits](#credits)
-- [Content](#content)
-- [Media](#media)
-- [Code](#code)
-- [Acknowledgements](#acknowledgements)
+	- [Content](#content)
+	- [Media](#media)
+	- [Code](#code)
+	- [Acknowledgements](#acknowledgements)
 
 ## UX
 The app can be split into 3 distinct sections
@@ -253,9 +252,11 @@ When the user is ready to upgrade, a simple form is available for their payment 
 This form connects to the Stripe API to process a users card details. No card details are stored locally or on the server, they are only sent to Stripe and then discarded.
 
 Payments (and Premium functionality) can be tested by upgrading to Premium using Stripes basic test card numbers, which are the following
-- Card Number - 4242 4242 4242 4242
-- Expiry - Any future date
-- CVC - Any 3 digits
+```
+Card Number - 4242 4242 4242 4242
+Expiry - Any future date
+CVC - Any 3 digits
+```
 
 On successful completion a PremiumPurchase object is created to record the event and the user is added to the 'Premium' group. This group has no special permissions, and is used only to differentiate between Free & Premium users.
 
