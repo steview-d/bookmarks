@@ -469,12 +469,19 @@ If a user prefers to sort their bookmarks in a particular way (for example, most
 
 Users can then order the bookmarks as they please using drag & drop, and turn it off once complete. On smaller displays, the width of the bookmark in sort mode is reduced to leave a gap to the right so users can scroll up and down the screen without accidently grabbing a bookmark. This is especially useful for large collections.
 
+#### Adverts for Free-Tier Users
+A banner advert is displayed at the bottom of most screens for non-Premium users.
+
+Its position has been placed in such a way as to be non-intrusive, but still noticeable enough to generate clicks and to also make the user want to get rid of it via the Premium upgrade.
+
+The only screens that do not display these adverts are screens where no user is logged in (about, pricing, faq, user auth) and the `About` page from within the settings section.
+
 #### Multiple Columns & Small Width Displays
 Quite soon into development it became apparent this type of app was definitely more suited to desktops and generally the wider the display, the better the experience. This was an issue as the app needed to function well on displays of all sizes, but I didn't want to compromise the UX on medium and large displays, just to make it serviceable on smaller screens.
 
 The main issue was that of multiple columns on small width displays. Taking mobiles as an example, anything more than 1 column looked a mess and in some cases rendered the app useless. It still worked, but from a users perspective, it was more trouble than it was worth.
 
-The final solution, I believe, manages to keep the UX consistent across all screens and works as follows.
+The final solution manages to keep the UX consistent across all screens and works as follows.
 
 For each display width, there is a maximum number of columns at which the app displays well, and choosing to use more columns than this recommendation would impact the overall UX, usually by making elements unreadable due to being squashed on screen.
 
