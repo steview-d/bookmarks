@@ -51,33 +51,30 @@ To generate your own coverage report (again, on Windows)
 The app has been tested across a range of different devices, browsers, and screen sizes. These were display tests, to check the pages rendered correctly.
 The tables below show what has been tested, along with the results of these tests.
 
-**Add version numbers for browsers**
-
-Device & CSS Width :arrow_down_small: | Chrome v81 | Firefox v75 | Safari v0 | Opera v67 | Edge v81 :one: | IE11 v11
----|---|---|---|---|---|---
-Windows 10 PC @ 1400|:heavy_check_mark:|:heavy_check_mark:|.|:heavy_check_mark:|:heavy_check_mark:|:x::two:
-Windows 10 PC @ 1920|:heavy_check_mark:|:heavy_check_mark:|.|:heavy_check_mark:|:heavy_check_mark:|:x::two:
-Windows 10 PC @ 2560|:heavy_check_mark:|:heavy_check_mark:|.|:heavy_check_mark:|:heavy_check_mark:|:x::two:
-Windows 10 PC @ 3440|.|.|.|.|.|:x::two:
-Apple Mac Book @ x|:heavy_minus_sign:|:heavy_minus_sign:|.|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
-Pixel 2XL @ 411|:heavy_check_mark:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
-iPhone (IOS?) @ x|:heavy_minus_sign:|:heavy_minus_sign:|.|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
-iPad Mini @ x|:heavy_minus_sign:|:heavy_minus_sign:|.|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
-Samsung Tablet @ x|.|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+Device | Chrome v80 | Chrome v81 | Firefox v75 | Safari v12 | Safari v13 | Opera v67 | Edge v81 | IE11 v11
+---|---|---|---|---|---|---|---|---
+Win 10 PC :one:|:heavy_minus_sign:|:heavy_check_mark:|:heavy_check_mark:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_check_mark:|:heavy_check_mark: :two:|:x: :three:
+Apple Mac Book |:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_check_mark:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+iPad Mini  |:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_check_mark: :four:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+iPhone 8 |:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_check_mark: :four:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+Pixel 2 XL |:heavy_check_mark:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+Samsung Galaxy Tab A |:heavy_check_mark:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
 
 :heavy_check_mark: - Tested, No Issues Found
 :x: - Tested & Issues Found, See Notes
 :heavy_minus_sign: - Not Tested
 
-:one: Originally tested with Edge v44 (EdgeHTML). The site worked and was fully functional, but there were issues with how flex elements were displayed. They would appear to expand to normal size on page load and whilst this effect was only slight, it was noticeable. More noticeable was how the side bar would pop / slide in to view on each page load. After investigating, it seems these issues come from how EdgeHTML handles flex in general.
+:one: Tested on multiple displays of differing widths: 1400px, 1920px, 2560px and 3440px.
+
+:two: Originally tested with Edge v44 (EdgeHTML). The site worked and was fully functional, but there were issues with how flex elements were displayed. They would appear to expand to normal size on page load and whilst this effect was only slight, it was noticeable. More noticeable was how the side bar would pop / slide in to view on each page load. After investigating, it seems these issues come from how EdgeHTML handles flex in general.
 EdgeHTML hasn't been updated since October 2018, so I can't see this ever changing for this version of the Edge browser. However, after updating Edge to use the newer Chromium based version, these issues are no longer present so it's an issue that will fix itself over time as users automatically switch to the new Edge through automatic Windows updates.
 
-:two: I never intended the app to work with IE11, it was more a case of if it works then great, but it most likely won't. And it doesn't. In the most part, the lack of compatibility comes down to IE11 not supporting ES6 and because a lot of the apps functionality is dependent on JavaScript, the console just spits out errors and halts the script.
+:three: I never intended the app to work with IE11, it was more a case of if it works then great, but it most likely won't. And it doesn't. In the most part, the lack of compatibility comes down to IE11 not supporting ES6 and because a lot of the apps functionality is dependent on JavaScript, the console just spits out errors and halts the script.
 I could rewrite all the JS to be compatible with IE11, but it wouldn't be time well spent. If there was more time, I'd spend it adding more features, not trying to breathe life into a dead browser.
 
+:four: Numerous issues displaying the site properly with the Safari mobile browser. All since fixed, and mostly due to Safari not registering touch events unless the element is a `<div>` or `<a>`. Some issues fixed by changing the element, but most by adding `cursor: pointer` css to the element to allow Safari to register a touch event.
+
 **[ Add Section that reviews and checks warnings on dev tools console ]**
-
-
 
 ### Features Testing
 For every feature listed in the [features](README.md#current-features) section of the main [README.md](README.md) file, it's functionality has been tested to ensure it works as intended.
