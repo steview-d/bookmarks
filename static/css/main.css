@@ -1464,6 +1464,11 @@ h4 > .fa-stop {
   border-radius: 3px;
 }
 
+a[href^=tel] {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 #premium .set-height {
   min-height: calc(80vh - 68px);
 }

@@ -76,6 +76,12 @@
     border-radius: 3px;
 }
 
+// fix to stop safari mobile changing style of tel numbers
+a[href^=tel] {
+    text-decoration:inherit;
+    color: inherit;
+    }
+    
 // -------------------------------------------------------------------- premium
 
 #premium .set-height {
