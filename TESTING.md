@@ -226,48 +226,122 @@ The `Compare Features` button takes the user to the feature comparison table on 
 - Link to `Support` page goes to the correct page.
 
 #### Side Navigation Bar ( Main App )
-##### Link to Main App
-##### Add Bookmark Button
+- Confirmed circular bookmark icon links to main app view.
+- `Add Bookmark` button links to the correct page.
 ##### Sort Page Order Button
+- When clicked, changes color to show sort mode is active.
+- Individual pages are prepended with an icon to signify the pages are sortable.
+- Confirmed pages can be sorted and new order is retained when exiting sort mode.
 ##### Add New Page Button
+- On click, `Add New Page` form is displayed.
+- Can choose from between 1 and 5 columns, no more no less, which is correct.
+- If there is an error with the form, on page reload the error is shown and the form is still active so the user can immediately see the error.
+- On page creation, user is taken to their new page.
 ##### Links to Different Pages
+- Confirmed all page links go to the correct page in the app.
 ##### Page Options Button
+- Clicking the cog icon opens the page options directly below the page name.
 ###### Arrange Collections Button
+- Confirmed `Arrange Collections` button takes the user to the correct page.
 ###### Change Column Display Button
+- Confirmed clicking a `Columns` number button changes the number of columns in view for the current page.
 ###### Rename Page
+- Entering a new name for the page and selecting "Rename" works as intended.
+- App returns and error if invalid chars are entered.
+- App checks user doesn't already have a page with this name (case-insensitive).
 ###### Delete Page
+- Confirmed `Delete` button deletes the `Page` and all `Collections` & `Bookmarks` contained within.
 ##### Premium Status
+- If a user has upgraded to Premium, this will be displayed below the page names.
+- If a user has not upgraded, nothing will be displayed.
 
 #### Search
+- Confirm all search results have their own options icon to the right allowing the user to `Edit`, `Move` or `Delete` the bookmark.
+- Confirmed all Bookmark options take the user to the correct page or perform the expected action.
+##### Pagination
+- Confirmed pagination kicks in when search returns more than 10 results.
+- Confirmed pagination buttons all work as expected.
+- Confirmed pagination options at top and bottom of search results.
 
 #### Main App View
-##### Collection Options Button
-###### Sort By
-###### Display As
-###### Rename Collection
-###### Delete Collection
-
 ##### Manual Sort Button
+- When clicked, changes color to show sort mode is active.
+- Confirmed `Manual Sort` only activates if collection is in `Manual Sort Mode`
+- Confirmed presence of Tool-tip to explain this when NOT in this mode.
+- Individual style of all bookmarks in the collection change to show `Manual Sort` is active.
+- On smaller screens, width of bookmark is reduced to leave a gap to allow the user to scroll through large lists of bookmarks without accidently grabbing a bookmark and causing unwanted sorting.
+- Confirmed new bookmark order persists after user exits the sort mode.
+##### Collection Options Button
+- Clicking the cog icon to the right of the collection header element opens the collection options.
+###### Sort By
+- Confirmed all possible sort options sort the bookmarks as intended.
+- When any sort option other than `Manual Sort` is selected, confirmed this prevents the user from activating `Manual Sort` mode.
+###### Display As
+- Confirmed all 3 `Display As` options correctly adjust the way the individual bookmarks display.
+- Confirmed this only affects the selected `Collection`, and has no effect on other collections.
+###### Rename Collection
+- Confirmed collection can be renamed, providing a collection of the same name (case-insensitive) doesn't already exist on the current page, and no invalid characters are used.
+###### Delete Collection
+- Confirmed the `Delete` button deletes the `Collection` and all `Bookmarks` contained within.
+
 ##### Bookmark Options Button
+- Confirmed individual bookmarks have their own `Bookmark Options` icon which activates a drop-down menu on click.
+- Confirmed each option in the drop-down takes the user to the correct page or performs the expected action.
+
 ##### Bookmark Description Tool Tip
+- Confirmed tool-tip activates when hovering over the bookmark description on individual bookmarks.
+- Confirmed tool-tip content is the text from the bookmark description field, in full.
+- Confirmed that the tool-tips do not show on touch devices.
 ##### Add New Collection
+- When clicked, the `Add New Collection` form appears, and if clicked again, the form is hidden.
+- Confirmed can create a new `Collection` using form.
+- Confirmed errors are returned if user tries to create a collection with a name already in use on the current page (case-insensitive) or if invalid chars are used.
+
+#### Add Bookmark
+- When form is completed correctly, a Bookmark is added to the specified `Page` & `Collection`.
+##### Scraping
+- Auto-Fill works as expected and fills in the required fields.
+- Where data cannot be scraped, the user is informed.
+##### Url Validation
+- The `Url Status` updates accordingly depending on the content of the `Url` field.
+- The tool-tip activates correctly - hover on desktop, touch for touchscreens.
+##### Icon Images
+- Files can be uploaded for icon, and a preview image is displayed correctly.
+- Confirmed files above a certain pixel size are resized before being saved to the app.
+- Files above 2mb are rejected and the user informed.
+- Previously entered information is retained within the form, including images, in the event of an error with certain fields.
+- The `Use Default Icon` button clears any scraped / uploaded image, allowing the app to generate its own image as when required. A preview of how this will look is shown in the `Icon Preview` section.
+##### Bookmark Destination
+- The Bookmark is correctly saved to the specified destination.
+- Confirmed if a `Page` has no collections, if a user tries to save a `Bookmark` to this page, and error will be returned informing the user to create a collection first.
+- Confirmed if a different `Page` is selected, the app will update the `Destination Collection` drop-down with the new `Collection Destination` options.
 
 #### Edit Bookmark
+Uses the same 2 forms as `Add Bookmark` but pre-fills the fields on page load. All tests completed for `Add Bookmark` completed for `Edit Bookmark` and no issues found.
+
 #### Move Bookmark
+Uses the same form for the Bookmark destination as the `Add / Edit Bookmark` pages. This form tested in the same way, and no issues found.
+
 #### Delete Bookmark
-#### Add Bookmark
+- Confirmed the `Delete` button correctly deletes the specified `Bookmark`.
+
 #### Import Url
+`Import Url` uses the same 2 forms as `Add Bookmark` and works in the exact same way. Therefore, the tests completed are the same also. The only differences are
+- `Auto-Fill` happens automatically on page load, rather than waiting for the user to select it.
+- There is no side-bar or top navigation element, but this has no impact on the testing of this section.
+
 #### Banner Adverts
-
-
+- Confirmed adverts only show for users not part of the `Premium` group, i.e those who haven't upgraded to `Premium`.
+- When clicked, adverts open a new tab for [google.com](https://www.google.com/), which is correct as the current adverts aren't real.
+- Confirmed the `Remove Ads!` link under the adverts takes the user to the `Premium` page so they can sign up for `Premium` membership.
 
 ## Code Validation
 
 ### Python
 All Python code is fully PEP 8 compliant, and has been verified at [pep8online.com](http://pep8online.com/).
 
-### Javascript
-All Javascript has been verified with the online tool [jshint.com](https://jshint.com/).
+### JavaScript
+All JavaScript has been verified with the online tool [jshint.com](https://jshint.com/).
 
 ### HTML
 HTML has been run through [validator.w3.org](https://validator.w3.org/). Outside of errors generated by the Django templating language, all other HTML is valid.
