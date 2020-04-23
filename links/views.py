@@ -85,6 +85,9 @@ def links(request, page):
 
         # if no pages left, create a default page & redirect to it
         if not Page.objects.filter(user=request.user).exists():
+            messages.success(
+                request, f"You must have at least 1 page. \
+                           Creating a default page called 'Home'.")
             page_utils.create_default_page(request)
 
         # redirect to first page

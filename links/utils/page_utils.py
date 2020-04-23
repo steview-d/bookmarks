@@ -111,7 +111,7 @@ def create_default_page(request):
     """
 
     page = Page(user=request.user,
-                name="home",
+                name="Home",
                 position=1,
                 collection_order_2=build_empty_collection_order(2),
                 collection_order_3=build_empty_collection_order(3),
