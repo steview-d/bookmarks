@@ -226,6 +226,10 @@ def start_app(request):
     # check if user has at least 1 page and if not, create one & redirect to it
     if not Page.objects.filter(user=request.user).exists():
         page_utils.create_default_page(request)
+        messages.success(
+            request, f"Welcome to LINKS! Your first page has been \
+                automatically created. Before adding your first Bookmark, \
+                you should create a Collection to store it in.")
 
     # get last_page data and redirect if applicable, otherwise load first page
     try:
