@@ -110,7 +110,6 @@ The `Compare Features` button takes the user to the feature comparison table on 
 - `Create Account` button and `or log in here` link both take the user to the correct page.
 
 #### FAQ Page
-- The `Contact Form` button scrolls down past the FAQ section and on to the Contact Form.
 ##### FAQ Section
 - Clicking on the individual questions expands the container to show the answer.
 - When a question container opens to show the answer, any currently open containers are closed.
@@ -334,6 +333,16 @@ Uses the same form for the Bookmark destination as the `Add / Edit Bookmark` pag
 - Confirmed adverts only show for users not part of the `Premium` group, i.e those who haven't upgraded to `Premium`.
 - When clicked, adverts open a new tab for [google.com](https://www.google.com/), which is correct as the current adverts aren't real.
 - Confirmed the `Remove Ads!` link under the adverts takes the user to the `Premium` page so they can sign up for `Premium` membership.
+
+#### Premium Functionality
+- Confirmed when a standard user tries to add a 3rd `Page`, the app refuses, displays a message informing them that standard users can have 2 pages at most, and redirects the user to the `Premium` page.
+- Confirmed when a standard user tries to add more than 20 collections, the app refuses, displays a message informing them that standard users can have 20 collections at most, and redirects the user to the `Premium` page.
+- Confirmed when a standard user tries to add more than 10 bookmarks, the app refuses, displays a message informing them that standard users can have 10 bookmarks at most, and redirects the user to the `Premium` page. The actual limit on bookmarks for standard users is 500, but this was reduced to 10 so the logic could be tested, and reset to 500 once complete.
+
+#### Accessing Pages Without Permission
+All pages have been checked to ensure they are only accessible when the user is authorised to do.
+- The main app and associated functions (Add, Edit, Move, Delete, Arrange, Profile, Support, etc) can only be accessed if a user is currently logged in. If these urls are tried and no user is logged, the app redirects to the login page.
+- The intro & authentication pages (About, Pricing, FAQ, Login & Register) are only accessible when no user is logged in. If a logged in user attempts to view these pages, they are automatically redirected the main app page.
 
 ## Code Validation
 
