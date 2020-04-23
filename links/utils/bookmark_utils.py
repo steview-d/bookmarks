@@ -140,8 +140,8 @@ def scrape_url(request, url):
 
         # get the page title
         try:
-            scraped_title = soup.title.get_text() if soup.title.get_text() \
-                else "Could not retrieve a title"
+            scraped_title = soup.title.get_text().strip() \
+                if soup.title.get_text() else "Could not retrieve a title"
         except AttributeError:
             scraped_title = "Could not retrieve a title"
 
