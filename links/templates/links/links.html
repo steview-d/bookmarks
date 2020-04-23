@@ -39,7 +39,8 @@
                             <div class="collection-icons">
                                 <!-- manual sort button -->
                                 <button id="bm-sort-btn-{{ k.position }}" class="mx-0 cursor-pointer btn--collection-header
-                                        {% if collection_being_sorted == k.name %}manual-sort-on {% endif %}"
+                                        {% if collection_being_sorted == k.name %} manual-sort-on{% endif %}
+                                        {% if k.sort_order != 0 %} dimmed-icon{% endif %}"
                                     {% if k.sort_order != 0 %}disabled{% endif %}>
                                     <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}"
                                         aria-hidden="true"></i></button>

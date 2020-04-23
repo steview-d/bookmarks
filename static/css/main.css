@@ -903,6 +903,7 @@ div#preload {
 
 .page-sort-active {
   background-color: #76E26A;
+  color: #ffffff;
   border: 1px solid #76E26A;
 }
 
@@ -1609,6 +1610,10 @@ a[href^=tel] {
 
 .collection-container .collection-icons i {
   color: #ffffff;
+}
+
+.collection-container .dimmed-icon i {
+  color: #afafaf;
 }
 
 .no-collections-box {
