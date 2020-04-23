@@ -50,4 +50,13 @@ $(document).ready(function() {
         content: `Manual sorting of bookmarks is disabled unless<br />
             <strong>Sort By: Manual Sort</strong><br />has been selected.`
     });
+
+    // add new collection tooltip
+    tippy(".tippy-add-new-collection", {
+        allowHTML: false,
+        delay: 700,
+        theme: "dark",
+        touch: false,
+        content: "Add New Collection"
+    });
 });
