@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 from links.conf import settings
+from django.contrib import messages
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -69,6 +70,8 @@ def delete_bookmark(request):
     )
 
     bookmark_to_delete.delete()
+    messages.success(
+        request, f"Bookmark deletion successful.")
 
     # get remaining bookmarks, in position order
     all_bookmarks_in_collection = Bookmark.objects.filter(
