@@ -5,7 +5,9 @@
     {% if 'accounts' in request.path %} nav-border nav-bg-accounts{% else %} nav-bg{% endif %}">
     <!-- navbar title -->
     <div class="navbar-title text-center">
-        <img src="{% static 'img/logo/logo_main.png' %}" alt="logo" class="img-fluid">
+        <a href="{% url 'about_page' %}">
+            <img src="{% static 'img/logo/logo_main.png' %}" alt="logo" class="img-fluid">
+        </a>
     </div>
 
 
