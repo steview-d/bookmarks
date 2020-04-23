@@ -260,8 +260,8 @@ div#preload {
 }
 
 .btn--white:hover {
-  background-color: #ffffff;
-  color: #424242;
+  background-color: #fafafa;
+  color: #000000;
   border-color: #000000;
 }
 
