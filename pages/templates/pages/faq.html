@@ -16,14 +16,14 @@
     <!-- FAQ intro text -->
     <section id="faq-section" class="container-fluid pt-5">
         <div class="container">
-            <div class="row">
-                <div class="text-center mt-n5 mt-lg-n3 px-md-5">
-                    <h2>Get answers to some of the most commonly asked questions</h2>
-                    <div class="other-questions text-center">
-                        <h5>Have a different question? That's ok too!</h5>
-                        <a href="#contact-form-section" class="btn--square mt-3"><span><small>Contact
-                                    Form</small></span></a>
-                    </div>
+            <div class="row d-block">
+                <div class="d-block d-sm-none text-center {% if not messages %}mt-n5 {% endif %} mb-5">
+                    <h3>Have questions?</h3>
+                    <h3>Get answers!</h3>
+                </div>
+                <div class="d-none d-sm-block text-center mt-n3 mb-5">
+                    <h2>Have questions?</h2>
+                    <h2>Get answers!</h2>
                 </div>
             </div>
             <!-- FAQ's -->
@@ -33,8 +33,8 @@
 
                     <!-- Question 1 -->
                     <div class="card">
-                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse" data-target="#faq1"
-                            aria-expanded="false" aria-controls="faq1">
+                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse"
+                            data-target="#faq1" aria-expanded="false" aria-controls="faq1">
                             <div>
                                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                             </div>
@@ -53,8 +53,8 @@
 
                     <!-- Question 2 -->
                     <div class="card">
-                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse" data-target="#faq2"
-                            aria-expanded="false" aria-controls="faq2">
+                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse"
+                            data-target="#faq2" aria-expanded="false" aria-controls="faq2">
                             <div>
                                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                             </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div id="faq2" class="collapse" aria-labelledby="faq2" data-parent="#faq-accordion">
                             <div class="card-body">
-                                <p>We'd like to, and I'm sure it will eventually happen, but there are no immediate
+                                <p>I'd like to, and I'm sure it will eventually happen, but there are no immediate
                                     plans.</p>
                                 <p>When the time comes, Firefox will most likely be the next one.</p>
 
@@ -74,8 +74,8 @@
 
                     <!-- Question 3 -->
                     <div class="card">
-                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse" data-target="#faq3"
-                            aria-expanded="false" aria-controls="faq3">
+                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse"
+                            data-target="#faq3" aria-expanded="false" aria-controls="faq3">
                             <div>
                                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                             </div>
@@ -85,7 +85,8 @@
                         </div>
                         <div id="faq3" class="collapse" aria-labelledby="faq3" data-parent="#faq-accordion">
                             <div class="card-body">
-                                <p>You can get in touch with us either through the contact form just below, or by raising a
+                                <p>You can get in touch either through the contact form just below, or by
+                                    raising a
                                     support ticket from within the app itself.</p>
 
                             </div>
@@ -94,8 +95,8 @@
 
                     <!-- Question 4 -->
                     <div class="card">
-                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse" data-target="#faq4"
-                            aria-expanded="false" aria-controls="faq4">
+                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse"
+                            data-target="#faq4" aria-expanded="false" aria-controls="faq4">
                             <div>
                                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                             </div>
@@ -113,8 +114,8 @@
 
                     <!-- Question 5 -->
                     <div class="card">
-                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse" data-target="#faq5"
-                            aria-expanded="false" aria-controls="faq5">
+                        <div class="card-header collapsed cursor-pointer" role="button" data-toggle="collapse"
+                            data-target="#faq5" aria-expanded="false" aria-controls="faq5">
                             <div>
                                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                             </div>

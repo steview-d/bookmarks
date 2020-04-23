@@ -180,23 +180,6 @@
 
 #faq-section {
     @include default-bg-color;
-
-    h2 {
-        display: inline-block;
-        background-color: $gunmetal-alpha;
-        color: $white;
-        margin-bottom: 0;
-        padding: 1rem 1.25rem;
-        border: 1px solid $black;
-        border-radius: 5px;
-    }
-
-    .other-questions {
-        display: inline-block;
-        background-color: transparent;
-        margin: 3.5rem auto;
-        padding: 2rem;
-    }
 }
 
 #faq-accordion {

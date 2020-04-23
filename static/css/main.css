@@ -1267,23 +1267,6 @@ h4 > .fa-stop {
   background-color: #fafafa;
 }
 
-#faq-section h2 {
-  display: inline-block;
-  background-color: rgba(41, 46, 51, 0.99);
-  color: #ffffff;
-  margin-bottom: 0;
-  padding: 1rem 1.25rem;
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-
-#faq-section .other-questions {
-  display: inline-block;
-  background-color: transparent;
-  margin: 3.5rem auto;
-  padding: 2rem;
-}
-
 #faq-accordion {
   background-color: rgba(255, 255, 255, 0);
   padding: 0.5rem;
