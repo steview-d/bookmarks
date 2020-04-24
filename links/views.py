@@ -675,8 +675,17 @@ def add_bookmark(request, page):
 
     # initialize forms
     bookmark_form = BookmarkForm()
+
+    bm_dest_collection = Collection.objects.filter(
+        user=request.user,
+        page=page,
+        name=request.POST.get('dest-collection-name')
+    ).first()
+
     move_bookmark_form = MoveBookmarkForm(
-        request.user, page, initial={'dest_page': page})
+        request.user, page,
+        initial={'dest_page': page,
+                 'dest_collection': bm_dest_collection})
 
     saved_icon_data = ""
     use_default_icon = ""
