@@ -37,15 +37,24 @@
                                 <span class="collection-title-text">{{ k }}</span>
                             </div>
                             <div class="collection-icons">
+                                <!-- add bookmark button -->
+                                <form method="POST" action="{% url 'add_bookmark' page=page %}" class="d-inline-block">
+                                    {% csrf_token %}
+                                    <!-- send collection name so 'Add Bookmark' form can default to this Collection -->
+                                    <input type="hidden" name="dest-collection-name" value="{{k.name}}">
+                                    <button type="submit" class="icon-spacing cursor-pointer btn--collection-header"><i
+                                            class="fa fa-plus"></i></button>
+                                </form>
                                 <!-- manual sort button -->
-                                <button id="bm-sort-btn-{{ k.position }}" class="mx-0 cursor-pointer btn--collection-header
+                                <button id="bm-sort-btn-{{ k.position }}" class="icon-spacing cursor-pointer btn--collection-header
                                         {% if collection_being_sorted == k.name %} manual-sort-on{% endif %}
                                         {% if k.sort_order != 0 %} dimmed-icon{% endif %}"
                                     {% if k.sort_order != 0 %}disabled{% endif %}>
                                     <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}"
                                         aria-hidden="true"></i></button>
                                 <!-- bookmark options button -->
-                                <button class="mx-0 cursor-pointer btn--collection-header btn--collection-options">
+                                <button
+                                    class="icon-spacing cursor-pointer btn--collection-header btn--collection-options">
                                     <i class="fa fa-cog" aria-hidden="true"></i></button>
                             </div>
                         </div>
@@ -125,6 +134,16 @@
                                 </form>
                             </div>
                         </div>
+
+                        <!-- If Collection is empty, inform user of this -->
+                        {% if v.count == 0 %}
+                        <div class="row">
+                            <div class="col-12 text-center pt-3">
+                                <h6>This Collection Is Empty</h6>
+                                <hr>
+                            </div>
+                        </div>
+                        {% endif %}
 
                         <div class="bm-sort-container">
                             <ul class="bookmark-sort list-unstyled {% if k.sort_order != 0 %}no-manual-sort{% endif %}">

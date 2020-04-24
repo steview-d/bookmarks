@@ -676,6 +676,7 @@ def add_bookmark(request, page):
     # initialize forms
     bookmark_form = BookmarkForm()
 
+    # check if a collection destination has been specified
     bm_dest_collection = Collection.objects.filter(
         user=request.user,
         page=page,

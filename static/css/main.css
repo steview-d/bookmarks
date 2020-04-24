@@ -1616,6 +1616,10 @@ a[href^=tel] {
   color: #afafaf;
 }
 
+.collection-container .icon-spacing {
+  margin: 0 -2px;
+}
+
 .no-collections-box {
   background-color: rgba(41, 46, 51, 0.99);
   color: #ffffff;
