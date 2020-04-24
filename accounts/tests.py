@@ -82,7 +82,7 @@ class TestRegisterView(TestCase):
         Page.objects.create(name="test_page",
                             position=1, )
         response = self.c.get(reverse('register'))
-        self.assertRedirects(response, reverse('profile'), 302, 200)
+        self.assertRedirects(response, reverse('start_app'), 302, 302)
 
 
 class TestAboutView(TestCase):

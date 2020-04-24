@@ -52,7 +52,7 @@ class TestPageForms(TestCase):
             "/app/test_page",
             {'delete-page-form': ['']}
         )
-        self.assertTrue(Page.objects.filter(name="home").exists())
+        self.assertTrue(Page.objects.filter(name="Home").exists())
 
 
 class TestCollectionForms(TestCase):
