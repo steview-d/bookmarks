@@ -132,6 +132,7 @@ $(document).ready(function () {
 
     $("#page-titles").sortable({
         containment: "parent",
+        tolerance: "pointer",
         delay: 200,
         cursor: "grabbing",
         axis: "y",
@@ -259,6 +260,7 @@ $(document).ready(function () {
     $(".bookmark-sort").sortable({
         items: "li",
         containment: "parent",
+        tolerance: "pointer",
         delay: 200,
         cursor: "grabbing",
         axis: "y",
