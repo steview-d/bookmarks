@@ -1,5 +1,3 @@
-#### WIP - Still needs spellchecking, amongst other things.....
-
 <p align="center">
   <img src="https://i.imgur.com/wwb33jN.png">
 </p>
@@ -7,7 +5,7 @@
 # Links
 
 Links is a bookmarking app built using Pythons Django framework, and hosted with Heroku.
-The main function of the app is to allow users to save the urls of any website for easy reference. Users can also edit and delete their saved bookmarks, and there are numerous options to allow users to organise and display their collection in a way of their own choosing.
+The main function of the app is to allow users to save the URL's of any website for easy reference. Users can also edit and delete their saved bookmarks, and there are numerous options to allow users to organise and display their collection in a way of their own choosing.
 
 The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herokuapp.com)
 
@@ -25,7 +23,7 @@ The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herok
 
 3. [Technologies Used](#technologies-used)
 	- [Languages](#languages)
-	- [Libraries](#libraries)
+	- [Frameworks & Libraries](#frameworks-and-libraries)
 	- [Tools](#tools)
 	- [Hosting](#hosting)
 
@@ -44,7 +42,7 @@ The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herok
 
 ## UX
 The app can be split into 3 distinct sections
-1. The 'introductory' pages. These introduce potential users to the app, sharing information such as features, pricing, FAQ's, and providing login / register options.
+1. The 'introductory' pages. These introduce potential users to the app, conveying information such as features, pricing, FAQ's, and providing login / register options.
 2. The settings pages. Here users can update their profile, get support, and upgrade to a Premium account.
 3. The main app page. This is where users can view, add, edit, organise, and delete their bookmarks.
 
@@ -54,7 +52,7 @@ For this reason, the design of the introductory section is intentionally differe
 
 ### User Stories
 #### As a user, I expect to be able to:
-- Save a webpage url so I can revisit the page at a later date
+- Save a webpage URL so I can revisit the page at a later date
 - Store multiple 'bookmarks' within my account
 - Organise my bookmarks into collections of similar bookmarks
 - Have multiple pages, each containing multiple collections of bookmarks
@@ -62,17 +60,17 @@ For this reason, the design of the introductory section is intentionally differe
 - Edit my existing bookmarks should they need updating
 - Move bookmarks from 1 collection and / or page, to another
 - Delete bookmarks I no longer require
-- Easily import bookmarks from the page I want to save with just a few clicks, without the need for needless copy/paste actions
-- Let the app scrape data from the page I want to save to automatically create a suitable title and description
+- Easily import bookmarks from the page I want to save with just a few clicks, without the need for multiple copy/paste actions
+- Let the app scrape data from the page I want to save, and automatically create a suitable title and description
 - Save an icon with the bookmark so I can easily identify the bookmark at a glance. Additionally, I should be able to choose the icon by either uploading my own, letting the app use the web page icon, or allow the app to create one of its own
 - Update my personal details (email / password) if required
 - Get support in the event of my being stuck, or if I have questions relating to the app
-- Pay to upgrade to a 'Premium' membership tier, giving me access to features otherwise unavaible to users who are using the app for free.
+- Pay to upgrade to a 'Premium' membership tier, giving me access to features otherwise unavailable to users who are using the app for free.
 - Have access to this app and my bookmarks across a range of devices and displays
 
 #### As the site admin, I expect to be able to:
 - Manage the site and its users through a dedicated backend admin portal
-- Be notifed of support requests and be able to respond effectively
+- Be notified of support requests and be able to respond effectively
 - Be able to track users who have signed up for a Premium membership
 - Easily receive feedback from users
 
@@ -82,7 +80,7 @@ For this reason, the design of the introductory section is intentionally differe
 This app uses the Django framework
 
 #### Database
-Django uses SQL databases. During development the Django default sqlite3 database was used. When deployed to Heroku, a PostgreSQL database was used.
+Django uses SQL databases. During development, the Django default sqlite3 database was used. When deployed to Heroku, a PostgreSQL database was used.
 
 ![DB Schema](https://i.imgur.com/ohEXTqA.png)
 
@@ -125,11 +123,11 @@ Wireframes were created using [Balsamiq](https://balsamiq.com/) during the initi
 ### Current Features
 
 #### The Sales Pitch
-The first pages a user encounters are the 'sales pitch' pages. These 3 pages (index/home, pricing, faq's) are designed with a single purpose in mind - to convince the user to create a free account and give the app a try. Each page fulfils the following role as part of the overall pitch
+The first pages a user encounters are the 'sales pitch' pages. These 3 pages (index/home, pricing, FAQ's) are designed with a single purpose in mind - to convince the user to create a free account and give the app a try. Each page fulfils the following role as part of the overall pitch
 ##### Home
-Introduces the app and inside of a few short lines gives a high level overview of what it does. A 4x4 grid of icons from familiar and well known websites (chosen from a random pool of 100+) is displayed alongside to allow the user to make a connection between this app and (potentially) some of their favorite sites.
+Introduces the app and inside of a few short lines gives a high-level overview of what it does. A 4x4 grid of icons from familiar and well-known websites (chosen from a random pool of 100+) is displayed alongside to allow the user to make a connection between this app and (potentially) some of their favourite sites.
 
-The features section is designed to give users a deeper insight into how the app functions, and what they can expect if they sign up. It focuses on customisation options, and lets users know they have a large degree of control over how they choose to use the app. Animated gifs are provided so users can see first hand how the app works. For users wanting more information on features, there is a link to take them straight to a comparison table on the pricing page.
+The features section is designed to give users a deeper insight into how the app functions, and what they can expect if they sign up. It focuses on customisation options, and lets users know they have a large degree of control over how they choose to use the app. Animated gifs are provided so users can see first-hand how the app works. For users wanting more information on features, there is a link to take them straight to a comparison table on the pricing page.
 
 The next section introduces the Chrome browser extension, and the text focuses on how the extension makes it easier for users to use the app, and how it is free to use. There is a link to take the user to the Chrome Web Store so they can install it quickly and easily.
 
@@ -138,23 +136,23 @@ A user reviews section contains quotes from current users. Each review has been 
 Finally, at the bottom of the page, just before the footer, there is a link to take the user to the login / register screen. This is here as part of the overall effort to make it as easy as possible to create an account from any part of the site.
 
 ##### Pricing
-This page focuses on the free aspect of the app, and assures users the app is fully functioning whether they choose to upgrade to Premium or not.
+This page focuses on the free aspect of the app and assures users the app is fully functioning whether they choose to upgrade to Premium or not.
 
-A comparison table reinforces this by showing the main differences between the 2 tiers. It's laid out in such a way so as to show that Premium membership just means 'bigger, better, more' rather than Free meaning 'limited functionality'.
+A comparison table reinforces this by showing the main differences between the 2 tiers. It is laid out in such a way so as to show that Premium membership just means 'bigger, better, more' rather than Free meaning 'limited functionality'.
 
-A 'launch offer' is in place to let users know if they do decide to go for the Premium tier, it's only a 1 off payment for full lifetime access. The limited nature of this offer is designed to encourage users to sign up sooner rather than later.
+A 'launch offer' is in place to let users know if they do decide to go for the Premium tier, it is only a 1 off payment for full lifetime access. The limited nature of this offer is designed to encourage users to sign up sooner rather than later.
 
 As with the home page, the final section is a link to the user register / login screens.
 
 ##### FAQ
 A standard FAQ section, with questions picked that best promote a key aspect of the overall user experience, such as support, feedback, and so on.
 
-Below this is a contact form that non-registered users can use to get in touch with the app's admin. Registered users can use it too, but as there is a dedicated support system in place inside of the app itself, it's expected the vast majority of contacts will be from non users.
+Below this is a contact form that non-registered users can use to get in touch with the app's admin. Registered users can use it too, but as there is a dedicated support system in place inside of the app itself, it's expected the vast majority of contacts will be from non-users.
 
 Lastly, as with previous pages, there is a button directing users to register / login.
 
 #### New User Registration
-Users can create a new account from this page. There are no restrictions on who can create an account, and it is free to do for all users. Users must provide a unique username and email address, whcih are checked against existing entries. A password is required, which must be entered twice to check it has been inputted correctly.
+Users can create a new account from this page. There are no restrictions on who can create an account, and it is free to do for all users. Users must provide a unique username and email address, which are checked against existing entries. A password is required, which must be entered twice to check it has been inputted correctly.
 
 Tooltips are next to the username and password fields and provide guidance on how these fields should be completed.
 
@@ -178,24 +176,24 @@ The login page is identical to the register account page in most ways. The key d
 ![](https://i.imgur.com/mc16raI.png)
 
 #### Password Reset
-The app uses the built in password reset system provided by Django, although the pages have been customised to match the design of the rest of the site.
+The app uses the built-in password reset system provided by Django, although the pages have been customised to match the design of the rest of the site.
 
-From the login page, a user can access the 'forgot your password' link whereby they provide an email address and if a match is found, they will recieve an email with a link allowing them to create a new password.
+From the login page, a user can access the 'forgot your password' link whereby they provide an email address and if a match is found, they will receive an email with a link allowing them to create a new password.
 
 #### Full Admin Backend for Easy Admin Management
-The standard Django admin pages have been customised to make make managing the app easier for admins. The look and feel hasn't been changed as it's not an area a standard user will ever access or even see, but additional layouts, filters, and actions have been added to aid the overall admin experience.
+The standard Django admin pages have been customised to make managing the app easier for admins. The look and feel has not been changed as it's not an area a standard user will ever access or even see, but additional layouts, filters, and actions have been added to aid the overall admin experience.
 
 Some examples of admin backend customisation
 ##### Users
 'Groups' has been added to the list of filters, so the user can filter by All / Premium / No Group (Free Tier).
 
-Additionally, a 'Membership Status' column has been added to the user overview page. There is no membership status field in this model, this is handled by Django User Groups so this had to be defined in the admin<span></span>.py file for the accounts app.
+Additionally, a 'Membership Status' column has been added to the user overview page. There is no membership status field in this model, this is handled by Django User Groups, so this had to be defined in the admin<span></span>.py file for the accounts app.
 
 ![](https://i.imgur.com/oGHKcYq.png)
 
 ##### Bookmarks
 The individual bookmark view has been updated to group the different fields into relevant sections using fieldsets.
-'added' and 'updated' have been added here too. They wouldn't show up by default due to being readonly fields but have been added to assist with any potential troubleshooting that might be required when dealing with support tickets.
+'added' and 'updated' have been added here too. They would not show up by default due to being read-only fields but have been added to assist with any potential troubleshooting that might be required when dealing with support tickets.
 
 ##### Collections & Pages
 The overview page for these models have been adjusted to just display the key columns an admin might need when troubleshooting, and to avoid information overload. All field data is viewable when drilling down to individual collections and pages.
@@ -215,7 +213,7 @@ The detail screen for individual purchases separates payment data (amount, date,
 
 ![](https://i.imgur.com/rsYnnyq.png)
 
-Overview columns show just top level information and a custom column called 'Admin Comments' has been added. This checks to see if the field 'Admin Comments' contains any data and displays accordingly, allowing admins to see at glance if work has already started on an individual ticket.
+Overview columns show just top-level information and a custom column called 'Admin Comments' has been added. This checks to see if the field 'Admin Comments' contains any data and displays accordingly, allowing admins to see at glance if work has already started on an individual ticket.
 
 ![](https://i.imgur.com/zoT6kGC.png)
 
@@ -224,7 +222,7 @@ A filter has been added for the status field to allow an admin to filter by All 
 The individual ticket display has been customised to separate the ticket data into sections to make it easier for admins to quickly focus on the data they need. There are 3 areas, split into user details, ticket details, and admin actions (comments and status).
 
 #### Messages System
-The app makes use of the built in messages framework that comes with Django. Any time the app needs to communicate an important event to the user, such as confirmation of an actions success or failure, the message is flashed at top of the screen, just below the top navigation bar.
+The app makes use of the built-in messages framework that comes with Django. Any time the app needs to communicate an important event to the user, such as confirmation of an action's success or failure, the message is flashed at top of the screen, just below the top navigation bar.
 
 ![](https://i.imgur.com/gstGn6j.png)
 ![](https://i.imgur.com/XNjnHAP.png)
@@ -234,7 +232,7 @@ The message tag is used to set the bootstrap color class (success green, orange 
 #### Built In Support Ticket System
 Registered users can open a support ticket to help with anything related to the app. The form is simple, requiring only a title and message, and the ticket will be opened and viewable from within the admin panel. Details of how an admin would manage this ticket can be found in the previous section on the admin backend, specifically [this section on tickets](#tickets).
 
-From a user perspective, once the form is submitted, they will recieve an email confirming receipt of their ticket which will also contain a copy of their support request.
+From a user perspective, once the form is submitted, they will receive an email confirming receipt of their ticket which will also contain a copy of their support request.
 
 <details>
 	<summary>Example Support Ticket Email</summary>
@@ -249,7 +247,7 @@ When the user is ready to upgrade, a simple form is available for their payment 
 
 <img src="https://i.imgur.com/uY1GGkK.png" height=300>
 
-This form connects to the Stripe API to process a users card details. No card details are stored locally or on the server, they are only sent to Stripe and then discarded.
+This form connects to the Stripe API to process a user's card details. No card details are stored locally or on the server, they are only sent to Stripe and then discarded.
 
 Payments (and Premium functionality) can be tested by upgrading to Premium using Stripes basic test card numbers, which are the following
 ```
@@ -258,19 +256,19 @@ Expiry - Any future date
 CVC - Any 3 digits
 ```
 
-On successful completion a PremiumPurchase object is created to record the event and the user is added to the 'Premium' group. This group has no special permissions, and is used only to differentiate between Free & Premium users.
+On successful completion a `PremiumPurchase` object is created to record the event and the user is added to the 'Premium' group. This group has no special permissions and is used only to differentiate between Free & Premium users.
 
 #### Premium Functionality for Paying Users
-Premium users can do things that users on the free tier can't, such as access telephone support, remove ads, and have more bookmarks, collections, and pages.
+Premium users can do things that users on the free tier cannot, such as access telephone support, remove ads, and have more bookmarks, collections, and pages.
 
-There are 2 functions used to check if a user is a Premium member, and the function used depends on which part of the app needs to know, ie the back-end logic, or the front-end templating.
+There are 2 functions used to check if a user is a Premium member, and the function used depends on which part of the app needs to know, i.e. the back-end logic, or the front-end templating.
 
 ##### is_premium
 Updates the context dictionary with a key value pair of ``is_premium: (Boolean)`` and is used the by templating language when deciding which content to display
 ##### premium_check
 Returns a Boolean. When a user tries to perform an action that has the potential to be limited by them being on the Free tier, for example adding a Page, this function checks if this action would cause the user to exceed the limits imposed by the Free tier.
 
-If the check passes, nothing happens and the app works as normal, leaving the user oblivious to the the fact a check took place.
+If the check passes, nothing happens and the app works as normal, leaving the user oblivious to the fact a check took place.
 
 If the check fails, the user is informed of this, advised this is due to them being on the Free tier, and is then redirected to the Premium page to encourage them to convert to Premium.
 
@@ -278,11 +276,11 @@ If the check fails, the user is informed of this, advised this is due to them be
 
 
 #### User Profile Page
-The user profile page allows the user to update their email address and password, using 2 separate forms. It's as straight-forward as entering the required information and pressing submit. Providing the form passes the validation checks, the update is immediate.
+The user profile page allows the user to update their email address and password, using 2 separate forms. It is as straight-forward as entering the required information and pressing submit. Providing the form passes the validation checks, the update is immediate.
 
 This page also contains a ``user preferences`` section. Currently this only consists of one entry - an option to set / reset the display warnings when there are too many columns - but this can be expanded as and when more functionality is added.
 
-The final section provides basic data on how many bookmarks, collections, and pages the user has currently. This can eventually be expanded into it's own section for [Detailed User Statistics](#detailed-user-statistics)
+The final section provides basic data on how many bookmarks, collections, and pages the user has currently. This can eventually be expanded into its own section for [Detailed User Statistics](#detailed-user-statistics)
 
 #### Top Navigation Bar
 When logged in, the top navigation bar allows the user to move between different sections of the app (bookmarks, options, log out) and also search their entire collection.
@@ -307,7 +305,7 @@ Whilst managing bookmarks, the sidebar will contain a list of the  pages.
 
 ![](https://i.imgur.com/UOflZRJ.png)
 
-There is a lot of functionality built in to this section, allowing a user to:
+There is a lot of functionality built into this section, allowing a user to:
 - Navigate to a different page
 - Add a new page <img src="https://i.imgur.com/cvP9EP3.png" height=20>
 - Reorder existing pages <img src="https://i.imgur.com/x3QhD6M.png" height=20>
@@ -327,7 +325,7 @@ Using the search bar at the top of the page, a user can search their entire coll
 
 <img src="https://i.imgur.com/VUI9XWm.png" height=400>
 
-The individual bookmarks are displayed in ``full`` mode (See [Bookmark Display Options](dookmark-display-options) for more detail on this) and have the same actions available (Edit, Move & Delete) as when viewing from within their respective collections and pages.
+The individual bookmarks are displayed in ``full`` mode (See [Bookmark Display Options](#bookmark-display-options) for more detail on this) and have the same actions available (Edit, Move & Delete) as when viewing from within their respective collections and pages.
 
 Up to 10 results will be displayed per page, and in the event of there being more than 10 results, they will be spread over multiple pages for the user to browse through.
 
@@ -340,21 +338,21 @@ If a user searches with a blank search term, the app will return all bookmarks.
 #### Add Bookmark
 Adding a bookmark is as straightforward as filling out a form and clicking the ``Add Bookmark`` button.
 
-The user has complete control over this and can enter the information manually, or click ``Autofill`` and let the app try and populate the fields itself. The same applies for the bookmark icon; the user can upload their own, scrape the web page, or let the app generate it's own
+The user has complete control over this and can enter the information manually or click ``Autofill`` and let the app try and populate the fields itself. The same applies for the bookmark icon; the user can upload their own, scrape the web page, or let the app generate its own
 
-The user should also tell the app where to store the bookmark - the page and collection. The default page is the currently selected page, and the default collection is the first collection on this page. If a user comes from, or chooses, a page that currently has no collections, the destination page drop-down will reflect this by being empty. If the user tries to submit to an empty collection an error message will tell them to choose a page with at least 1 collection
+The user should also tell the app where to store the bookmark - the page and collection. The default page is the currently selected page, and the default collection is the first collection on this page, unless the user has chosen to add a bookmark using the `+` icon in the collection header. If they have, the default collection destination will be the collection from which the `+` icon was clicked. If a user comes from, or chooses, a page that currently has no collections, the destination collection drop-down will reflect this by being empty. If the user tries to submit to an empty collection an error message will tell them to choose a page with at least 1 collection
 
 #### URL Validation
 
 ![](https://i.imgur.com/thSI2fC.png) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://i.imgur.com/6vvhABb.png)
 
-When adding a bookmark, just underneath the ``url`` field is a ``url status`` checker. The purpose of this is to provide real-time feedback on if the url being entered is valid or not. Using ajax the app will send the url to the ``check_valid_url`` function and using the Python requests library it will return a Boolean result.
+When adding a bookmark, just underneath the ``URL`` field is a ``URL status`` checker. The purpose of this is to provide real-time feedback on if the URL being entered is valid or not. Using ajax the app will send the URL to the ``check_valid_url`` function and using the Python requests library it will return a Boolean result.
 
-To keep requests at a reasonable level, the function is called only after 1 second has elapsed since the last key release within the url field.
+To keep requests at a reasonable level, the function is called only after 1 second has elapsed since the last key release within the URL field.
 
 #### Automatic Scraping of Pages for Bookmark Data
 
-A user can choose to allow the app to scrape the address in the ``url`` field by clicking the ``Autofill`` button and have the ``title`` and ``description`` field filled in automatically. Where no data can be scraped, the text fields will be filled with a message stating this.
+A user can choose to allow the app to scrape the address in the ``URL`` field by clicking the ``Autofill`` button and have the ``title`` and ``description`` field filled in automatically. Where no data can be scraped, the text fields will be filled with a message stating this.
 
 Additionally, ``Autofill`` will also attempt to get the sites icon and if successful this will show in the ``Icon Preview`` area.
 
@@ -380,10 +378,10 @@ The generated icon is the capitalised first letter in the bookmark title on a co
 #### Bookmark Options
 Every bookmark has an icon to its right that when clicked, provides a number of bookmark specific options.
 
-<img src="https://i.imgur.com/HKkvEbb.png" height=300>
+<img src="https://i.imgur.com/n26shSR.png" height=300>
 
 ##### Edit Bookmark
-The `Edit Bookmark` page is very similar to the `Add Bookmark` page in both style and functionality. The only differences are
+The `Edit Bookmark` page is similar to the `Add Bookmark` page in both style and functionality. The only differences are
 - The form is already filled in with data for that particular bookmark
 - The `Destination Page` & `Destination Collection` drop-downs are not shown as the Bookmark isn't moving anywhere.
 
@@ -393,10 +391,10 @@ The `Move Bookmark` page is almost the opposite of the `Edit Bookmark` page. The
 The Bookmark itself is displayed so the user can see at a glance which bookmark is being moved, but there is no option to edit the details.
 
 ##### Delete Bookmark
-When a user selects the `Delete Bookmark` option, a modal appears asking for confirmation. The user can either choose to delete the Bookmark, or cancel the request. All deletions are permanent.
+When a user selects the `Delete Bookmark` option, a modal appears asking for confirmation. The user can either choose to delete the Bookmark or cancel the request. All deletions are permanent.
 
 #### Add a New Collection
-On any given page, a user has the option to add a new Collection. If the page is currently empty there is just 1 large box directing the user to create a collection.
+On any given page, a user has the option to add a new Collection. If the page is currently empty, there is just 1 large box directing the user to create a collection.
 
 <img src="https://i.imgur.com/1qmqVyr.png" height=300>
 
@@ -405,21 +403,21 @@ This is placed prominently as the user can do little else until a page has at le
 #### Browser Extension for Easy Importing of Bookmarks
 Whilst not part of the project submission, a Chrome extension was created to improve the overall UX when adding bookmarks. The repo can be found [here](https://github.com/steview-d/links-ext) and the extension itself is hosted on the [Chrome Web Store](https://chrome.google.com/webstore/detail/links/gogabcimknibfnonhajgpkibeeeppjbp).
 
-Adding bookmarks is easy enough when just copy / pasting a url into the url field of the `Add Bookmark` page but I realised early into the project it just wasn't convenient. Users aren't expected to spend a lot of time in the app itself, rather just use it for reference when looking for a particular site or page. It ended up being a real chore using the app if every time you want to save a page for later you had to open a new tab, load the app, select `Add Bookmark` and so on.
+Adding bookmarks is easy enough when just copy / pasting a URL into the URL field of the `Add Bookmark` page but I realised early into the project it just was not convenient. Users are not expected to spend a lot of time in the app itself, rather just use it for reference when looking for a particular site or page. It ended up being a real chore using the app if every time you want to save a page for later you had to open a new tab, load the app, select `Add Bookmark` and so on.
 
-This extension streamlines the process massively. Now, users only need to click the extensions icon and it will open the app in a new tab, with the page they were on now in the url field and the app will also automatically start a scrape to give the user some data to get started with. In many cases, this will be enough and allows a user to save a bookmark and get back to where they were in 3 steps:
+This extension streamlines the process massively. Now, users only need to click the extensions icon and it will open the app in a new tab, with the page they were on now in the URL field and the app will also automatically start a scrape to give the user some data to get started with. In many cases, this will be enough and allows a user to save a bookmark and get back to where they were in 3 steps:
 
 	1. Click on the extension icon
 	2. Click 'Add Bookmark'
 	3. Close the tab once the 'import successful' message is displayed
 
-The `Import Url` page is identical to the `Add Bookmark` page in almost every way, the only differences being:
+The `Import URL` page is identical to the `Add Bookmark` page in almost every way, the only differences being:
 - The name
-- No sidebar or top navigation as the tab is designed to closed as soon as the import is complete
+- No sidebar or top navigation as the tab is designed to be closed as soon as the import is complete
 
 There is currently 1 unresolved bug with the extension. When the Chrome browser is opened for the first time, the first click of the extension does nothing. All subsequent clicks work as expected. If another new window is opened, the click works first time.
 
-Since discovering this, I haven't yet investigated. It might be an easy fix. It might not. It's likely somewhere in between but it's not a priority as it doesn't affect the app so for now it's on hold.
+Since discovering this, I haven't yet investigated. It might be an easy fix. It might not. It is likely somewhere in between but it's not a priority as it doesn't affect the app so for now it's on hold.
 
 #### Arrange Collections
 Bookmarks are grouped together inside of their own containers, which are called `collections`. These collections can be moved around the page as the user sees fit.
@@ -433,19 +431,19 @@ Collections are arranged using a drag & drop system and the number of columns be
 #### Bookmark Display Options
 The user can choose from 3 different display styles, on a per collection basis.
 
-<img src="https://i.imgur.com/p604zHG.png" height=250>
+<img src="https://i.imgur.com/eD8e8YC.png" height=250>
 
 ##### Full
 ![](https://i.imgur.com/aA6ZPAn.png)
-On `Full` all 3 information fields are displayed; `Url`, `Title` & `Description`. More often than not, the description contains more text than can be comfortably displayed, so if a users hovers over this area, a tool-tip will display showing the full text.
+On `Full` all 3 information fields are displayed: `URL`, `Title` & `Description`. More often than not, the description contains more text than can be comfortably displayed, so if a user hovers over this area, a tooltip will display showing the full text.
 
 <img src="https://i.imgur.com/ddVy3aJ.png" height=80>
 
-These tool-tips only display on devices with a pointer. I considered adding another icon to allow users to click and view the tool-tip but felt this added too much clutter to the UI.
+These tooltips only display on devices with a pointer. I considered adding another icon to allow users to click and view the tooltip but felt this added too much clutter to the UI.
 
 ###### Normal
 ![](https://i.imgur.com/Md2GN8Z.png)
-`Normal` removes the `Description` (and therefore the tool-tip), but still keeps the `Title` & `Url`.
+`Normal` removes the `Description` (and therefore the tooltip), but still keeps the `Title` & `URL`.
 
 ##### Minimal
 ![](https://i.imgur.com/JORLLPz.png)
@@ -456,11 +454,11 @@ Regardless of how the user chooses to display their bookmarks, the bookmark and 
 #### Bookmark Sort Options
 The user can choose to sort and order their bookmarks in a number of different ways, on a per collection basis.
 
-<img src="https://i.imgur.com/Yg3eBpt.png" height=300>
+<img src="https://i.imgur.com/bmOqACp.png" height=300>
 
 ##### Predefined Sort Orders
 
-These are `Name`, `Date Added` and `Date Updated` and the user can choose to sort these by ascending or descending. When sorting in one of these modes, manual sorting is disabled. The `Manual Sort` button  <img src="https://i.imgur.com/ErRZuXF.png" height="20"> at the top of the collection is disabled, and a tool-tip added to let the user know they need to re-enable manual sort to use this feature.
+These are `Name`, `Date Added` and `Date Updated` and the user can choose to sort these by ascending or descending. When sorting in one of these modes, manual sorting is disabled. The `Manual Sort` button  <img src="https://i.imgur.com/ErRZuXF.png" height="20"> at the top of the collection is greyed out and disabled. Additionally, a tooltip is added to let the user know they need to re-enable manual sort to use this feature.
 
 ##### Manual Sorting
 If a user prefers to sort their bookmarks in a particular way (for example, most used first) they can do this. Once the `Manual Sort` button is clicked, the bookmark style changes to show the mode is active.
@@ -474,12 +472,12 @@ A banner advert is displayed at the bottom of most screens for non-Premium users
 
 Its position has been placed in such a way as to be non-intrusive, but still noticeable enough to generate clicks and to also make the user want to get rid of it via the Premium upgrade.
 
-The only screens that do not display these adverts are screens where no user is logged in (about, pricing, faq, user auth) and the `About` page from within the settings section.
+The only screens that do not display these adverts are screens where no user is logged in (about, pricing, FAQ, user auth) and the `About` page from within the settings section.
 
 #### Multiple Columns & Small Width Displays
 Quite soon into development it became apparent this type of app was definitely more suited to desktops and generally the wider the display, the better the experience. This was an issue as the app needed to function well on displays of all sizes, but I didn't want to compromise the UX on medium and large displays, just to make it serviceable on smaller screens.
 
-The main issue was that of multiple columns on small width displays. Taking mobiles as an example, anything more than 1 column looked a mess and in some cases rendered the app useless. It still worked, but from a users perspective, it was more trouble than it was worth.
+The main issue was that of multiple columns on small width displays. Taking mobiles as an example, anything more than 1 column looked a mess and, in some cases rendered the app useless. It still worked, but from a user's perspective, it was more trouble than it was worth.
 
 The final solution manages to keep the UX consistent across all screens and works as follows.
 
@@ -496,11 +494,11 @@ If the app detects a width and column combination outside of these recommended l
 
 <img src="https://i.imgur.com/upQISXg.png" height=250>
 
-The user can then choose to either change to the recommended number of columns, or dismiss the warning.
+The user can then choose to either change to the recommended number of columns or dismiss the warning.
 
 If the user opts to change the number of columns, it is assumed the user wants to continue using the app within the recommended limits, and therefore any future width adjustments will trigger a similar warning.
 
-However, the one of the key goals of this app has always been to give the user a choice in how they use it. If they want to display more columns than recommended, they can. If they click to dismiss this warning, all future warnings will also be suppressed.
+However, one of the key goals of this app has always been to give the user a choice in how they use it. If they want to display more columns than recommended, they can. If they click to dismiss this warning, all future warnings will also be suppressed.
 
 If the user changes their mind and decides they want the warnings back, this can be adjusted from the `settings > profile > user preferences` section of the site.
 
@@ -517,10 +515,10 @@ Even though the app already contains a lot of functionality, there are still thi
 Once a solid user base had been built, with a not insignificant number of Premium members, I'd switch the payment model to a monthly / annual subscription format instead of the current one-off lifetime membership system.
 
 #### Detailed User Statistics
-Everyone loves a bar chart, right? The profile page can be expanded so instead of just totalling the users bookmarks, pages & collections, there could be more detailed stats at the user level and site wide statistics too.
+Everyone loves a bar chart, right? The profile page can be expanded so instead of just totalling the user's bookmarks, pages & collections, there could be more detailed stats at the user level and site wide statistics too.
 
 #### Bookmark Sharing
-This was actually planned from the beginning and whilst it would have been relatively simple to add, time just ran out. Users would be able to mark individual collections and / or pages as public and each user would have their own public link, along the lines of `/users/[username]`. Users could share this url with others, including non-users, and make their bookmark collections publicly available.
+This was actually planned from the beginning and whilst it would have been relatively simple to add, time just ran out. Users would be able to mark individual collections and / or pages as public and each user would have their own public link, along the lines of `/users/[username]`. Users could share this URL with others, including non-users, and make their bookmark collections publicly available.
 
 ## Technologies Used
 ### Languages
@@ -529,12 +527,12 @@ This was actually planned from the beginning and whilst it would have been relat
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) used mostly for DOM manipulation
 - [Python3](https://www.python.org/) used to run the backend application
 
-### Frameworks & Libraries
+### Frameworks and Libraries
 - [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) provided the CSS framework
 - [Font Awesome 4](https://fontawesome.com/v4.7.0/) is used for the various icons throughout the app
 - [Google Fonts](https://fonts.google.com/) serves the fonts used in the app
 - [jQuery](https://jquery.com/) is used for many things, for example DOM manipulation, buttons, AJAX requests, and more
-	- [Swipe.js](https://github.com/dsheedes/swipe) is a small jQuery plugin that detects swipes, and is used to hide the sidebar on mobile devices.
+	- [Swipe.js](https://github.com/dsheedes/swipe) is a small jQuery plugin that detects swipes and is used to hide the sidebar on mobile devices.
 - [jQuery UI](https://jqueryui.com/) is used to allow the user to drag and drop elements on the page when sorting bookmarks, collections, and pages
 	- [jQueryUI Touch Punch](http://touchpunch.furf.com/) is a jQueryUI hack that makes jQueryUI play nice with touch events
 - [Tippy.js](https://atomiks.github.io/tippyjs/) is used to provide tooltips throughout the app
@@ -553,9 +551,9 @@ dj-database-url|0.5.0|Utilizes the 12factor inspired DATABASE_URL environment va
 Django|2.2.7| The Django framework itself
 django-appconf|1.0.3|A helper class for handling configuration defaults of packaged Django apps gracefully
 django-cleanup|4.0.0|Automatically deletes files for `FileField`, `ImageField` and subclasses
-django-crispy-forms|1.8.1| Controls the rendering behavior of Django forms
+django-crispy-forms|1.8.1| Controls the rendering behaviour of Django forms
 django-storages|1.8|Provides a variety of storage backends in a single library, used in this case to connect with AWS S3
-favicon|0.7.0|Library that returns the url of a website favicon(s)
+favicon|0.7.0|Library that returns URL's for website favicon(s)
 gunicorn|20.0.4|A Python WSGI HTTP Server for UNIX
 Pillow|7.0.0|Python Imaging Library (Fork) for handling bookmark icons
 psycopg2|2.8.4|PostgreSQL database adapter
@@ -617,10 +615,9 @@ os.environ.setdefault("EMAIL_PORT",  "<Your smtp port>")
 os.environ.setdefault("STRIPE_PUBLISHABLE", "<Enter Your STRIPE_PUBLISHABLE value here>")
 os.environ.setdefault("STRIPE_SECRET", "<Enter Your STRIPE_SECRET value here>")
 ```
-```
+
 NOTE: When deploying locally, there is no need to set up AWS S3 buckets as all media files are served locally
-```
-- 
+
 - Run `python manage.py runserver` in the terminal. This will create a local sqlite3.db file for us to use.
 - Once this has run, close the server with `CTRL + C`
 - In the terminal, run `python manage.py migrate` to set up the database. There is no need to `make migrations` as the migration files are already present.
@@ -633,27 +630,27 @@ NOTE: When deploying locally, there is no need to set up AWS S3 buckets as all m
 	- Add them to the `Premium` group from the Admin panel by selecting `Users > 'Your User' > Groups > Premium`. Once Premium has been added to the `Chosen groups` column, just click `Save`.
 	- Or sign up for Premium using the Premium upgrade form within `Settings > Premium`. You can use the Stripe test card details found [here](#upgrade-to-premium-tier).
 
-Once these steps have been completed, the site will be up and running on your machine.
+Once these steps have been completed, the app will be up and running on your machine.
 
 ### Deploying To Heroku
 
 These instructions make the following assumptions
 
 - The app has been deployed locally, following the above steps, and then pushed to your own GitHub account.
-- Note: The env.py should be added to your .gitignore
+- The env.py should be added to your .gitignore
 - You have created and configured an [AWS S3 Bucket](https://aws.amazon.com/s3/) for serving the media files
 - You have a [Stripe](https://stripe.com) account
 
 ```
 There should be no reason to create a Procfile or requirements.txt file.
-These files should already be present in the cloned respository.
+These files should already be present in the cloned repository.
 ```
 
 Once all the above is in place, the instructions below will enable you to deploy to Heroku.
 
 - Go to [heroku.com](https://heroku.com) and log in or create an account.
 - Add a new app, give it a name, choose a region and click `Create app`.
-- On the dashboard, click the `resources` tab. From within the `addons` input field start typing `post` until you can select `Heroku Postgres`, and select it.
+- On the dashboard, click the `resources` tab. From within the `addons` input field start typing `post` until you can select `Heroku Postgres` and select it.
 - In the plan box that pops up, select `Hobby Dev - Free`, then click `Provision`.
 - Once set up, click the Postgres database, select the `settings` tab and `Database Credentials` heading. Make a note of the `URI` value, you will need it later. It will start with `postgres://...`
 - Go back to the Dashboard, and from the `Setttings` tab, click the `Reveal Config Vars` button and add the following key / value pairs
@@ -661,11 +658,11 @@ Once all the above is in place, the instructions below will enable you to deploy
 	- `EMAIL_PASSWORD` - The password for above email address
 	- `EMAIL_HOST` - The Outgoing Mail Server for your email, for example `smtp.gmail.com`
 	- `EMAIL_PORT` - Your SMTP port, usually `25`, `465`, or `587`
-	- `SECRET_KEY` - Use a Django Secret Key Gen, for example [this one]([https://miniwebtool.com/django-secret-key-generator/](https://miniwebtool.com/django-secret-key-generator/)).
-	- `HOST_NAME` - The url you are deploying to, for example `links-sw.herokuapp.com`
+	- `SECRET_KEY` - Use a Django Secret Key Gen, for example [this one](https://miniwebtool.com/django-secret-key-generator/).
+	- `HOST_NAME` - The URL you are deploying to, for example `links-sw.herokuapp.com`
 	- `STRIPE_PUBLISHABLE` - Your Stripe API `Publishable key`
 	- `STRIPE_SECRET` - Your Stripe API `Secret key`
-	- `DATABASE_URL` - This should already be here after you created the Postgres db, but if not, it's the Postgres URI you made a note of earlier.
+	- `DATABASE_URL` - This should already be here after you created the Postgres db, but if not, it is the Postgres URI you made a note of earlier.
 	- `AWS_ACCESS_KEY` - Your AWS Access Key
 	- `AWS_SECRET_ACCESS_KEY` - Your AWS Secret Access Key
 	- `AWS_STORAGE_BUCKET_NAME` - The name of the Bucket being used for this app
@@ -680,7 +677,7 @@ Once all the above is in place, the instructions below will enable you to deploy
 	- Your local deployment should now be connected to the remote Postgres db so you can run:
 		- `python manage.py migrate` to set up the database
 		- `python manage.py createsuperuser` to set up your admin account.
-	- Delete / comment out the `DATABASE_URL` entry in your env.py file.
+	- Delete / comment out the `DATABASE_URL` entry in your `env.py` file.
 - Back in the Heroku Dashboard, click the `Deploy` tab and scroll down to `Deployment Method`. Select `GitHub` and link your account and repository.
 - Scroll down further to `Manual Deploy`, choose the branch you wish to deploy and click `Deploy Branch`
 - Wait for the app to build, and once complete, click `view` to launch your app in the browser.
@@ -698,13 +695,13 @@ All content, words, and design are my own, unless otherwise stated below.
 ### Media
 The original bookmark icon was sourced from [favpng.com](https://favpng.com/).
 
-The site icons (favicons, and so on) were generated by [realfavicongenerator.net](https://realfavicongenerator.net/) using a modified version of the original bookmark icon as the source.
+The site icons for this app (favicons, and so on) were generated by [realfavicongenerator.net](https://realfavicongenerator.net/) using a modified version of the original bookmark icon as the source.
 
-The icons in the 4x4 grid on the index were all scraped from their own sites, using this app. The tiled background image used in areas of the app was put together using icons.
+The icons in the 4x4 grid on the index were all scraped from their own sites, using this app. The tiled background image used in areas of the app was put together using icons scraped by this app.
 
 The portrait images for the `user reviews` section were used with permission from [Vecteezy]([https://www.vecteezy.com/vector-art/138266-free-headshot-vector](https://www.vecteezy.com/vector-art/138266-free-headshot-vector))
 
-The `FREE` .png image file used on the pricing page was sourced usingGoogle image search.
+The `FREE` .png image file used on the pricing page was sourced using Google image search.
 
 ### Code
 
@@ -721,6 +718,6 @@ All other code, outside of frameworks and libraries, is my own.
 ### Acknowledgements
 Vitor  Freitas at [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) - outside of Stack Overflow, this was usually the place that helped me solve some of the bigger problems I encountered. Some great articles that cover key concepts in an easy to understand way.
 
-The [Try Django 2.2](https://www.codingforentrepreneurs.com/projects/try-django-2-2) mini-project is a free step-by-step guide to building a blog with Django, and even though Django blog tutorials are ten a penny, this one is highly recommended.
+The [Try Django 2.2](https://www.codingforentrepreneurs.com/projects/try-django-2-2) mini project is a free step-by-step guide to building a blog with Django, and even though Django blog tutorials are ten a penny, this one is highly recommended.
 
 Thanks to [Attila Szaloki](https://github.com/aticodein) for help with testing and feedback.
