@@ -4,7 +4,7 @@ from appconf import AppConf
 
 class MyAppConf(AppConf):
 
-    APP_VERSION = '0.4'
+    APP_VERSION = '1.0'
 
     # app settings for standard users
     STND_MAX_BOOKMARKS = 500
