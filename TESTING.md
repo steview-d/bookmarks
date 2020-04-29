@@ -16,6 +16,7 @@ If any bugs, issues, or generally undesirable behaviour is found, I'd be gratefu
 
 2. [Manual Testing](#manual-testing)
 	- [Browser Compatibility](#browser-compatibility)
+	- [Console Errors & Warnings](#console-errors-and-warnings)
 	- [Features Testing](#features-testing)
 
 3. [Code Validation](#code-validation)
@@ -72,6 +73,15 @@ EdgeHTML has not been updated since October 2018, so I can't see this ever chang
 I could rewrite all the JS to be compatible with IE11, but it would not be time well spent. If there was more time, I would spend it adding more features, not trying to breathe life into a dead browser.
 
 :four: Numerous issues displaying the site properly with the Safari mobile browser. All since fixed, and mostly due to Safari not registering touch events unless the element is a `<div>` or `<a>`. Some issues fixed by changing the element, but most by adding `cursor: pointer` CSS to the element to allow Safari to register a touch event.
+
+### Console Errors and Warnings
+The app has been checked for errors and warnings within the console.
+No errors have been found.
+1 warning is present when accessing the ``Premium`` page from the ``Settings`` sidebar. The error is
+```
+A cookie associated with a cross-site resource at http://stripe.com/ was set without the `SameSite` attribute. A future release of Chrome will only deliver cookies with cross-site requests if they are set with `SameSite=None` and `Secure`. You can review cookies in developer tools under Application>Storage>Cookies and see more details at https://www.chromestatus.com/feature/5088147346030592 and https://www.chromestatus.com/feature/5633521622188032.
+```
+I have confirmed this originates from the js script loaded from ``https://js.stripe.com/v2``. Despite the presence of this warning, it has no effect on the app itself.
 
 ### Features Testing
 For every feature listed in the [features](README.md#current-features) section of the main [README.md](README.md) file, its functionality has been tested to ensure it works as intended.
@@ -344,6 +354,9 @@ Uses the same form for the Bookmark destination as the `Add / Edit Bookmark` pag
 All pages have been checked to ensure they are only accessible when the user is authorised to do.
 - The main app and associated functions (Add, Edit, Move, Delete, Arrange, Profile, Support, etc) can only be accessed if a user is currently logged in. If these URL's are tried and no user is logged, the app redirects to the login page.
 - The intro & authentication pages (About, Pricing, FAQ, Login & Register) are only accessible when no user is logged in. If a logged in user attempts to view these pages, they are automatically redirected the main app page.
+
+#### Custom Error Pages
+- Confirmed that the correct custom error pages (404 & 500) display in the event of these errors.
 
 ## Code Validation
 
