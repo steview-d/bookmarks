@@ -75,7 +75,7 @@ I could rewrite all the JS to be compatible with IE11, but it would not be time 
 :four: Numerous issues displaying the site properly with the Safari mobile browser. All since fixed, and mostly due to Safari not registering touch events unless the element is a `<div>` or `<a>`. Some issues fixed by changing the element, but most by adding `cursor: pointer` CSS to the element to allow Safari to register a touch event.
 
 ### Console Errors and Warnings
-The app has been checked for errors and warnings within the console.
+The Chrome DevTools console has been used to check for errors and warnings.
 No errors have been found.
 1 warning is present when accessing the ``Premium`` page from the ``Settings`` sidebar. The error is
 ```
@@ -199,9 +199,32 @@ The `Compare Features` button takes the user to the feature comparison table on 
 - Correctly displays only a simple `Thanks....` message when viewed by users with `Premium` status.
 ##### Standard Users
 - Confirmed the page displays the benefits of becoming a Premium user.
-- Payment form is present and works correctly.
 - Tested with Stripes VISA test card numbers to successfully upgrade a user to Premium.
-- Tested with fake / incorrect numbers to produce expected errors.
+##### Stripe Payments
+- Payments can be taken successfully using Stripe Test Card numbers. For testing, I used the below VISA test numbers
+```
+Card Number - 4242 4242 4242 4242
+Expiry - Any future date
+CVC - Any 3 digits
+```
+Initially, all validation was done by Stripe, with Stripe returning either a HTTP 200 to show everything went through fine, or a custom error message to inform the user of the problem. This message is displayed at the top of the form, making it easy for the user to see what the issue is.
+
+During testing, 2 issues were found with how Stripe validates card details when in test mode.
+
+Using the `4242 4242 4242 4242` number pattern would result in a successful payment result, and (almost) any other numbers would return a `YOUR CARD NUMBER IS INCORRECT.` message. However, using `4242 4242 4242` initially resulted in the app throwing an `ISE 500` error.
+
+When reviewing the logs, this message was found
+``stripe.error.CardError: Request req_xxxxxxxxxxxxxx: Your card was declined. Your request was in test mode, but used a non test (live) card. For a list of valid test cards, visit: https://stripe.com/docs/testing.``
+
+The issue appeared to be Stripe initially accepting the shortened `4242...` pattern as a valid card, but then denying the request when realising that test mode was active.
+
+The second issue was with the 3-digit security code. If this field was left blank, and a valid test card was used for the card number, then the form would pass, and the test payment would be authorised. The Stripe documentation makes it clear this is intended behaviour, in that it does not require this field to be completed when in test mode. That said, it still didn't seem right to have the app accept an empty field, so a fix was added.
+
+To fix both of these issues, a further validation check was added to `stripe.js`. Once Stripe returns a HTTP 200 status, and before processing the payment, the app checks to make sure the card number is 16 digits and the CVV is 3 digits.
+
+Whilst these checks weren't necessary as this behaviour is only due to how Stripe's test mode functions, it does prevent unwanted errors and behaviour. When the payment system does go live these additional validation checks can be removed as the live system will process the card and CVV numbers as normal.
+
+
 #### User Profile Page
 - Page correctly displays date the user created an account.
 - `Premium Member` badge added if user has `Premium` status.

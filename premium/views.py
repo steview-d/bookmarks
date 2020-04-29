@@ -26,20 +26,15 @@ def premium(request):
 
         # check forms are valid, save if they are
         if purchase_premium_form.is_valid() and payment_form.is_valid():
-            # stripe
-            try:
-                customer = stripe.Charge.create(
-                    amount=premium_cost * 100,
-                    currency="GBP",
-                    description=(request.user.email + " | " +
-                                 purchase_premium_form.cleaned_data
-                                 ['postcode']),
-                    card=payment_form.cleaned_data['stripe_id']
-                )
-            except stripe.error.CardError:
-                messages.error(
-                    request, "Sorry, your card has been declined. \
-                        You should contact your card issuer.")
+
+            customer = stripe.Charge.create(
+                amount=premium_cost * 100,
+                currency="GBP",
+                description=(request.user.email + " | " +
+                             purchase_premium_form.cleaned_data
+                             ['postcode']),
+                card=payment_form.cleaned_data['stripe_id']
+            )
 
             if customer.paid:
                 messages.success(
