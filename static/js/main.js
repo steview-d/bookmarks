@@ -806,4 +806,7 @@ $(document).ready(function () {
             $(this).attr("src", `${daGifPath}on.gif`);
         }
     });
+
+    // ----------------------------------------------- Insert Copyright Year //
+    $("#copyright-year").text(new Date().getFullYear());
 });

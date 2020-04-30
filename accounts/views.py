@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 
+from datetime import datetime
+
 from .forms import (RegisterAccountForm, UpdateUserEmailForm,
                     UpdatedPasswordChangeForm)
 from links.models import Bookmark, Collection, Page
@@ -109,8 +111,12 @@ def about(request):
     # set page value for default page choice for 'add bookmark' button
     page = set_page_name(request)
 
+    # get current year for copyright statement
+    year = datetime.now().year
+
     context = {'app_version': settings.LINKS_APP_VERSION,
                'page': page,
+               'year': year,
                }
     context = is_premium(request.user, context)
 
