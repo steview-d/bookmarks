@@ -18,7 +18,7 @@ def support(request):
         if form_data.is_valid():
             # save support form to db
             form = form_data.save(commit=False)
-            form.username = request.user
+            form.user = request.user
             form.email = request.user.email
             form.save()
 
@@ -26,7 +26,7 @@ def support(request):
                 'support/support_email_template.html',
                 {'title': form.title,
                  'message': form.message,
-                 'username': form.username})
+                 'username': form.user})
             plain_message = strip_tags(html_message)
 
             # email user a copy of their support form
