@@ -495,6 +495,7 @@ div#preload {
   background-color: #6c3af1;
   border: none;
   border-radius: 4px;
+  margin-bottom: 1rem;
   color: #ffffff;
   font-size: 0.7rem;
   padding: 0.4rem 0.6rem;
@@ -1992,6 +1993,20 @@ a[href^=tel] {
 
 .icon-field-errors {
   border: 1px solid #dc3545;
+}
+
+.chrome-ext-link {
+  color: #727272;
+}
+
+.chrome-ext-link a {
+  color: #727272;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.chrome-ext-link a:hover {
+  color: #292e33;
 }
 
 .import-success-box {
