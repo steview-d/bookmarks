@@ -20,7 +20,7 @@ $(function() {
                 for live payments
                 */
                 if ($("#id_credit_card_number")[0].value.length != 16) {
-                    showStripeErrors("Your card number is incorrect");
+                    showStripeErrors("Your card number is incorrect.");
                 } else if ($("#id_cvv")[0].value.length != 3) {
                     showStripeErrors("Your card's security code is invalid.");
                 } else {
