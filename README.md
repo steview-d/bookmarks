@@ -105,6 +105,8 @@ Only 2 fonts are used throughout the app.
 #### Icon Set
 Font Awesome 4 has been used throughout the project, across all sections, ranging from icons in the nav bar through to tooltips and everything in between.
 
+Near the end of the project the app was upgraded to Font Awesome 5 but there were numerous display issues with the icons. Some were missing, many were sized incorrectly, and given there were no issues with the previous version, the app reverted back to v4, specifically  version 4.7.0.
+
 ### Wireframes
 Wireframes were created using [Balsamiq](https://balsamiq.com/) during the initial design phase of this project.
 ##### Introductory Pages
