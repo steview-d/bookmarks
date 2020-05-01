@@ -9,6 +9,8 @@ The main function of the app is to allow users to save the URL's of any website 
 
 The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herokuapp.com)
 
+[![Build Status](https://travis-ci.org/steview-d/bookmarks.svg?branch=master)](https://travis-ci.org/steview-d/bookmarks)
+
 ## Contents
 
 
