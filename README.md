@@ -364,6 +364,10 @@ After `Autofill` has run, a message just below the button will be displayed to l
 
 <img src="https://i.imgur.com/KbaXYUp.png" height=93>
 
+If a user doesn't include the ``http://`` or ``https://`` at the start of the URL and just types, for example ``google.com``, then before scraping, the app will prepend the URL with ``https://`` so the app scrapes ``https://google.com``.
+
+The URL is prepended with ``https://`` over the less secure ``http://`` as the vast majority of sites now use ``https://`` and it's right that if the user doesn't specify, the app should default to the more secure of the two options.
+
 #### Bookmark Icons
 When it comes to storing an icon to go alongside the bookmark, users have 3 options
 1. Scrape the site with ``Autofill`` and use whatever image is returned
