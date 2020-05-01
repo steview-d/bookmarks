@@ -121,6 +121,13 @@ The `Compare Features` button takes the user to the feature comparison table on 
 - Clicking on the individual questions expands the container to show the answer.
 - When a question container opens to show the answer, any currently open containers are closed.
 - The `+` icon inverts when its question is active.
+
+There was an issue with the FAQ section not opening to display the answers after I had upgraded jQuery to the latest version, v3.5.0. The click would do nothing and the following console error was displayed
+
+<img src="https://i.imgur.com/uQGqdFZ.png" height=280>
+
+Reverting jQuery back to v3.4.1 resolved this.
+
 ##### Contact Form
 - When submitted, a `Contact` object is created to store the message details and is viewable in the Admin Back-End.
 - All fields are required to be filled out and any missing fields prevent the form from sending.
