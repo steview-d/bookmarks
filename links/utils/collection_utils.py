@@ -247,6 +247,30 @@ def add_collection(request, page):
     return
 
 
+def create_default_collection(request):
+    """
+    Add text.....
+    """
+
+    page = get_object_or_404(Page, user=request.user, position=1)
+
+    page.collection_order_2 = [[1], []]
+    page.collection_order_3 = [[1], [], []]
+    page.collection_order_4 = [[1], [], [], []]
+    page.collection_order_5 = [[1], [], [], [], []]
+    page.save()
+
+    new_collection = Collection()
+    new_collection.user = request.user
+    new_collection.page = Page.objects.get(
+        user=request.user, name="Home")
+    new_collection.name = "My First Collection"
+    new_collection.position = 1
+    new_collection.save()
+
+    return
+
+
 def delete_collection(request, page, collections):
     """
     Function to remove a collection from the db, and re-order

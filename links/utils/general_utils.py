@@ -1,5 +1,8 @@
 from links.models import Page
 
+from .page_utils import create_default_page
+from .collection_utils import create_default_collection
+
 
 def qs_sort(original_order, new_order, limit):
     """
@@ -45,3 +48,16 @@ def set_page_name(request):
         page = Page.objects.get(user=request.user, position=1)
 
     return page
+
+
+def new_user_setup(request):
+    """
+    When a new user is created, app should create a new page, a new
+    collection, and 5 new bookmarks, to provide the user with initial
+    content so they can see how it all works.
+    """
+
+    create_default_page(request)
+    create_default_collection(request)
+
+    return

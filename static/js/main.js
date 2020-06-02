@@ -809,4 +809,7 @@ $(document).ready(function () {
 
     // ----------------------------------------------- Insert Copyright Year //
     $("#copyright-year").text(new Date().getFullYear());
+
+    // ------------------------------------------------------- Sweet Alert 2 //
+
 });
