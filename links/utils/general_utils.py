@@ -2,6 +2,7 @@ from links.models import Page
 
 from .page_utils import create_default_page
 from .collection_utils import create_default_collection
+from .bookmark_utils import create_default_bookmarks
 
 
 def qs_sort(original_order, new_order, limit):
@@ -59,5 +60,6 @@ def new_user_setup(request):
 
     create_default_page(request)
     create_default_collection(request)
+    create_default_bookmarks(request)
 
     return

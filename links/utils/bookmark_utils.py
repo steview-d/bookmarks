@@ -52,6 +52,11 @@ def add_bookmark_object(request, bookmark_form):
     return
 
 
+def create_default_bookmarks(request):
+    print("UIGHJBN")
+    return
+
+
 def delete_bookmark(request):
     """
     Find and delete the requested bookmark using its pk from
