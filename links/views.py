@@ -86,17 +86,17 @@ def links(request, page):
         # if no pages left, create a default page & redirect to it
         if not Page.objects.filter(user=request.user).exists():
 
-            # messages.success(
-            #     request, f"You must have at least 1 page. \
-            #                Creating a default page called 'Home'.")
+            messages.success(
+                request, f"You must have at least 1 page. \
+                           Creating a default page called 'Home'.")
 
-            # page_utils.create_default_page(request)
+            page_utils.create_default_page(request)
 
             # dont call above, for now, call new user setup routine instea
             # to test creation of new page / collection / bookmarks
             # when done, can put everything back
 
-            general_utils.new_user_setup(request)
+            # general_utils.new_user_setup(request)
 
         # redirect to first page
         page = Page.objects.get(user=request.user, position=1)
@@ -224,30 +224,19 @@ def links(request, page):
 def start_app(request):
     """
     For app to work, users must have at least one page. This view checks
-    this, and if no page is found, it creates a default page called 'home'.
+    this, and if no page is found, it runs the new_user_setup.
 
     Additionally, this view is used to return a user to the last page they
     were on. It checks for a session var called 'last_page' and returns them
     there, or if no value is found, it defaults to the page at position=1.
     """
 
-    # check if user has at least 1 page and if not, create one & redirect to it
-
-    # if not Page.objects.filter(user=request.user).exists():
-    #     page_utils.create_default_page(request)
-    #     messages.success(
-    #         request, f"Welcome to LINKS! Your first page has been \
-    #             automatically created. Before adding your first Bookmark, \
-    #             you should create a Collection to store it in.")
-
-    # change above so if no pages, assumes new user registration, and
-    # create not only a first page, but also a first collection and also
-    # some default bookmarks to get started with.
-
+    # If no pages are found, assume a new user and run new_user_setup
     if not Page.objects.filter(user=request.user).exists():
-        page_utils.create_default_page(request)
+        general_utils.new_user_setup(request)
         messages.success(
-            request, f"Success Message....")
+            request, f"Welcome to LINKS! As you are a new user we have \
+                created you some bookmarks to get you going!")
 
     # get last_page data and redirect if applicable, otherwise load first page
     try:
