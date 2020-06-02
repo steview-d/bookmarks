@@ -38,7 +38,8 @@
                             </div>
                             <div class="collection-icons">
                                 <!-- add bookmark button -->
-                                <form method="POST" action="{% url 'add_bookmark' page=page %}" class="d-inline-block">
+                                <form method="POST" action="{% url 'add_bookmark' page=page %}"
+                                    class="d-inline-block add-bookmark-btn-coll">
                                     {% csrf_token %}
                                     <!-- send collection name so 'Add Bookmark' form can default to this Collection -->
                                     <input type="hidden" name="dest-collection-name" value="{{k.name}}">
@@ -46,9 +47,10 @@
                                             class="fa fa-plus"></i></button>
                                 </form>
                                 <!-- manual sort button -->
-                                <button id="bm-sort-btn-{{ k.position }}" class="icon-spacing cursor-pointer btn--collection-header
-                                        {% if collection_being_sorted == k.name %} manual-sort-on{% endif %}
-                                        {% if k.sort_order != 0 %} dimmed-icon{% endif %}"
+                                <button id="bm-sort-btn-{{ k.position }}"
+                                    class="icon-spacing cursor-pointer btn--collection-header rearrange-bookmarks
+                                    {% if collection_being_sorted == k.name %} manual-sort-on{% endif %}
+                                    {% if k.sort_order != 0 %} dimmed-icon{% endif %}"
                                     {% if k.sort_order != 0 %}disabled{% endif %}>
                                     <i class="fa fa-sort {% if k.sort_order != 0 %}tippy-manual-bm-sort{% endif %}"
                                         aria-hidden="true"></i></button>
@@ -129,8 +131,8 @@
                                     <br />
                                     <input type="submit" name="rename-collection-form"
                                         class="btn--standard btn-sm mt-1 mx-1">
-                                    <input type="button" value="Delete" class="btn--delete btn-sm mx-1" data-toggle="modal"
-                                        data-target="#modal-{{ k|replace_space }}">
+                                    <input type="button" value="Delete" class="btn--delete btn-sm mx-1"
+                                        data-toggle="modal" data-target="#modal-{{ k|replace_space }}">
                                 </form>
                             </div>
                         </div>
