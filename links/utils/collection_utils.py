@@ -249,15 +249,22 @@ def add_collection(request, page):
 
 def create_default_collection(request):
     """
-    Add text.....
+    Create a collection inside the default 'Home' page and
+    add collection order lists for columns 2 through 5
     """
 
     page = get_object_or_404(Page, user=request.user, position=1)
 
-    page.collection_order_2 = [[1], []]
-    page.collection_order_3 = [[1], [], []]
-    page.collection_order_4 = [[1], [], [], []]
-    page.collection_order_5 = [[1], [], [], [], []]
+    structure = [
+        [[1], []],
+        [[1], [], []],
+        [[1], [], [], []],
+        [[1], [], [], [], []]
+    ]
+
+    # create collection order for columns 2 through 5
+    for i in range(2, 6):
+        setattr(page, 'collection_order_'+str(i), structure[i-2])
     page.save()
 
     new_collection = Collection()
