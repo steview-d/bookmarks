@@ -84,9 +84,9 @@ def create_default_bookmarks(request):
     # create 2d list of default bookmark data
     default_bookmark_data = []
     count = 0
-    for v in range(5):
+    for i in range(int(len(lines)/4)):
         bm = []
-        for w in range(4):
+        for j in range(4):
             bm.append(lines[count])
             count += 1
 
