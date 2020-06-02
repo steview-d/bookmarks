@@ -75,7 +75,7 @@ def create_default_bookmarks(request):
 
     # get location of text file containing bookmark data
     base64_loc = (os.path.join(
-        s.BASE_DIR, 'static\\img\\icons\\default_icons.txt'),)
+        s.BASE_DIR, 'static\\data\\default_icons.txt'),)
 
     # read contents of bookmark file into memory
     with open(base64_loc[0]) as f:
