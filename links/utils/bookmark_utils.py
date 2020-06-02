@@ -2,13 +2,14 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 from links.conf import settings
+from django.conf import settings as s
 from django.contrib import messages
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
 
-from links.models import Collection, Bookmark
+from links.models import Page, Collection, Bookmark
 
 import base64
 import favicon
@@ -53,7 +54,67 @@ def add_bookmark_object(request, bookmark_form):
 
 
 def create_default_bookmarks(request):
-    print("UIGHJBN")
+    """
+    Create a set of bookmarks to be shown to new users when first
+    logging in. Bookmarks are created from a text file, and any number
+    of bookmarks can be created, depending on the number of entries in
+    the text file.
+
+    Text file format is as follows:
+    Line 1: url
+    Line 2: title
+    Line 3: description
+    Line 4: base64 encoded image string
+
+    Every 4 lines is a new bookmark object.
+    """
+
+    page = get_object_or_404(Page, user=request.user, position=1)
+    collection = get_object_or_404(
+        Collection, user=request.user, page=page, position=1)
+
+    # get location of text file containing bookmark data
+    base64_loc = (os.path.join(
+        s.BASE_DIR, 'static\\img\\icons\\default_icons.txt'),)
+
+    # read contents of bookmark file into memory
+    with open(base64_loc[0]) as f:
+        lines = f.read().splitlines()
+
+    # create 2d list of default bookmark data
+    default_bookmark_data = []
+    count = 0
+    for v in range(5):
+        bm = []
+        for w in range(4):
+            bm.append(lines[count])
+            count += 1
+
+        default_bookmark_data.append(bm)
+
+    # create default bookmark data
+    for i in range(len(default_bookmark_data)):
+        # create icon image from base64 encoded string
+        base64_str = default_bookmark_data[i][3]
+        ext = "png"
+        file_name = ''.join(
+            random.choices(string.ascii_letters + string.digits, k=8))
+        img_file = ContentFile(
+            base64.b64decode(base64_str),
+            name='scr_' + file_name + '.' + ext)
+
+        # create bookmark
+        default_bookmark = Bookmark(
+            user=request.user,
+            collection=collection,
+            position=i+1,
+            url=default_bookmark_data[i][0],
+            title=default_bookmark_data[i][1],
+            description=default_bookmark_data[i][2],
+            icon=img_file, )
+
+        default_bookmark.save()
+
     return
 
 
