@@ -735,7 +735,8 @@ Thanks to [Attila Szaloki](https://github.com/aticodein) & [Precious Iijege](htt
 
 
 ## Changelog
-#### New User Experience | 03.06.20
+#### New User Experience
+03.06.20
 A change to what a new user sees when first logging in after registering an account. Previously, new users were greeted with a brief message at the top of screen informing them a page had been created for them, and to create a collection before trying to add a bookmark.
 Now, when a new user logs in for the first time, a modal window opens in the middle of the screen and shows this:
 
