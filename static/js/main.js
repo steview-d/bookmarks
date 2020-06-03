@@ -831,7 +831,8 @@ $(document).ready(function () {
         }).queue([
             {
                 title: "Before We Begin...",
-                html: `<p class='my-3 px-1'>To get you started, the following items have been automatically created for you:</p>
+                html: `<p class='my-3 px-1'>To get you started, the following items have
+                    been automatically created for you:</p>
                     <div class="row">
                     <div class="col"></div>
                     <div class="col-11 text-left">
@@ -848,13 +849,15 @@ $(document).ready(function () {
                 title: "A Few More Things...",
                 html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection.</p>
                     <p class="qmt-1 px-1">Collections are stored inside of Pages.</p>
-                    <p class="qmt-1 qmb-2 px-1">If you're unsure what a button does, you can hover above it for a hint.</p>`,
+                    <p class="qmt-1 qmb-2 px-1">If you're unsure what a button does, 
+                    you can hover above it for a hint.</p>`,
             },
             {
                 title: "And Finally...",
                 html: `<p class="my-3 px-1">We would love to know what you think of this app.<br>
                     If you have any comments or suggestions, please 
-                    <strong><a href="/accounts/support/#support-form">let us know</a></strong>.</p>`,
+                    <strong><a href="/accounts/support/#support-form" onclick="swal.closeModal();">
+                    let us know</a></strong>.</p>`,
                 confirmButtonText: "CLOSE",
             },
         ]);
