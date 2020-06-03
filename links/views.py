@@ -201,6 +201,16 @@ def links(request, page):
                                "text": "you will lose all bookmarks contained \
                                    within.", }
 
+    # check if page is being loaded by a new user for the first time
+    try:
+        new_user_exp = request.session['new_user_exp']
+    except KeyError:
+        new_user_exp = ''
+    else:
+        del request.session['new_user_exp']
+
+    print("NUE:", new_user_exp)
+
     context = {"column_width": 100 / num_of_columns,
                "num_of_columns": num_of_columns,
                "bm_data": bm_data,
@@ -214,6 +224,7 @@ def links(request, page):
                "bm_delete_modal": bm_delete_modal,
                "page_delete_modal": page_delete_modal,
                "collection_delete_modal": collection_delete_modal,
+               "new_user_exp": new_user_exp,
                }
     context = is_premium(request.user, context)
 
@@ -234,9 +245,7 @@ def start_app(request):
     # If no pages are found, assume a new user and run new_user_setup
     if not Page.objects.filter(user=request.user).exists():
         general_utils.new_user_setup(request)
-        messages.success(
-            request, f"Welcome to LINKS! As you are a new user we have \
-                created you some bookmarks to get you going!")
+        request.session['new_user_exp'] = "true"
 
     # get last_page data and redirect if applicable, otherwise load first page
     try:

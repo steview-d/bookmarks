@@ -810,17 +810,28 @@ $(document).ready(function () {
     $("#copyright-year").text(new Date().getFullYear());
 
     // -------------------------------------------------- SWAL2 New User Exp //
-    Swal.mixin({
-        // icon: "info",
-        imageUrl: "/static/img/logo/logo_main.png",
-        imageWidth: 260,
-        imageAlt: "Links logo",
-        confirmButtonText: "NEXT",
-        progressSteps: ['1', '2', '3']
-    }).queue([
-        {
-            title: "Before We Begin...",
-            html: `<p class='my-3 px-1'>To get you started, the following items have been automatically created for you:</p>
+
+    /*
+    Fire a SweetAlert2 box when a new user logs in for the first time.
+    Box is spread over 3 stages:
+    Stage 1: Inform the user some content has been created for them, 
+             to get them started.
+    Stage 2: Offer basic advice on how pages & collections work, and let them
+             know they can hover for tooltips.
+    Stage 3: Ask for feedback.
+    */
+
+    if (newUserExp !== "") {
+        Swal.mixin({
+            imageUrl: "/static/img/logo/logo_main.png",
+            imageWidth: 260,
+            imageAlt: "Links logo",
+            confirmButtonText: "NEXT",
+            progressSteps: ["1", "2", "3"],
+        }).queue([
+            {
+                title: "Before We Begin...",
+                html: `<p class='my-3 px-1'>To get you started, the following items have been automatically created for you:</p>
                 <div class="row">
                 <div class="col"></div>
                 <div class="col-11 text-left">
@@ -832,19 +843,20 @@ $(document).ready(function () {
                 <div class="col"></div>
                 </div>
                 `,
-        },
-        {
-            title: "A Few More Things...",
-            html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection.</p>
+            },
+            {
+                title: "A Few More Things...",
+                html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection.</p>
                 <p class="qmt-1 px-1">Collections are stored inside of Pages.</p>
                 <p class="qmt-1 qmb-2 px-1">If you're unsure what a button does, you can hover above it for a hint.</p>`,
-        },
-        {
-            title: "And Finally...",
-            html: `<p class="my-3 px-1">We would love to know what you think of this app.<br>
+            },
+            {
+                title: "And Finally...",
+                html: `<p class="my-3 px-1">We would love to know what you think of this app.<br>
                 If you have any comments or suggestions, please 
                 <strong><a href="/accounts/support/#support-form">let us know</a></strong>.</p>`,
-            confirmButtonText: "CLOSE",
-        },
-    ]);
+                confirmButtonText: "CLOSE",
+            },
+        ]);
+    }
 });
