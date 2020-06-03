@@ -847,16 +847,16 @@ $(document).ready(function () {
             },
             {
                 title: "A Few More Things...",
-                html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection.</p>
-                    <p class="qmt-1 px-1">Collections are stored inside of Pages.</p>
-                    <p class="qmt-1 qmb-2 px-1">If you're unsure what a button does, 
-                    you can hover above it for a hint.</p>`,
+                html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection, and Collections are stored inside of Pages.</p>
+                    <p class="px-1 d-none d-md-flex">If you're unsure what a button does, 
+                    you can hover above it for a hint.</p>
+                    <p class="px-1">To see these messages again, visit Settings > Support.</p>`,
             },
             {
                 title: "And Finally...",
                 html: `<p class="my-3 px-1">We would love to know what you think of this app.<br>
                     If you have any comments or suggestions, please 
-                    <strong><a href="/accounts/support/#support-form" onclick="swal.closeModal();">
+                    <strong><a href="mailto:hi@davelaffan.dev" onclick="swal.closeModal();">
                     let us know</a></strong>.</p>`,
                 confirmButtonText: "CLOSE",
             },
