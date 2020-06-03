@@ -11,6 +11,9 @@ The deployed app can be found at [links-sw.herokuapp.com](https://links-sw.herok
 
 [![Build Status](https://travis-ci.org/steview-d/bookmarks.svg?branch=master)](https://travis-ci.org/steview-d/bookmarks)
 
+## Changelog
+- 03.06.20 - [New User Experience](#new-user-experience)
+
 ## Contents
 
 
@@ -729,3 +732,13 @@ Vitor  Freitas at [https://simpleisbetterthancomplex.com](https://simpleisbetter
 The [Try Django 2.2](https://www.codingforentrepreneurs.com/projects/try-django-2-2) mini project is a free step-by-step guide to building a blog with Django, and even though Django blog tutorials are ten a penny, this one is highly recommended.
 
 Thanks to [Attila Szaloki](https://github.com/aticodein) & [Precious Iijege](https://github.com/precious-ijege/) for help with testing and feedback.
+
+
+## Changelog
+#### New User Experience | 03.06.20
+A change to what a new user sees when first logging in after registering an account. Previously, new users were greeted with a brief message at the top of screen informing them a page had been created for them, and to create a collection before trying to add a bookmark.
+Now, when a new user logs in for the first time, a modal window opens in the middle of the screen and shows this:
+
+<img src="https://i.imgur.com/X2F0u27.png" height=400>
+
+When the modal is closed, the user now has a collection with 5 bookmarks contained within, giving the user opportunity to better see how the app works, before they need to start creating their own bookmarks.
