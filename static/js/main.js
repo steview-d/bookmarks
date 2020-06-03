@@ -730,8 +730,7 @@ $(document).ready(function () {
         $(".rec-columns").text(recMaxColumns + columnPlural);
 
         // generate link to 'change_num_columns' view
-        changeColumnsUrl =
-            `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
+        changeColumnsUrl = `/app/_change-num-columns/${pageName}/${recMaxColumns}`;
         $("#width-warning-change").attr("href", changeColumnsUrl);
     }
 
@@ -810,6 +809,42 @@ $(document).ready(function () {
     // ----------------------------------------------- Insert Copyright Year //
     $("#copyright-year").text(new Date().getFullYear());
 
-    // ------------------------------------------------------- Sweet Alert 2 //
-
+    // -------------------------------------------------- SWAL2 New User Exp //
+    Swal.mixin({
+        // icon: "info",
+        imageUrl: "/static/img/logo/logo_main.png",
+        imageWidth: 260,
+        imageAlt: "Links logo",
+        confirmButtonText: "NEXT",
+        progressSteps: ['1', '2', '3']
+    }).queue([
+        {
+            title: "Before We Begin...",
+            html: `<p class='my-3 px-1'>To get you started, the following items have been automatically created for you:</p>
+                <div class="row">
+                <div class="col"></div>
+                <div class="col-11 text-left">
+                <ul>
+                <li>A Page called 'Home'.</li>
+                <li>A Collection called 'My First Collection'.</li>
+                <li>A few bookmarks for sites you may find interesting.</li>
+                </div>
+                <div class="col"></div>
+                </div>
+                `,
+        },
+        {
+            title: "A Few More Things...",
+            html: `<p class="mt-3 px-1">Bookmarks must be stored inside of a Collection.</p>
+                <p class="qmt-1 px-1">Collections are stored inside of Pages.</p>
+                <p class="qmt-1 qmb-2 px-1">If you're unsure what a button does, you can hover above it for a hint.</p>`,
+        },
+        {
+            title: "And Finally...",
+            html: `<p class="my-3 px-1">We would love to know what you think of this app.<br>
+                If you have any comments or suggestions, please 
+                <strong><a href="/accounts/support/#support-form">let us know</a></strong>.</p>`,
+            confirmButtonText: "CLOSE",
+        },
+    ]);
 });
